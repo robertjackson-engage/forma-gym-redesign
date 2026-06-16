@@ -520,7 +520,7 @@ home_body = view_chooser + hero(
       <a class="card" href="group-fitness.html"><div class="card__media"><img src="{IMG}/slider-locations_group_dance.jpg" alt="Group fitness class" loading="lazy"><span class="card__num">01</span><div class="card__label"><h3>Group<br>Fitness</h3><span class="go">Explore →</span></div></div></a>
       <a class="card" href="training.html"><div class="card__media"><img src="{IMG}/annabelle_kettle_HERO_2.jpg" alt="Personal training" loading="lazy"><span class="card__num">02</span><div class="card__label"><h3>Personal<br>Training</h3><span class="go">Explore →</span></div></div></a>
       <a class="card" href="cycle.html"><div class="card__media"><img src="{IMG}/slider-WC_cycle_indoor_v2.jpg" alt="Cycle studio" loading="lazy"><span class="card__num">03</span><div class="card__label"><h3>Cycle</h3><span class="go">Explore →</span></div></div></a>
-      <a class="card" href="recovery.html"><div class="card__media"><img src="{IMG}/neck_hold_BLUR_2000x1333px_v2.jpg" alt="Recovery and cryo" loading="lazy"><span class="card__num">04</span><div class="card__label"><h3>Recovery<br>&amp; Cryo</h3><span class="go">Explore →</span></div></div></a>
+      <a class="card" href="recovery.html"><div class="card__media"><img src="{IMG}/Forma_WalnutCreek_locations_cryo.jpg" alt="Forma cryotherapy chamber" loading="lazy"><span class="card__num">04</span><div class="card__label"><h3>Recovery<br>&amp; Cryo</h3><span class="go">Explore →</span></div></div></a>
       <a class="card" href="aqua.html"><div class="card__media"><img src="{IMG}/slider-aqua_v3.jpg" alt="Aqua studio" loading="lazy"><span class="card__num">05</span><div class="card__label"><h3>Aqua</h3><span class="go">Explore →</span></div></div></a>
       <a class="card" href="spa.html"><div class="card__media"><img src="{IMG}/Forma_Walnut-Creek_Spa_Header_2018.jpg" alt="The spa" loading="lazy"><span class="card__num">06</span><div class="card__label"><h3>The<br>Spa</h3><span class="go">Explore →</span></div></div></a>
     </div>
@@ -553,7 +553,7 @@ home_body = view_chooser + hero(
       <a class="inline-link reveal" href="recovery.html">More recovery →</a>
     </div>
     <div class="card-grid card-grid--2" data-stagger>
-      <div class="card"><div class="card__media card__media--wide"><img src="{IMG}/benefits_body_2000x1124.jpg" alt="Cryotherapy" loading="lazy"><div class="card__label"><h3>Cryotherapy + Cold Plunge</h3></div></div><div class="card__below"><p>Burn 500–800 calories in a single 3-minute session, reduce inflammation and pain, heal injuries faster, and sleep better. A natural, non-invasive reset trusted by Olympic and pro athletes — and now part of your club.</p></div></div>
+      <div class="card"><div class="card__media card__media--wide"><img src="{IMG}/chillyGOAT_SJ_500px.jpg" alt="Chilly Goat cold plunge" loading="lazy"><div class="card__label"><h3>Cryotherapy + Cold Plunge</h3></div></div><div class="card__below"><p>Burn 500–800 calories in a single 3-minute session, reduce inflammation and pain, heal injuries faster, and sleep better. A natural, non-invasive reset trusted by Olympic and pro athletes — and now part of your club.</p></div></div>
       <div class="card"><div class="card__media card__media--wide"><img src="{IMG}/Forma_Walnut-Creek_Spa_Header_2018.jpg" alt="The Spa" loading="lazy"><div class="card__label"><h3>The Full-Service Day Spa</h3></div></div><div class="card__below"><p>Massage, facials and clinical skin care from skilled therapists — steps from the sauna, steam and hot tub. Restore, rejuvenate and walk out feeling like a brand new person.</p></div></div>
     </div>
   </div>
@@ -902,7 +902,7 @@ recovery_body = hero(
     'Perform better, recover <span class="serif">faster</span>',
     ["After experiencing cryotherapy and cold plunges for ourselves, we brought them in-house so you can enjoy the benefits and the convenience of a comprehensive wellness solution in one location.",
      "Burn 500–800 calories in a single 3-minute session, reduce inflammation and pain, heal injuries faster, improve circulation, sleep better and feel invigorated. Natural, non-invasive, and trusted by Olympic and professional athletes."],
-    f"{IMG}/benefits_body_2000x1124.jpg",
+    f"{IMG}/Forma_WalnutCreek_locations_cryo.jpg",
     "Cryotherapy chamber at Forma",
     cta=("All about cryo", "cryo.html"), tag="Chilly Goat®",
 ) + split(
@@ -918,13 +918,13 @@ recovery_body = hero(
     'Where science meets <span class="serif">self-care</span>',
     ["Our Mind Body LAB brings together recovery technology, brain health and the mind-body connection — including DrBrainRX — to help you feel as good mentally as you do physically.",
      "Because true wellness isn't just how you move. It's how you think, recover, and feel."],
-    f"{IMG}/circle_connect_BLUR_2000x1333px.jpg",
+    f"{IMG}/slider-meditate_v2.jpg",
     "Mind Body LAB at Forma",
     cta=("Explore the LAB", "mindbodylab.html"), tag="Mind Body LAB",
 ) + cta_band(
     'Restore. Rejuvenate. <span class="serif">Repeat.</span>',
     "Recovery is included in the Forma experience. Book a session and walk out feeling brand new.",
-    f"{IMG}/rise_room_blur.jpg",
+    f"{IMG}/chillyGOAT_SJ_500px.jpg",
 )
 
 # ============================================================ CRYO
@@ -932,7 +932,7 @@ cryo_body = hero(
     "Cryotherapy + Cold Plunge",
     ["Three minutes.", 'Total <span class="serif">reset</span>.'],
     "An integrated view of wellness and recovery. We experienced cryotherapy and cold plunges ourselves — then brought them here so you can enjoy the benefits and the convenience, all in one location.",
-    img=f"{IMG}/benefits_body_2000x1124.jpg",
+    img=f"{IMG}/Forma_WalnutCreek_locations_cryo.jpg",
     crumb='<a href="recovery.html">Recovery</a> &nbsp;/&nbsp; Cryotherapy',
     actions=[("Book a Session", "contact.html#tour", True)],
     meta=["-195°F chamber", "Burn 500–800 cal", "Trusted by pro athletes"],
@@ -959,7 +959,7 @@ cryo_body = hero(
     'Natural, non-invasive, <span class="serif">cutting-edge</span>',
     ["Cryotherapy uses brief, intense exposure to gasiform nitrogen to lower the skin's temperature to 41–50°F, with the chamber dropping to -195°F. The skin signals the brain, stimulating immune and basic body systems, releasing endorphins and blocking pain.",
      "The result is vasoconstriction followed by vasodilation — blood returning to your extremities highly oxygenated and nutrient-rich, helping the body repair and strengthen. The buoyant effects can last up to 8 hours, and many clients report better sleep after a single session."],
-    f"{IMG}/facility_11_BLUR.jpg",
+    f"{IMG}/chillyGOAT_SJ_500px.jpg",
     "Cryotherapy facility",
     rev=True, tag="-195°F",
 ) + f"""
@@ -981,7 +981,7 @@ cryo_body = hero(
 """ + cta_band(
     'Book your first <span class="serif">session</span>',
     "Three minutes to less pain, better sleep, and faster recovery. Members and guests welcome.",
-    f"{IMG}/neck_hold_BLUR_2000x1333px_v2.jpg",
+    f"{IMG}/chillyGOAT_SJ_500px.jpg",
     primary=("Book a Session", "contact.html#tour"),
 )
 
@@ -1068,7 +1068,7 @@ mbl_body = hero(
 ) + cta_band(
     'Strong body. <span class="serif">Clear mind.</span>',
     "The Mind Body LAB is part of the Forma experience. Come explore what whole-person wellness feels like.",
-    f"{IMG}/rise_room_blur.jpg",
+    f"{IMG}/slider-stretch_recovery_v1.jpg",
 )
 
 # ============================================================ KIDZVILLE
@@ -1520,7 +1520,7 @@ drbrain_body = hero(
 """ + cta_band(
     'Feel as good as you <span class="serif">look</span>',
     "Ask the front desk about DrBrainRX, or mention it on your tour. Your strongest, sharpest self is the goal.",
-    f"{IMG}/rise_room_blur.jpg",
+    f"{IMG}/slider-locations_group_dance.jpg",
     primary=("Book a Tour", "contact.html#tour"),
 )
 
