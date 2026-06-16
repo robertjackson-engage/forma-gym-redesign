@@ -138,7 +138,7 @@
     /* finish */
     var success = document.querySelector(".join-success");
     var nameEl = success.querySelector("[data-success-name]");
-    if (nameEl && state.first) nameEl.textContent = state.first + ", you're going to feel good here.";
+    if (nameEl && state.first) nameEl.textContent = "Welcome to the Forma Family, " + state.first + ".";
     success.classList.add("is-open");
     document.body.style.overflow = "hidden";
   });

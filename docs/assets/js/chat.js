@@ -218,7 +218,7 @@
       if (isAuth) { try { localStorage.removeItem("forma-anthropic-key"); } catch (e) {} }
       addMsg("ai", "<p>" + (isAuth
         ? "That API key didn't work — let's try again."
-        : "I'm having trouble connecting right now. You can always reach the team at <a href='tel:3523774955'>(352) 377-4955</a>.") + "</p>");
+        : "I'm having trouble connecting right now. You can always reach a club — Walnut Creek <a href='tel:9259326400'>(925) 932-6400</a> or San Jose <a href='tel:4083631010'>(408) 363-1010</a>.") + "</p>");
       if (isAuth) keyGate();
       history.pop();
     }).finally(function () {

@@ -25,9 +25,11 @@ MENU = [
     ("Home", "index.html"),
     ("Group Fitness", "group-fitness.html"),
     ("Personal Training", "training.html"),
+    ("Outdoor Fitness", "outdoor-training.html"),
     ("Recovery &amp; Cryo", "recovery.html"),
     ("The Spa", "spa.html"),
     ("Mind Body LAB", "mindbodylab.html"),
+    ("DrBrainRX", "drbrainrx.html"),
     ("Kidzville", "kidzville.html"),
     ("RISE Program", "rise.html"),
     ("Forma Gives Back", "givesback.html"),
@@ -35,47 +37,60 @@ MENU = [
     ("San Jose", "san-jose.html"),
     ("Locations &amp; Hours", "locations.html"),
     ("About Forma", "about.html"),
+    ("The Forma App", "app.html"),
     ("Join Now", "join.html"),
     ("Book a Tour", "contact.html#tour"),
 ]
 
-# Signature class detail pages (subset get their own page; all listed on group-fitness)
+# Every group-fitness format gets its own detail page.
+# slug, title, img, lead, short (for the group-fitness list)
 CLASS_PAGES = [
-    # slug, title, img, lead
-    ("cycle", "Cycle Studio", "slider-WC_cycle_indoor_v2.jpg",
-     "An exhilarating, immersive cardio ride for every fitness level. Simulated terrain, climbs, sprints and endurance sets — all driven by the beat. The music keeps you engaged and pushes you to match its rhythm and intensity."),
-    ("yoga", "Yoga + Mind Body", "yoga_background_2000px_wide.jpg",
-     "Move, breathe, and reconnect. From gentle restorative flows to dynamic vinyasa, our yoga and mind-body classes build flexibility, strength and calm — guided by instructors who meet you exactly where you are."),
-    ("pilates-reformer", "Pilates Reformer", "slider-pilates_reformer_v2.jpg",
-     "A dynamic, full-body workout combining the principles of Pilates with the specialized Reformer. Build long, lean strength, flexibility, balance and core control with spring-loaded resistance and expert guidance."),
-    ("barre", "Barre", "slider-locations_group_dance.jpg",
-     "Ballet, Pilates and strength training in one elegant burn. Using the barre for support, you'll move through small, isometric movements that target specific muscle groups for a toned, sculpted physique."),
-    ("trx", "TRX&reg; Suspension", "slider-TRX_v4.jpg",
-     "Leverage your own body weight as resistance on the TRX suspension system. Adjustable straps let you scale every move — building strength, stability and control from your first rep to your hardest."),
     ("aqua", "Aqua Studio", "slider-aqua_v3.jpg",
-     "A refreshing, low-impact workout in our heated pools. Improve cardiovascular fitness, muscle strength and conditioning with water's natural resistance — ideal for every level, including recovery and joint-friendly training."),
+     "A refreshing, low-impact workout in our heated pools. Improve cardiovascular fitness, muscle strength and conditioning with water's natural resistance — ideal for every level, including recovery and joint-friendly training.",
+     "Low-impact strength &amp; cardio in heated water"),
+    ("barre", "Barre", "slider-locations_group_dance.jpg",
+     "Ballet, Pilates and strength training in one elegant burn. Using the barre for support, you'll move through small, isometric movements that target specific muscle groups for a toned, sculpted physique.",
+     "Ballet, Pilates &amp; strength for a sculpted body"),
+    ("cardio-hiit", "Cardio + HIIT", "annabelle_kettle_HERO_2.jpg",
+     "High-energy intervals that torch calories and build serious conditioning. Cardio and HIIT classes alternate bursts of intense effort with active recovery — an efficient, heart-pumping way to get stronger and faster, scaled to every level.",
+     "High-intensity intervals that torch calories"),
+    ("cycle", "Cycle Studio", "slider-WC_cycle_indoor_v2.jpg",
+     "An exhilarating, immersive cardio ride for every fitness level. Simulated terrain, climbs, sprints and endurance sets — all driven by the beat. The music keeps you engaged and pushes you to match its rhythm and intensity.",
+     "Immersive, beat-driven indoor rides"),
     ("dance", "Dance", "slider-locations_group_dance.jpg",
-     "Music, movement and pure joy. Our dance classes combine rhythm and technique into a workout that never feels like one — building coordination, cardio and confidence while you have an absolute blast."),
+     "Music, movement and pure joy. Our dance classes combine rhythm and technique into a workout that never feels like one — building coordination, cardio and confidence while you have an absolute blast.",
+     "Cardio that feels like a celebration"),
+    ("low-impact", "Low Impact + Balance", "slider-LIT_balance_v3.jpg",
+     "Build fitness, strength, coordination and stability with a gentler approach. Low Impact and Balance classes create a supportive environment for anyone who prefers — or needs — to move with care, without sacrificing results.",
+     "Gentle, supportive strength &amp; stability"),
+    ("kickboxing", "Kickboxing + Martial Arts", "slider-kickbox_v3.jpg",
+     "Dynamic, engaging classes that combine cardiovascular fitness, self-defense technique, discipline and mental focus — improving strength, flexibility, coordination and confidence while you punch, kick and sweat it out.",
+     "Power, focus and serious cardio"),
+    ("meditation", "Meditation + Breathwork", "slider-meditate_v2.jpg",
+     "A peaceful, rejuvenating space for relaxation, stress reduction and mental clarity. Learn and practice meditation and breathwork techniques under expert guidance — for everyone from first-timers to seasoned practitioners.",
+     "Reset your nervous system and mind"),
+    ("mat-pilates", "Mat Pilates", "slider-mat_pilates_v2.jpg",
+     "A comprehensive, full-body workout focused on core strength, flexibility and muscular endurance. Classes take place on a mat, making them accessible and suitable for individuals of all fitness levels.",
+     "Core, flexibility and control on the mat"),
+    ("pilates-reformer", "Pilates Reformer", "slider-pilates_reformer_v2.jpg",
+     "A dynamic, full-body workout combining the principles of Pilates with the specialized Reformer. Build long, lean strength, flexibility, balance and core control with spring-loaded resistance and expert guidance.",
+     "Spring-loaded, full-body Pilates"),
     ("sculpt", "Sculpt", "slider-sculpt_v2.jpg",
-     "A dynamic, challenging session built to tone and define. Sculpt classes build lean muscle, increase strength and transform overall body composition — every rep with intention."),
+     "A dynamic, challenging session built to tone and define. Sculpt classes build lean muscle, increase strength and transform overall body composition — every rep with intention.",
+     "Tone, define and build lean muscle"),
+    ("stretch", "Stretch + Recovery", "slider-stretch_recovery_v1.jpg",
+     "A rejuvenating, restorative class to increase flexibility, relieve muscle tension and promote overall recovery and well-being. A dedicated space to unwind, restore your body and feel better — the perfect complement to any workout.",
+     "Mobility, release and deep recovery"),
+    ("trx", "TRX&reg; Suspension", "slider-TRX_v4.jpg",
+     "Leverage your own body weight as resistance on the TRX suspension system. Adjustable straps let you scale every move — building strength, stability and control from your first rep to your hardest.",
+     "Suspension training that scales to you"),
+    ("yoga", "Yoga + Mind Body", "yoga_background_2000px_wide.jpg",
+     "Move, breathe, and reconnect. From gentle restorative flows to dynamic vinyasa, our yoga and mind-body classes build flexibility, strength and calm — guided by instructors who meet you exactly where you are.",
+     "Flexibility, strength and stillness"),
 ]
 
-ALL_CLASSES = [
-    ("Aqua", "aqua.html", "Low-impact strength &amp; cardio in heated water"),
-    ("Barre", "barre.html", "Ballet, Pilates &amp; strength for a sculpted body"),
-    ("Cardio + HIIT", "group-fitness.html#classes", "High-intensity intervals that torch calories"),
-    ("Cycle", "cycle.html", "Immersive, beat-driven indoor rides"),
-    ("Dance", "dance.html", "Cardio that feels like a celebration"),
-    ("Low Impact + Balance", "group-fitness.html#classes", "Gentle, supportive strength &amp; stability"),
-    ("Kickboxing + Martial Arts", "group-fitness.html#classes", "Power, focus and serious cardio"),
-    ("Meditation + Breathwork", "group-fitness.html#classes", "Reset your nervous system and mind"),
-    ("Mat Pilates", "group-fitness.html#classes", "Core, flexibility and control on the mat"),
-    ("Pilates Reformer", "pilates-reformer.html", "Spring-loaded, full-body Pilates"),
-    ("Sculpt", "sculpt.html", "Tone, define and build lean muscle"),
-    ("Stretch + Recovery", "group-fitness.html#classes", "Mobility, release and deep recovery"),
-    ("TRX&reg;", "trx.html", "Suspension training that scales to you"),
-    ("Yoga + Mind Body", "yoga.html", "Flexibility, strength and stillness"),
-]
+# derived: the list used across nav/footer/group-fitness, each linking to its page
+ALL_CLASSES = [(t, f"{slug}.html", short) for slug, t, img, lead, short in CLASS_PAGES]
 
 
 def head(title, desc):
@@ -201,8 +216,9 @@ def footer_html():
           <a href="spa.html">The Spa</a>
           <a href="mindbodylab.html">Mind Body LAB</a>
           <a href="kidzville.html">Kidzville</a>
+          <a href="outdoor-training.html">Outdoor Fitness</a>
           <a href="rise.html">RISE Program</a>
-          <a href="givesback.html">Forma Gives Back</a>
+          <a href="merchant.html">Member Savings</a>
           <a href="about.html">About Forma</a>
         </div>
       </div>
@@ -225,9 +241,9 @@ def footer_html():
       <span>©2026 Forma Gym. All Rights Reserved.</span>
       <div class="legal">
         <a href="contact.html">Contact</a>
-        <a href="contact.html">Careers</a>
-        <a href="contact.html">Privacy Policy</a>
-        <a href="contact.html">Accessibility</a>
+        <a href="app.html">Forma App</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="accessibility.html">Accessibility</a>
       </div>
     </div>
   </div>
@@ -458,7 +474,8 @@ home_body = view_chooser + hero(
     "Walnut Creek &amp; San Jose · Est. 2009",
     ["Play", '<span class="serif">every</span> day'],
     "Two luxury Bay Area clubs built around one idea: make movement the best part of your day. World-class instructors, resort-style amenities, and a community that actually feels like one.",
-    img=f"{IMG}/andres_hero_wide.jpg",
+    video="assets/video/forma-hero.mp4",
+    poster=f"{IMG}/forma-hero-poster.jpg",
     actions=[
         ("Start 2 Weeks Free", "join.html", True, "only-guest"),
         ("Explore the Clubs", "locations.html", False, "only-guest"),
@@ -1394,6 +1411,204 @@ contact_body = hero(
     f"{IMG}/slider-locations_turf_alysse_torey.jpg",
 )
 
+# ============================================================ TRIAL PASS
+trial_body = hero(
+    "Schedule Your Visit",
+    ["Try Forma.", 'First two weeks <span class="serif">free</span>.'],
+    "Fill out the form below to schedule a visit, a tour, and/or a guest workout — and take advantage of our Summer Special. $0 enrollment and a free fitness coaching session.",
+    img=f"{IMG}/annabelle_kettle_HERO_2.jpg",
+    crumb="Trial Pass",
+    actions=[("Schedule My Visit", "#tour", True), ("Join Online", "join.html", False)],
+    meta=["First 2 weeks free", "$0 enrollment", "Free coaching session"],
+    page=True,
+) + f"""
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="intro-grid">
+      <div>
+        <p class="eyebrow"><span class="num">01</span> We're here for you</p>
+        <h2 class="h-display reveal">A lifestyle change, not a <span class="serif">quick fix</span></h2>
+      </div>
+      <div class="intro-grid__right">
+        <p class="lede reveal">Forma Gym is a family-run gym created not only to help you shape your body, but to help you take control of every aspect of your life.</p>
+        <p class="body-copy reveal">Our metric of wellness is your outlook on life — connection, gratitude, eating well, moving every day, and living a life of fulfillment. Whether you're recapturing your health, increasing your capacity, or changing your physique, we understand that everyone has obstacles to achieving their goals. Forma has the tools and support you need to feel comfortable, have fun, and enjoy the journey.</p>
+      </div>
+    </div>
+  </div>
+</section>
+""" + form_section(
+    "tour", "02", "Schedule your visit",
+    'Your <span class="serif">$0</span> enrollment offer',
+    "We have a fitness solution for you — hundreds of monthly classes across every intensity and experience level, whether you've never had a gym membership or you've tried them all. Complete the form and we'll set up your visit and free coaching session.",
+    "Claim My Free Pass",
+) + cta_band(
+    'Come <span class="serif">play</span> with us',
+    "Two clubs, two free weeks, $0 enrollment. The only thing left to do is show up.",
+    f"{IMG}/slider-locations_turf_alysse_torey.jpg",
+)
+
+# ============================================================ OUTDOOR
+outdoor_body = hero(
+    "Outdoor Fitness",
+    ["Train under the", '<span class="serif">California sky</span>'],
+    "Our members LOVE to exercise outdoors — and we LOVE giving them the environment and tools to show up and move every day. We've expanded our outdoor footprint so you have everything you need, all year-round.",
+    img=f"{IMG}/slider-locations_turf_alysse_torey.jpg",
+    crumb="Outdoor",
+    actions=[("Start 2 Weeks Free", "join.html", True)],
+    meta=["Covered outdoor turf", "Rain or shine", "Both clubs"],
+    page=True,
+) + f"""
+<section class="section">
+  <div class="wrap">
+    <div class="cards-head">
+      <div>
+        <p class="eyebrow"><span class="num">01</span> The outdoor playground</p>
+        <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Everything you need, <span class="serif">outside</span></h2>
+      </div>
+      <p class="body-copy reveal" style="max-width:34ch">Walnut Creek's turf sits under towering redwoods. San Jose's 8,000 sq. ft. covered outdoor area runs year-round beneath the palms.</p>
+    </div>
+    <div class="pillars" data-stagger style="grid-template-columns:repeat(2,1fr)">
+      <div class="pillar"><span class="pillar__num">01</span><h3>Strength Training</h3><p>Full outdoor strength setups so you never have to choose between iron and fresh air.</p></div>
+      <div class="pillar"><span class="pillar__num">02</span><h3>Cardio Equipment</h3><p>Treadmills, bikes and more, set up under cover for year-round outdoor sessions.</p></div>
+      <div class="pillar"><span class="pillar__num">03</span><h3>Group Exercise</h3><p>Take your favorite classes into the open air — energy hits different outside.</p></div>
+      <div class="pillar"><span class="pillar__num">04</span><h3>Outdoor Cycle</h3><p>Beat-driven rides with a view — the best seat in the house is outdoors.</p></div>
+    </div>
+  </div>
+</section>
+""" + cta_band(
+    'Move <span class="serif">every day</span> — indoors or out',
+    "It's all included with your membership. Come find your favorite spot under the sky.",
+    f"{IMG}/SJ_gym_floor_HERO_gradient-scaled.jpg",
+)
+
+# ============================================================ DRBRAINRX
+drbrain_body = hero(
+    "DrBrainRX",
+    ["Longevity,", '<span class="serif">optimized</span>'],
+    "GLP-1 weight loss care, peptide therapy and longevity medicine — available to Forma members through our DrBrainRX partnership. Because feeling your best is about more than the workout.",
+    img=f"{IMG}/circle_connect_BLUR_2000x1333px.jpg",
+    crumb='<a href="mindbodylab.html">Mind Body LAB</a> &nbsp;/&nbsp; DrBrainRX',
+    actions=[("Member Offer", "#offer", True)],
+    meta=["GLP-1 weight loss care", "Peptide therapy", "Longevity medicine"],
+    page=True,
+) + f"""
+<section class="section">
+  <div class="wrap">
+    <div class="cards-head">
+      <div>
+        <p class="eyebrow"><span class="num">01</span> What DrBrainRX offers</p>
+        <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Modern wellness <span class="serif">medicine</span></h2>
+      </div>
+    </div>
+    <div class="pillars" data-stagger style="grid-template-columns:repeat(3,1fr)">
+      <div class="pillar"><span class="pillar__num">01</span><h3>GLP-1 Weight Loss Care</h3><p>Physician-guided, modern weight-management care tailored to your body and your goals.</p></div>
+      <div class="pillar"><span class="pillar__num">02</span><h3>Peptide Therapy</h3><p>Targeted peptide protocols to support recovery, performance and healthy aging.</p></div>
+      <div class="pillar"><span class="pillar__num">03</span><h3>Longevity Medicine</h3><p>A proactive, science-led approach to living stronger and sharper for longer.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--light" id="offer">
+  <div class="wrap">
+    <figure class="quote-band reveal">
+      <span class="quote-band__mark">“</span>
+      <blockquote>Exclusive offer for Forma members: 1 month free + $70 off products. Use code FORMAGYM.</blockquote>
+      <figcaption>DrBrainRX × Forma Gym</figcaption>
+    </figure>
+  </div>
+</section>
+""" + cta_band(
+    'Feel as good as you <span class="serif">look</span>',
+    "Ask the front desk about DrBrainRX, or mention it on your tour. Your strongest, sharpest self is the goal.",
+    f"{IMG}/rise_room_blur.jpg",
+    primary=("Book a Tour", "contact.html#tour"),
+)
+
+# ============================================================ APP
+app_body = hero(
+    "The Forma App",
+    ["Your club, in", 'your <span class="serif">pocket</span>'],
+    "Book classes, reserve your lane, check schedules and manage your membership — all from the Forma app. Your whole Forma experience, wherever you are.",
+    img=f"{IMG}/slider-WC_cycle_indoor_v2.jpg",
+    crumb="App",
+    actions=[("Get the App", "#download", True)],
+    page=True,
+) + f"""
+<section class="section">
+  <div class="wrap">
+    <div class="cards-head">
+      <div>
+        <p class="eyebrow"><span class="num">01</span> Everything in one place</p>
+        <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Plan your day to <span class="serif">play</span></h2>
+      </div>
+    </div>
+    <div class="pillars" data-stagger style="grid-template-columns:repeat(3,1fr)">
+      <div class="pillar"><span class="pillar__num">01</span><h3>Reserve classes &amp; lanes</h3><p>Grab your spot in any group fitness class or book a swim lane in seconds.</p></div>
+      <div class="pillar"><span class="pillar__num">02</span><h3>Live schedules</h3><p>See what's on today across both clubs — and never miss your favorite instructor.</p></div>
+      <div class="pillar"><span class="pillar__num">03</span><h3>Manage membership</h3><p>Your account, check-ins and member perks, all in the palm of your hand.</p></div>
+    </div>
+    <div class="hero__actions reveal" id="download" style="opacity:1;transform:none;margin-top:48px">
+      <a class="btn btn--solid" href="#">Download on the App Store <span class="arr">→</span></a>
+      <a class="btn" href="#">Get it on Google Play <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+""" + cta_band(
+    'Bring Forma <span class="serif">everywhere</span>',
+    "Not a member yet? Start with two free weeks and we'll get you set up on the app on day one.",
+    f"{IMG}/annabelle_kettle_HERO_2.jpg",
+)
+
+# ============================================================ MERCHANT
+merchant_body = hero(
+    "Preferred Merchant Program",
+    ["Member perks,", 'around <span class="serif">town</span>'],
+    "As a locally owned, private fitness club, Forma's goal is to deliver exceptional service and benefits to our members — including preferred pricing at local businesses we love.",
+    img=f"{IMG}/slider-hero_ladies_v1.jpg",
+    crumb="Member Savings",
+    actions=[("Become a Member", "join.html", True)],
+    page=True,
+) + f"""
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="intro-grid">
+      <div>
+        <p class="eyebrow"><span class="num">01</span> Locally owned, member first</p>
+        <h2 class="h-display reveal">Save with our local <span class="serif">partners</span></h2>
+      </div>
+      <div class="intro-grid__right">
+        <p class="lede reveal">We're partnering with local businesses to give you preferred pricing — a discount to locally owned and operated shops, restaurants and services around the Bay.</p>
+        <p class="body-copy reveal">It's our way of supporting the community that supports us — and giving members one more reason to love being part of the Forma Family. Ask the front desk for the current list of preferred merchants.</p>
+      </div>
+    </div>
+  </div>
+</section>
+""" + cta_band(
+    'More reasons to be a <span class="serif">member</span>',
+    "Preferred pricing is just one of the perks. Start with two free weeks and discover the rest.",
+    f"{IMG}/slider-locations_group_dance.jpg",
+)
+
+
+def legal_page(title, intro):
+    return hero(
+        title, [title], intro, img=f"{IMG}/dark_grey_texture_background.jpg",
+        crumb=title, page=True,
+    ) + f"""
+<section class="section section--tight">
+  <div class="wrap" style="max-width:820px">
+    <p class="body-copy reveal">This is a redesign demonstration of formagym.com. The full {title.lower()} from Forma Gym applies to all members and visitors. For the complete, current policy, please contact a club directly — Walnut Creek (925) 932-6400 or San Jose (408) 363-1010 — or visit the front desk.</p>
+    <p class="body-copy reveal">Forma Gym is committed to providing an inclusive, welcoming experience for every member and guest, online and in our clubs. If you encounter any difficulty using this site or need assistance, our team is happy to help.</p>
+  </div>
+</section>
+"""
+
+
+accessibility_body = legal_page("Accessibility Statement",
+    "Forma Gym is committed to making our clubs and our website accessible and welcoming to everyone.")
+privacy_body = legal_page("Privacy Policy",
+    "Forma is a SPAM-FREE ZONE. We never share or sell your email address or phone number.")
+
 # ============================================================ BUILD ALL
 PAGES = [
     ("index.html", "Forma Gym | Walnut Creek &amp; San Jose | Play Every Day", "Two luxury Bay Area fitness clubs — Walnut Creek &amp; San Jose. All group fitness, personal training, pools, cryotherapy, spa and Kidzville. Start with two free weeks.", "", home_body),
@@ -1411,12 +1626,19 @@ PAGES = [
     ("san-jose.html", "Forma Gym San Jose | 5434 Thornwood Dr", "Forma Gym San Jose — 40,000 sq ft luxury facility with covered outdoor turf, heated 6-lane pool, cold plunge and massage services.", "locations.html", sanjose_body),
     ("locations.html", "Locations &amp; Hours | Forma Gym Walnut Creek &amp; San Jose", "Two premium Bay Area clubs, one membership. Hours, addresses and amenities for Forma Gym Walnut Creek &amp; San Jose.", "locations.html", locations_body),
     ("join.html", "Join Now — 2 Weeks Free | Forma Gym", "Join Forma Gym and your first two weeks are free. All-inclusive access to both Bay Area clubs, every class and recovery amenity.", "", join_body),
+    ("trial-pass.html", "Trial Pass — Free Visit &amp; 2 Weeks Free | Forma Gym", "Schedule a visit, tour or guest workout at Forma Gym. $0 enrollment, a free coaching session, and your first two weeks free.", "", trial_body),
+    ("outdoor-training.html", "Outdoor Fitness | Forma Gym", "Strength, cardio, group exercise and cycle — outdoors, year-round, at both Forma Gym clubs.", "", outdoor_body),
+    ("drbrainrx.html", "DrBrainRX — GLP-1, Peptides &amp; Longevity | Forma Gym", "GLP-1 weight loss care, peptide therapy and longevity medicine for Forma members through DrBrainRX. 1 month free + $70 off, code FORMAGYM.", "", drbrain_body),
+    ("app.html", "The Forma App | Forma Gym", "Book classes, reserve lanes, check schedules and manage your membership with the Forma app.", "", app_body),
+    ("merchant.html", "Preferred Merchant Program | Forma Gym", "Forma members get preferred pricing at locally owned Bay Area businesses through our Preferred Merchant Program.", "", merchant_body),
     ("contact.html", "Contact &amp; Book a Tour | Forma Gym", "Book a tour or reach a Forma Gym club — Walnut Creek (925) 932-6400 or San Jose (408) 363-1010.", "", contact_body),
+    ("accessibility.html", "Accessibility Statement | Forma Gym", "Forma Gym is committed to making our clubs and website accessible and welcoming to everyone.", "", accessibility_body),
+    ("privacy.html", "Privacy Policy | Forma Gym", "Forma is a SPAM-FREE ZONE — we never share or sell your information.", "", privacy_body),
 ]
 
-# class detail pages
+# class detail pages — all 14 formats
 _others_pool = [(l, h, d) for l, h, d in ALL_CLASSES]
-for slug, title, img, lead in CLASS_PAGES:
+for slug, title, img, lead, short in CLASS_PAGES:
     others = [o for o in _others_pool if o[1] != f"{slug}.html"][:6]
     PAGES.append((f"{slug}.html", f"{title} | Group Fitness | Forma Gym",
                   f"{title} at Forma Gym — included with membership, all levels welcome. Start with two free weeks.",
