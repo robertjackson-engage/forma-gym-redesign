@@ -427,6 +427,10 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   transition: transform 1.3s var(--ease-out), filter .8s;
 }
 .card:hover .card__media img { transform: scale(1.05); }
+/* subject-aware crops for wide banner assets inside tall cards —
+   set on the <img>: .obj-r pulls the window right, .obj-l left (BRAND-KIT §5) */
+.card__media img.obj-r { object-position: 72% 28%; }
+.card__media img.obj-l { object-position: 22% 30%; }
 /* lighter, label-only scrim so the photo reads clearly */
 .card__media::after {
   content: ""; position: absolute; inset: 0;
@@ -786,6 +790,8 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   .split--rev .split__body { order: 2; }
   .split__media { aspect-ratio: 4/3.4; }
   .card-grid, .card-grid--2, .card-grid--4 { grid-template-columns: 1fr; }
+  /* full-width mobile cards crop photos far less in a shorter frame */
+  .card__media { aspect-ratio: 4 / 3.2; }
   .cards-head { flex-direction: column; align-items: flex-start; gap: 22px; }
   .row-item { grid-template-columns: 1fr; gap: 10px; padding: 26px 0; }
   .row-item:hover { padding-left: 0; }

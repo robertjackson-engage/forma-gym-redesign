@@ -45,6 +45,7 @@ Kinetic hero (video/photo + 2–3 line headline + ≤2 CTAs) · marquee strip ·
 
 ## 5 · Photography
 Real Forma clubs and members, dark and cinematic; cyan/magenta studio lighting (FORMA CYCLE) encouraged. No sterile stock. Verify any sourced image against its page context before use — never trust filenames.
+**Crops:** wide banner assets placed in tall cards MUST set a subject-position utility on the `<img>` (`.obj-r` / `.obj-l`) so the subject survives the crop — default is center, which beheads edge-framed subjects. Mobile cards use a shorter 4/3.2 frame. Audit every new card image at 390px before shipping.
 
 ## 6 · Voice & copy
 Energetic, welcoming, plain-spoken — "Play every day." Short sentences. Benefits before features. Walnut Creek & San Jose named where locality matters. Guests are nurtured ("I'm a guest" / two free weeks), members are served (schedules, hours, Kidzville, perks).
