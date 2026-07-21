@@ -23,20 +23,24 @@ All values below are derived from the original **formagym.com** brand and locked
 
 **Rules:** cyan on black = the brand look. On light sections, use the deep cyan for text (never bright cyan on white). Buttons: cyan fill + near-black text, or outlined white.
 
-## 3 · Typography (updated 2026-07-21)
-Three voices, from the original site:
+## 3 · Typography (v1.2 — updated 2026-07-21, per client direction)
+Two typefaces. No accent typeface — accent is COLOR, not font.
 
-| Voice | Font | Source | Usage |
+| Voice | Font | Status | Usage |
 |---|---|---|---|
-| **Display** | **Anton**, caps | Google Fonts | Structural headlines, nav, buttons. Uppercase, tight leading. |
-| **Accent serif** | **Abril Fatface**, *upright only* | Google Fonts — **used on formagym.com** | The 1–2 accent word(s) inside headlines (`.serif` spans). **Never italic** (Abril has no italic; faux-italic is banned). Replaces the retired Instrument Serif italic. |
-| **Body** | **Inter** | Google Fonts | All body copy, forms, UI. Stands in for the original site's Proxima Nova (Adobe-licensed) / Open Sans; if the client's Adobe Fonts kit becomes available, Proxima Nova may replace Inter site-wide — nothing else. |
+| **Display** | **Anton**, caps | live | Structural headlines, nav, buttons. Uppercase, tight leading. |
+| **Body & UI** | **Montserrat** | live — stand-in | All body copy, forms, UI, and decorative copy moments. Montserrat is the interim stand-in for **Proxima Nova** (the client's true brand font, licensed via their Adobe Fonts kit on formagym.com). |
+| ~~Accent serif~~ | ~~Instrument Serif / Abril Fatface~~ | **retired** | Headline accent words keep their `.serif` markup but render in the SAME typeface as the headline, colored Forma Cyan. Never reintroduce a second display face. |
+
+**Proxima Nova upgrade path (one-line swap when ready):**
+1. Forma's Adobe account owner: fonts.adobe.com → Web Projects → add `robertjackson-engage.github.io` to the existing kit (crr0gcu) or create a project with Proxima Nova (400/500/600/700).
+2. Provide the kit URL (`https://use.typekit.net/xxxxxxx.css`).
+3. Swap the Google Fonts `<link>` in `build.py` for the kit link and set `--font-body: "proxima-nova", "Montserrat", sans-serif`. Optionally evaluate Proxima Nova Extrabold caps as the display face at the same time.
 
 **Type rules (non-negotiable):**
-1. Headline accent = **max 2 words** per headline in Abril Fatface, colored cyan/cyan-soft. More than that reads as decoration.
-2. Kinetic hero headlines: **≤16 characters per authored line**, 2–3 lines max. Audit after any headline change.
-3. Nav labels never wrap (`white-space: nowrap` stays).
-4. No new typefaces. Ever. Requests for "a fun font" route back to this kit.
+1. Headline accent = color only (Forma Cyan on 1–2 words). One typeface per headline, always.
+2. Kinetic hero headlines: ≤16 characters per authored line, 2–3 lines max. Audit after any headline change.
+3. Nav labels never wrap. 4. No new typefaces without updating this kit.
 
 ## 4 · Components (the approved set)
 Kinetic hero (video/photo + 2–3 line headline + ≤2 CTAs) · marquee strip · stats band (count-up) · split (photo + copy) · card grid · accordion · rows list · price cards · quote band · CTA band · view-chooser (Guest/Member) · member strip · AI concierge widget (cyan orb, bottom-right).
@@ -62,4 +66,4 @@ Energetic, welcoming, plain-spoken — "Play every day." Short sentences. Benefi
 3. Push to `main` → GitHub Action rebuilds and deploys production automatically (~2 min).
 4. Anything not covered by this kit → update the kit in the same PR, or don't do it.
 
-*Kit v1.0 — established 2026-07-21 (Abril Fatface adopted from formagym.com, replacing Instrument Serif italic).*
+*Kit v1.2 — 2026-07-21. v1.1 retired Instrument Serif italic; v1.2 retires accent typefaces entirely (color-only accents) and adopts Montserrat as the Proxima Nova stand-in pending the Adobe Fonts kit.*
