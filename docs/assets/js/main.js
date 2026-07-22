@@ -280,10 +280,24 @@
     });
   });
 
-  /* ---------- hero video: respect data saver ---------- */
-  var heroVid = document.querySelector(".hero__media video");
-  if (heroVid && navigator.connection && navigator.connection.saveData) {
-    heroVid.removeAttribute("autoplay");
-    heroVid.pause();
+  /* ---------- hero video: pick desktop/mobile source by viewport, respect data saver ---------- */
+  var heroVids = document.querySelectorAll(".hero__media video[data-src-desktop]");
+  if (heroVids.length) {
+    var saveData = navigator.connection && navigator.connection.saveData;
+    var mqMobile = window.matchMedia("(max-width: 820px)");
+    var applyHeroSrc = function () {
+      if (saveData) return; // keep the poster image only — don't pull a hero video
+      var want = mqMobile.matches ? "srcMobile" : "srcDesktop";
+      heroVids.forEach(function (v) {
+        var src = v.dataset[want];
+        if (!src || v.getAttribute("src") === src) return;
+        v.setAttribute("src", src);   // autoplay attr starts playback once the src loads
+        var p = v.play();             // best-effort nudge; ignore autoplay-policy rejects
+        if (p && p.catch) p.catch(function () {});
+      });
+    };
+    applyHeroSrc();
+    if (mqMobile.addEventListener) mqMobile.addEventListener("change", applyHeroSrc);
+    else if (mqMobile.addListener) mqMobile.addListener(applyHeroSrc);
   }
 })();

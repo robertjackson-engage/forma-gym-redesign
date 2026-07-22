@@ -4,6 +4,8 @@ import os, time
 
 OUT = os.path.join(os.path.dirname(__file__), "docs")
 IMG = "assets/img"
+HERO_VIDEO_DESKTOP = "assets/video/SJ_WC_walkthru_combo_desktop_hero.m4v"  # landscape 1280x720
+HERO_VIDEO_MOBILE = "assets/video/WC_SJ_mobile_hero.m4v"    # portrait 720x1280, ≤820px only
 
 # ============================================================ CMS content engine
 CONTENT = os.path.join(os.path.dirname(__file__), "content")
@@ -220,7 +222,7 @@ def header_html(active=""):
     <nav class="menu-list" aria-label="All pages">{menu_links}</nav>
     <aside class="menu-side">
       <div class="menu-side__pass">
-        <p>Summer Special — join now &amp; your first <em>2 weeks are free</em>. Come Play Every Day.</p>
+        <p>Summer Special — join now &amp; <em>$0 enrollment</em>. Come Play Every Day.</p>
         <a class="btn btn--solid btn--sm" href="join.html">Join Now <span class="arr">→</span></a>
       </div>
       <div class="menu-side__group">
@@ -319,15 +321,20 @@ def footer_html():
 
 
 def hero(kicker, lines, sub="", img=None, video=None, poster=None, crumb=None,
-         actions=None, meta=None, page=False):
+         actions=None, meta=None, page=False, title_mod=""):
     lns = ""
     for i, ln in enumerate(lines):
         lns += f'<span class="ln"><span style="transition-delay:{0.12 + i * 0.09:.2f}s">{ln}</span></span>'
-    media = ""
+    # Every hero uses the club walkthrough video as its background; the page's
+    # own image (or explicit poster) is the poster frame — fast first paint and
+    # a graceful fallback if the video can't play. main.js picks the desktop or
+    # mobile source by viewport (≤820px = mobile) so only one file downloads.
+    post = poster or img or ""
     if video:
-        media = f'<video src="{video}" poster="{poster or ""}" autoplay muted loop playsinline></video>'
-    elif img:
-        media = f'<img src="{img}" alt="" fetchpriority="high">'
+        media = f'<video src="{video}" poster="{post}" autoplay muted loop playsinline preload="auto"></video>'
+    else:
+        media = (f'<video poster="{post}" autoplay muted loop playsinline preload="none" '
+                 f'data-src-desktop="{HERO_VIDEO_DESKTOP}" data-src-mobile="{HERO_VIDEO_MOBILE}"></video>')
     acts = ""
     if actions:
         acts = '<div class="hero__actions">'
@@ -350,7 +357,7 @@ def hero(kicker, lines, sub="", img=None, video=None, poster=None, crumb=None,
   {crumb_html}
   <div class="hero__inner">
     <p class="hero__kicker">{kicker}</p>
-    <h1 class="hero__title">{lns}</h1>
+    <h1 class="hero__title{(' ' + title_mod) if title_mod else ''}">{lns}</h1>
     {sub_html}
     {acts}
   </div>
@@ -499,7 +506,7 @@ view_chooser = f"""
       <div class="vc-panel__body">
         <span class="vc-panel__kicker">First time here?</span>
         <h3>I'm a <span class="serif">guest</span></h3>
-        <p>Tour a club, explore classes, and start with two free weeks.</p>
+        <p>Tour a club and explore classes.</p>
         <span class="go">Show me around →</span>
       </div>
     </button>
@@ -536,10 +543,9 @@ home_body = view_chooser + hero(
     "Walnut Creek &amp; San Jose · Est. 2009",
     ["Play", '<span class="serif">every</span> day'],
     "Two luxury Bay Area clubs built around one idea: make movement the best part of your day. World-class instructors, resort-style amenities, and a community that actually feels like one.",
-    video="assets/video/forma-hero.mp4",
     poster=f"{IMG}/forma-hero-poster.jpg",
     actions=[
-        ("Start 2 Weeks Free", "join.html", True, "only-guest"),
+        ("Visit Us", "join.html", True, "only-guest"),
         ("Explore the Clubs", "locations.html", False, "only-guest"),
         ("Class Schedule", "group-fitness.html#schedule", True, "only-member"),
         ("Book Recovery", "recovery.html", False, "only-member"),
@@ -567,7 +573,6 @@ home_body = view_chooser + hero(
     (2, "", "Bay Area clubs, one membership"),
     (75, "K+", "Square feet of indoor + outdoor fitness"),
     (14, "", "Group fitness formats, all included"),
-    (2, "wks", "Free when you join this summer"),
 ]) + f"""
 <section class="section">
   <div class="wrap">
@@ -638,20 +643,21 @@ home_body = view_chooser + hero(
   </div>
 </section>
 """ + cta_band(
-    'Your first <span class="serif">two weeks</span> are free',
-    "Summer Special — join now and the first two weeks are on us. Tour a club, take a class, hit the spa. Come see why Forma members never want to leave.",
+    'Your <span class="serif">club</span> is waiting',
+    "Summer Special — join now with $0 enrollment. Tour a club, take a class, hit the spa. Come see why Forma members never want to leave.",
     f"{IMG}/slider-locations_turf_alysse_torey.jpg",
 )
 
 # ============================================================ ABOUT
 about_body = hero(
     "About Forma Gym",
-    ["More than a gym.", 'A <span class="serif">way to live</span>.'],
+    ["More than a gym.", 'It\'s <span class="serif">Family</span>.'],
     "“To make exercise a part of our member's daily lives, for the rest of their lives.” That mission has driven everything we've built since 2009.",
     img=f"{IMG}/slider-locations_turf_alysse_torey.jpg",
     crumb="About",
     actions=[("Book a Tour", "contact.html#tour", True)],
     page=True,
+    title_mod="hero__title--fit",
 ) + f"""
 <section class="section section--tight">
   <div class="wrap">
@@ -701,7 +707,7 @@ about_body = hero(
     "Book My Tour",
 ) + cta_band(
     'Come <span class="serif">play</span> with us',
-    "Two clubs, two free weeks, one community that can't wait to meet you.",
+    "Two clubs, one community that can't wait to meet you.",
     f"{IMG}/slider-locations_group_dance.jpg",
 )
 
@@ -716,7 +722,7 @@ groupfit_body = hero(
     "Forma Gym is your destination for group fitness that takes your workout to the next level. A vibrant community, expertly crafted classes, and 14 formats that energize, motivate and challenge — for every level, beginner to advanced.",
     img=f"{IMG}/slider-locations_group_dance.jpg",
     crumb="Group Fitness",
-    actions=[("Start 2 Weeks Free", "join.html", True), ("Book a Tour", "contact.html#tour", False)],
+    actions=[("Visit Us", "join.html", True), ("Book a Tour", "contact.html#tour", False)],
     meta=["14 class formats", "All included in membership", "Indoor + outdoor studios"],
     page=True,
 ) + marquee(["Cycle", "Yoga", "Barre", "HIIT", "Pilates", "Dance", "TRX", "Aqua", "Kickboxing", "Sculpt", "Meditation"]) + f"""
@@ -754,8 +760,8 @@ groupfit_body = hero(
     "Join the Forma Family and experience the difference — featuring the best trainers, programs and classes in the Bay Area. Tell us your preferred club and we'll get you on the schedule.",
     "Get the Schedule",
 ) + cta_band(
-    'Your first <span class="serif">two weeks</span> are free',
-    "Come try a class — or five. Every format is included, and the first two weeks are on us.",
+    'Come <span class="serif">move</span> with us',
+    "Come try a class — or five. Every format is included with membership.",
     f"{IMG}/slider-kickbox_v3.jpg",
 )
 
@@ -766,7 +772,7 @@ training_body = hero(
     "A team of fitness professionals with diverse backgrounds, deep experience, and a shared passion for health and wellness. We'll meet you where you are and build the plan that gets you where you want to be.",
     img=f"{IMG}/annabelle_kettle_HERO_2.jpg",
     crumb="Training",
-    actions=[("Book a Free Consult", "contact.html#tour", True), ("Meet the Team", "#team", False)],
+    actions=[("Book a Consult", "contact.html#tour", True), ("Meet the Team", "#team", False)],
     meta=["1-on-1 &amp; small group", "Nutrition guidance included", "Both clubs"],
     page=True,
 ) + f"""
@@ -785,7 +791,7 @@ training_body = hero(
           <li>Accountability for your fitness journey</li>
           <li>Learn to repair and recover, and keep your work/life balance</li>
         </ul>
-        <div class="split__cta"><a class="inline-link" href="contact.html#tour">Book a free consult →</a></div>
+        <div class="split__cta"><a class="inline-link" href="contact.html#tour">Book a consult →</a></div>
       </div>
     </div>
   </div>
@@ -818,7 +824,7 @@ training_body = hero(
 </section>
 """ + cta_band(
     'Train with the <span class="serif">best</span> in the Bay',
-    "Book a free consultation, tell us your goal, and we'll pair you with the coach who's right for you.",
+    "Book a consultation, tell us your goal, and we'll pair you with the coach who's right for you.",
     f"{IMG}/Dave2.jpg",
 )
 
@@ -829,7 +835,7 @@ locations_body = hero(
     "Walnut Creek and San Jose — both premium, both all-inclusive, both yours with a single membership. Find your home club below.",
     img=f"{IMG}/Forma_WalnutCreek_locations_pool_birdeye-2.jpg",
     crumb="Locations",
-    actions=[("Start 2 Weeks Free", "join.html", True)],
+    actions=[("Visit Us", "join.html", True)],
     page=True,
 ) + f"""
 <section class="section">
@@ -879,7 +885,7 @@ locations_body = hero(
     (14, "", "Group fitness formats"),
 ]) + cta_band(
     'Find your <span class="serif">home club</span>',
-    "Both locations are all-inclusive — every class, the pools, the recovery suites. Start with two free weeks at whichever is closest.",
+    "Both locations are all-inclusive — every class, the pools, the recovery suites.",
     f"{IMG}/pool_sunset_SJ_500px.jpg",
 )
 
@@ -894,7 +900,7 @@ def location_page(name, badge, phone, tel, address, intro, amenities, hero_img, 
     return hero(
         f"Forma {name}", [name.split()[0], f'<span class="serif">{name.split()[-1] if len(name.split())>1 else "Club"}</span>'],
         intro, img=f"{IMG}/{hero_img}", crumb=f'<a href="locations.html">Locations</a> &nbsp;/&nbsp; {name}',
-        actions=[("Start 2 Weeks Free", "join.html", True), (f"Call {phone}", f"tel:{tel}", False)],
+        actions=[("Visit Us", "join.html", True), (f"Call {phone}", f"tel:{tel}", False)],
         meta=[badge], page=True,
     ) + f"""
 <section class="section section--tight">
@@ -918,7 +924,7 @@ def location_page(name, badge, phone, tel, address, intro, amenities, hero_img, 
 </section>
 """ + cta_band(
         f'Come play in <span class="serif">{name.split()[-1]}</span>',
-        "Book a tour or jump straight in with two free weeks. Every class and amenity, included.",
+        "Book a tour or jump straight in. Every class and amenity, included.",
         f"{IMG}/{gallery_imgs[0]}",
     )
 
@@ -1274,7 +1280,7 @@ def class_page(slug, title, img, lead, others):
     return hero(
         "Group Fitness", [title.split()[0], f'<span class="serif">{" ".join(title.split()[1:]) or "Studio"}</span>'] if len(title.split()) > 1 else [f'<span class="serif">{title}</span>'],
         lead, img=f"{IMG}/{img}", crumb=f'<a href="group-fitness.html">Group Fitness</a> &nbsp;/&nbsp; {title}',
-        actions=[("Start 2 Weeks Free", "join.html", True), ("Full Schedule", "group-fitness.html#schedule", False)],
+        actions=[("Visit Us", "join.html", True), ("Full Schedule", "group-fitness.html#schedule", False)],
         meta=["Included with membership", "All levels welcome"], page=True,
     ) + f"""
 <section class="section">
@@ -1290,8 +1296,8 @@ def class_page(slug, title, img, lead, others):
   </div>
 </section>
 """ + cta_band(
-        f'Try {title.split()[0]} <span class="serif">free</span>',
-        "Every class is included with membership — and your first two weeks are on us. Come find your format.",
+        f'Try <span class="serif">{title.split()[0]}</span>',
+        "Every class is included with membership. Come find your format.",
         f"{IMG}/{img}",
     )
 
@@ -1300,11 +1306,11 @@ def class_page(slug, title, img, lead, others):
 join_body = hero(
     "Join Forma Online",
     ["Join in", '<span class="serif">minutes</span>'],
-    'Pick your club, choose your membership, and you\'re in. Right now: <strong>$0 enrollment + your first two weeks free.</strong> <em>Must be 18+ to join without a parent or guardian.</em>',
+    'Pick your club, choose your membership, and you\'re in. Right now: <strong>$0 enrollment.</strong> <em>Must be 18+ to join without a parent or guardian.</em>',
     img=f"{IMG}/gym_floor_WC_500px.jpg",
     crumb="Join Now",
-    actions=[("Start My Membership", "#wizard", True), ("Book a Tour Instead", "contact.html#tour", False)],
-    meta=["$0 enrollment", "First 2 weeks free", "Cancel after minimum term"],
+    actions=[("Start My Membership", "#wizard", True), ("Book a Tour", "contact.html#tour", False)],
+    meta=["$0 enrollment", "Cancel after minimum term"],
     page=True,
 ) + f"""
 <section class="join" id="wizard">
@@ -1348,7 +1354,7 @@ join_body = hero(
           <div class="join-step" data-step="2">
             <h2 class="join-step__title">Choose your <span class="serif">membership</span></h2>
             <p class="join-step__hint">Select the plan that fits your fitness goals.</p>
-            <div class="join-promo">JOIN NOW — $0 ENROLLMENT + 1ST TWO WEEKS FREE</div>
+            <div class="join-promo">JOIN NOW — $0 ENROLLMENT</div>
             <div class="plan-grid">
               <button class="plan-card" type="button" data-plan="Premier" data-primary="215" data-addl="160" data-enroll="350">
                 <span class="plan-card__chip">Most Popular</span><span class="choice__check">✓</span>
@@ -1439,7 +1445,7 @@ join_body = hero(
 
           <div class="join-step" data-step="6">
             <h2 class="join-step__title">Review &amp; <span class="serif">payment</span></h2>
-            <p class="join-step__hint">With the Summer Special, enrollment is $0 and your first two weeks are free — your first monthly payment comes after.</p>
+            <p class="join-step__hint">With the Summer Special, enrollment is $0 — your first monthly payment comes after you join.</p>
             <div id="reviewList"></div>
             <div class="seg" role="group" aria-label="Payment method" style="margin-top:24px">
               <button type="button" class="is-on" data-pay="card">Credit Card</button>
@@ -1470,7 +1476,7 @@ join_body = hero(
           <div class="sum-lines" data-sum-lines></div>
           <div class="sum-rate"><span class="lbl">Monthly total</span><span class="amt" data-sum-monthly>$0<small>/mo</small></span></div>
           <div class="sum-due"><span>Due today</span><b data-sum-today>$0.00</b></div>
-          <p class="sum-note">$0 enrollment &amp; first two weeks free with the Summer Special. Monthly billing begins after your free weeks.</p>
+          <p class="sum-note">$0 enrollment with the Summer Special. Monthly billing begins with your first month.</p>
           <span class="sum-badge">30-Day Money-Back Guarantee</span>
         </div>
       </aside>
@@ -1482,7 +1488,7 @@ join_body = hero(
   <div class="join-success__inner">
     <div class="mark">✓</div>
     <h2 data-success-name>Welcome to the Forma Family.</h2>
-    <p>Your membership request is in. Because this is a design demo, no payment was processed — on the live site you'd be all set to walk in and start your two free weeks. Time to Play Every Day.</p>
+    <p>Your membership request is in. Because this is a design demo, no payment was processed — on the live site you'd be all set to walk in and get started. Time to Play Every Day.</p>
     <div class="hero__actions">
       <a class="btn btn--solid" href="index.html">Back to Home <span class="arr">→</span></a>
       <a class="btn" href="group-fitness.html">Browse Classes <span class="arr">→</span></a>
@@ -1492,7 +1498,7 @@ join_body = hero(
 <script src="assets/js/join.js?v={V}" defer></script>
 """ + cta_band(
     'Questions before you <span class="serif">join?</span>',
-    "Book a free tour and we'll show you around, answer everything, and help you pick the right membership.",
+    "Book a tour and we'll show you around, answer everything, and help you pick the right membership.",
     f"{IMG}/jason_johnson_turf2.jpg",
     primary=("Book a Tour", "contact.html#tour"), secondary=None,
 )
@@ -1527,7 +1533,7 @@ contact_body = hero(
   </div>
 </section>
 """ + cta_band(
-    'Two free weeks are <span class="serif">waiting</span>',
+    'Two clubs, one <span class="serif">membership</span>',
     "Ready when you are. Join online in minutes, or book a tour and let us show you around.",
     f"{IMG}/slider-locations_turf_alysse_torey.jpg",
 )
@@ -1535,12 +1541,12 @@ contact_body = hero(
 # ============================================================ TRIAL PASS
 trial_body = hero(
     "Schedule Your Visit",
-    ["Try Forma.", 'First two weeks <span class="serif">free</span>.'],
-    "Fill out the form below to schedule a visit, a tour, and/or a guest workout — and take advantage of our Summer Special. $0 enrollment and a free fitness coaching session.",
+    ["Try Forma.", 'Book your <span class="serif">visit</span>.'],
+    "Fill out the form below to schedule a visit, a tour, and/or a guest workout — and take advantage of our Summer Special. $0 enrollment and a fitness coaching session.",
     img=f"{IMG}/annabelle_kettle_HERO_2.jpg",
     crumb="Trial Pass",
     actions=[("Schedule My Visit", "#tour", True), ("Join Online", "join.html", False)],
-    meta=["First 2 weeks free", "$0 enrollment", "Free coaching session"],
+    meta=["$0 enrollment", "Coaching session"],
     page=True,
 ) + f"""
 <section class="section section--tight">
@@ -1560,11 +1566,11 @@ trial_body = hero(
 """ + form_section(
     "tour", "02", "Schedule your visit",
     'Your <span class="serif">$0</span> enrollment offer',
-    "We have a fitness solution for you — hundreds of monthly classes across every intensity and experience level, whether you've never had a gym membership or you've tried them all. Complete the form and we'll set up your visit and free coaching session.",
-    "Claim My Free Pass",
+    "We have a fitness solution for you — hundreds of monthly classes across every intensity and experience level, whether you've never had a gym membership or you've tried them all. Complete the form and we'll set up your visit and coaching session.",
+    "Visit Us",
 ) + cta_band(
     'Come <span class="serif">play</span> with us',
-    "Two clubs, two free weeks, $0 enrollment. The only thing left to do is show up.",
+    "Two clubs, $0 enrollment. The only thing left to do is show up.",
     f"{IMG}/slider-locations_turf_alysse_torey.jpg",
 )
 
@@ -1575,7 +1581,7 @@ outdoor_body = hero(
     "Our members LOVE to exercise outdoors — and we LOVE giving them the environment and tools to show up and move every day. We've expanded our outdoor footprint so you have everything you need, all year-round.",
     img=f"{IMG}/slider-locations_turf_alysse_torey.jpg",
     crumb="Outdoor",
-    actions=[("Start 2 Weeks Free", "join.html", True)],
+    actions=[("Visit Us", "join.html", True)],
     meta=["Covered outdoor turf", "Rain or shine", "Both clubs"],
     page=True,
 ) + f"""
@@ -1676,7 +1682,7 @@ app_body = hero(
 </section>
 """ + cta_band(
     'Bring Forma <span class="serif">everywhere</span>',
-    "Not a member yet? Start with two free weeks and we'll get you set up on the app on day one.",
+    "Not a member yet? Join today and we'll get you set up on the app on day one.",
     f"{IMG}/annabelle_kettle_HERO_2.jpg",
 )
 
@@ -1706,7 +1712,7 @@ merchant_body = hero(
 </section>
 """ + cta_band(
     'More reasons to be a <span class="serif">member</span>',
-    "Preferred pricing is just one of the perks. Start with two free weeks and discover the rest.",
+    "Preferred pricing is just one of the perks. Join today and discover the rest.",
     f"{IMG}/slider-locations_group_dance.jpg",
 )
 
@@ -1732,7 +1738,7 @@ privacy_body = legal_page("Privacy Policy",
 
 # ============================================================ BUILD ALL
 PAGES = [
-    ("index.html", "Forma Gym | Walnut Creek &amp; San Jose | Play Every Day", "Two luxury Bay Area fitness clubs — Walnut Creek &amp; San Jose. All group fitness, personal training, pools, cryotherapy, spa and Kidzville. Start with two free weeks.", "", home_body),
+    ("index.html", "Forma Gym | Walnut Creek &amp; San Jose | Play Every Day", "Two luxury Bay Area fitness clubs — Walnut Creek &amp; San Jose. All group fitness, personal training, pools, cryotherapy, spa and Kidzville.", "", home_body),
     ("about.html", "About Forma Gym | Our Mission &amp; Story", "To make exercise a part of our member's daily lives, for the rest of their lives. Meet Forma Gym — two Bay Area clubs and one community.", "about.html", about_body),
     ("group-fitness.html", "Group Fitness Classes | Forma Gym", "14 group fitness formats included with membership — Cycle, Yoga, Barre, HIIT, Pilates, Dance, TRX, Aqua and more, across Walnut Creek &amp; San Jose.", "group-fitness.html", groupfit_body),
     ("training.html", "Personal Training | Forma Gym", "1-on-1 and small group personal training with the best coaches in the Bay Area. Nutrition guidance, accountability, and a plan built around you.", "training.html", training_body),
@@ -1746,8 +1752,8 @@ PAGES = [
     ("walnut-creek.html", "Forma Gym Walnut Creek | 1908 Olympic Blvd", "Forma Gym Walnut Creek — 35,000 sq ft of indoor &amp; outdoor fitness, heated pool, Kidzville, cryotherapy, day spa and Café.", "locations.html", walnutcreek_body),
     ("san-jose.html", "Forma Gym San Jose | 5434 Thornwood Dr", "Forma Gym San Jose — 40,000 sq ft luxury facility with covered outdoor turf, heated 6-lane pool, cold plunge and massage services.", "locations.html", sanjose_body),
     ("locations.html", "Locations &amp; Hours | Forma Gym Walnut Creek &amp; San Jose", "Two premium Bay Area clubs, one membership. Hours, addresses and amenities for Forma Gym Walnut Creek &amp; San Jose.", "locations.html", locations_body),
-    ("join.html", "Join Now — 2 Weeks Free | Forma Gym", "Join Forma Gym and your first two weeks are free. All-inclusive access to both Bay Area clubs, every class and recovery amenity.", "", join_body),
-    ("trial-pass.html", "Trial Pass — Free Visit &amp; 2 Weeks Free | Forma Gym", "Schedule a visit, tour or guest workout at Forma Gym. $0 enrollment, a free coaching session, and your first two weeks free.", "", trial_body),
+    ("join.html", "Join Now | Forma Gym", "Join Forma Gym with $0 enrollment. All-inclusive access to both Bay Area clubs, every class and recovery amenity.", "", join_body),
+    ("trial-pass.html", "Schedule a Visit | Forma Gym", "Schedule a visit, tour or guest workout at Forma Gym. $0 enrollment and a coaching session.", "", trial_body),
     ("outdoor-training.html", "Outdoor Fitness | Forma Gym", "Strength, cardio, group exercise and cycle — outdoors, year-round, at both Forma Gym clubs.", "", outdoor_body),
     ("drbrainrx.html", "DrBrainRX — GLP-1, Peptides &amp; Longevity | Forma Gym", "GLP-1 weight loss care, peptide therapy and longevity medicine for Forma members through DrBrainRX. 1 month free + $70 off, code FORMAGYM.", "", drbrain_body),
     ("app.html", "The Forma App | Forma Gym", "Book classes, reserve lanes, check schedules and manage your membership with the Forma app.", "", app_body),
@@ -1762,7 +1768,7 @@ _others_pool = [(l, h, d) for l, h, d in ALL_CLASSES]
 for slug, title, img, lead, short in CLASS_PAGES:
     others = [o for o in _others_pool if o[1] != f"{slug}.html"][:6]
     PAGES.append((f"{slug}.html", f"{title} | Group Fitness | Forma Gym",
-                  f"{title} at Forma Gym — included with membership, all levels welcome. Start with two free weeks.",
+                  f"{title} at Forma Gym — included with membership, all levels welcome.",
                   "group-fitness.html", class_page(slug, title, img, lead, others)))
 
 
