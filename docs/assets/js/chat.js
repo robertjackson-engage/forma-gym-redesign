@@ -11,14 +11,14 @@
     "FACTS:",
     "- 2 locations, one membership covers both. WALNUT CREEK: 1908 Olympic Blvd, Walnut Creek, CA 94596, (925) 932-6400 — the original (since 2009), 35,000 sq ft, heated outdoor lap pool under redwoods, onsite Kidzville childcare, cryotherapy + cold plunge, full-service day spa, Forma Café + Smoothie Bar, 4 studios + Pilates Reformer studio. SAN JOSE: 5434 Thornwood Dr, San Jose, CA 95123, (408) 363-1010 — since 2015, 40,000 sq ft with 8,000 sq ft covered outdoor area, heated 6-lane junior olympic pool + hot tub, sauna/steam/hot tub, cold plunge by Chilly Goat, onsite sports & therapeutic massage, chilled eucalyptus towel service.",
     "- Hours (both clubs): Mon-Thu 5am-11pm, Fri 5am-10pm, Sat & Sun 6am-8pm.",
-    "- Membership: all-inclusive — every group fitness class, both clubs, heated pools, sauna/steam/hot tub, cold plunge, covered outdoor turf, expert coaches. SUMMER SPECIAL: join now and the first 2 weeks are free. Must be 18+ to join without a parent/guardian (13+ with approval). Forma does not publish flat prices online — a membership advisor tailors the rate; to get one, join online (join.html) or book a tour (contact.html#tour). Never invent a dollar price; instead mention the 2-weeks-free special and offer to connect them with an advisor.",
+    "- Membership: all-inclusive — every group fitness class, both clubs, heated pools, sauna/steam/hot tub, cold plunge, covered outdoor turf, expert coaches. Must be 18+ to join without a parent/guardian (13+ with approval). Forma does not publish flat prices online — a membership advisor tailors the rate; to get one, join online (join.html) or schedule a visit (trial-pass.html). Never invent a dollar price, and never offer free trials or free passes — there is no free trial. Instead, invite them to schedule a visit to tour a club and meet the team, or connect them with an advisor. Do NOT quote membership prices or promotions.",
     "- 14 group fitness formats, all included: Aqua, Barre, Cardio + HIIT, Cycle, Dance, Low Impact + Balance, Kickboxing + Martial Arts, Meditation + Breathwork, Mat Pilates, Pilates Reformer, Sculpt, Stretch + Recovery, TRX, Yoga + Mind Body.",
     "- Personal Training: 1-on-1 and Small Group (4-8 people, one trainer). Free consultation. Nutrition guidance included. Coaches: Dave, Montana, Jason, Marco.",
     "- Recovery: Cryotherapy + Cold Plunge (chamber to -195°F, 3-min sessions burn 500-800 cal, reduce pain/inflammation, better sleep). Full-service Spa (massage from $65/25min to $160/80min; facials $140-$230; add-ons CBD $10, hot stone $20). Mind Body LAB + DrBrainRX (brain health). Sauna, eucalyptus steam, hot tub.",
     "- Kidzville: childcare ages 6 weeks-12 years, Walnut Creek only. Hours Mon-Thu 8a-1p & 4p-7:30p, Fri 8a-1p, Sat-Sun 8a-12p. Reservations recommended; WCReps@formagym.com or (925) 932-6400.",
     "- RISE: exercise-based therapy program for individuals living with paralysis; movement is medicine; scholarship program available.",
     "- Forma Gives Back: fitness available to everyone on the spectrum of movement, from those struggling to stand to world-class athletes.",
-    "RULES: Answer only about Forma Gym, fitness, recovery, and visiting the clubs. Link pages with markdown like [Join Now](join.html), [Book a Tour](contact.html#tour), [Classes](group-fitness.html), [Personal Training](training.html), [Recovery & Cryo](recovery.html), [The Spa](spa.html), [Kidzville](kidzville.html), [Walnut Creek](walnut-creek.html), [San Jose](san-jose.html), [Locations](locations.html). For billing/account specifics, suggest calling the club: Walnut Creek (925) 932-6400 or San Jose (408) 363-1010. Keep answers under 120 words unless asked for detail. End with a helpful next step when natural."
+    "RULES: Answer only about Forma Gym, fitness, recovery, and visiting the clubs. Link pages with markdown like [Join Now](join.html), [Schedule a Visit](trial-pass.html), [Classes](group-fitness.html), [Personal Training](training.html), [Recovery & Cryo](recovery.html), [The Spa](spa.html), [Kidzville](kidzville.html), [Walnut Creek](walnut-creek.html), [San Jose](san-jose.html), [Locations](locations.html). For billing/account specifics, suggest calling the club: Walnut Creek (925) 932-6400 or San Jose (408) 363-1010. Keep answers under 120 words unless asked for detail. End with a helpful next step when natural."
   ].join("\n");
 
   // Forma 'f' mark — geometric, matches the wordmark
@@ -28,7 +28,7 @@
     "What's included in membership?",
     "Where are the clubs?",
     "Tell me about cryotherapy",
-    "How do I start 2 weeks free?",
+    "How do I schedule a visit?",
     "Do you have childcare?"
   ];
 

@@ -1,0 +1,36 @@
+<!-- @dsCard group="Components" -->
+<!doctype html><html><head><meta charset="utf-8"><title>Buttons</title><link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#060709; --ink-2:#0d0f13; --ink-3:#15181e;
+  --white:#ffffff; --bone:#f4f7f6;
+  --brand:#08d6dd; --accent:#08d6dd; --accent-soft:#6ef0f4; --accent-ink:#067e83;
+  --ember:#fb8e28;
+  --line:rgba(244,247,246,.14); --muted:rgba(244,247,246,.62);
+  --font-display:"Anton","Arial Narrow",sans-serif;
+  --font-body:"Montserrat","Helvetica Neue",sans-serif; /* stand-in for Proxima Nova */
+  --radius:0px; --ease:cubic-bezier(.16,1,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--ink);color:var(--bone);font:400 15px/1.6 var(--font-body);padding:28px;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.disp{font-family:var(--font-display);text-transform:uppercase;font-weight:400;line-height:1.02;letter-spacing:.01em}
+.serif{color:var(--accent)} /* accent = COLOR ONLY, same typeface — kit v1.2 */
+.label{font-family:var(--font-body);font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin:26px 0 12px;font-weight:600}
+.label:first-of-type{margin-top:0}
+.btn{display:inline-flex;align-items:center;gap:12px;font-family:var(--font-body);font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;padding:16px 30px;border:1px solid var(--bone);color:var(--bone);cursor:pointer;background:none;transition:.3s}
+.btn--solid{background:var(--accent);border-color:var(--accent);color:var(--ink);font-weight:700}
+.btn--sm{padding:12px 22px}
+.btn:hover{border-color:var(--accent);color:var(--accent-soft)}
+.btn--solid:hover{filter:brightness(1.1);color:var(--ink)}
+</style>
+</head><body>
+<div class="label">Primary</div>
+<button class="btn btn--solid">Join Now <span>&rarr;</span></button>
+&nbsp;&nbsp;<button class="btn btn--solid btn--sm">Start 2 Weeks Free</button>
+<div class="label">Secondary — outlined</div>
+<button class="btn">Explore the Clubs <span>&rarr;</span></button>
+&nbsp;&nbsp;<button class="btn btn--sm">Member Login</button>
+<div class="label">Inline link</div>
+<a href="#" style="color:var(--accent-soft);font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;text-decoration:none;border-bottom:1px solid var(--accent)">The Forma Story &rarr;</a>
+<p style="font-size:12px;color:var(--muted);margin-top:24px">Cyan fill carries near-black text. Outlined buttons are white-on-dark. Uppercase Montserrat 600, .2em tracking.</p>
+</body></html>
