@@ -998,16 +998,6 @@ html[data-view="guest"] .only-member { display: none !important; }
 html[data-view="member"] .only-guest { display: none !important; }
 
 /* member quick-links strip */
-.member-strip { background: var(--ink-2); border-bottom: 1px solid var(--line); }
-.member-strip .wrap { display: flex; gap: clamp(18px, 3vw, 44px); align-items: center; overflow-x: auto; padding-top: 16px; padding-bottom: 16px; scrollbar-width: none; }
-.member-strip .wrap::-webkit-scrollbar { display: none; }
-.member-strip .hello { font-family: var(--font-body); font-style: normal; font-size: 19px; color: var(--accent-soft); white-space: nowrap; }
-.member-strip a {
-  font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600;
-  white-space: nowrap; color: var(--bone); padding: 6px 0; border-bottom: 1px solid transparent;
-  transition: color .3s, border-color .3s;
-}
-.member-strip a:hover { color: var(--accent); border-color: var(--accent); }
 
 /* full-screen experience chooser */
 .view-chooser {
@@ -1069,8 +1059,7 @@ body.choice-done .view-chooser {
   .view-chooser__panels { flex-direction: column; }
   .vc-panel:hover { flex: 1.35; }
   .vc-panel h3 { font-size: clamp(28px, 8vw, 40px); }
-  .member-strip .hello { font-size: 16px; }
-}
+  }
 
 /* ============================================================
    GHF Coach — AI concierge

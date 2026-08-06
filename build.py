@@ -236,7 +236,7 @@ def header_html(active=""):
     <nav class="menu-list" aria-label="All pages">{menu_links}</nav>
     <aside class="menu-side">
       <div class="menu-side__pass">
-        <p>Summer Special — join now &amp; <em>$0 enrollment</em>. Come Play Every Day.</p>
+        <p>Two Bay Area clubs, one membership. Come Play Every Day.</p>
         <a class="btn btn--solid btn--sm" href="join.html">Join Now <span class="arr">→</span></a>
       </div>
       <div class="menu-side__group">
@@ -645,21 +645,6 @@ view_chooser = f"""
 </div>
 """
 
-member_strip = """
-<div class="member-strip only-member">
-  <div class="wrap">
-    <span class="hello">Welcome back.</span>
-    <a href="group-fitness.html#schedule">Class Schedules</a>
-    <a href="recovery.html">Recovery &amp; Cryo</a>
-    <a href="spa.html">Book the Spa</a>
-    <a href="kidzville.html">Kidzville</a>
-    <a href="walnut-creek.html">Walnut Creek</a>
-    <a href="san-jose.html">San Jose</a>
-  </div>
-</div>
-"""
-
-
 # ============================================================ HOME
 home_body = view_chooser + hero(
     "Walnut Creek &amp; San Jose · Est. 2009",
@@ -673,7 +658,7 @@ home_body = view_chooser + hero(
         ("Book Recovery", "recovery.html", False, "only-member"),
     ],
     meta=["2 Bay Area locations", "75,000+ sq ft of fitness", "All classes included"],
-) + member_strip + photo_marquee(STRIP_PHOTOS) + f"""
+) + photo_marquee(STRIP_PHOTOS) + f"""
 <section class="section">
   <div class="wrap">
     <div class="intro-grid">
@@ -764,7 +749,7 @@ home_body = view_chooser + hero(
 </section>
 """ + cta_band(
     'Your <span class="serif">club</span> is waiting',
-    "Summer Special — join now with $0 enrollment. Tour a club, take a class, hit the spa. Come see why Forma members never want to leave.",
+    "Tour a club, take a class, hit the spa. Come see why Forma members never want to leave.",
     f"{IMG}/slider-locations_turf_alysse_torey.jpg",
 )
 
@@ -1431,11 +1416,11 @@ def class_page(slug, title, img, lead, others):
 join_body = hero(
     "Join Forma Online",
     ["Join in", '<span class="serif">minutes</span>'],
-    'Pick your club, choose your membership, and you\'re in. Right now: <strong>$0 enrollment.</strong> <em>Must be 18+ to join without a parent or guardian.</em>',
+    'Pick your club, choose your membership, and you\'re in. <em>Must be 18+ to join without a parent or guardian.</em>',
     img=f"{IMG}/gym_floor_WC_500px.jpg",
     crumb="Join Now",
     actions=[("Start My Membership", "#wizard", True), ("Book a Tour", "contact.html#tour", False)],
-    meta=["$0 enrollment", "Cancel after minimum term"],
+    meta=["30 day money back guarantee"],
     page=True,
 ) + f"""
 <section class="join" id="wizard">
@@ -1479,13 +1464,11 @@ join_body = hero(
           <div class="join-step" data-step="2">
             <h2 class="join-step__title">Choose your <span class="serif">membership</span></h2>
             <p class="join-step__hint">Select the plan that fits your fitness goals.</p>
-            <div class="join-promo">JOIN NOW — $0 ENROLLMENT</div>
             <div class="plan-grid">
               <button class="plan-card" type="button" data-plan="Premier" data-primary="215" data-addl="160" data-enroll="350">
                 <span class="plan-card__chip">Most Popular</span><span class="choice__check">✓</span>
                 <h3>Premier Membership</h3>
                 <div class="plan-card__price">$215<small>/mo</small></div>
-                <p class="plan-card__fee"><s>$350 enrollment</s> &nbsp;$0 today</p>
                 <p class="plan-card__addl">2nd adult $160/mo · 3rd+ adult $160/mo</p>
                 <h6>Included</h6>
                 <ul class="plan-card__list">
@@ -1503,7 +1486,6 @@ join_body = hero(
                 <span class="choice__check">✓</span>
                 <h3>Standard Membership</h3>
                 <div class="plan-card__price">$119<small>/mo</small></div>
-                <p class="plan-card__fee"><s>$350 enrollment</s> &nbsp;$0 today</p>
                 <p class="plan-card__addl">2nd adult $95/mo · 3rd+ adult $95/mo</p>
                 <h6>Included</h6>
                 <ul class="plan-card__list">
@@ -1517,7 +1499,7 @@ join_body = hero(
                 <span class="plan-card__pick">Select Standard</span>
               </button>
             </div>
-            <p class="join-step__foot">Both plans include a complimentary Formation Session. 12-month commitment with monthly billing; cancel anytime after the minimum term with 30-day notice.</p>
+            <p class="join-step__foot">Both plans include a complimentary Formation Session. 12-month commitment with monthly billing, backed by our 30-day money-back guarantee.</p>
           </div>
 
           <div class="join-step" data-step="3">
@@ -1570,7 +1552,7 @@ join_body = hero(
 
           <div class="join-step" data-step="6">
             <h2 class="join-step__title">Review &amp; <span class="serif">payment</span></h2>
-            <p class="join-step__hint">With the Summer Special, enrollment is $0 — your first monthly payment comes after you join.</p>
+            <p class="join-step__hint">Your first monthly payment comes after you join.</p>
             <div id="reviewList"></div>
             <div class="seg" role="group" aria-label="Payment method" style="margin-top:24px">
               <button type="button" class="is-on" data-pay="card">Credit Card</button>
@@ -1582,7 +1564,7 @@ join_body = hero(
               <div class="field"><input type="text" name="ccexp" id="j-ccexp" placeholder=" "><label for="j-ccexp">Expiry (MM/YY)</label></div>
               <div class="field"><input type="text" name="cccvc" id="j-cccvc" placeholder=" " inputmode="numeric"><label for="j-cccvc">CVC</label></div>
             </div>
-            <label class="review-agree"><input type="checkbox" id="agree"><span>I'm 18+ (or joining with a parent/guardian), I agree to the <a href="contact.html">Terms of Service</a> and <a href="privacy.html">Privacy Policy</a>, and I understand this is a 12-month commitment with monthly billing, cancellable after the minimum term with 30-day notice. This is a design demo — no payment will be processed.</span></label>
+            <label class="review-agree"><input type="checkbox" id="agree"><span>I'm 18+ (or joining with a parent/guardian), I agree to the <a href="contact.html">Terms of Service</a> and <a href="privacy.html">Privacy Policy</a>, and I understand this is a 12-month commitment with monthly billing, backed by a 30-day money-back guarantee. This is a design demo — no payment will be processed.</span></label>
           </div>
 
         </div>
@@ -1601,7 +1583,7 @@ join_body = hero(
           <div class="sum-lines" data-sum-lines></div>
           <div class="sum-rate"><span class="lbl">Monthly total</span><span class="amt" data-sum-monthly>$0<small>/mo</small></span></div>
           <div class="sum-due"><span>Due today</span><b data-sum-today>$0.00</b></div>
-          <p class="sum-note">$0 enrollment with the Summer Special. Monthly billing begins with your first month.</p>
+          <p class="sum-note">Monthly billing begins with your first month.</p>
           <span class="sum-badge">30-Day Money-Back Guarantee</span>
         </div>
       </aside>
@@ -1672,11 +1654,11 @@ contact_body = hero(
 trial_body = hero(
     "Schedule Your Visit",
     ["Try Forma.", 'Book your <span class="serif">visit</span>.'],
-    "Fill out the form below to schedule a visit, a tour, and/or a guest workout — and take advantage of our Summer Special. $0 enrollment and a fitness coaching session.",
+    "Fill out the form below to schedule a visit, a tour, and/or a guest workout — and a complimentary fitness coaching session.",
     img=f"{IMG}/annabelle_kettle_HERO_2.jpg",
     crumb="Trial Pass",
     actions=[("Schedule My Visit", "#tour", True), ("Join Online", "join.html", False)],
-    meta=["$0 enrollment", "Coaching session"],
+    meta=["Coaching session"],
     page=True,
 ) + f"""
 <section class="section section--tight">
@@ -1695,12 +1677,12 @@ trial_body = hero(
 </section>
 """ + form_section(
     "tour", "02", "Schedule your visit",
-    'Your <span class="serif">$0</span> enrollment offer',
+    'Book your <span class="serif">visit</span>',
     "We have a fitness solution for you — hundreds of monthly classes across every intensity and experience level, whether you've never had a gym membership or you've tried them all. Complete the form and we'll set up your visit and coaching session.",
     "Visit Us", ac_id=33,
 ) + cta_band(
     'Come <span class="serif">play</span> with us',
-    "Two clubs, $0 enrollment. The only thing left to do is show up.",
+    "Two clubs, one membership. The only thing left to do is show up.",
     f"{IMG}/slider-locations_turf_alysse_torey.jpg",
 )
 
@@ -1953,8 +1935,8 @@ PAGES = [
     ("walnut-creek.html", "Forma Gym Walnut Creek | 1908 Olympic Blvd", "Forma Gym Walnut Creek — 35,000 sq ft of indoor &amp; outdoor fitness, heated pool, Kidzville, cryotherapy, day spa and Café.", "locations.html", walnutcreek_body),
     ("san-jose.html", "Forma Gym San Jose | 5434 Thornwood Dr", "Forma Gym San Jose — 40,000 sq ft luxury facility with covered outdoor turf, heated 6-lane pool, cold plunge and massage services.", "locations.html", sanjose_body),
     ("locations.html", "Locations &amp; Hours | Forma Gym Walnut Creek &amp; San Jose", "Two premium Bay Area clubs, one membership. Hours, addresses and amenities for Forma Gym Walnut Creek &amp; San Jose.", "locations.html", locations_body),
-    ("join.html", "Join Now | Forma Gym", "Join Forma Gym with $0 enrollment. All-inclusive access to both Bay Area clubs, every class and recovery amenity.", "", join_body),
-    ("trial-pass.html", "Schedule a Visit | Forma Gym", "Schedule a visit, tour or guest workout at Forma Gym. $0 enrollment and a coaching session.", "", trial_body),
+    ("join.html", "Join Now | Forma Gym", "Join Forma Gym — all-inclusive access to both Bay Area clubs, every class and recovery amenity.", "", join_body),
+    ("trial-pass.html", "Schedule a Visit | Forma Gym", "Schedule a visit, tour or guest workout at Forma Gym, plus a complimentary coaching session.", "", trial_body),
     ("outdoor-training.html", "Outdoor Fitness | Forma Gym", "Strength, cardio, group exercise and cycle — outdoors, year-round, at both Forma Gym clubs.", "", outdoor_body),
     ("drbrainrx.html", "DrBrainRX — GLP-1, Peptides &amp; Longevity | Forma Gym", "GLP-1 weight loss care, peptide therapy and longevity medicine for Forma members through DrBrainRX. 1 month free + $70 off, code FORMAGYM.", "", drbrain_body),
     ("app.html", "The Forma App | Forma Gym", "Book classes, reserve lanes, check schedules and manage your membership with the Forma app.", "", app_body),
