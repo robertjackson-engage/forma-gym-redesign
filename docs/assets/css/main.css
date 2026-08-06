@@ -1398,3 +1398,16 @@ body.chat-open .chat-panel { opacity: 1; transform: none; pointer-events: auto; 
 /* Footer newsletter (form 9) sits in a narrow column — keep it compact */
 .site-footer .ac-form ._form ._form-label, .site-footer .ac-form ._form ._form-title { display: none !important; }
 .site-footer .ac-form ._form ._form_element { margin-bottom: 10px !important; }
+
+/* Hidden AC form 103 on /join-now/. Positioned offscreen rather than
+   display:none — AC's own validation focuses fields on submit, and a
+   display:none form can't take focus. */
+.ac-bridge {
+  position: absolute !important;
+  left: -9999px !important;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  pointer-events: none;
+}

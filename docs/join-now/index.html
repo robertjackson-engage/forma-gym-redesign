@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="/assets/img/forma-logo.svg">
-<link rel="stylesheet" href="/assets/css/main.css?v=1786040452">
+<link rel="stylesheet" href="/assets/css/main.css?v=1786041980">
 <script>(function(){try{
   if(sessionStorage.getItem("forma-intro"))document.documentElement.classList.add("no-preloader");
   var v=localStorage.getItem("forma-view");
@@ -255,6 +255,11 @@
   </div>
 </section>
 
+<!-- Lead bridge: the wizard is the visible experience, but the lead still has to
+     reach ActiveCampaign. join.js fills this hidden form 103 on completion and
+     submits it, so joins land on the same list/tags/automations as before. -->
+<div class="ac-bridge ac-form ac-form--103" aria-hidden="true"><div class="ac-form ac-form--103"><script src="https://formagym.activehosted.com/f/embed.php?id=103" charset="utf-8"></script></div></div>
+
 <div class="join-success" role="dialog" aria-modal="true" aria-label="Membership confirmed">
   <div class="join-success__inner">
     <div class="mark">✓</div>
@@ -266,7 +271,7 @@
     </div>
   </div>
 </div>
-<script src="/assets/js/join.js?v=1786040452" defer></script>
+<script src="/assets/js/join.js?v=1786041980" defer></script>
 
 <section class="cta-band">
   <div class="cta-band__media"><img src="/assets/img/jason_johnson_turf2.jpg" alt="" loading="lazy"></div>
@@ -342,8 +347,8 @@
     </div>
   </div>
 </footer>
-<script src="/assets/js/main.js?v=1786040452"></script>
-<script src="/assets/js/chat-config.js?v=1786040452"></script>
-<script src="/assets/js/chat.js?v=1786040452" defer></script>
+<script src="/assets/js/main.js?v=1786041980"></script>
+<script src="/assets/js/chat-config.js?v=1786041980"></script>
+<script src="/assets/js/chat.js?v=1786041980" defer></script>
 </body>
 </html>

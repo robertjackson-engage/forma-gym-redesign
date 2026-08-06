@@ -211,11 +211,43 @@
   });
   wizard.querySelector("#agree").addEventListener("change", refreshNext);
 
+
+  /* ---------- lead bridge -> ActiveCampaign ----------
+     The wizard is the experience; AC form 103 (hidden, offscreen) is how the
+     lead actually reaches ActiveCampaign — same list/tags/automations the
+     previous site used. Fill its fields, then click AC's own submit button so
+     its validation and tracking run normally.
+     Mapped: firstname, lastname, email, phone, field[2] = club.
+     NOT mapped: field[1] and the ca[12..16] option groups — their meaning
+     isn't discoverable from the embed; someone with AC access should confirm
+     whether membership plan/add-ons belong there. Plan, add-ons and pricing
+     are therefore NOT sent through yet. */
+  function sendLeadToAc() {
+    var form = document.querySelector("._form_103");
+    if (!form) return false;
+    var fill = function (sel, val) {
+      var el = form.querySelector(sel);
+      if (!el || !val) return;
+      el.value = val;
+      el.dispatchEvent(new Event("input", { bubbles: true }));
+      el.dispatchEvent(new Event("change", { bubbles: true }));
+    };
+    fill('input[name="firstname"]', state.first);
+    fill('input[name="lastname"]', state.last);
+    fill('input[name="email"]', state.email);
+    fill('input[name="phone"]', state.phone);
+    fill('[name="field[2]"]', state.club);
+    var btn = form.querySelector("._submit, button[type=submit], input[type=submit]");
+    if (btn) { btn.click(); return true; }
+    return false;
+  }
+
   /* ---------- nav buttons ---------- */
   backBtn.addEventListener("click", function () { goStep(step - 1); });
   nextBtn.addEventListener("click", function () {
     if (!canLeave(step)) { refreshNext(); return; }
     if (step < TOTAL) { goStep(step + 1); return; }
+    sendLeadToAc();
     var success = document.querySelector(".join-success");
     var nameEl = success.querySelector("[data-success-name]");
     if (nameEl && state.first) nameEl.textContent = "Welcome to the Forma Family, " + state.first + ".";

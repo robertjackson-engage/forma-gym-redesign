@@ -1586,6 +1586,11 @@ join_body = hero(
   </div>
 </section>
 
+<!-- Lead bridge: the wizard is the visible experience, but the lead still has to
+     reach ActiveCampaign. join.js fills this hidden form 103 on completion and
+     submits it, so joins land on the same list/tags/automations as before. -->
+<div class="ac-bridge ac-form ac-form--103" aria-hidden="true">{ac_form(103)}</div>
+
 <div class="join-success" role="dialog" aria-modal="true" aria-label="Membership confirmed">
   <div class="join-success__inner">
     <div class="mark">✓</div>
