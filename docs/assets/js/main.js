@@ -280,6 +280,87 @@
     });
   });
 
+  /* The AC forms carry Forma's ad-attribution fields (GCLID + utm_source /
+     medium / campaign / term — field[354] and field[357..360] on forms 9, 33,
+     72, 93). They are meant to be invisible plumbing, but AC renders them as
+     ordinary labelled inputs, and nothing fills them. Hide them and copy the
+     values off the landing URL so Google Ads / campaign attribution still
+     reaches ActiveCampaign. Matched on label text, not field numbers, so this
+     survives someone reordering fields in the AC form designer. */
+  function wireAcTracking(form) {
+    var params = new URLSearchParams(window.location.search);
+    form.querySelectorAll("._form_element").forEach(function (row) {
+      var label = row.querySelector("label,._form-label");
+      if (!label) return;
+      var key = label.textContent.trim().replace(/\*$/, "").toLowerCase();
+      if (key !== "gclid" && key.indexOf("utm_") !== 0) return;
+      row.style.setProperty("display", "none", "important");   // plumbing, not UI
+      var input = row.querySelector("input");
+      if (input) {
+        var val = params.get(key);
+        if (val) input.value = val;
+      }
+    });
+  }
+
+  /* AC ships an inline stylesheet keyed to randomly-generated form IDs
+     (#_form_A1B2C3_ ._submit {...!important}). An ID + !important outranks any
+     class rule we can write, and the ID changes on every render — so these few
+     properties have to be set on the elements themselves. Everything else is
+     handled by the ._form rules in main.css. */
+  function brandAcForm(form) {
+    var cs = getComputedStyle(document.documentElement);
+    var v = function (n) { return cs.getPropertyValue(n).trim(); };
+    var set = function (el, prop, val) { el.style.setProperty(prop, val, "important"); };
+    form.querySelectorAll("input[type=text],input[type=email],input[type=tel],input[type=number],textarea,select")
+      .forEach(function (el) {
+        set(el, "color", v("--bone"));
+        set(el, "background-color", v("--ink-2"));
+        set(el, "border-color", "rgba(244,247,248,0.14)");
+      });
+    form.querySelectorAll("._submit,button[type=submit],input[type=submit]").forEach(function (el) {
+      set(el, "background", v("--accent"));
+      set(el, "color", v("--ink"));
+    });
+    form.querySelectorAll("._form-label,label").forEach(function (el) {
+      set(el, "color", "rgba(244,247,248,0.60)");
+    });
+  }
+
+  /* ---------- ActiveCampaign: move each embedded form into its slot ----------
+     AC's embed script appends the rendered form to <body> rather than where the
+     <script> sits, so it would otherwise land at the bottom of the page. Each
+     wrapper is .ac-form--<id>; the rendered form is ._form_<id>. AC renders
+     async, so watch for it instead of assuming it's there on DOMContentLoaded. */
+  var acSlots = document.querySelectorAll("[class*='ac-form--']");
+  if (acSlots.length) {
+    var placeAcForms = function () {
+      var pending = 0;
+      acSlots.forEach(function (slot) {
+        var m = /ac-form--(\d+)/.exec(slot.className);
+        if (!m) return;
+        if (slot.querySelector("._form_" + m[1])) return;   // already placed
+        var form = document.querySelector("._form_" + m[1]);
+        if (form) {
+          var holder = form.closest("div:not([class])") || form;
+          slot.appendChild(holder);
+          brandAcForm(form);
+          wireAcTracking(form);
+        } else {
+          pending++;
+        }
+      });
+      return pending === 0;
+    };
+    if (!placeAcForms()) {
+      var acObserver = new MutationObserver(function () {
+        if (placeAcForms()) acObserver.disconnect();
+      });
+      acObserver.observe(document.body, { childList: true, subtree: false });
+      setTimeout(function () { acObserver.disconnect(); }, 10000);  // stop watching eventually
+    }
+  }
+
   /* ---------- hero video: pick desktop/mobile source by viewport, respect data saver ---------- */
   var heroVids = document.querySelectorAll(".hero__media video[data-src-desktop]");
   if (heroVids.length) {

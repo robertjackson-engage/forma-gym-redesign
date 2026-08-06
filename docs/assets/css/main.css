@@ -1317,3 +1317,84 @@ body.chat-open .chat-panel { opacity: 1; transform: none; pointer-events: auto; 
 .post-body li::before { content: "→"; position: absolute; left: -6px; color: var(--accent); }
 .post-body strong { color: var(--white); }
 .post-body em { font-family: var(--font-body); font-style: normal; font-size: 1.08em; }
+
+
+/* ============================================================
+   ACTIVECAMPAIGN EMBEDDED FORMS
+   Account: formagym.activehosted.com — same form IDs the previous site used,
+   so existing lists / tags / automations keep working.
+     9   footer newsletter (every page)   33  service + class lead form
+     72  cryo lead (has phone)            93  freeze / cancel request
+     103 join / membership
+   AC injects the form into <body> (not our wrapper) and ships its own
+   light-theme CSS at high specificity — so every rule below is scoped to
+   AC's own ._form container and uses !important. Nothing here can leak onto
+   the site's native forms.
+   ============================================================ */
+.ac-form { width: 100%; min-height: 1px; }
+
+.ac-form ._form, form._form {
+  background: transparent !important;
+  font-family: var(--font-body) !important;
+  color: var(--bone) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100% !important;
+  max-width: none !important;
+}
+.ac-form ._form ._form-title, ._form ._html-code h1, ._form ._html-code h2 {
+  font-family: var(--font-display) !important;
+  text-transform: uppercase;
+  color: var(--bone) !important;
+}
+.ac-form ._form ._form_element, ._form ._field-wrapper { margin-bottom: 14px !important; }
+.ac-form ._form ._form-label, ._form label {
+  color: var(--muted) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: .02em;
+}
+.ac-form ._form input[type="text"],
+.ac-form ._form input[type="email"],
+.ac-form ._form input[type="tel"],
+.ac-form ._form input[type="number"],
+.ac-form ._form textarea,
+.ac-form ._form select {
+  width: 100% !important;
+  background: var(--ink-2) !important;
+  color: var(--bone) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 2px !important;
+  padding: 13px 14px !important;
+  font-family: var(--font-body) !important;
+  font-size: 15px !important;
+}
+.ac-form ._form input::placeholder, ._form textarea::placeholder { color: var(--muted) !important; }
+.ac-form ._form input:focus, ._form textarea:focus, ._form select:focus {
+  border-color: var(--accent) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 1px var(--accent) !important;
+}
+.ac-form ._form input[type="checkbox"], ._form input[type="radio"] { accent-color: var(--accent); }
+.ac-form ._form ._checkbox-radio span, ._form ._row._checkbox-radio label { color: var(--bone) !important; }
+.ac-form ._form ._submit, ._form button[type="submit"], ._form input[type="submit"] {
+  background: var(--accent) !important;
+  color: var(--ink) !important;
+  border: none !important;
+  border-radius: 2px !important;
+  font-family: var(--font-body) !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  padding: 15px 28px !important;
+  width: 100% !important;
+  cursor: pointer;
+  transition: background .3s var(--ease-out);
+}
+.ac-form ._form ._submit:hover { background: var(--accent-soft) !important; }
+.ac-form ._form ._error, ._form ._error-inner, ._form ._error-html { color: var(--warm) !important; }
+.ac-form ._form ._form-branding { opacity: .35; }
+
+/* Footer newsletter (form 9) sits in a narrow column — keep it compact */
+.site-footer .ac-form ._form ._form-label, .site-footer .ac-form ._form ._form-title { display: none !important; }
+.site-footer .ac-form ._form ._form_element { margin-bottom: 10px !important; }

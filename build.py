@@ -290,10 +290,7 @@ def footer_html():
         <a href="walnut-creek.html">1908 Olympic Blvd · (925) 932-6400</a>
         <a class="tel" href="tel:4083631010" style="margin-top:14px">San Jose</a>
         <a href="san-jose.html">5434 Thornwood Dr · (408) 363-1010</a>
-        <form class="news-form" data-demo>
-          <input type="email" placeholder="Join our newsletter" aria-label="Email address" required>
-          <button type="submit">Join</button>
-        </form>
+        {ac_form(9)}
       </div>
     </div>
   </div>
@@ -431,7 +428,27 @@ def cta_band(title_html, text, img, primary=("Join Now", "join.html"),
 """
 
 
-def form_section(sec_id, num, eyebrow, title_html, text, btn, light=True, extra=""):
+# ---------------------------------------------------------------- ACTIVECAMPAIGN
+# The live site's lead capture runs through ActiveCampaign. These are the same
+# form IDs the old formagym.com used, so existing lists, tags and automations
+# keep working unchanged.
+#   9   sitewide newsletter (footer, every page)
+#   33  service / class page lead form
+#   72  cryo lead (includes a phone field)
+#   93  freeze / cancel request
+#   103 join / membership (has conditional option groups)
+# Form 49 (blog subscribe) is intentionally unused — the blog was retired.
+AC_ACCOUNT = "https://formagym.activehosted.com"
+
+
+def ac_form(form_id):
+    """ActiveCampaign embed. The script renders the form where it sits."""
+    return (f'<div class="ac-form ac-form--{form_id}">'
+            f'<script src="{AC_ACCOUNT}/f/embed.php?id={form_id}" charset="utf-8"></script>'
+            f"</div>")
+
+
+def form_section(sec_id, num, eyebrow, title_html, text, btn, light=True, extra="", ac_id=None):
     fields = [("text", "first", "First name"), ("text", "last", "Last name"),
               ("email", "email", "Email address"), ("tel", "phone", "Phone")]
     f_html = ""
@@ -449,7 +466,7 @@ def form_section(sec_id, num, eyebrow, title_html, text, btn, light=True, extra=
         {extra}
       </div>
       <div class="intro-grid__right reveal">
-        <form class="form-grid" data-demo>
+        {ac_form(ac_id) if ac_id else f'''<form class="form-grid" data-demo>
           {f_html}
           <div class="field field--full">
             <select name="location" id="{sec_id}-loc" aria-label="Preferred location">
@@ -460,7 +477,7 @@ def form_section(sec_id, num, eyebrow, title_html, text, btn, light=True, extra=
             <label for="{sec_id}-loc">Preferred location</label>
           </div>
           <button class="btn {'btn--dark' if light else ''} field--full" type="submit" style="justify-content:center">{btn} <span class="arr">→</span></button>
-        </form>
+        </form>'''}
         <p class="form-note">By submitting, you confirm you're at least 13 and agree to our Privacy Policy &amp; Terms. Forma is a SPAM-FREE ZONE — we never share or sell your info.</p>
       </div>
     </div>
@@ -784,7 +801,7 @@ about_body = hero(
     "tour", "04", "Book a tour",
     'Come see it for <span class="serif">yourself</span>',
     "Join the Forma Family and experience how we can help you — featuring the best trainers, programs and classes in the Bay Area. Tell us a little about you and we'll set up your visit.",
-    "Book My Tour",
+    "Book My Tour", ac_id=33,
 ) + cta_band(
     'Come <span class="serif">play</span> with us',
     "Two clubs, one community that can't wait to meet you.",
@@ -838,7 +855,7 @@ groupfit_body = hero(
     "schedule", "03", "Schedule a visit",
     'Find your first <span class="serif">class</span>',
     "Join the Forma Family and experience the difference — featuring the best trainers, programs and classes in the Bay Area. Tell us your preferred club and we'll get you on the schedule.",
-    "Get the Schedule",
+    "Get the Schedule", ac_id=33,
 ) + cta_band(
     'Come <span class="serif">move</span> with us',
     "Come try a class — or five. Every format is included with membership.",
@@ -1126,7 +1143,12 @@ cryo_body = hero(
     </div>
   </div>
 </section>
-""" + cta_band(
+""" + form_section(
+    "book", "04", "Book cryotherapy",
+    'Ready to <span class="serif">chill</span>?',
+    "Tell us how to reach you and which club works best, and we'll get your first cryotherapy session on the calendar. Members and guests are both welcome.",
+    "Book My Session", light=False, ac_id=72,
+) + cta_band(
     'Book your first <span class="serif">session</span>',
     "Three minutes to less pain, better sleep, and faster recovery. Members and guests welcome.",
     f"{IMG}/chillyGOAT_SJ_500px.jpg",
@@ -1596,7 +1618,7 @@ contact_body = hero(
     "tour", "01", "Book a tour",
     'Let\'s find your <span class="serif">fit</span>',
     "Tell us a little about you and your preferred club, and we'll set up your visit — featuring the best trainers, programs and classes in the Bay Area.",
-    "Book My Tour", light=True,
+    "Book My Tour", light=True, ac_id=33,
 ) + f"""
 <section class="section">
   <div class="wrap">
@@ -1647,7 +1669,7 @@ trial_body = hero(
     "tour", "02", "Schedule your visit",
     'Your <span class="serif">$0</span> enrollment offer',
     "We have a fitness solution for you — hundreds of monthly classes across every intensity and experience level, whether you've never had a gym membership or you've tried them all. Complete the form and we'll set up your visit and coaching session.",
-    "Visit Us",
+    "Visit Us", ac_id=33,
 ) + cta_band(
     'Come <span class="serif">play</span> with us',
     "Two clubs, $0 enrollment. The only thing left to do is show up.",
@@ -1873,7 +1895,7 @@ freeze_body = hero(
     'Start your <span class="serif">request</span>',
     "Tell us your name, the email on your account, and your home club. Add your request details in the message — whether you're freezing or cancelling, and the dates involved. A membership team member will reply by email to confirm.",
     "Submit Request",
-    light=False,
+    light=False, ac_id=93,
 ) + """
 <section class="section section--tight">
   <div class="wrap" style="max-width:820px">
