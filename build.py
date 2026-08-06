@@ -192,7 +192,7 @@ def header_html(active=""):
         links += f'<a href="{href}"{cls}>{label}</a>'
     menu_links = ""
     for i, (label, href) in enumerate(MENU, 1):
-        menu_links += f'<a href="{href}"><span class="idx">{i:02d}</span>{label}</a>'
+        menu_links += f'<a href="{href}">{label}</a>'
     return f"""
 <header class="site-header">
   <div class="site-header__inner">
@@ -209,8 +209,7 @@ def header_html(active=""):
       <a class="btn btn--solid btn--sm only-guest" href="join.html">Join Now</a>
       <a class="btn btn--solid btn--sm only-member" href="group-fitness.html#schedule">Class Schedule</a>
       <button class="menu-toggle" aria-expanded="false" aria-label="Open menu">
-        <span>Menu</span>
-        <span class="menu-toggle__icon"><i></i><i></i></span>
+        <span class="menu-toggle__icon"><i></i><i></i><i></i></span>
       </button>
     </div>
   </div>
@@ -339,9 +338,8 @@ def hero(kicker, lines, sub="", img=None, video=None, poster=None, crumb=None,
             cls = ("btn btn--solid" if solid else "btn") + extra
             acts += f'<a class="{cls}" href="{href}">{label} <span class="arr">→</span></a>'
         acts += "</div>"
-    crumb_html = ""
-    if crumb:
-        crumb_html = f'<div class="hero__crumb"><div><a href="index.html">Home</a> &nbsp;/&nbsp; {crumb}</div></div>'
+    # Breadcrumbs removed site-wide. The `crumb` arg is still accepted (many
+    # call sites pass it) but no longer rendered.
     meta_html = ""
     if meta:
         meta_html = '<div class="hero__meta">' + "".join(f"<span>{m}</span>" for m in meta) + "</div>"
@@ -349,7 +347,6 @@ def hero(kicker, lines, sub="", img=None, video=None, poster=None, crumb=None,
     return f"""
 <section class="hero{' hero--page' if page else ''}">
   <div class="hero__media">{media}</div>
-  {crumb_html}
   <div class="hero__inner">
     <p class="hero__kicker">{kicker}</p>
     <h1 class="hero__title{(' ' + title_mod) if title_mod else ''}">{lns}</h1>
