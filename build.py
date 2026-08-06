@@ -101,7 +101,6 @@ MENU = [
     ("About Forma", "about.html"),
     ("The Forma App", "app.html"),
     ("Join Now", "join.html"),
-    ("Blog", "blog.html"),
     ("Book a Tour", "contact.html#tour"),
 ]
 
@@ -264,7 +263,6 @@ def footer_html():
         <h5>Move</h5>
         <div class="site-footer__links">
           <a href="group-fitness.html">Group Fitness</a>
-          <a href="blog.html">Blog</a>
           <a href="training.html">Personal Training</a>
           <a href="cycle.html">Cycle</a>
           <a href="yoga.html">Yoga + Mind Body</a>
@@ -485,11 +483,93 @@ def accordion(items, open_first=True):
     return out
 
 
-def page(filename, title, desc, active, body):
-    html = head(title, desc) + header_html(active) + body + footer_html()
-    with open(os.path.join(OUT, filename), "w") as f:
+# ============================================================ LIVE URL STRUCTURE
+# Option A: the built site emits the SAME paths formagym.com already uses, so
+# existing Google results, inbound links and ad landing pages keep working.
+# Internal name (flat .html)  ->  live path (directory-style, no extension)
+URL_MAP = {
+    "index.html": "",
+    "about.html": "about",
+    "group-fitness.html": "group-fitness",
+    "training.html": "training",
+    "recovery.html": "recovery",
+    "cryo.html": "cryo",
+    "spa.html": "locations/walnut-creek/spa",
+    "mindbodylab.html": "mindbodylab",
+    "kidzville.html": "kidzville",
+    "rise.html": "rise",
+    "givesback.html": "givesback",
+    "walnut-creek.html": "locations/walnut-creek",
+    "san-jose.html": "locations/san-jose",
+    "locations.html": "locations",
+    "join.html": "join-now",
+    "trial-pass.html": "trial-pass",
+    "outdoor-training.html": "outdoor-training",
+    "drbrainrx.html": "drbrainrx",
+    "app.html": "app",
+    "merchant.html": "merchant",
+    "contact.html": "contact",
+    "accessibility.html": "accessibility-statement",
+    "privacy.html": "privacy-policy",
+    "freeze-cancel.html": "freeze-cancel",
+    # class pages — live site uses the -gfit suffix
+    "aqua.html": "aqua-gfit",
+    "barre.html": "barre-gfit",
+    "cycle.html": "cycle-gfit",
+    "dance.html": "dance-gfit",
+    "kickboxing.html": "kbox-gfit",
+    "low-impact.html": "low-gfit",
+    "mat-pilates.html": "mat-gfit",
+    "meditation.html": "meditation-gfit",
+    "pilates-reformer.html": "pilates-gfit",
+    "sculpt.html": "sculpy-gfit",
+    "stretch.html": "stretch-gfit",
+    "trx.html": "trx-gfit",
+    "cardio-hiit.html": "cardio-hiit",
+    "yoga.html": "yoga-gfit",
+}
+
+# Same content served at more than one live path (the two club spa pages).
+ALIAS_PATHS = {
+    "spa.html": ["locations/san-jose/spa"],
+}
+
+
+def url_for(filename):
+    """Flat internal filename -> live site URL."""
+    if filename in URL_MAP:
+        p = URL_MAP[filename]
+        return "/" if p == "" else f"/{p}/"
+    return "/" + filename
+
+
+def rewrite_urls(html):
+    """Make every asset + internal link absolute-from-root and extensionless.
+    Required because pages now live in subdirectories, so relative paths break."""
+    html = _re.sub(r'(href|src)="assets/', r'\1="/assets/', html)
+
+    def _link(m):
+        attr, fn, frag = m.group(1), m.group(2), m.group(3) or ""
+        return f'{attr}="{url_for(fn)}{frag}"'
+
+    return _re.sub(r'(href)="((?:blog/)?[A-Za-z0-9._-]+\.html)(#[^"]*)?"', _link, html)
+
+
+def _write(path_rel, html):
+    """path_rel '' -> docs/index.html ; 'about' -> docs/about/index.html"""
+    out_dir = OUT if path_rel == "" else os.path.join(OUT, path_rel)
+    os.makedirs(out_dir, exist_ok=True)
+    with open(os.path.join(out_dir, "index.html"), "w") as f:
         f.write(html)
-    print("built", filename)
+
+
+def page(filename, title, desc, active, body):
+    html = rewrite_urls(head(title, desc) + header_html(active) + body + footer_html())
+    targets = [URL_MAP.get(filename, filename.replace(".html", ""))]
+    targets += ALIAS_PATHS.get(filename, [])
+    for t in targets:
+        _write(t, html)
+    print("built", "/" + (targets[0] + "/" if targets[0] else ""))
 
 
 # ============================================================ shared blocks
@@ -1736,6 +1816,77 @@ accessibility_body = legal_page("Accessibility Statement",
 privacy_body = legal_page("Privacy Policy",
     "Forma is a SPAM-FREE ZONE. We never share or sell your email address or phone number.")
 
+# ============================================================ FREEZE / CANCEL  (MEMBER-ONLY)
+# Replaces the live site's /freeze-cancel/ page. Member-facing only: the request
+# section is wrapped in .only-member, and guests see a redirect notice instead.
+# NOTE: the live page runs ActiveCampaign form 93 (name, email, field[376]).
+# The form below is the redesign's demo form — swap in the AC 93 embed on launch.
+# NOTE: policy specifics (freeze length, fees, notice period) are intentionally
+# NOT stated here — confirm Forma's current terms before publishing.
+freeze_body = hero(
+    "Member Services",
+    ["Freeze or cancel", 'your <span class="serif">membership</span>.'],
+    "Life changes — travel, injury, a season away. Put your membership on hold, or close it out. Either way, start the request here and our membership team will confirm by email.",
+    img=f"{IMG}/neck_hold_BLUR_2000x1333px_v2.jpg",
+    crumb="Freeze or Cancel",
+    meta=["Members only", "Requests handled by the membership team", "Written request required"],
+    page=True,
+) + """
+<!-- guests: this page isn't for them -->
+<section class="section section--tight only-guest">
+  <div class="wrap" style="max-width:820px">
+    <p class="eyebrow"><span class="num">01</span> Members only</p>
+    <h2 class="h-display reveal" style="font-size:clamp(30px,4vw,58px)">This page is for <span class="serif">members</span></h2>
+    <p class="lede reveal" style="margin-top:24px">Freeze and cancellation requests are handled for active Forma members. If you're already a member, switch to the Member view using the toggle at the top of the page.</p>
+    <p class="body-copy reveal" style="margin-top:18px">Not a member yet? <a class="inline-link" href="join.html">Join Forma</a> or <a class="inline-link" href="contact.html#tour">book a tour</a>.</p>
+  </div>
+</section>
+
+<!-- members: the real content -->
+<div class="only-member">
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="intro-grid">
+      <div>
+        <p class="eyebrow"><span class="num">01</span> Choose your option</p>
+        <h2 class="h-display reveal">Freeze, or <span class="serif">cancel</span></h2>
+      </div>
+      <div class="intro-grid__right">
+        <p class="lede reveal">Most members who need a break choose a freeze — it holds your membership and your rate while you're away, so you can pick up where you left off.</p>
+        <p class="body-copy reveal">A cancellation closes your membership. Both require a written request, which is what the form below creates. Your club can confirm current terms, any applicable fees, and your minimum-term status before anything is finalized.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="pillars" data-stagger>
+      <div class="pillar"><span class="pillar__num">01</span><h3>Freeze</h3><p>Temporarily pause your membership and hold your current rate. Good for travel, injury, deployment, or a season away.</p></div>
+      <div class="pillar"><span class="pillar__num">02</span><h3>Cancel</h3><p>Close your membership. A written request is required — this form submits one and starts the confirmation process.</p></div>
+      <div class="pillar"><span class="pillar__num">03</span><h3>Not sure?</h3><p>Talk to us first. Walnut Creek <a href="tel:9259326400" style="color:var(--accent)">(925) 932-6400</a> · San Jose <a href="tel:4083631010" style="color:var(--accent)">(408) 363-1010</a>.</p></div>
+    </div>
+  </div>
+</section>
+""" + form_section(
+    "request", "02", "Submit your request",
+    'Start your <span class="serif">request</span>',
+    "Tell us your name, the email on your account, and your home club. Add your request details in the message — whether you're freezing or cancelling, and the dates involved. A membership team member will reply by email to confirm.",
+    "Submit Request",
+    light=False,
+) + """
+<section class="section section--tight">
+  <div class="wrap" style="max-width:820px">
+    <p class="body-copy reveal">Submitting this form creates your written request and time-stamps it. It is not an instant cancellation — you'll receive an email confirming the details and effective date. If you don't hear back within a few business days, please call your home club directly.</p>
+  </div>
+</section>
+</div>
+""" + cta_band(
+    'Still want to <span class="serif">stay</span>?',
+    "If it's a schedule or cost issue, a membership change might solve it. Talk to the team before you go — we'd rather keep you.",
+    f"{IMG}/slider-locations_turf_alysse_torey.jpg",
+)
+
 # ============================================================ BUILD ALL
 PAGES = [
     ("index.html", "Forma Gym | Walnut Creek &amp; San Jose | Play Every Day", "Two luxury Bay Area fitness clubs — Walnut Creek &amp; San Jose. All group fitness, personal training, pools, cryotherapy, spa and Kidzville.", "", home_body),
@@ -1759,6 +1910,7 @@ PAGES = [
     ("app.html", "The Forma App | Forma Gym", "Book classes, reserve lanes, check schedules and manage your membership with the Forma app.", "", app_body),
     ("merchant.html", "Preferred Merchant Program | Forma Gym", "Forma members get preferred pricing at locally owned Bay Area businesses through our Preferred Merchant Program.", "", merchant_body),
     ("contact.html", "Contact &amp; Book a Tour | Forma Gym", "Book a tour or reach a Forma Gym club — Walnut Creek (925) 932-6400 or San Jose (408) 363-1010.", "", contact_body),
+    ("freeze-cancel.html", "Freeze or Cancel Your Membership | Forma Gym", "Active Forma Gym members can request a membership freeze or cancellation. Submit your written request and the membership team will confirm by email.", "", freeze_body),
     ("accessibility.html", "Accessibility Statement | Forma Gym", "Forma Gym is committed to making our clubs and website accessible and welcoming to everyone.", "", accessibility_body),
     ("privacy.html", "Privacy Policy | Forma Gym", "Forma is a SPAM-FREE ZONE — we never share or sell your information.", "", privacy_body),
 ]
@@ -1772,77 +1924,11 @@ for slug, title, img, lead, short in CLASS_PAGES:
                   "group-fitness.html", class_page(slug, title, img, lead, others)))
 
 
-# ============================================================ BLOG (CMS-driven)
-POSTS = load_collection("blog")
 
-def blog_index_body():
-    if not POSTS:
-        cards = '<p class="body-copy">No posts yet — check back soon.</p>'
-    else:
-        cards = ""
-        for p in POSTS:
-            num = f'<span class="card__num">{fmt_date(p.get("date"))} · {p.get("author","")}</span>'
-            cards += (f'<a class="card" href="blog/{p["_slug"]}.html"><div class="card__media card__media--wide">'
-                      f'<img src="{cms_img(p.get("image"))}" alt="{p.get("title","")}" loading="lazy">{num}'
-                      f'<div class="card__label"><h3>{p.get("title","")}</h3></div></div>'
-                      f'<div class="card__below"><p>{p.get("excerpt","")}</p></div></a>')
-    return hero("Forma Blog", ["News &amp;", '<span class="serif">stories</span>'],
-        "Member stories, training tips, club news and behind-the-scenes fun — fresh from the team.",
-        img=f"{IMG}/slider-locations_turf_alysse_torey.jpg", crumb="Blog",
-        actions=[("Join Now", "join.html", True)], page=True,
-    ) + f"""
-<section class="section"><div class="wrap">
-  <div class="cards-head"><div><p class="eyebrow"><span class="num">01</span> Latest</p><h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">On the <span class="serif">blog</span></h2></div></div>
-  <div class="card-grid" data-stagger>{cards}</div>
-</div></section>
-""" + cta_band('Come be part of the <span class="serif">story</span>', "There's always something happening. Come see for yourself.", f"{IMG}/slider-locations_group_dance.jpg")
 
-def blog_post_body(p):
-    others = "".join(
-        f'<a class="row-item" href="../blog/{o["_slug"]}.html"><span class="row-item__idx">→</span>'
-        f'<span class="row-item__title">{o.get("title","")}</span>'
-        f'<span class="row-item__desc">{o.get("excerpt","")}</span><span class="row-item__arrow">→</span></a>'
-        for o in POSTS if o["_slug"] != p["_slug"])
-    more = f"""
-<section class="section section--light"><div class="wrap">
-  <div class="cards-head"><div><p class="eyebrow"><span class="num">02</span> Keep reading</p><h2 class="h-display reveal" style="font-size:clamp(30px,3.4vw,52px)">More from <span class="serif">the blog</span></h2></div>
-  <a class="inline-link reveal" href="../blog.html">All posts →</a></div><div class="rows reveal">{others}</div>
-</div></section>""" if others else ""
-    return f"""
-<section class="hero hero--page hero--post">
-  <div class="hero__media"><img src="../{cms_img(p.get('image'))}" alt=""></div>
-  <div class="hero__crumb"><div><a href="../index.html">Home</a> &nbsp;/&nbsp; <a href="../blog.html">Blog</a></div></div>
-  <div class="hero__inner">
-    <p class="hero__kicker">{fmt_date(p.get('date'))} &nbsp;·&nbsp; {p.get('author','Team')}</p>
-    <h1 class="hero__title"><span class="ln"><span style="transition-delay:.12s">{p.get('title','')}</span></span></h1>
-  </div>
-  <div class="hero__scroll" aria-hidden="true"></div>
-</section>
-<section class="section section--tight"><div class="wrap" style="max-width:760px">
-  <div class="post-body reveal">{p['_body']}</div>
-  <div class="reveal" style="margin-top:40px"><a class="btn btn--solid" href="../blog.html">← Back to the blog</a></div>
-</div></section>
-{more}
-""" + cta_band('Like what you\'re <span class="serif">reading?</span>', "Come see it in person.", f"../{IMG}/slider-locations_group_dance.jpg")
-
-def page_sub(filename, title, desc, body):
-    html = head(title, desc) + header_html("blog.html") + body + footer_html()
-    html = _re.sub(r'(href|src)="/(?!/)', r'\1="../', html)
-    html = _re.sub(r'(href|src)="assets/', r'\1="../assets/', html)
-    html = _re.sub(r'(href)="([a-z0-9-]+\.html)(#[^"]*)?"', r'\1="../\2\3"', html)
-    os.makedirs(os.path.join(OUT, "blog"), exist_ok=True)
-    with open(os.path.join(OUT, filename), "w") as f:
-        f.write(html)
-    print("built", filename)
-# ============================================================ end BLOG
-
-PAGES.append(("blog.html", f"Blog | Forma", "News, stories and tips from Forma.", "blog.html", blog_index_body()))
 
 for fn, title, desc, active, body in PAGES:
     page(fn, title, desc, active, body)
 
 print("\nDone:", len(PAGES), "pages")
 
-for _p in POSTS:
-    page_sub(f"blog/{_p['_slug']}.html", f"{_p.get('title','Post')} | Forma Blog", _p.get("excerpt","")[:160], blog_post_body(_p))
-print("blog posts:", len(POSTS))

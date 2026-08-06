@@ -1,0 +1,200 @@
+/* ============================================================
+   FORMA — Salient "Brand Refresh" layer  (v1 · starting point)
+   Paste into: Salient → Theme Options → Custom CSS/JS → Custom CSS
+   Apply on a Pressidium STAGING site first, then fine-tune per page.
+
+   This nudges Salient toward the redesign's dark editorial vibe.
+   It is intentionally conservative — adjust values/selectors to taste.
+   Some rules use !important only where Salient's own CSS is aggressive.
+   ============================================================ */
+
+:root {
+  --forma-ink:      #060709;   /* near-black background */
+  --forma-ink-2:    #0e1013;
+  --forma-bone:     #f4f7f8;   /* text */
+  --forma-muted:    rgba(244,247,248,0.60);
+  --forma-cyan:     #08d6dd;   /* THE accent */
+  --forma-cyan-soft:#6ef0f4;
+  --forma-orange:   #fb8e28;   /* rare secondary */
+  --forma-line:     rgba(244,247,248,0.14);
+}
+
+/* ---- Base canvas: dark background + bone text ----
+   (If you'd rather keep some pages light, scope this to a body class
+   instead of the global body — see notes in SALIENT-SETUP.md.) */
+body {
+  background-color: var(--forma-ink);
+  color: var(--forma-bone);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Headings: Anton, uppercase, tight, editorial ----
+   Set Anton as the heading font in Theme Options → Typography too;
+   this just enforces the case/spacing/leading. */
+h1, h2, h3,
+.nectar-fancy-title,
+h1.section-title, h2.section-title {
+  font-family: "Anton", "Arial Narrow", sans-serif !important;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 0.98;
+  color: var(--forma-bone);
+  font-weight: 400; /* Anton is already heavy */
+}
+
+/* One or two accent words per headline: wrap them in
+   <span class="forma-accent">word</span> in the builder text. */
+.forma-accent { color: var(--forma-cyan) !important; }
+
+/* ---- Body copy: Montserrat, calmer, muted on dark ---- */
+body, p, li, .wpb_text_column {
+  font-family: "Montserrat", "Helvetica Neue", -apple-system, sans-serif;
+}
+p { color: var(--forma-muted); line-height: 1.6; }
+
+/* ---- Links ---- */
+a { color: var(--forma-cyan); }
+a:hover { color: var(--forma-cyan-soft); }
+
+/* ---- Buttons: cyan fill + near-black text (primary),
+        or outlined bone (secondary). Targets Salient buttons. ---- */
+.nectar-button.regular,
+.nectar-button.large,
+a.button,
+input[type="submit"] {
+  background-color: var(--forma-cyan) !important;
+  color: var(--forma-ink) !important;
+  border-radius: 2px;
+  font-family: "Montserrat", sans-serif !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.nectar-button.regular:hover,
+.nectar-button.large:hover,
+a.button:hover {
+  background-color: var(--forma-cyan-soft) !important;
+  color: var(--forma-ink) !important;
+}
+/* Outlined variant — add class "forma-btn-outline" to a Salient button */
+.nectar-button.forma-btn-outline,
+a.button.forma-btn-outline {
+  background-color: transparent !important;
+  color: var(--forma-bone) !important;
+  border: 1px solid var(--forma-line) !important;
+}
+
+/* ---- Section backgrounds ----
+   In the builder, set a Row's background to one of these hexes,
+   or add a CSS class to the Row and target it here:
+   dark:  #060709 / #0e1013   accent text stays cyan. */
+.forma-section-dark { background-color: var(--forma-ink) !important; color: var(--forma-bone); }
+.forma-section-dark p { color: var(--forma-muted); }
+
+/* ---- Thin cyan rule / eyebrow accents ---- */
+.forma-eyebrow {
+  display: inline-block;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-size: 12px;
+  color: var(--forma-bone);
+}
+.forma-eyebrow::before {
+  content: ""; display: inline-block; width: 40px; height: 1px;
+  background: var(--forma-cyan); vertical-align: middle; margin-right: 14px;
+}
+
+/* ---- Dividers ---- */
+hr, .divider-wrap .inner { border-color: var(--forma-line) !important; }
+
+/* ============================================================
+   ActiveCampaign embedded forms  (account: formagym.activehosted.com)
+   Styles the 6 live AC forms to the Forma dark/cyan look.
+   AC ships its own aggressive inline CSS, so !important is used on
+   essentials. These selectors are AC-specific (._form…) so they won't
+   affect other Salient forms.
+   Forms:  9  = sitewide newsletter (footer, every page)
+           33 = service/class-page lead form (~25 pages)
+           49 = blog subscribe
+           72 = cryo lead (has phone)
+           93 = freeze / cancel request
+           103 = join / membership (has option groups)
+   ============================================================ */
+
+._form, ._form_9, ._form_33, ._form_49, ._form_72, ._form_93, ._form_103 {
+  font-family: "Montserrat", sans-serif !important;
+  color: var(--forma-bone) !important;
+  background: transparent !important;
+  max-width: 560px;
+}
+
+/* title / intro copy */
+._form-title, ._form ._html-code h1, ._form ._html-code h2 {
+  color: var(--forma-bone) !important;
+  font-family: "Anton", sans-serif !important;
+  text-transform: uppercase;
+}
+
+/* labels */
+._form ._form-label, ._form label {
+  color: var(--forma-muted) !important;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* text inputs / textarea / select */
+._form input[type="text"],
+._form input[type="email"],
+._form input[type="tel"],
+._form input[type="number"],
+._form textarea,
+._form select {
+  background: var(--forma-ink-2) !important;
+  color: var(--forma-bone) !important;
+  border: 1px solid var(--forma-line) !important;
+  border-radius: 2px !important;
+  padding: 12px 14px !important;
+  font-family: "Montserrat", sans-serif !important;
+}
+._form input::placeholder, ._form textarea::placeholder { color: var(--forma-muted) !important; }
+
+/* focus → cyan */
+._form input:focus, ._form textarea:focus, ._form select:focus {
+  border-color: var(--forma-cyan) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 1px var(--forma-cyan) !important;
+}
+
+/* checkboxes / radios (join form 103 option groups) */
+._form input[type="checkbox"], ._form input[type="radio"] { accent-color: var(--forma-cyan); }
+._form ._checkbox-radio span, ._form ._row._checkbox-radio label { color: var(--forma-bone) !important; }
+
+/* submit button → cyan fill, near-black text */
+._form ._submit,
+._form button[type="submit"],
+._form input[type="submit"] {
+  background: var(--forma-cyan) !important;
+  color: var(--forma-ink) !important;
+  border: none !important;
+  border-radius: 2px !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 14px 26px !important;
+  cursor: pointer;
+}
+._form ._submit:hover { background: var(--forma-cyan-soft) !important; }
+
+/* validation errors → orange, readable on dark */
+._form ._error, ._form ._error-inner, ._form ._error-arrow,
+._form ._error-html { color: var(--forma-orange) !important; }
+
+/* AC "Powered by" branding — muted (only remove entirely if your AC plan allows) */
+._form-branding { opacity: 0.4; }
+
+/* NOTE: AC forms render via JS after page load, and each form's embed.php
+   ships its own <style> with high specificity. If any rule above doesn't
+   take, add the form-scoped id (e.g. #_form_103_ input {…}) — tell me which
+   form/field and I'll tighten it. */

@@ -1,0 +1,199 @@
+live_url,group,target,note
+/1-day-pass,REDIRECT,/trial-pass,explicit mapping
+/1-day-trial-pass-active-form,REDIRECT,/trial-pass,explicit mapping
+/3-group-fitness-classes-you-havent-tried-but-definitely-should,REDIRECT,/,blog removed -> homepage
+/4-exercises-to-start-building-your-booty,REDIRECT,/,blog removed -> homepage
+/4-reasons-not-to-make-a-new-years-resolution,REDIRECT,/,blog removed -> homepage
+/5-active-family-resolutions-for-2019,REDIRECT,/,blog removed -> homepage
+/5-reasons-to-play-every-day,REDIRECT,/,blog removed -> homepage
+/6-hacks-for-a-healthier-happy-hour,REDIRECT,/,blog removed -> homepage
+/Services.html,REDIRECT,/group-fitness,explicit mapping
+/about,NATIVE,/about,redesign serves this path directly
+/about_forma.html,REDIRECT,/about,explicit mapping
+/accessibility-statement,NATIVE,/accessibility-statement,redesign serves this path directly
+/alc,REDIRECT,/group-fitness,explicit mapping
+/all-about-forma-family-general-managers,REDIRECT,/,blog removed -> homepage
+/app,NATIVE,/app,redesign serves this path directly
+/aqua,REDIRECT,/aqua-gfit,explicit mapping
+/aqua-gfit,NATIVE,/aqua-gfit,redesign serves this path directly
+/athlete-2,REDIRECT,/training,explicit mapping
+/athletic-gfit,REDIRECT,/group-fitness,explicit mapping
+/author/darlene,REDIRECT,/,blog removed -> homepage
+/author/david-miller,REDIRECT,/,blog removed -> homepage
+/author/erik-turnbell,REDIRECT,/,blog removed -> homepage
+/author/forma-gym,REDIRECT,/,blog removed -> homepage
+/author/michele,REDIRECT,/,blog removed -> homepage
+/author/owen-nguyen,REDIRECT,/,blog removed -> homepage
+/author/ralph-rajs,REDIRECT,/,blog removed -> homepage
+/author/sara-m,REDIRECT,/,blog removed -> homepage
+/author/sara-m/page/2,REDIRECT,/,blog removed -> homepage
+/author/sara-m/page/3,REDIRECT,/,blog removed -> homepage
+/author/sara-m/page/4,REDIRECT,/,blog removed -> homepage
+/author/tracy,REDIRECT,/,blog removed -> homepage
+/author/yuki,REDIRECT,/,blog removed -> homepage
+/barre-gfit,NATIVE,/barre-gfit,redesign serves this path directly
+/be_a_trainer.html,REDIRECT,/about,explicit mapping
+/benefits.html,REDIRECT,/join-now,explicit mapping
+/blog,REDIRECT,/,explicit mapping
+/building-your-booty-part-2,REDIRECT,/,blog removed -> homepage
+/busy-mom-workouts-how-to-squeeze-in-your-workouts,REDIRECT,/,blog removed -> homepage
+/cardio-hiit,NATIVE,/cardio-hiit,redesign serves this path directly
+/category/community,REDIRECT,/,blog removed -> homepage
+/category/export,REDIRECT,/,blog removed -> homepage
+/category/fitness,REDIRECT,/,blog removed -> homepage
+/category/fitness/page/2,REDIRECT,/,blog removed -> homepage
+/category/fitness/page/3,REDIRECT,/,blog removed -> homepage
+/category/fitness/page/4,REDIRECT,/,blog removed -> homepage
+/category/kidzville,REDIRECT,/,blog removed -> homepage
+/category/mind-body,REDIRECT,/,blog removed -> homepage
+/category/nutrition,REDIRECT,/,blog removed -> homepage
+/category/stretching-mobility,REDIRECT,/,blog removed -> homepage
+/celebrate-small-stuff,REDIRECT,/,blog removed -> homepage
+/chiropractic.html,REDIRECT,/recovery,explicit mapping
+/contact_us.html,REDIRECT,/contact,explicit mapping
+/create-a-healthy-lifestyle-with-mind-body,REDIRECT,/,blog removed -> homepage
+/cryo,NATIVE,/cryo,redesign serves this path directly
+/cycle,REDIRECT,/cycle-gfit,explicit mapping
+/cycle-gfit,NATIVE,/cycle-gfit,redesign serves this path directly
+/dance-gfit,NATIVE,/dance-gfit,redesign serves this path directly
+/digital-ads-sj1,DECIDE,,AD/CONVERSION PAGE - confirm target with marketing
+/digital-ads-sj2,DECIDE,,AD/CONVERSION PAGE - confirm target with marketing
+/digital-ads-wc1,DECIDE,,AD/CONVERSION PAGE - confirm target with marketing
+/digital-ads-wc2,DECIDE,,AD/CONVERSION PAGE - confirm target with marketing
+/display,REDIRECT,/,explicit mapping
+/ditch-resolutions-set-goals,REDIRECT,/,blog removed -> homepage
+/dog-hikes,REDIRECT,/givesback,explicit mapping
+/drbrainrx,NATIVE,/drbrainrx,redesign serves this path directly
+/email-offer,REDIRECT,/join-now,explicit mapping
+/enroll-online,REDIRECT,/join-now,explicit mapping
+/events,REDIRECT,/,explicit mapping
+/events-calendar,REDIRECT,/,explicit mapping
+/fees.html,REDIRECT,/join-now,explicit mapping
+/fg-virtual,REDIRECT,/app,explicit mapping
+/five-exercises-for-mobility-to-help-you-move-well,REDIRECT,/,blog removed -> homepage
+/formas-top-exercises-for-maintaining-flexibility-and-alignment,REDIRECT,/,blog removed -> homepage
+/freeze-cancel,NATIVE,/freeze-cancel,redesign serves this path directly
+/general_info.html,REDIRECT,/about,explicit mapping
+/get-ready-for-the-forma-gym-turkey-trot,REDIRECT,/,blog removed -> homepage
+/get-started,REDIRECT,/join-now,explicit mapping
+/gift_certificates.html,REDIRECT,/join-now,explicit mapping
+/givesback,NATIVE,/givesback,redesign serves this path directly
+/gracie,REDIRECT,/group-fitness,explicit mapping
+/group-fitness,NATIVE,/group-fitness,redesign serves this path directly
+/groupfit,REDIRECT,/group-fitness,explicit mapping
+/groupx,REDIRECT,/group-fitness,explicit mapping
+/halfoff,REDIRECT,/join-now,explicit mapping
+/happy_healthy_habits_2020,REDIRECT,/,explicit mapping
+/home-2,REDIRECT,/,explicit mapping
+/hours.html,REDIRECT,/locations,explicit mapping
+/how-to-get-your-workout-after-workday,REDIRECT,/,blog removed -> homepage
+/image_captcha,REDIRECT,/,explicit mapping
+/image_captcha/5173/1357644559,IGNORE,,"asset/endpoint, not a page"
+/improve-your-mood-with-exercise,REDIRECT,/,blog removed -> homepage
+/index.html,REDIRECT,/,explicit mapping
+/is-anaerobic-or-aerobic-exercise-better-for-you,REDIRECT,/,blog removed -> homepage
+/is-it-better-to-work-out-in-the-morning-or-at-night,REDIRECT,/,blog removed -> homepage
+/isotonic-or-isometric-exercise-which-will-help-you-most,REDIRECT,/,blog removed -> homepage
+/join-now,NATIVE,/join-now,redesign serves this path directly
+/kbox-gfit,NATIVE,/kbox-gfit,redesign serves this path directly
+/kidzville,NATIVE,/kidzville,redesign serves this path directly
+/kidzville-july-news,REDIRECT,/,blog removed -> homepage
+/knock-out-stress-with-these-5-exercises-for-busy-moms,REDIRECT,/,blog removed -> homepage
+/locations,NATIVE,/locations,redesign serves this path directly
+/locations/san-jose,NATIVE,/locations/san-jose,redesign serves this path directly
+/locations/san-jose/spa,NATIVE,/locations/san-jose/spa,redesign serves this path directly
+/locations/walnut-creek,NATIVE,/locations/walnut-creek,redesign serves this path directly
+/locations/walnut-creek/spa,NATIVE,/locations/walnut-creek/spa,redesign serves this path directly
+/low-gfit,NATIVE,/low-gfit,redesign serves this path directly
+/map.html,REDIRECT,/locations,explicit mapping
+/massage_therapy_works_out_more_than_kinks,REDIRECT,/,explicit mapping
+/mat-gfit,NATIVE,/mat-gfit,redesign serves this path directly
+/meal-prep-tips-better-nutrition-made-easy,REDIRECT,/,blog removed -> homepage
+/meditation-gfit,NATIVE,/meditation-gfit,redesign serves this path directly
+/membership-change,REDIRECT,/freeze-cancel,explicit mapping
+/memberships,REDIRECT,/join-now,explicit mapping
+/memberships-2,REDIRECT,/join-now,explicit mapping
+/merchant,NATIVE,/merchant,redesign serves this path directly
+/mind-body,REDIRECT,/group-fitness,explicit mapping
+/mind-body/barre,REDIRECT,/barre-gfit,explicit mapping
+/mind-body/gen-do,REDIRECT,/group-fitness,explicit mapping
+/mind-body/mat-pilates,REDIRECT,/mat-gfit,explicit mapping
+/mind-body/yoga,REDIRECT,/yoga-gfit,explicit mapping
+/mindbodylab,NATIVE,/mindbodylab,redesign serves this path directly
+/mindset,REDIRECT,/mindbodylab,explicit mapping
+/mission.html,REDIRECT,/about,explicit mapping
+/morning-exercise-download,REDIRECT,/,explicit mapping
+/morning-routine-thank-you,DECIDE,,AD/CONVERSION PAGE - confirm target with marketing
+/open_gym.html,REDIRECT,/locations,explicit mapping
+/outdoor-training,NATIVE,/outdoor-training,redesign serves this path directly
+/parking.html,REDIRECT,/locations,explicit mapping
+/personal_training.html,REDIRECT,/training,explicit mapping
+/pilates,REDIRECT,/pilates-gfit,explicit mapping
+/pilates-gfit,NATIVE,/pilates-gfit,redesign serves this path directly
+/poormanscron/run-cron-check,IGNORE,,"asset/endpoint, not a page"
+/privacy-policy,NATIVE,/privacy-policy,redesign serves this path directly
+/recover_re-energize_whole-body_cryotherapy_forma_gym,REDIRECT,/cryo,explicit mapping
+/rise,NATIVE,/rise,redesign serves this path directly
+/rise-2-0,REDIRECT,/rise,explicit mapping
+/rise-contact-us,REDIRECT,/,blog removed -> homepage
+/san-jose-mailer,REDIRECT,/,blog removed -> homepage
+/san-jose-staff,REDIRECT,/locations/san-jose,explicit mapping
+/san-jose-sweti-sync-demo,REDIRECT,/,blog removed -> homepage
+/schedules,REDIRECT,/group-fitness,explicit mapping
+/sculpy-gfit,NATIVE,/sculpy-gfit,redesign serves this path directly
+/shop-your-local-farmers-markets-for-heart-healthy-foods,REDIRECT,/,blog removed -> homepage
+/sitemap,REDIRECT,/,explicit mapping
+/sites/all/themes/omega_sub/fonts/Gotham-Black.eot,IGNORE,,"asset/endpoint, not a page"
+/sites/all/themes/omega_sub/fonts/Gotham-Black.otf,IGNORE,,"asset/endpoint, not a page"
+/sites/all/themes/omega_sub/fonts/Gotham-Bold.eot,IGNORE,,"asset/endpoint, not a page"
+/sites/all/themes/omega_sub/fonts/Gotham-Bold.otf,IGNORE,,"asset/endpoint, not a page"
+/sites/all/themes/omega_sub/fonts/Gotham-Book.eot,IGNORE,,"asset/endpoint, not a page"
+/sites/all/themes/omega_sub/fonts/Gotham-Book.otf,IGNORE,,"asset/endpoint, not a page"
+/sites/all/themes/omega_sub/fonts/Gotham-ExtraLight.eot,IGNORE,,"asset/endpoint, not a page"
+/sites/all/themes/omega_sub/fonts/Gotham-ExtraLight.otf,IGNORE,,"asset/endpoint, not a page"
+/sites/all/themes/omega_sub/fonts/Gotham-Light.eot,IGNORE,,"asset/endpoint, not a page"
+/sites/all/themes/omega_sub/fonts/Gotham-Light.otf,IGNORE,,"asset/endpoint, not a page"
+/sites/all/themes/omega_sub/fonts/Gotham-Medium.eot,IGNORE,,"asset/endpoint, not a page"
+/sites/all/themes/omega_sub/fonts/Gotham-Medium.otf,IGNORE,,"asset/endpoint, not a page"
+/sites/all/themes/omega_sub/fonts/Gotham-Thin.eot,IGNORE,,"asset/endpoint, not a page"
+/sites/all/themes/omega_sub/fonts/Gotham-Thin.otf,IGNORE,,"asset/endpoint, not a page"
+/sites/all/themes/omega_sub/fonts/Gotham-Ultra.eot,IGNORE,,"asset/endpoint, not a page"
+/sites/all/themes/omega_sub/fonts/Gotham-Ultra.otf,IGNORE,,"asset/endpoint, not a page"
+/sites/all/themes/omega_sub/fonts/headlinerno.45-webfont.eot,IGNORE,,"asset/endpoint, not a page"
+/sites/all/themes/omega_sub/fonts/tradegothic-bold.eot,IGNORE,,"asset/endpoint, not a page"
+/sites/all/themes/omega_sub/fonts/tradegothic-boldcondtwenty-webfont.eot,IGNORE,,"asset/endpoint, not a page"
+/sites/all/themes/omega_sub/fonts/tradegothic-boldoblique-webfont.eot,IGNORE,,"asset/endpoint, not a page"
+/sites/all/themes/omega_sub/fonts/tradegothic-boldtwo-webfont.eot,IGNORE,,"asset/endpoint, not a page"
+/sites/all/themes/omega_sub/fonts/tradegothic-boldtwooblique-webfont.eot,IGNORE,,"asset/endpoint, not a page"
+/sites/all/themes/omega_sub/fonts/tradegothic-condeighteen-webfont.eot,IGNORE,,"asset/endpoint, not a page"
+/sites/all/themes/omega_sub/fonts/tradegothic-light.eot,IGNORE,,"asset/endpoint, not a page"
+/sites/all/themes/omega_sub/fonts/tradegothic-oblique-webfont.eot,IGNORE,,"asset/endpoint, not a page"
+/stay-healthy-build-strong-immune-system,REDIRECT,/,blog removed -> homepage
+/stretch-gfit,NATIVE,/stretch-gfit,redesign serves this path directly
+/sync-demo,REDIRECT,/,explicit mapping
+/tabata-workout,REDIRECT,/,explicit mapping
+/thank-you-bold,DECIDE,,AD/CONVERSION PAGE - confirm target with marketing
+/thank-you-digital-ad,DECIDE,,AD/CONVERSION PAGE - confirm target with marketing
+/thank-you-email,DECIDE,,AD/CONVERSION PAGE - confirm target with marketing
+/thank-you-trial-pass,DECIDE,,AD/CONVERSION PAGE - confirm target with marketing
+/thank-you-yelp,DECIDE,,AD/CONVERSION PAGE - confirm target with marketing
+/the-benefits-of-working-with-a-fitness-coach,REDIRECT,/,blog removed -> homepage
+/the-many-benefits-of-yoga,REDIRECT,/,blog removed -> homepage
+/the-top-5-benefits-of-cryotherapy,REDIRECT,/,blog removed -> homepage
+/the-top-benefits-of-working-out-after-50,REDIRECT,/,blog removed -> homepage
+/top-fitness-wearables-for-tracking-workouts,REDIRECT,/,blog removed -> homepage
+/training,NATIVE,/training,redesign serves this path directly
+/training-request,REDIRECT,/training,explicit mapping
+/trial-pass,NATIVE,/trial-pass,redesign serves this path directly
+/trx-gfit,NATIVE,/trx-gfit,redesign serves this path directly
+/walnut-creek-staff,REDIRECT,/locations/walnut-creek,explicit mapping
+/walnut-creek-sweti-sync-demo,REDIRECT,/,blog removed -> homepage
+/welcomeback,REDIRECT,/join-now,explicit mapping
+/what-to-wear-for-your-first-mud-run,REDIRECT,/,blog removed -> homepage
+/why-should-you-work-out-in-the-pool,REDIRECT,/,blog removed -> homepage
+/why-you-need-a-fitness-community,REDIRECT,/,blog removed -> homepage
+/xmlrpc.php,IGNORE,,"asset/endpoint, not a page"
+/yelp-trial,REDIRECT,/trial-pass,explicit mapping
+/yoga.html,REDIRECT,/yoga-gfit,explicit mapping
+/yoga_gfit,REDIRECT,/yoga-gfit,explicit mapping
+/youth_training.html,REDIRECT,/training,explicit mapping
