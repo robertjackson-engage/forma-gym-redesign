@@ -1932,3 +1932,93 @@ for fn, title, desc, active, body in PAGES:
 
 print("\nDone:", len(PAGES), "pages")
 
+
+# ============================================================ DEPLOY ARTIFACTS
+# Files a real host needs. Generated here so they can never drift from the
+# page list. `_redirects` in particular MUST sit in the publish root (docs/) —
+# Cloudflare Pages / Netlify ignore it anywhere else.
+SITE_ORIGIN = "https://formagym.com"
+
+
+def build_404():
+    body = hero(
+        "404",
+        ["Page not", '<span class="serif">found</span>.'],
+        "That page has moved or no longer exists. The links below will get you back on track.",
+        img=f"{IMG}/slider-locations_turf_alysse_torey.jpg",
+        actions=[("Back to Home", "index.html", True), ("Locations &amp; Hours", "locations.html", False)],
+        page=True,
+    ) + """
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="rows reveal">
+      <a class="row-item" href="group-fitness.html"><span class="row-item__idx">01</span><span class="row-item__title">Group Fitness</span><span class="row-item__desc">Every class included with membership.</span><span class="row-item__arrow">&rarr;</span></a>
+      <a class="row-item" href="training.html"><span class="row-item__idx">02</span><span class="row-item__title">Personal Training</span><span class="row-item__desc">Coaching built around your goal.</span><span class="row-item__arrow">&rarr;</span></a>
+      <a class="row-item" href="join.html"><span class="row-item__idx">03</span><span class="row-item__title">Join Forma</span><span class="row-item__desc">Two clubs, one membership.</span><span class="row-item__arrow">&rarr;</span></a>
+      <a class="row-item" href="contact.html"><span class="row-item__idx">04</span><span class="row-item__title">Contact a Club</span><span class="row-item__desc">Walnut Creek &amp; San Jose.</span><span class="row-item__arrow">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+"""
+    html = rewrite_urls(head("Page Not Found | Forma Gym", "That page has moved or no longer exists.")
+                        + header_html("") + body + footer_html())
+    with open(os.path.join(OUT, "404.html"), "w") as f:
+        f.write(html)
+    print("built /404.html")
+
+
+def build_sitemap():
+    # Only real, indexable pages — one entry per canonical URL.
+    paths = sorted({url_for(fn) for fn, *_ in PAGES})
+    urls = "".join(f"  <url><loc>{SITE_ORIGIN}{p}</loc></url>\n" for p in paths)
+    xml = ('<?xml version="1.0" encoding="UTF-8"?>\n'
+           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+           f"{urls}</urlset>\n")
+    with open(os.path.join(OUT, "sitemap.xml"), "w") as f:
+        f.write(xml)
+    print(f"built /sitemap.xml ({len(paths)} urls)")
+
+
+def build_robots():
+    txt = ("User-agent: *\n"
+           "Allow: /\n\n"
+           f"Sitemap: {SITE_ORIGIN}/sitemap.xml\n")
+    with open(os.path.join(OUT, "robots.txt"), "w") as f:
+        f.write(txt)
+    print("built /robots.txt")
+
+
+def build_headers():
+    # Baseline security headers. Worth having on any site; more so after an
+    # incident. No CSP here — it needs testing against the inline scripts first.
+    txt = """/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+"""
+    with open(os.path.join(OUT, "_headers"), "w") as f:
+        f.write(txt)
+    print("built /_headers")
+
+
+def copy_redirects():
+    src = os.path.join(os.path.dirname(os.path.abspath(__file__)), "deploy", "_redirects")
+    if not os.path.exists(src):
+        print("WARNING: deploy/_redirects missing — run deploy/build_redirects.py")
+        return
+    with open(src) as f:
+        rules = f.read()
+    with open(os.path.join(OUT, "_redirects"), "w") as f:
+        f.write(rules)
+    n = sum(1 for l in rules.splitlines() if l.strip() and not l.startswith("#"))
+    print(f"built /_redirects ({n} rules)")
+
+
+build_404()
+build_sitemap()
+build_robots()
+build_headers()
+copy_redirects()
+
