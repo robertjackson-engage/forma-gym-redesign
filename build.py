@@ -4,6 +4,22 @@ import os, time
 
 OUT = os.path.join(os.path.dirname(__file__), "docs")
 IMG = "assets/img"
+# The club photo strip from formagym.com, in the order the live site runs it.
+# These are Forma's own carousel images — pulled from the live site so the
+# redesign's strips show the real thing rather than stand-ins.
+STRIP_PHOTOS = [
+    "SJ_pool_662x501_v1.jpg",
+    "gym_floor2_WC_500px.jpg",
+    "gym_floor3_WC_500px.jpg",
+    "SJ_dumbells_662x501_v1.jpg",
+    "carousel_MOTR_v1.jpg",
+    "gym_floor_WC_500px.jpg",
+    "gym_floor3_SJ_500px.jpg",
+    "WC_pool_class_662x501_v1.jpg",
+    "massage_300px_high.jpg",
+    "cycle_studio_SJ_500px.jpg",
+]
+
 HERO_VIDEO_DESKTOP = "assets/video/SJ_WC_walkthru_combo_desktop_hero.m4v"  # landscape 1280x720
 HERO_VIDEO_MOBILE = "assets/video/WC_SJ_mobile_hero.m4v"    # portrait 720x1280, ≤820px only
 
@@ -359,6 +375,18 @@ def hero(kicker, lines, sub="", img=None, video=None, poster=None, crumb=None,
 """
 
 
+def photo_marquee(images):
+    """Continuously scrolling strip of club photos — the visual counterpart to
+    the text marquee. Decorative, so the images carry empty alt text."""
+    seg = "".join(f'<span><img src="{IMG}/{im}" alt="" loading="lazy"></span>' for im in images)
+    return f"""
+<div class="marquee marquee--photo" aria-hidden="true">
+  <div class="marquee__track">{seg}</div>
+  <div class="marquee__track">{seg}</div>
+</div>
+"""
+
+
 def marquee(words, accent=False, ghost=False):
     cls = "marquee" + (" marquee--accent" if accent else "") + (" marquee--ghost" if ghost else "")
     seg = "".join(f"<span>{w} <i>●</i></span>" for w in words)
@@ -645,9 +673,7 @@ home_body = view_chooser + hero(
         ("Book Recovery", "recovery.html", False, "only-member"),
     ],
     meta=["2 Bay Area locations", "75,000+ sq ft of fitness", "All classes included"],
-) + member_strip + marquee(
-    ["Group Fitness", "Personal Training", "Cycle", "Yoga", "Pilates Reformer", "Aqua", "Cryotherapy", "The Spa", "Kidzville"]
-) + f"""
+) + member_strip + photo_marquee(STRIP_PHOTOS) + f"""
 <section class="section">
   <div class="wrap">
     <div class="intro-grid">
@@ -687,7 +713,7 @@ home_body = view_chooser + hero(
     </div>
   </div>
 </section>
-""" + marquee(["35,000 sq ft in Walnut Creek", "40,000 sq ft in San Jose", "Heated outdoor pools", "Covered outdoor turf"], ghost=True) + split(
+""" + photo_marquee(STRIP_PHOTOS[5:] + STRIP_PHOTOS[:5]) + split(
     "Two clubs, one membership", "03",
     'Walnut <span class="serif">Creek</span>',
     ["The birthplace of Forma since 2009. Right off the 680/24 corridor and completely renovated — 35,000 square feet of indoor and outdoor fitness motivation, a heated outdoor lap pool under towering redwoods, onsite Kidzville, cryotherapy, a full-service day spa and the Forma Café.",
@@ -767,7 +793,7 @@ about_body = hero(
     </div>
   </div>
 </section>
-""" + marquee(["Play Every Day", "Embrace Change", "Life is Good", "Be an Adventure"], accent=True) + f"""
+""" + photo_marquee(STRIP_PHOTOS) + f"""
 <section class="section">
   <div class="wrap">
     <div class="cards-head">
@@ -819,7 +845,7 @@ groupfit_body = hero(
     actions=[("Visit Us", "join.html", True), ("Book a Tour", "contact.html#tour", False)],
     meta=["14 class formats", "All included in membership", "Indoor + outdoor studios"],
     page=True,
-) + marquee(["Cycle", "Yoga", "Barre", "HIIT", "Pilates", "Dance", "TRX", "Aqua", "Kickboxing", "Sculpt", "Meditation"]) + f"""
+) + photo_marquee(STRIP_PHOTOS[3:] + STRIP_PHOTOS[:3]) + f"""
 <section class="section" id="classes">
   <div class="wrap">
     <div class="cards-head">

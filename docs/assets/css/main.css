@@ -401,6 +401,23 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 }
 .marquee--accent span i { color: var(--ink); }
 .marquee--ghost span { color: transparent; -webkit-text-stroke: 1px rgba(243,240,233,0.4); }
+
+/* photo strip variant — uniform tiles so mixed source aspect ratios
+   (squares, 3:2, 2:1) still read as an even band */
+.marquee--photo { padding: 0; border-top: none; border-bottom: none; }
+.marquee--photo .marquee__track { gap: 8px; animation-duration: 52s; }
+.marquee--photo .marquee__track + .marquee__track { margin-left: 8px; }
+.marquee--photo span { padding: 0; display: block; }
+.marquee--photo img {
+  display: block;
+  width: clamp(190px, 24vw, 330px);
+  height: clamp(140px, 17vw, 240px);
+  object-fit: cover;
+  filter: saturate(1.02);
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee--photo .marquee__track { animation: none; }
+}
 @keyframes marquee { to { transform: translateX(-100%); } }
 
 /* ---------- card grid ---------- */
