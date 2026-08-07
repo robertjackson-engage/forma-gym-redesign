@@ -699,6 +699,11 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   transition: all .4s;
 }
 .socials a:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+/* Per-club row, sat under each address in the contact column. Smaller than the
+   standalone set so four icons still fit the narrow four-up grid column. */
+.socials--club { gap: 8px; margin: 12px 0 0; }
+.socials--club a { width: 34px; height: 34px; padding: 0; }
+.socials--club svg { width: 16px; height: 16px; display: block; }
 .site-footer__bottom {
   display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap;
   border-top: 1px solid var(--line); padding: 26px 0 30px;

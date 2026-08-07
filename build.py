@@ -91,6 +91,34 @@ def brand_logo(cls=""):
     return f'<img class="brand__logo {cls}" src="{LOGO}" alt="Forma Gym" width="422" height="37" />'
 
 
+# Brand glyphs, inline so they inherit currentColor and cost no extra request.
+SOCIAL_ICONS = {
+    "facebook": '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.1 8.6h2.1V5.7c-.36-.05-1.6-.16-3.04-.16-3.01 0-5.07 1.79-5.07 5.07V12H6.4v3.4h2.69V23h3.4v-7.6h2.78l.42-3.4h-3.2v-1.98c0-.98.27-1.65 1.61-1.65z"/></svg>',
+    "instagram": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.15" fill="currentColor" stroke="none"/></svg>',
+    "x": '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 3h3.2l-7 8 8.2 10h-6.4l-5-6.1L4.7 21H1.5l7.5-8.6L1.1 3h6.6l4.5 5.6L17.5 3zm-1.1 16.1h1.8L7.7 4.8H5.8l10.6 14.3z"/></svg>',
+    "youtube": '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.5 7.2a2.75 2.75 0 0 0-1.94-1.94C18.85 4.8 12 4.8 12 4.8s-6.85 0-8.56.46A2.75 2.75 0 0 0 1.5 7.2C1.05 8.9 1.05 12 1.05 12s0 3.1.45 4.8a2.75 2.75 0 0 0 1.94 1.94c1.71.46 8.56.46 8.56.46s6.85 0 8.56-.46a2.75 2.75 0 0 0 1.94-1.94c.45-1.7.45-4.8.45-4.8s0-3.1-.45-4.8zM9.8 15.3V8.7l5.7 3.3-5.7 3.3z"/></svg>',
+}
+
+# Facebook and Instagram are per-club; X and YouTube are one brand-wide account,
+# so both clubs point at the same handle — matching formagym.com's footer.
+SOCIAL_X = "https://twitter.com/FormaGym"
+SOCIAL_YOUTUBE = "https://www.youtube.com/channel/UCT5TxhGM45g22KkG4TEaVAw"
+
+
+def socials(handle, club):
+    links = [
+        ("facebook", f"https://www.facebook.com/{handle}/", "Facebook"),
+        ("instagram", f"https://www.instagram.com/{handle}/", "Instagram"),
+        ("x", SOCIAL_X, "X"),
+        ("youtube", SOCIAL_YOUTUBE, "YouTube"),
+    ]
+    out = f'<div class="socials socials--club" role="list" aria-label="{club} social media">'
+    for key, href, label in links:
+        out += (f'<a role="listitem" href="{href}" target="_blank" rel="noopener" '
+                f'aria-label="{club} on {label}">{SOCIAL_ICONS[key]}</a>')
+    return out + "</div>"
+
+
 NAV = [
     ("Classes", "group-fitness.html"),
     ("Training", "training.html"),
@@ -267,15 +295,8 @@ def footer_html():
       <div class="site-footer__brand">
         <a class="brand brand--footer" href="index.html">{brand_logo()}</a>
         <p>Two Bay Area clubs. A holistic, luxury approach to fitness — and a community that shows up to Play Every Day.</p>
-        <div class="socials">
-          <a href="https://www.instagram.com/formagym" aria-label="Instagram">IG</a>
-          <a href="https://www.facebook.com/formagym" aria-label="Facebook">FB</a>
-          <a href="https://www.youtube.com/" aria-label="YouTube">YT</a>
-          <a href="https://www.tiktok.com/" aria-label="TikTok">TT</a>
-        </div>
       </div>
       <div>
-        <h5>Move</h5>
         <div class="site-footer__links">
           <a href="group-fitness.html">Group Fitness</a>
           <a href="training.html">Personal Training</a>
@@ -287,7 +308,6 @@ def footer_html():
         </div>
       </div>
       <div>
-        <h5>Recover &amp; More</h5>
         <div class="site-footer__links">
           <a href="recovery.html">Recovery &amp; Cryo</a>
           <a href="spa.html">The Spa</a>
@@ -303,8 +323,10 @@ def footer_html():
         <h5>Two Locations</h5>
         <a class="tel" href="tel:9259326400">Walnut Creek</a>
         <a href="walnut-creek.html">1908 Olympic Blvd · (925) 932-6400</a>
-        <a class="tel" href="tel:4083631010" style="margin-top:14px">San Jose</a>
+        {socials("formawalnutcreek", "Walnut Creek")}
+        <a class="tel" href="tel:4083631010" style="margin-top:22px">San Jose</a>
         <a href="san-jose.html">5434 Thornwood Dr · (408) 363-1010</a>
+        {socials("formasanjose", "San Jose")}
       </div>
     </div>
   </div>
