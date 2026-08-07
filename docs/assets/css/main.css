@@ -680,7 +680,14 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 .site-footer__brand p { color: var(--muted); font-size: 15px; max-width: 36ch; margin-top: 18px; }
 .site-footer__contact a { color: rgba(243,240,233,0.85); display: block; padding: 4px 0; transition: color .3s; }
 .site-footer__contact a:hover { color: var(--accent); }
-.site-footer__contact .tel { font-family: var(--font-display); font-size: 28px; letter-spacing: 0.04em; color: var(--bone); margin: 6px 0 18px; }
+/* Uppercase to match the hero headlines. The footer's contact column narrows
+   to ~157px in the four-up grid, so the size scales down to keep each club
+   name on one line — "WALNUT CREEK" is the long one. */
+.site-footer__contact .tel {
+  font-family: var(--font-display); font-size: clamp(19px, 2.3vw, 26px);
+  text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap;
+  color: var(--bone); margin: 6px 0 18px;
+}
 .news-form { display: flex; border-bottom: 1px solid var(--line); margin-top: 18px; }
 .news-form input { flex: 1; min-width: 0; background: none; border: none; color: var(--bone); padding: 14px 12px 14px 0; font: inherit; font-size: 14px; outline: none; }
 .news-form button { color: var(--accent); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; }

@@ -305,7 +305,6 @@ def footer_html():
         <a href="walnut-creek.html">1908 Olympic Blvd · (925) 932-6400</a>
         <a class="tel" href="tel:4083631010" style="margin-top:14px">San Jose</a>
         <a href="san-jose.html">5434 Thornwood Dr · (408) 363-1010</a>
-        {ac_form(9)}
       </div>
     </div>
   </div>
