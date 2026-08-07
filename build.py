@@ -901,11 +901,11 @@ about_body = hero(
     <div class="intro-grid">
       <div>
         <p class="eyebrow">Our mission</p>
-        <h2 class="h-display reveal">Movement, for <span class="serif">life</span></h2>
+        <h2 class="h-display reveal">Play + move <span class="serif">every day</span></h2>
       </div>
       <div class="intro-grid__right">
-        <p class="lede reveal">The goal at Forma has always been to create a community where fitness and health is available to EVERYONE on the spectrum of movement — from those struggling just to stand, to world-class athletes.</p>
-        <p class="body-copy reveal">We're very proud of what we've created, and we love our Members, our Team, our Community — and we LOVE being here for you. That's not a slogan. It's how the clubs feel the moment you walk in.</p>
+        <p class="lede reveal">We're very proud of what we've created, and we love our Members, our Team, our Community — and we LOVE being here for you. That's not a slogan. It's how the clubs feel the moment you walk in.</p>
+        <p class="body-copy reveal">The goal at Forma has always been to create a community where fitness and health is available to EVERYONE on the spectrum of movement — from those struggling just to stand, to world-class athletes.</p>
       </div>
     </div>
   </div>
