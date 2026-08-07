@@ -1042,7 +1042,7 @@ training_body = hero(
     "Small group training at Forma",
     rev=True, cta=("Ask about small group", "contact.html#tour"),
 ) + f"""
-<section class="section section--light" id="team">
+<section class="section section--panel" id="team">
   <div class="wrap">
     <div class="cards-head">
       <div>

@@ -304,6 +304,9 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 .section { position: relative; padding: clamp(80px, 11vw, 170px) 0; }
 .section--flush { padding: 0; }
 .section--light { background: var(--bone); color: var(--ink); }
+/* Dark panel: separates a section from the page black without going bright.
+   Keeps the on-dark type colours, unlike section--light. */
+.section--panel { background: var(--ink-3); }
 .section--accent { background: var(--accent); color: var(--white); }
 .section--tight { padding: clamp(56px, 7vw, 110px) 0; }
 .wrap { max-width: var(--max); margin: 0 auto; padding-left: var(--pad); padding-right: var(--pad); }
