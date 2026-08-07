@@ -617,14 +617,11 @@ def page(filename, title, desc, active, body):
 # ============================================================ shared blocks
 view_chooser = f"""
 <div class="view-chooser" role="dialog" aria-label="Choose your experience">
-  <div class="view-chooser__head">
-    <span class="kicker">Welcome to Forma Gym</span>
-  </div>
   <div class="view-chooser__panels">
     <button class="vc-panel" type="button" data-choose="guest">
       <img src="{IMG}/annabelle_kettle_HERO_2.jpg" alt="">
       <div class="vc-panel__body">
-        <span class="vc-panel__kicker">First time here?</span>
+        <span class="vc-panel__kicker">Welcome to Forma Gym</span>
         <h3>I'm a <span class="serif">guest</span></h3>
         <p>Tour a club and explore classes.</p>
         <span class="go">Show me around →</span>

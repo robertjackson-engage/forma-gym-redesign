@@ -1010,11 +1010,6 @@ body.choice-done .view-chooser {
   transform: translateY(-100%); opacity: 1; visibility: visible;
   transition: transform .9s var(--ease-power);
 }
-.view-chooser__head { text-align: center; padding: clamp(20px, 3.5vh, 36px) var(--pad) clamp(14px, 2.5vh, 24px); }
-.view-chooser__head .kicker {
-  font-size: 10px; letter-spacing: 0.34em; text-transform: uppercase; color: var(--accent-soft);
-  display: block;
-}
 .view-chooser__panels { flex: 1; display: flex; gap: 2px; min-height: 0; }
 .vc-panel {
   position: relative; flex: 1; overflow: hidden; cursor: pointer; text-align: left;
