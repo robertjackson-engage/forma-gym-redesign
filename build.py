@@ -536,15 +536,115 @@ def form_section(sec_id, num, eyebrow, title_html, text, btn, light=True, extra=
 """
 
 
-def trainer_bio(photo, name, copy, focal="50% 22%"):
-    """Coach photo alongside their bio, inside an accordion panel. These are
-    action shots rather than headshots, so `focal` pins the square crop to the
-    coach — Jason's pose puts his face low in the frame, for instance."""
-    return (f'<div class="trainer-bio">'
-            f'<img class="trainer-bio__photo" src="{IMG}/{photo}" alt="{name}, fitness coach at Forma Gym Walnut Creek" '
-            f'loading="lazy" style="object-position:{focal}">'
-            f'<div class="trainer-bio__text">{copy}</div>'
-            f'</div>')
+WC_TRAINERS = [
+    {
+        "name": 'Dave', "role": 'Fitness Coach', "photo": 'coach_dave.jpg',
+        "spec": ['Athletic Performance', 'Movement Assessment', 'Program Development', 'Weightlifting', 'Exercise Therapy + getting strong'],
+        "story": 'When I was young I drove my parents crazy converting everything in the barn into exercise equipment. I would rather read anything about weightlifting and fitness than what I needed to for school. It became very evident that this was going to be more than an occupation, it was going to be a lifetime passion. I was fortunate to have some great mentors from the fitness world that gave me a respect for the history of strength, yet also challenged me to discover what is new and provoking. I spend my days sharing my passion with all kinds of wonderful people...my life is great!',
+        "phil": 'Your happiness is your health. The world is best experienced with high energy, low pain, and high function. Physical activity is a source of great joy; find your motivation and stay active.',
+    },
+    {
+        "name": 'Montana', "role": 'Fitness Coach', "photo": 'coach_montana.jpg',
+        "spec": ['Weight Lifting', 'Strength Training', 'Athletic Performance', 'Functional Movement', 'Nutrition Coaching', 'Weight Loss Management'],
+        "story": 'I grew up playing competitive sports my whole life, and developed a passion for health and fitness early on! I earned my B.S degree from The University of Hawaii in Nutrition/Sports &amp; Wellness, and am currently earning my masters in sports &amp; nutrition performance. I love helping people feel comfortable in their own skin, while helping to implement long lasting habits to achieve a healthy/balanced lifestyle. Main focus is for you to feel strong, confident, and excited about fitness! I’m passionate about helping people become the best version of themselves through finding the correct form of exercise and nutrition for each individual!',
+        "phil": 'Consistency is more important than perfection.',
+    },
+    {
+        "name": 'Jason', "role": 'Fitness Coach', "photo": 'coach_jason.jpg',
+        "spec": ['Creative Movement', 'Interval Training', 'Kickboxing'],
+        "story": 'Jason learned early, through his own experiences with weight loss and healing, about the potential for fitness to change lives. After losing 50 lbs. and reversing his hypertension, he made it his life goal to change the lives of others. His passion and infectious positive energy make him a great coach and motivator. He creates a safe and non-judgemental atmosphere for his clients, regardless of their fitness or experience level. Jason’s objective for his clients is to help them feel and understand the body in a new and deeper way.',
+        "phil": 'Everything should feel good, from start to finish.',
+    },
+    {
+        "name": 'Marco', "role": 'Fitness Coach', "photo": 'coach_marco.jpg',
+        "spec": ['Cross Training', 'Bodybuilding', 'Muscle Definition + Development', 'Fat Loss', 'Strength Training', 'Bilingual (Spanish)'],
+        "story": 'My passion for exercise began at an early age when I was in junior high school. I was very fortunate to have support in the process. Each year, I had mentors in nutrition and training which led me to improve more and more and by the second year of training, I was able to accomplish competing in various bodybuilding competitions. This sport completely changed me, giving me confidence and a strong mindset and now it is my life.',
+        "phil": 'Exercise is a way to connect with the body, mind, and spirit. It provides an equilibrium in your life maintaining focus, motivation, strength, and happiness.',
+    },
+    {
+        "name": 'Luis', "role": 'Fitness Coach', "photo": 'coach_luis.jpg',
+        "spec": ['Strength', 'Kickboxing', 'Fllexibility', 'Body Sculpting', 'Functional Skill Activation'],
+        "story": 'My passion for fitness started in college, where I played soccer and started learning Karate. While working on my degree in Economics, I opened up a Karate studio and trained students that achieved ranking championships. I became a Sport Massage Therapist and Fitness Trainer in 1996, then worked as a trainer for several years, and eventually opened up a fitness studio. I later moved to California to be closer to my family and became a Les Mills and Zumba instructor in 2011 and have been working as an instructor since then.',
+        "phil": 'Master your training. Feel your change. End with a smile. Learning is endless.',
+    },
+    {
+        "name": 'Kevin A.', "role": 'Fitness Coach', "photo": 'coach_kevina.jpg',
+        "spec": ['Athletic Training', 'Post-Rehab Strength Training', 'Small Groups', 'Fat Loss'],
+        "story": "I grew up in a small town on an Island in the Pacific Northwest. Naturally, I have always been drawn to outdoor activities and sports. Since I was a child, I participated in all sports ranging from snowboarding to baseball. I am currently certified as a Personal Trainer and a Performance Enhancement Specialist by the highly respected National Academy of Sports Medicine. In 2010, I received a Bachelor of Science degree in Exercise Physiology from San Franscico State. I believe the key to my success as a strength coach has been the ability to understand each person’s individual goal and challenges, whether they are a CEO, stay at home parent or an athlete. Knowing what motivates and inspires my client's specific goals, allows for a successful design program with a variety of exercises specifically designed to keep them engaged and on the path to success.",
+        "phil": 'I believe that health and exercise should never feel like a chore, but rather something that you should look forward to in order to keep your mind and body as healthy as possible for yourself and loved ones, while enjoying everything life has to offer.',
+    },
+    {
+        "name": 'Tracy', "role": 'Fitness Coach', "photo": 'coach_tracy.jpg',
+        "spec": ['Nutrition Education', 'Strength Training', 'Posture Correction', 'Total-Body Conditioning', 'Functional Training', 'Physique Contest Preparation'],
+        "story": 'I trained for and won my first bodybuilding show in 1987, and went on to represent Team Canada at the IFBB Hawaii International Invitational contest. Twenty years later, I was on Team USA and turned IFBB Pro, which was a dream come true for me. I have been an athlete all of my life, but strength training has made such a difference in my life and physique.',
+        "phil": 'I found nutrition to be the missing link for success in achieving your fitness goals, so I became certified in nutrition. No matter what level you’re training at or what goal you’re reaching for, I believe in four things: nutrition, strength training, cardio and hormonal balance. I believe in incorporating fun, innovative and effective training techniques that fit into my client’s daily lives.',
+    },
+    {
+        "name": 'Kevin', "role": 'Fitness Coach', "photo": 'coach_kevin.jpg',
+        "spec": ['Body Weight Strength Training', 'Full Body Mobility', 'Functional Movement', 'Gymnastics Skill + Technique Development'],
+        "story": 'Combining a unique approach to gymnastics and strength training, Kevin focuses on foundational techniques for strength and mobility. He accommodates different fitness levels and includes mobility techniques to enhance joint and muscle flexibility for effective strength training.',
+        "phil": '',
+    },
+    {
+        "name": 'Darlene', "role": 'Fitness Coach', "photo": 'coach_darlene.jpg',
+        "spec": ['Strength Training', 'Weight Loss', 'Bodybuilding', 'Competition Prep', 'Total Body Transformations'],
+        "story": 'I began my fitness career as a Health Coach specializing in weight loss and soon discovered a passion for powerlifting. To date, I have competed in 8 bodybuilding competitions and continue to compete in strength competitions. I love empowering people, and am equally passionate at working with beginners and coaching bodybuilding competitors. I work with beginners on foundational movement patterns, building confidence and getting rid of the intimidation they may feel as they get comfortable in the weight room. Some of my clients came to me being new to exercise and are now being coached to compete in Bikini and Figure Division bodybuilding competitions!',
+        "phil": 'Lift for power. Lift for health. Lift for YOU!',
+    },
+    {
+        "name": 'Sergio', "role": 'Fitness Coach', "photo": 'coach_sergio.jpg',
+        "spec": ['Program Development', 'Strength + Metabolic Conditioning', 'Injury Prevention/Recovery', 'Biomechanics', 'Fitness + Behavior Expert', 'Nutrition Specialist'],
+        "story": "Like most coaches, I have paved my own path to be the best coach I can be. With 21 years of experience in psychology and exercise science, my ability to understand people on a deeper level helps clients create successful health and fitness paths. I can compose some of the best fitness programs you have never experienced, provide you with the best workouts that will have you feeling amazing, and get you strong like never before, and even help with weight management. But, what I'm truly passionate about is providing life changing experiences that will transform you into the best version of yourself!",
+        "phil": 'I believe in simple fitness and nutrition strategies, and providing clients with the right tools for success. The goal is to always optimize health and wellness.',
+    },
+    {
+        "name": 'Annabell', "role": 'Fitness Coach', "photo": 'coach_annabell.jpg',
+        "spec": ['Individualized Program Development', 'Strength Training', 'Functional Movement', 'Weight Loss Management', 'Nutrition Coaching', 'HIIT'],
+        "story": "As a passionate fitness professional, I'm committed to helping people transform their lives through fitness. Whether you're looking to lose weight, build strength, or simply adopt a healthier lifestyle, I'm here to support you every step of the way. By working with me, you'll get personalized guidance and a tailored approach that's designed to meet your unique needs and goals. Train with me to transform your lifestyle and discover the joy and fulfillment that comes with taking care of your body and mind. Together, we'll create a plan that fits your schedule and preferences, and I'lI be there to motivate you, celebrate your progress, and help you overcome any obstacles that come your way. Let's work together to make your fitness journey a success!",
+        "phil": 'The body achieves what the mind believes',
+    },
+    {
+        "name": 'Rachel', "role": 'Fitness Coach', "photo": 'coach_rachel.jpg',
+        "spec": ['Weight Lifting', 'Strength Training', 'Functional Movement', 'Athletic Performance', 'Injury Prevention', 'Post-Surgery Recovery', 'Neurosensory Specialist'],
+        "story": 'I grew up a top 5 ranked junior tennis player in Montreal, Canada. Tennis was my life from the age of 3 all the way through college. I was offered a walk-on scholarship for tennis my freshman year, but turned it down due to a torn ACL. After rehabbing my ACL, I started an internship as an assistant athletic trainer in a sports performance facility. During that time, my mentor challenged me mentally &amp; physically. I was encouraged to further my career in athletic training, especially learning about the mind to body connection.',
+        "phil": 'Live with a relentless pursuit of better!',
+    },
+    {
+        "name": 'Armani', "role": 'Fitness Coach', "photo": 'coach_armani.jpg',
+        "spec": ['Strength Training', 'Athletic Training', 'Youth Athletics', 'Power Lifting', 'HIIT Workouts', 'Conditioning'],
+        "story": 'I believe that with proper training and consistency anything can be achieved. With an extensive background in sports and fitness, I decided to use my knowledge to help others. My goal is to help others feel comfortable and confident in the gym, from beginners to more experienced lifters. Whether I’m training a young athlete for a specific sport, or someone who wants to get stronger or change their physique. Every workout is tailored to the individual to help you achieve your goals.',
+        "phil": 'With consistency and hard work anything is possible.',
+    },
+    {
+        "name": 'Jacki', "role": 'Fitness Coach', "photo": 'coach_jacki.jpg',
+        "spec": ['Injury Prevention', 'Rehabilitation', 'Bodybuilding', 'Strength &amp; Conditioning', 'Functional Training', 'Mobility &amp; Flexibility', 'Aquatic Fitness Training'],
+        "story": 'After dealing with multiple injuries as a student-athlete, I shifted focus to athletic training, where I developed a deep understanding of recovery, injury prevention, and mental resilience. This experience allows me to approach fitness from both a physical and psychological perspective, offering personalized support for clients at all levels. I have over 13 years of training experience and specialize in crafting personalized, injury-conscious fitness plans that focus on strength, mobility, and overall functionality.',
+        "phil": "Fitness is not just about the body—it's about healing, rebuilding, and becoming stronger in mind and spirit. True strength is found in overcoming the obstacles we face, both physical and mental.",
+    },
+]
+
+
+def trainer_accordion(trainers):
+    """Coach photo beside their bio. The photos are WordPress 500x500 crops,
+    already centred on the coach, so no per-photo focal point is needed."""
+    items = []
+    for t in trainers:
+        head = (f'<span class="acc__name">{t["name"]}</span>'
+                f'<span class="acc__role">{t["role"]}</span>')
+        specs = "".join(f"<li>{s}</li>" for s in t["spec"])
+        body = (f'<p class="trainer-bio__label"><strong>Specialties</strong></p>'
+                f'<ul class="trainer-bio__specs">{specs}</ul>'
+                f'<p>{t["story"]}</p>')
+        if t["phil"]:
+            body += f'<p class="trainer-bio__quote">“{t["phil"]}”</p>'
+        items.append((head,
+                      f'<div class="trainer-bio">'
+                      f'<img class="trainer-bio__photo" src="{IMG}/{t["photo"]}" '
+                      f'alt="{t["name"]}, {t["role"].lower()} at Forma Gym Walnut Creek" '
+                      f'loading="lazy" width="320" height="320">'
+                      f'<div class="trainer-bio__text">{body}</div>'
+                      f'</div>'))
+    return accordion(items, open_first=False)
 
 
 def accordion(items, open_first=True):
@@ -940,7 +1040,7 @@ training_body = hero(
      "It's affordable, it's motivating, and the workouts change constantly so you never plateau or get bored."],
     f"{IMG}/Darlene_ropes2.jpg",
     "Small group training at Forma",
-    rev=True, cta=("Ask about small group", "contact.html#tour"), tag="4–8 people",
+    rev=True, cta=("Ask about small group", "contact.html#tour"),
 ) + f"""
 <section class="section section--light" id="team">
   <div class="wrap">
@@ -951,12 +1051,7 @@ training_body = hero(
       </div>
       <p class="body-copy reveal" style="max-width:34ch">Years of experience, a range of specialties, and a genuine passion for helping you feel strong, confident and excited about fitness.</p>
     </div>
-    {accordion([
-        ("Dave — Fitness Coach", trainer_bio("Dave2.jpg", "Dave", "<strong>Specialties:</strong> Athletic Performance · Movement Assessment · Program Development · Weightlifting · Exercise Therapy.<br><br>“Your happiness is your health. The world is best experienced with high energy, low pain, and high function. Physical activity is a source of great joy — find your motivation and stay active.”")),
-        ("Montana — Fitness Coach", trainer_bio("Montana_Lason_colorized_SM_REZ.jpg", "Montana", "<strong>Specialties:</strong> Weight Lifting · Strength Training · Athletic Performance · Functional Movement · Nutrition Coaching · Weight Loss Management.<br><br>“Consistency is more important than perfection. I love helping people feel comfortable in their own skin while building long-lasting, healthy habits.”")),
-        ("Jason — Fitness Coach", trainer_bio("jason_johnson_turf2.jpg", "Jason", "<strong>Specialties:</strong> Creative Movement · Interval Training · Kickboxing.<br><br>After losing 50 lbs and reversing his hypertension, Jason made it his life goal to change the lives of others. “Everything should feel good, from start to finish.”", focal="50% 62%")),
-        ("Marco — Fitness Coach", trainer_bio("marco_flex.jpg", "Marco", "<strong>Specialties:</strong> Cross Training · Bodybuilding · Muscle Definition &amp; Development.<br><br>A coach who blends serious strength knowledge with the patience to teach it — helping clients build the physique and the confidence to match.")),
-    ], open_first=False)}
+    {trainer_accordion(WC_TRAINERS)}
   </div>
 </section>
 """ + cta_band(

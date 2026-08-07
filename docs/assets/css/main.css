@@ -561,6 +561,15 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   font-family: var(--font-display); text-transform: uppercase; font-weight: 400;
   font-size: clamp(17px, 1.7vw, 26px); line-height: 1.15; letter-spacing: 0.02em;
 }
+/* Coach name + role take the eyebrow treatment rather than the display face. */
+.acc__name, .acc__role {
+  font-family: var(--font-body); font-size: 11px; letter-spacing: 0.32em;
+  text-transform: uppercase; font-weight: 600; line-height: 1.5;
+}
+.acc__name { color: var(--bone); }
+.acc__role { color: var(--accent); font-weight: 500; letter-spacing: 0.26em; }
+.acc__head h3 .acc__name, .acc__head h3 .acc__role { display: block; }
+.section--light .acc__name { color: var(--ink); }
 .acc__icon {
   flex: 0 0 44px; height: 44px; border: 1px solid var(--line); border-radius: 50%;
   display: flex; align-items: center; justify-content: center; position: relative;
@@ -585,6 +594,13 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   border-radius: 50%; background: var(--line);
 }
 .trainer-bio__text { min-width: 0; }
+.trainer-bio__text p + p { margin-top: 14px; }
+.trainer-bio__label {
+  font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase;
+  font-weight: 600; color: var(--accent); margin-bottom: 4px;
+}
+.trainer-bio__specs { margin: 0 0 16px; }
+.trainer-bio__quote { font-style: italic; }
 @media (max-width: 620px) {
   .trainer-bio { gap: 16px; }
   .trainer-bio__photo { width: 96px; height: 96px; }
