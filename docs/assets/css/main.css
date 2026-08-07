@@ -250,6 +250,13 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(to top, rgba(11,11,12,0.92) 0%, rgba(11,11,12,0.35) 45%, rgba(11,11,12,0.42) 100%);
 }
+/* For bright or busy photos: a flat scrim under the standard gradient so the
+   headline and body copy stay legible. */
+.hero__media--tinted::before {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background: rgba(11,11,12,0.42);
+}
+.hero__media--tinted::after { background: linear-gradient(to top, rgba(11,11,12,0.94) 0%, rgba(11,11,12,0.55) 50%, rgba(11,11,12,0.6) 100%); }
 .hero__inner {
   position: relative; z-index: 2; width: 100%;
   max-width: var(--max); margin: 0 auto; padding: 160px var(--pad) clamp(48px, 8vh, 96px);
@@ -834,8 +841,10 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   .hero__title { font-size: clamp(46px, 13.5vw, 80px); }
   .intro-grid { grid-template-columns: 1fr; gap: 36px; }
   .split, .split--rev { grid-template-columns: 1fr; gap: 30px; }
-  .split--rev .split__media { order: 1; }
-  .split--rev .split__body { order: 2; }
+  /* Stacked, the copy leads and the photo follows — a phone reader should hit
+     the point before the picture. Applies to both directions. */
+  .split .split__body, .split--rev .split__body { order: 1; }
+  .split .split__media, .split--rev .split__media { order: 2; }
   .split__media { aspect-ratio: 4/3.4; }
   .card-grid, .card-grid--2, .card-grid--4 { grid-template-columns: 1fr; }
   /* full-width mobile cards crop photos far less in a shorter frame */

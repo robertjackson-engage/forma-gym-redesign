@@ -352,7 +352,7 @@ def footer_html():
 
 def hero(kicker, lines, sub="", img=None, video=None, poster=None, crumb=None,
          actions=None, meta=None, page=False, title_mod="", focal=None,
-         walkthrough=False):
+         walkthrough=False, tinted=False):
     lns = ""
     for i, ln in enumerate(lines):
         lns += f'<span class="ln"><span style="transition-delay:{0.12 + i * 0.09:.2f}s">{ln}</span></span>'
@@ -387,7 +387,7 @@ def hero(kicker, lines, sub="", img=None, video=None, poster=None, crumb=None,
     sub_html = f'<p class="hero__sub">{sub}</p>' if sub else ""
     return f"""
 <section class="hero{' hero--page' if page else ''}">
-  <div class="hero__media">{media}</div>
+  <div class="hero__media{' hero__media--tinted' if tinted else ''}">{media}</div>
   <div class="hero__inner">
     <p class="hero__kicker">{kicker}</p>
     <h1 class="hero__title{(' ' + title_mod) if title_mod else ''}">{lns}</h1>
@@ -432,7 +432,7 @@ def stats_band(items, light=False):
         <div class="stat__label">{label}</div>
       </div>"""
     return f"""
-<section class="section--flush{' section--light' if light else ''}">
+<section class="section--flush{' section--panel' if light else ''}">
   <div class="stats"><div class="wrap" style="padding:0"><div class="stats__grid">{cells}</div></div></div>
 </section>
 """
@@ -443,7 +443,7 @@ def split(eyebrow, num, title, paras, img, alt, rev=False, cta=None, tag=None, l
     cta_html = f'<div class="split__cta"><a class="inline-link" href="{cta[1]}">{cta[0]} →</a></div>' if cta else ""
     tag_html = f'<span class="tag">{tag}</span>' if tag else ""
     return f"""
-<section class="section{' section--light' if light else ''}">
+<section class="section{' section--panel' if light else ''}">
   <div class="wrap">
     <div class="split{' split--rev' if rev else ''}">
       <div class="split__media{' split__media--wide' if wide else ''} reveal-img">
@@ -506,7 +506,7 @@ def form_section(sec_id, num, eyebrow, title_html, text, btn, light=True, extra=
         f_html += f"""
         <div class="field"><input type="{ftype}" name="{name}" id="{sec_id}-{name}" placeholder=" " required><label for="{sec_id}-{name}">{label}</label></div>"""
     return f"""
-<section class="section{' section--light' if light else ''}" id="{sec_id}">
+<section class="section{' section--panel' if light else ''}" id="{sec_id}">
   <div class="wrap">
     <div class="intro-grid">
       <div>
@@ -847,7 +847,7 @@ home_body = view_chooser + hero(
     "Forma Gym San Jose facade",
     rev=True, cta=("Explore San Jose", "san-jose.html"), tag="Since 2015",
 ) + f"""
-<section class="section section--light">
+<section class="section section--panel">
   <div class="wrap">
     <div class="cards-head">
       <div>
@@ -1015,7 +1015,7 @@ training_body = hero(
 ) + f"""
 <section class="section">
   <div class="wrap">
-    <div class="split">
+    <div class="split split--rev">
       <div class="split__media reveal-img"><img src="{IMG}/jason_johnson_turf2.jpg" alt="1 on 1 personal training" loading="lazy"></div>
       <div class="split__body">
         <p class="eyebrow">One-on-one personal training</p>
@@ -1263,7 +1263,7 @@ cryo_body = hero(
     "Cryotherapy facility",
     rev=True, tag="-195°F",
 ) + f"""
-<section class="section section--light">
+<section class="section section--panel">
   <div class="wrap">
     <div class="cards-head">
       <div>
@@ -1295,7 +1295,8 @@ spa_body = hero(
     "The Spa",
     ["Pause.", '<span class="serif">Restore.</span>'],
     "A comprehensive menu of therapeutic treatments — massage, facials and clinical skin care — in a cozy, luxurious setting steps from the sauna, steam and Jacuzzi. Skilled therapists dedicated to easing pain and rejuvenating face and body.",
-    img=f"{IMG}/Forma_Walnut-Creek_Spa_Header_2018.jpg",
+    img=f"{IMG}/Forma_San-Jose-spa_Header_2018.jpg",
+    focal="50% 68%", tinted=True,
     crumb="The Spa",
     actions=[("Book a Treatment", "tel:9259326400", True)],
     meta=["Massage · facials · skin care", "Walnut Creek &amp; San Jose"],
@@ -1305,7 +1306,7 @@ spa_body = hero(
   <div class="wrap">
     <div class="cards-head">
       <div>
-        <p class="eyebrow"><span class="num">01</span> Massage</p>
+        <p class="eyebrow">Massage</p>
         <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Therapeutic <span class="serif">touch</span></h2>
       </div>
       <p class="body-copy reveal" style="max-width:32ch">Call to schedule: <a href="tel:9259326400" style="color:var(--accent)">(925) 932-6400</a></p>
@@ -1322,11 +1323,11 @@ spa_body = hero(
   </div>
 </section>
 
-<section class="section section--light">
+<section class="section section--panel">
   <div class="wrap">
     <div class="cards-head">
       <div>
-        <p class="eyebrow"><span class="num">02</span> Skincare</p>
+        <p class="eyebrow">Skincare</p>
         <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Glow, <span class="serif">restored</span></h2>
       </div>
     </div>
@@ -1402,7 +1403,7 @@ kidz_body = hero(
   </div>
 </section>
 
-<section class="section section--light" id="hours">
+<section class="section section--panel" id="hours">
   <div class="wrap">
     <div class="cards-head">
       <div>
@@ -1461,7 +1462,7 @@ rise_body = hero(
   </div>
 </section>
 
-<section class="section section--light" id="method">
+<section class="section section--panel" id="method">
   <div class="wrap">
     <div class="cards-head">
       <div>
@@ -1887,7 +1888,7 @@ drbrain_body = hero(
   </div>
 </section>
 
-<section class="section section--light" id="offer">
+<section class="section section--panel" id="offer">
   <div class="wrap">
     <figure class="quote-band reveal">
       <span class="quote-band__mark">“</span>
