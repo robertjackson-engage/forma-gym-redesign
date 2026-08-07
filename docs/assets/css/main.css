@@ -699,12 +699,6 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   transition: all .4s;
 }
 .socials a:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
-.site-footer__mega {
-  font-family: var(--font-display); text-transform: uppercase; text-align: center;
-  font-size: clamp(90px, 17vw, 300px); line-height: 0.8; letter-spacing: 0.01em;
-  color: transparent; -webkit-text-stroke: 1px rgba(243,240,233,0.16);
-  user-select: none; pointer-events: none; transform: translateY(12%);
-}
 .site-footer__bottom {
   display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap;
   border-top: 1px solid var(--line); padding: 26px 0 30px;

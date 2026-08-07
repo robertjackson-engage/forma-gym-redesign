@@ -308,7 +308,6 @@ def footer_html():
       </div>
     </div>
   </div>
-  <div class="site-footer__mega" aria-hidden="true">FORMA</div>
   <div class="wrap">
     <div class="site-footer__bottom">
       <span>©2026 Forma Gym. All Rights Reserved.</span>
