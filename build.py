@@ -450,7 +450,7 @@ def split(eyebrow, num, title, paras, img, alt, rev=False, cta=None, tag=None, l
         <img src="{img}" alt="{alt}" loading="lazy">{tag_html}
       </div>
       <div class="split__body">
-        <p class="eyebrow">{f'<span class="num">{num}</span> ' if num else ''}{eyebrow}</p>
+        <p class="eyebrow">{f'' if num else ''}{eyebrow}</p>
         <h2 class="h-display" style="font-size:clamp(30px,3.8vw,58px)">{title}</h2>
         <div class="reveal">{body_paras}{cta_html}</div>
       </div>
@@ -510,7 +510,7 @@ def form_section(sec_id, num, eyebrow, title_html, text, btn, light=True, extra=
   <div class="wrap">
     <div class="intro-grid">
       <div>
-        <p class="eyebrow"><span class="num">{num}</span> {eyebrow}</p>
+        <p class="eyebrow">{eyebrow}</p>
         <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">{title_html}</h2>
         <p class="lede reveal" style="margin-top:28px">{text}</p>
         {extra}
@@ -795,7 +795,7 @@ home_body = view_chooser + hero(
   <div class="wrap">
     <div class="intro-grid">
       <div>
-        <p class="eyebrow"><span class="num">01</span> Our mission</p>
+        <p class="eyebrow">Our mission</p>
         <h2 class="h-display reveal">Fitness that becomes part of your <span class="serif">life</span></h2>
       </div>
       <div class="intro-grid__right">
@@ -815,7 +815,7 @@ home_body = view_chooser + hero(
   <div class="wrap">
     <div class="cards-head">
       <div>
-        <p class="eyebrow"><span class="num">02</span> Find your movement</p>
+        <p class="eyebrow">Find your movement</p>
         <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Every way to <span class="serif">play</span></h2>
       </div>
       <a class="inline-link reveal" href="group-fitness.html">View all classes →</a>
@@ -851,7 +851,7 @@ home_body = view_chooser + hero(
   <div class="wrap">
     <div class="cards-head">
       <div>
-        <p class="eyebrow"><span class="num">05</span> Recover like an athlete</p>
+        <p class="eyebrow">Recover like an athlete</p>
         <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Wellness, <span class="serif">elevated</span></h2>
       </div>
       <a class="inline-link reveal" href="recovery.html">More recovery →</a>
@@ -867,7 +867,7 @@ home_body = view_chooser + hero(
   <div class="wrap">
     <div class="cards-head">
       <div>
-        <p class="eyebrow"><span class="num">06</span> More than a gym</p>
+        <p class="eyebrow">More than a gym</p>
         <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Built for your whole <span class="serif">life</span></h2>
       </div>
     </div>
@@ -900,7 +900,7 @@ about_body = hero(
   <div class="wrap">
     <div class="intro-grid">
       <div>
-        <p class="eyebrow"><span class="num">01</span> Our mission</p>
+        <p class="eyebrow">Our mission</p>
         <h2 class="h-display reveal">Movement, for <span class="serif">life</span></h2>
       </div>
       <div class="intro-grid__right">
@@ -915,7 +915,7 @@ about_body = hero(
   <div class="wrap">
     <div class="cards-head">
       <div>
-        <p class="eyebrow"><span class="num">02</span> Our core values</p>
+        <p class="eyebrow">Our core values</p>
         <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">What we live <span class="serif">by</span></h2>
       </div>
     </div>
@@ -967,7 +967,7 @@ groupfit_body = hero(
   <div class="wrap">
     <div class="cards-head">
       <div>
-        <p class="eyebrow"><span class="num">01</span> The full lineup</p>
+        <p class="eyebrow">The full lineup</p>
         <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Fourteen ways to <span class="serif">move</span></h2>
       </div>
       <p class="body-copy reveal" style="max-width:36ch">Whether you're kickstarting your journey or chasing your next level, there's a class with your name on it — included with every membership.</p>
@@ -1139,7 +1139,7 @@ def location_page(name, badge, phone, tel, address, intro, amenities, hero_img, 
   <div class="wrap">
     <div class="intro-grid">
       <div>
-        <p class="eyebrow"><span class="num">01</span> What's inside</p>
+        <p class="eyebrow">What's inside</p>
         <h2 class="h-display reveal">Premium spaces, <span class="serif">all-inclusive</span></h2>
         <address style="font-style:normal;color:var(--muted);margin-top:22px;line-height:1.8;font-size:15.5px">{address}<br><a href="tel:{tel}" style="color:var(--accent)">{phone}</a></address>
         <div class="loc-hours" style="max-width:340px;margin-top:20px">{hrs}</div>
@@ -1242,7 +1242,7 @@ cryo_body = hero(
   <div class="wrap">
     <div class="cards-head">
       <div>
-        <p class="eyebrow"><span class="num">01</span> The benefits</p>
+        <p class="eyebrow">The benefits</p>
         <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">What three minutes <span class="serif">does</span></h2>
       </div>
     </div>
@@ -1267,7 +1267,7 @@ cryo_body = hero(
   <div class="wrap">
     <div class="cards-head">
       <div>
-        <p class="eyebrow"><span class="num">03</span> Real members, real results</p>
+        <p class="eyebrow">Real members, real results</p>
         <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Feel the <span class="serif">difference</span></h2>
       </div>
     </div>
@@ -1392,7 +1392,7 @@ kidz_body = hero(
   <div class="wrap">
     <div class="intro-grid">
       <div>
-        <p class="eyebrow"><span class="num">01</span> Safe · active · educational</p>
+        <p class="eyebrow">Safe · active · educational</p>
         <h2 class="h-display reveal">Where kids actually want to <span class="serif">be</span></h2>
       </div>
       <div class="intro-grid__right">
@@ -1407,7 +1407,7 @@ kidz_body = hero(
   <div class="wrap">
     <div class="cards-head">
       <div>
-        <p class="eyebrow"><span class="num">02</span> Kidzville hours</p>
+        <p class="eyebrow">Kidzville hours</p>
         <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">When we're <span class="serif">open</span></h2>
       </div>
       <p class="body-copy reveal" style="max-width:34ch">Questions or sign-ups: <a href="mailto:WCReps@formagym.com" style="color:var(--accent-ink)">WCReps@formagym.com</a> or call the front desk at (925) 932-6400. Reservations recommended.</p>
@@ -1450,7 +1450,7 @@ rise_body = hero(
   <div class="wrap">
     <div class="cards-head">
       <div>
-        <p class="eyebrow"><span class="num">01</span> What RISE delivers</p>
+        <p class="eyebrow">What RISE delivers</p>
         <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Get moving <span class="serif">again</span></h2>
       </div>
     </div>
@@ -1466,7 +1466,7 @@ rise_body = hero(
   <div class="wrap">
     <div class="cards-head">
       <div>
-        <p class="eyebrow"><span class="num">02</span> Our methodology</p>
+        <p class="eyebrow">Our methodology</p>
         <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">A step-by-step <span class="serif">method</span></h2>
       </div>
       <p class="body-copy reveal" style="max-width:34ch">Each client's needs are carefully addressed to support our mission of achieving your recovery goals.</p>
@@ -1538,7 +1538,7 @@ def class_page(slug, title, img, lead, others):
   <div class="wrap">
     <div class="cards-head">
       <div>
-        <p class="eyebrow"><span class="num">01</span> More ways to move</p>
+        <p class="eyebrow">More ways to move</p>
         <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Mix it <span class="serif">up</span></h2>
       </div>
       <a class="inline-link reveal" href="group-fitness.html">All 14 classes →</a>
@@ -1775,7 +1775,7 @@ contact_body = hero(
   <div class="wrap">
     <div class="cards-head">
       <div>
-        <p class="eyebrow"><span class="num">02</span> Two locations</p>
+        <p class="eyebrow">Two locations</p>
         <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Reach a <span class="serif">club</span></h2>
       </div>
     </div>
@@ -1806,7 +1806,7 @@ trial_body = hero(
   <div class="wrap">
     <div class="intro-grid">
       <div>
-        <p class="eyebrow"><span class="num">01</span> We're here for you</p>
+        <p class="eyebrow">We're here for you</p>
         <h2 class="h-display reveal">A lifestyle change, not a <span class="serif">quick fix</span></h2>
       </div>
       <div class="intro-grid__right">
@@ -1842,7 +1842,7 @@ outdoor_body = hero(
   <div class="wrap">
     <div class="cards-head">
       <div>
-        <p class="eyebrow"><span class="num">01</span> The outdoor playground</p>
+        <p class="eyebrow">The outdoor playground</p>
         <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Everything you need, <span class="serif">outside</span></h2>
       </div>
       <p class="body-copy reveal" style="max-width:34ch">Walnut Creek's turf sits under towering redwoods. San Jose's 8,000 sq. ft. covered outdoor area runs year-round beneath the palms.</p>
@@ -1876,7 +1876,7 @@ drbrain_body = hero(
   <div class="wrap">
     <div class="cards-head">
       <div>
-        <p class="eyebrow"><span class="num">01</span> What DrBrainRX offers</p>
+        <p class="eyebrow">What DrBrainRX offers</p>
         <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Modern wellness <span class="serif">medicine</span></h2>
       </div>
     </div>
@@ -1918,7 +1918,7 @@ app_body = hero(
   <div class="wrap">
     <div class="cards-head">
       <div>
-        <p class="eyebrow"><span class="num">01</span> Everything in one place</p>
+        <p class="eyebrow">Everything in one place</p>
         <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Plan your day to <span class="serif">play</span></h2>
       </div>
     </div>
@@ -1953,7 +1953,7 @@ merchant_body = hero(
   <div class="wrap">
     <div class="intro-grid">
       <div>
-        <p class="eyebrow"><span class="num">01</span> Locally owned, member first</p>
+        <p class="eyebrow">Locally owned, member first</p>
         <h2 class="h-display reveal">Save with our local <span class="serif">partners</span></h2>
       </div>
       <div class="intro-grid__right">
@@ -2008,7 +2008,7 @@ freeze_body = hero(
 <!-- guests: this page isn't for them -->
 <section class="section section--tight only-guest">
   <div class="wrap" style="max-width:820px">
-    <p class="eyebrow"><span class="num">01</span> Members only</p>
+    <p class="eyebrow">Members only</p>
     <h2 class="h-display reveal" style="font-size:clamp(30px,4vw,58px)">This page is for <span class="serif">members</span></h2>
     <p class="lede reveal" style="margin-top:24px">Freeze and cancellation requests are handled for active Forma members. If you're already a member, switch to the Member view using the toggle at the top of the page.</p>
     <p class="body-copy reveal" style="margin-top:18px">Not a member yet? <a class="inline-link" href="join.html">Join Forma</a> or <a class="inline-link" href="contact.html#tour">book a tour</a>.</p>
@@ -2021,7 +2021,7 @@ freeze_body = hero(
   <div class="wrap">
     <div class="intro-grid">
       <div>
-        <p class="eyebrow"><span class="num">01</span> Choose your option</p>
+        <p class="eyebrow">Choose your option</p>
         <h2 class="h-display reveal">Freeze, or <span class="serif">cancel</span></h2>
       </div>
       <div class="intro-grid__right">
