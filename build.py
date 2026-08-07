@@ -188,7 +188,7 @@ def head(title, desc):
   if(sessionStorage.getItem("forma-intro"))document.documentElement.classList.add("no-preloader");
   var v=localStorage.getItem("forma-view");
   document.documentElement.setAttribute("data-view", v==="member"?"member":"guest");
-  if(v||sessionStorage.getItem("forma-view-skip"))document.documentElement.classList.add("has-view");
+  if(v)document.documentElement.classList.add("has-view");
 }}catch(e){{}}}})();</script>
 </head>
 <body>
@@ -617,10 +617,8 @@ def page(filename, title, desc, active, body):
 # ============================================================ shared blocks
 view_chooser = f"""
 <div class="view-chooser" role="dialog" aria-label="Choose your experience">
-  <button class="vc-skip" type="button">Just browsing →</button>
   <div class="view-chooser__head">
     <span class="kicker">Welcome to Forma Gym</span>
-    <h2>How are you visiting today?</h2>
   </div>
   <div class="view-chooser__panels">
     <button class="vc-panel" type="button" data-choose="guest">
@@ -635,7 +633,7 @@ view_chooser = f"""
     <button class="vc-panel" type="button" data-choose="member">
       <img src="{IMG}/slider-WC_cycle_indoor_v2.jpg" alt="">
       <div class="vc-panel__body">
-        <span class="vc-panel__kicker">Welcome back</span>
+        <span class="vc-panel__kicker">Welcome back Forma family</span>
         <h3>I'm a <span class="serif">member</span></h3>
         <p>Class schedules, club hours, Kidzville and your member perks.</p>
         <span class="go">Take me in →</span>

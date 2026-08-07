@@ -34,12 +34,6 @@
         finishChoice();
       });
     });
-    var skip = chooser.querySelector(".vc-skip");
-    if (skip) skip.addEventListener("click", function () {
-      setView("guest", false);
-      try { sessionStorage.setItem("forma-view-skip", "1"); } catch (e) {}
-      finishChoice();
-    });
   }
   function finishChoice() {
     document.body.classList.remove("choice-open");
