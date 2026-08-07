@@ -126,13 +126,13 @@ CLASS_PAGES = [
     ("aqua", "Aqua Studio", "slider-aqua_v3.jpg",
      "A refreshing, low-impact workout in our heated pools. Improve cardiovascular fitness, muscle strength and conditioning with water's natural resistance — ideal for every level, including recovery and joint-friendly training.",
      "Low-impact strength &amp; cardio in heated water"),
-    ("barre", "Barre", "slider-locations_group_dance.jpg",
+    ("barre", "Barre", "slider-loan_long_stretch_v5-1.jpg",
      "Ballet, Pilates and strength training in one elegant burn. Using the barre for support, you'll move through small, isometric movements that target specific muscle groups for a toned, sculpted physique.",
      "Ballet, Pilates &amp; strength for a sculpted body"),
-    ("cardio-hiit", "Cardio + HIIT", "annabelle_kettle_HERO_2.jpg",
+    ("cardio-hiit", "Cardio + HIIT", "slider-cardio_HIIT_v1.jpg",
      "High-energy intervals that torch calories and build serious conditioning. Cardio and HIIT classes alternate bursts of intense effort with active recovery — an efficient, heart-pumping way to get stronger and faster, scaled to every level.",
      "High-intensity intervals that torch calories"),
-    ("cycle", "Cycle Studio", "slider-WC_cycle_indoor_v2.jpg",
+    ("cycle", "Cycle Studio", "SJ_cycle_studio_2500px.jpg",
      "An exhilarating, immersive cardio ride for every fitness level. Simulated terrain, climbs, sprints and endurance sets — all driven by the beat. The music keeps you engaged and pushes you to match its rhythm and intensity.",
      "Immersive, beat-driven indoor rides"),
     ("dance", "Dance", "slider-locations_group_dance.jpg",
@@ -162,7 +162,7 @@ CLASS_PAGES = [
     ("trx", "TRX&reg; Suspension", "slider-TRX_v4.jpg",
      "Leverage your own body weight as resistance on the TRX suspension system. Adjustable straps let you scale every move — building strength, stability and control from your first rep to your hardest.",
      "Suspension training that scales to you"),
-    ("yoga", "Yoga + Mind Body", "yoga_background_2000px_wide.jpg",
+    ("yoga", "Yoga + Mind Body", "slider-mind_body_v1.jpg",
      "Move, breathe, and reconnect. From gentle restorative flows to dynamic vinyasa, our yoga and mind-body classes build flexibility, strength and calm — guided by instructors who meet you exactly where you are.",
      "Flexibility, strength and stillness"),
 ]
@@ -331,20 +331,25 @@ def footer_html():
 
 
 def hero(kicker, lines, sub="", img=None, video=None, poster=None, crumb=None,
-         actions=None, meta=None, page=False, title_mod=""):
+         actions=None, meta=None, page=False, title_mod="", focal=None,
+         walkthrough=False):
     lns = ""
     for i, ln in enumerate(lines):
         lns += f'<span class="ln"><span style="transition-delay:{0.12 + i * 0.09:.2f}s">{ln}</span></span>'
-    # Every hero uses the club walkthrough video as its background; the page's
-    # own image (or explicit poster) is the poster frame — fast first paint and
-    # a graceful fallback if the video can't play. main.js picks the desktop or
-    # mobile source by viewport (≤820px = mobile) so only one file downloads.
+    # Only the home hero runs the club walkthrough video (walkthrough=True); at
+    # ~9.7 MB on mobile it is far too heavy to repeat on every page. Everywhere
+    # else the page's own photo IS the background, as on formagym.com. `focal`
+    # sets object-position so a 2:1 landscape still crops sensibly into a tall
+    # phone hero. main.js picks the desktop or mobile video source by viewport.
     post = poster or img or ""
+    fstyle = f' style="object-position:{focal}"' if focal else ""
     if video:
         media = f'<video src="{video}" poster="{post}" autoplay muted loop playsinline preload="auto"></video>'
-    else:
+    elif walkthrough:
         media = (f'<video poster="{post}" autoplay muted loop playsinline preload="none" '
                  f'data-src-desktop="{HERO_VIDEO_DESKTOP}" data-src-mobile="{HERO_VIDEO_MOBILE}"></video>')
+    else:
+        media = f'<img src="{post}" alt="" fetchpriority="high"{fstyle}>'
     acts = ""
     if actions:
         acts = '<div class="hero__actions">'
@@ -646,6 +651,7 @@ home_body = view_chooser + hero(
     ["Play", '<span class="serif">every</span> day'],
     "Two luxury Bay Area clubs built around one idea: make movement the best part of your day. World-class instructors, resort-style amenities, and a community that actually feels like one.",
     poster=f"{IMG}/forma-hero-poster.jpg",
+    walkthrough=True,
     actions=[
         ("Visit Us", "join.html", True, "only-guest"),
         ("Explore the Clubs", "locations.html", False, "only-guest"),
@@ -1378,6 +1384,18 @@ givesback_body = hero(
 )
 
 # ============================================================ CLASS DETAIL PAGES
+# A phone hero is portrait (~0.56:1) but these stills are 2:1, so cover shows
+# only ~27% of the frame — a narrow vertical strip. Where the subject sits well
+# off-centre, pin the crop to it. Slugs not listed here read fine centred.
+CLASS_FOCAL = {
+    "low-impact":       "74% 50%",
+    "kickboxing":       "76% 50%",
+    "meditation":       "78% 50%",
+    "pilates-reformer": "72% 50%",
+    "trx":              "68% 50%",
+}
+
+
 def class_page(slug, title, img, lead, others):
     other_cards = ""
     for ol, oh, od in others:
@@ -1387,6 +1405,7 @@ def class_page(slug, title, img, lead, others):
         lead, img=f"{IMG}/{img}", crumb=f'<a href="group-fitness.html">Group Fitness</a> &nbsp;/&nbsp; {title}',
         actions=[("Visit Us", "join.html", True), ("Full Schedule", "group-fitness.html#schedule", False)],
         meta=["Included with membership", "All levels welcome"], page=True,
+        focal=CLASS_FOCAL.get(slug),
     ) + f"""
 <section class="section">
   <div class="wrap">
