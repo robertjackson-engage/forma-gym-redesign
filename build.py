@@ -628,7 +628,7 @@ view_chooser = f"""
       </div>
     </button>
     <button class="vc-panel" type="button" data-choose="member">
-      <img src="{IMG}/slider-WC_cycle_indoor_v2.jpg" alt="">
+      <img src="{IMG}/SJ_pool_birdseye.jpg" alt="">
       <div class="vc-panel__body">
         <span class="vc-panel__kicker">Welcome back Forma family</span>
         <h3>I'm a <span class="serif">member</span></h3>
