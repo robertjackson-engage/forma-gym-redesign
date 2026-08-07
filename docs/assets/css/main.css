@@ -345,10 +345,12 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 
 /* ---------- intro block ---------- */
 .intro-grid {
-  display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
   gap: clamp(40px, 6vw, 110px); align-items: start;
 }
 .intro-grid__right { display: flex; flex-direction: column; gap: 26px; padding-top: clamp(8px, 2vw, 30px); }
+/* The heading breaks to its own lines, so the copy column gets the room. */
+.intro-grid__right .lede { max-width: 64ch; }
 
 /* ---------- split feature ---------- */
 .split {
