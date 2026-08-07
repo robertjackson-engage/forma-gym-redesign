@@ -578,6 +578,17 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 .acc__body { max-height: 0; overflow: hidden; transition: max-height .7s var(--ease-power); }
 .acc__body-inner { padding: 0 0 36px; max-width: 70ch; color: var(--muted); font-size: 15.5px; }
 .section--light .acc__body-inner { color: var(--muted-dark); }
+/* Coach headshot beside their bio inside an accordion panel. */
+.trainer-bio { display: flex; gap: 22px; align-items: flex-start; }
+.trainer-bio__photo {
+  width: 150px; height: 150px; flex: none; object-fit: cover;
+  border-radius: 50%; background: var(--line);
+}
+.trainer-bio__text { min-width: 0; }
+@media (max-width: 620px) {
+  .trainer-bio { gap: 16px; }
+  .trainer-bio__photo { width: 96px; height: 96px; }
+}
 .acc__body-inner ul { list-style: none; margin-top: 12px; }
 .acc__body-inner li { padding: 7px 0 7px 24px; position: relative; }
 .acc__body-inner li::before { content: ""; position: absolute; left: 0; top: 16px; width: 10px; height: 1px; background: var(--accent); }

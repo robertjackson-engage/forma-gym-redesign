@@ -450,7 +450,7 @@ def split(eyebrow, num, title, paras, img, alt, rev=False, cta=None, tag=None, l
         <img src="{img}" alt="{alt}" loading="lazy">{tag_html}
       </div>
       <div class="split__body">
-        <p class="eyebrow"><span class="num">{num}</span> {eyebrow}</p>
+        <p class="eyebrow">{f'<span class="num">{num}</span> ' if num else ''}{eyebrow}</p>
         <h2 class="h-display" style="font-size:clamp(30px,3.8vw,58px)">{title}</h2>
         <div class="reveal">{body_paras}{cta_html}</div>
       </div>
@@ -534,6 +534,17 @@ def form_section(sec_id, num, eyebrow, title_html, text, btn, light=True, extra=
   </div>
 </section>
 """
+
+
+def trainer_bio(photo, name, copy, focal="50% 22%"):
+    """Coach photo alongside their bio, inside an accordion panel. These are
+    action shots rather than headshots, so `focal` pins the square crop to the
+    coach — Jason's pose puts his face low in the frame, for instance."""
+    return (f'<div class="trainer-bio">'
+            f'<img class="trainer-bio__photo" src="{IMG}/{photo}" alt="{name}, fitness coach at Forma Gym Walnut Creek" '
+            f'loading="lazy" style="object-position:{focal}">'
+            f'<div class="trainer-bio__text">{copy}</div>'
+            f'</div>')
 
 
 def accordion(items, open_first=True):
@@ -905,9 +916,9 @@ training_body = hero(
 <section class="section">
   <div class="wrap">
     <div class="split">
-      <div class="split__media reveal-img"><img src="{IMG}/jason_johnson_turf2.jpg" alt="1 on 1 personal training" loading="lazy"><span class="tag">1-on-1</span></div>
+      <div class="split__media reveal-img"><img src="{IMG}/jason_johnson_turf2.jpg" alt="1 on 1 personal training" loading="lazy"></div>
       <div class="split__body">
-        <p class="eyebrow"><span class="num">01</span> One-on-one personal training</p>
+        <p class="eyebrow">One-on-one personal training</p>
         <h2 class="h-display" style="font-size:clamp(30px,3.8vw,58px)">A plan built around <span class="serif">you</span></h2>
         <ul class="checklist reveal" style="margin-top:10px">
           <li>Assess where you are now and where to start</li>
@@ -923,7 +934,7 @@ training_body = hero(
   </div>
 </section>
 """ + split(
-    "Small group training", "02",
+    "Small group training", "",
     'The best of both <span class="serif">worlds</span>',
     ["Small Group Training brings 4–8 people together with one trainer — the energy and accountability of community, with the attention and programming of personal training.",
      "It's affordable, it's motivating, and the workouts change constantly so you never plateau or get bored."],
@@ -935,16 +946,16 @@ training_body = hero(
   <div class="wrap">
     <div class="cards-head">
       <div>
-        <p class="eyebrow"><span class="num">03</span> Meet our training team</p>
+        <p class="eyebrow">Meet our training team</p>
         <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Coaches who <span class="serif">care</span></h2>
       </div>
       <p class="body-copy reveal" style="max-width:34ch">Years of experience, a range of specialties, and a genuine passion for helping you feel strong, confident and excited about fitness.</p>
     </div>
     {accordion([
-        ("Dave — Fitness Coach", "<strong>Specialties:</strong> Athletic Performance · Movement Assessment · Program Development · Weightlifting · Exercise Therapy.<br><br>“Your happiness is your health. The world is best experienced with high energy, low pain, and high function. Physical activity is a source of great joy — find your motivation and stay active.”"),
-        ("Montana — Fitness Coach", "<strong>Specialties:</strong> Weight Lifting · Strength Training · Athletic Performance · Functional Movement · Nutrition Coaching · Weight Loss Management.<br><br>“Consistency is more important than perfection. I love helping people feel comfortable in their own skin while building long-lasting, healthy habits.”"),
-        ("Jason — Fitness Coach", "<strong>Specialties:</strong> Creative Movement · Interval Training · Kickboxing.<br><br>After losing 50 lbs and reversing his hypertension, Jason made it his life goal to change the lives of others. “Everything should feel good, from start to finish.”"),
-        ("Marco — Fitness Coach", "<strong>Specialties:</strong> Cross Training · Bodybuilding · Muscle Definition &amp; Development.<br><br>A coach who blends serious strength knowledge with the patience to teach it — helping clients build the physique and the confidence to match."),
+        ("Dave — Fitness Coach", trainer_bio("Dave2.jpg", "Dave", "<strong>Specialties:</strong> Athletic Performance · Movement Assessment · Program Development · Weightlifting · Exercise Therapy.<br><br>“Your happiness is your health. The world is best experienced with high energy, low pain, and high function. Physical activity is a source of great joy — find your motivation and stay active.”")),
+        ("Montana — Fitness Coach", trainer_bio("Montana_Lason_colorized_SM_REZ.jpg", "Montana", "<strong>Specialties:</strong> Weight Lifting · Strength Training · Athletic Performance · Functional Movement · Nutrition Coaching · Weight Loss Management.<br><br>“Consistency is more important than perfection. I love helping people feel comfortable in their own skin while building long-lasting, healthy habits.”")),
+        ("Jason — Fitness Coach", trainer_bio("jason_johnson_turf2.jpg", "Jason", "<strong>Specialties:</strong> Creative Movement · Interval Training · Kickboxing.<br><br>After losing 50 lbs and reversing his hypertension, Jason made it his life goal to change the lives of others. “Everything should feel good, from start to finish.”", focal="50% 62%")),
+        ("Marco — Fitness Coach", trainer_bio("marco_flex.jpg", "Marco", "<strong>Specialties:</strong> Cross Training · Bodybuilding · Muscle Definition &amp; Development.<br><br>A coach who blends serious strength knowledge with the patience to teach it — helping clients build the physique and the confidence to match.")),
     ], open_first=False)}
   </div>
 </section>
