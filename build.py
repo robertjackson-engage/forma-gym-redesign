@@ -438,16 +438,15 @@ def stats_band(items, light=False):
 """
 
 
-def split(eyebrow, num, title, paras, img, alt, rev=False, cta=None, tag=None, light=False, wide=False):
+def split(eyebrow, num, title, paras, img, alt, rev=False, cta=None, light=False, wide=False):
     body_paras = "".join(f'<p class="body-copy">{p}</p>' for p in paras)
     cta_html = f'<div class="split__cta"><a class="inline-link" href="{cta[1]}">{cta[0]} →</a></div>' if cta else ""
-    tag_html = f'<span class="tag">{tag}</span>' if tag else ""
     return f"""
 <section class="section{' section--panel' if light else ''}">
   <div class="wrap">
     <div class="split{' split--rev' if rev else ''}">
       <div class="split__media{' split__media--wide' if wide else ''} reveal-img">
-        <img src="{img}" alt="{alt}" loading="lazy">{tag_html}
+        <img src="{img}" alt="{alt}" loading="lazy">
       </div>
       <div class="split__body">
         <p class="eyebrow">{f'' if num else ''}{eyebrow}</p>
@@ -837,7 +836,7 @@ home_body = view_chooser + hero(
      "Open Monday–Thursday 5am–11pm, Friday 5am–10pm, weekends 6am–8pm. 1908 Olympic Blvd, Walnut Creek."],
     f"{IMG}/formaWC_facade_bkgrnd.jpg",
     "Forma Gym Walnut Creek facade",
-    cta=("Explore Walnut Creek", "walnut-creek.html"), tag="Since 2009",
+    cta=("Explore Walnut Creek", "walnut-creek.html"),
 ) + split(
     "Two clubs, one membership", "04",
     'San <span class="serif">Jose</span>',
@@ -845,7 +844,7 @@ home_body = view_chooser + hero(
      "Open Monday–Thursday 5am–11pm, Friday 5am–10pm, weekends 6am–8pm. 5434 Thornwood Dr, San Jose."],
     f"{IMG}/formaSJ_facade_bkgrnd4.jpg",
     "Forma Gym San Jose facade",
-    rev=True, cta=("Explore San Jose", "san-jose.html"), tag="Since 2015",
+    rev=True, cta=("Explore San Jose", "san-jose.html"),
 ) + f"""
 <section class="section section--panel">
   <div class="wrap">
@@ -938,7 +937,7 @@ about_body = hero(
      "It's why people don't just join Forma. They belong to it."],
     f"{IMG}/slider-hero_ladies_v1.jpg",
     "Forma community members in class",
-    cta=("Visit a club", "locations.html"), tag="The Forma Family",
+    cta=("Visit a club", "locations.html"),
 ) + form_section(
     "tour", "04", "Book a tour",
     'Come see it for <span class="serif">yourself</span>',
@@ -992,7 +991,7 @@ groupfit_body = hero(
      "Walnut Creek features 4 studios plus a Pilates Reformer studio. San Jose brings indoor and outdoor classes across 40,000 square feet."],
     f"{IMG}/SJ_cycle_studio_2500px.jpg",
     "Cycle studio at Forma San Jose",
-    rev=True, cta=("See the locations", "locations.html"), tag="Indoor + Outdoor",
+    rev=True, cta=("See the locations", "locations.html"),
 ) + form_section(
     "schedule", "03", "Schedule a visit",
     'Find your first <span class="serif">class</span>',
@@ -1206,7 +1205,7 @@ recovery_body = hero(
      "Burn 500–800 calories in a single 3-minute session, reduce inflammation and pain, heal injuries faster, improve circulation, sleep better and feel invigorated. Natural, non-invasive, and trusted by Olympic and professional athletes."],
     f"{IMG}/Forma_WalnutCreek_locations_cryo.jpg",
     "Cryotherapy chamber at Forma",
-    cta=("All about cryo", "cryo.html"), tag="Chilly Goat®",
+    cta=("All about cryo", "cryo.html"),
 ) + split(
     "The spa", "02",
     'The optimum wellness <span class="serif">experience</span>',
@@ -1214,7 +1213,7 @@ recovery_body = hero(
      "Conveniently located adjacent to the locker rooms, so sauna, steam or Jacuzzi can be enjoyed before or after your treatment."],
     f"{IMG}/Forma_Walnut-Creek_Spa_Header_2018.jpg",
     "The Spa at Forma",
-    rev=True, cta=("See spa menu &amp; pricing", "spa.html"), tag="Day Spa",
+    rev=True, cta=("See spa menu &amp; pricing", "spa.html"),
 ) + split(
     "Mind Body LAB", "03",
     'Where science meets <span class="serif">self-care</span>',
@@ -1222,7 +1221,7 @@ recovery_body = hero(
      "Because true wellness isn't just how you move. It's how you think, recover, and feel."],
     f"{IMG}/slider-meditate_v2.jpg",
     "Mind Body LAB at Forma",
-    cta=("Explore the LAB", "mindbodylab.html"), tag="Mind Body LAB",
+    cta=("Explore the LAB", "mindbodylab.html"),
 ) + cta_band(
     'Restore. Rejuvenate. <span class="serif">Repeat.</span>',
     "Recovery is included in the Forma experience. Book a session and walk out feeling brand new.",
@@ -1263,7 +1262,7 @@ cryo_body = hero(
      "The result is vasoconstriction followed by vasodilation — blood returning to your extremities highly oxygenated and nutrient-rich, helping the body repair and strengthen. The buoyant effects can last up to 8 hours, and many clients report better sleep after a single session."],
     f"{IMG}/chillyGOAT_SJ_500px.jpg",
     "Cryotherapy facility",
-    rev=True, tag="-195°F",
+    rev=True,
 ) + f"""
 <section class="section section--panel">
   <div class="wrap">
@@ -1364,7 +1363,7 @@ mbl_body = hero(
      "Because the strongest version of you is sharp, calm and resilient — not just physically fit."],
     f"{IMG}/drsara_square_transparent_HERO_v2.png",
     "DrBrainRX brain health",
-    cta=("Ask us about DrBrainRX", "contact.html#tour"), tag="DrBrainRX",
+    cta=("Ask us about DrBrainRX", "contact.html#tour"),
 ) + split(
     "Meditation + breathwork", "02",
     'Find your <span class="serif">stillness</span>',
@@ -1372,7 +1371,7 @@ mbl_body = hero(
      "Reset your nervous system, then carry that calm into the rest of your day."],
     f"{IMG}/slider-meditate_v2.jpg",
     "Meditation class at Forma",
-    rev=True, cta=("See the class lineup", "group-fitness.html#classes"), tag="GroupFit",
+    rev=True, cta=("See the class lineup", "group-fitness.html#classes"),
 ) + cta_band(
     'Strong body. <span class="serif">Clear mind.</span>',
     "The Mind Body LAB is part of the Forma experience. Come explore what whole-person wellness feels like.",
@@ -1504,7 +1503,7 @@ givesback_body = hero(
      "The RISE Program's scholarship fund, accessible programming, and local partnerships are all part of how Forma shows up for the Bay Area."],
     f"{IMG}/slider-locations_turf_alysse_torey.jpg",
     "Forma community giving back",
-    cta=("Learn about RISE", "rise.html"), tag="Community",
+    cta=("Learn about RISE", "rise.html"),
 ) + cta_band(
     'Play it <span class="serif">forward</span>',
     "Want to get involved, donate, or nominate someone for a scholarship? We'd love to hear from you.",
