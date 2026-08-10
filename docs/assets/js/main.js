@@ -34,6 +34,10 @@
         finishChoice();
       });
     });
+    /* Sign Up Now leaves for the join page, so persist a guest view first —
+       otherwise has-view is unset and the chooser greets them again there. */
+    var join = chooser.querySelector(".vc-join");
+    if (join) join.addEventListener("click", function () { setView("guest"); });
   }
   function finishChoice() {
     document.body.classList.remove("choice-open");

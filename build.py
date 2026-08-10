@@ -762,6 +762,10 @@ view_chooser = f"""
         <span class="go">Show me around →</span>
       </div>
     </button>
+    <div class="view-chooser__join">
+      <span>Ready to join?</span>
+      <a class="btn btn--solid btn--sm vc-join" href="join.html">Sign Up Now</a>
+    </div>
     <button class="vc-panel" type="button" data-choose="member">
       <img src="{IMG}/SJ_pool_birdseye.jpg" alt="">
       <div class="vc-panel__body">
