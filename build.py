@@ -20,12 +20,18 @@ STRIP_PHOTOS = [
     "cycle_studio_SJ_500px.jpg",
 ]
 
-# Path prefix for when the site is NOT served from a domain root. GitHub Pages
-# serves this project at /forma-gym-redesign/, so the preview build needs it;
-# the formagym.com cutover build must be made with SITE_BASE empty.
-#   preview:    SITE_BASE=/forma-gym-redesign python3 build.py
-#   production: python3 build.py
-SITE_BASE = os.environ.get("SITE_BASE", "").rstrip("/")
+# Path prefix for when the site is NOT served from a domain root.
+#
+# The deploy workflow rebuilds from source and publishes its own docs/, so this
+# default is what actually reaches GitHub Pages — and Pages serves the project
+# at /forma-gym-redesign/. Hence the default is the preview prefix, not "".
+#
+# FOR THE formagym.com CUTOVER: build with SITE_BASE="" (the site will sit at a
+# domain root). Setting it in .github/workflows/build-deploy.yml would be the
+# tidier home for this, but pushing workflow changes needs a PAT with `workflow`
+# scope, which the current token lacks.
+#   production: SITE_BASE="" python3 build.py
+SITE_BASE = os.environ.get("SITE_BASE", "/forma-gym-redesign").rstrip("/")
 
 HERO_VIDEO_DESKTOP = "assets/video/SJ_WC_walkthru_combo_desktop_hero_18sec.m4v"  # landscape 1280x720, 18s
 HERO_VIDEO_MOBILE = "assets/video/WC_SJ_mobile_hero_18sec_edit.m4v"    # portrait 720x1280, 18s, ≤820px only
