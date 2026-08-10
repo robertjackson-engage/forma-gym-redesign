@@ -20,6 +20,13 @@ STRIP_PHOTOS = [
     "cycle_studio_SJ_500px.jpg",
 ]
 
+# Path prefix for when the site is NOT served from a domain root. GitHub Pages
+# serves this project at /forma-gym-redesign/, so the preview build needs it;
+# the formagym.com cutover build must be made with SITE_BASE empty.
+#   preview:    SITE_BASE=/forma-gym-redesign python3 build.py
+#   production: python3 build.py
+SITE_BASE = os.environ.get("SITE_BASE", "").rstrip("/")
+
 HERO_VIDEO_DESKTOP = "assets/video/SJ_WC_walkthru_combo_desktop_hero_18sec.m4v"  # landscape 1280x720, 18s
 HERO_VIDEO_MOBILE = "assets/video/WC_SJ_mobile_hero_18sec_edit.m4v"    # portrait 720x1280, 18s, ≤820px only
 
@@ -716,14 +723,19 @@ def url_for(filename):
     """Flat internal filename -> live site URL."""
     if filename in URL_MAP:
         p = URL_MAP[filename]
-        return "/" if p == "" else f"/{p}/"
-    return "/" + filename
+        return f"{SITE_BASE}/" if p == "" else f"{SITE_BASE}/{p}/"
+    return f"{SITE_BASE}/{filename}"
 
 
 def rewrite_urls(html):
     """Make every asset + internal link absolute-from-root and extensionless.
-    Required because pages now live in subdirectories, so relative paths break."""
-    html = _re.sub(r'(href|src)="assets/', r'\1="/assets/', html)
+    Required because pages now live in subdirectories, so relative paths break.
+    SITE_BASE prefixes them when the site is not served from a domain root —
+    GitHub Pages serves this project under /forma-gym-redesign/."""
+    html = _re.sub(r'(href|src)="assets/', rf'\1="{SITE_BASE}/assets/', html)
+    # data-src-* and poster carry asset paths too, and are not href/src.
+    html = _re.sub(r'(data-src-desktop|data-src-mobile|poster)="assets/',
+                   rf'\1="{SITE_BASE}/assets/', html)
 
     def _link(m):
         attr, fn, frag = m.group(1), m.group(2), m.group(3) or ""
