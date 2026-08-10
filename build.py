@@ -20,8 +20,8 @@ STRIP_PHOTOS = [
     "cycle_studio_SJ_500px.jpg",
 ]
 
-HERO_VIDEO_DESKTOP = "assets/video/SJ_WC_walkthru_combo_desktop_hero.m4v"  # landscape 1280x720
-HERO_VIDEO_MOBILE = "assets/video/WC_SJ_mobile_hero.m4v"    # portrait 720x1280, ≤820px only
+HERO_VIDEO_DESKTOP = "assets/video/SJ_WC_walkthru_combo_desktop_hero_18sec.m4v"  # landscape 1280x720, 18s
+HERO_VIDEO_MOBILE = "assets/video/WC_SJ_mobile_hero_18sec_edit.m4v"    # portrait 720x1280, 18s, ≤820px only
 
 # ============================================================ CMS content engine
 CONTENT = os.path.join(os.path.dirname(__file__), "content")
