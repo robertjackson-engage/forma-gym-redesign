@@ -752,6 +752,10 @@ def page(filename, title, desc, active, body):
 # ============================================================ shared blocks
 view_chooser = f"""
 <div class="view-chooser" role="dialog" aria-label="Choose your experience">
+  <div class="view-chooser__bar">
+    <span class="brand brand--chooser">{brand_logo()}</span>
+    <a class="btn btn--solid btn--sm vc-join" href="join.html">Sign Up Now</a>
+  </div>
   <div class="view-chooser__panels">
     <button class="vc-panel" type="button" data-choose="guest">
       <img src="{IMG}/annabelle_kettle_HERO_2.jpg" alt="">
@@ -762,10 +766,6 @@ view_chooser = f"""
         <span class="go">Show me around →</span>
       </div>
     </button>
-    <div class="view-chooser__join">
-      <span>Ready to join?</span>
-      <a class="btn btn--solid btn--sm vc-join" href="join.html">Sign Up Now</a>
-    </div>
     <button class="vc-panel" type="button" data-choose="member">
       <img src="{IMG}/SJ_pool_birdseye.jpg" alt="">
       <div class="vc-panel__body">

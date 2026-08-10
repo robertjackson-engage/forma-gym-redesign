@@ -1053,16 +1053,15 @@ body.choice-done .view-chooser {
   transition: transform .9s var(--ease-power);
 }
 .view-chooser__panels { flex: 1; display: flex; flex-direction: column; gap: 2px; min-height: 0; }
-/* A direct path to join, sat between the two panels, for someone who has
-   already decided. Also the only way past the chooser without picking a side. */
-.view-chooser__join {
-  flex: none; display: flex; align-items: center; justify-content: center;
-  gap: clamp(12px, 2vw, 22px); flex-wrap: wrap;
-  padding: clamp(14px, 2.2vh, 20px) var(--pad); background: var(--ink);
+/* Brand bar above the panels: the logo lands before the choice does, and
+   anyone already sold can go straight to join. Also the only way past the
+   chooser without picking a side. */
+.view-chooser__bar {
+  flex: none; display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; padding: clamp(10px, 1.6vh, 16px) var(--pad); background: var(--ink);
 }
-.view-chooser__join span {
-  font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted);
-}
+.brand--chooser { display: flex; align-items: center; }
+.brand--chooser .brand__logo { width: clamp(140px, 34vw, 200px); height: auto; }
 /* No arrow on this one, so centre the label in its own box. */
 .vc-join { justify-content: center; text-align: center; }
 .vc-panel {
