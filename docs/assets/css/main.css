@@ -499,7 +499,7 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
    sit near the bottom edge. Must come after the .go rules above to win. */
 @media (hover: none) {
   .card__label .go { display: none; }
-  .card__label { bottom: 14px; }
+  .card__label { bottom: 22px; }
 }
 .card__below { padding: 20px 2px 0; }
 .card__below p { color: var(--muted); font-size: 14.5px; }
@@ -901,7 +901,11 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   .g-item--a, .g-item--b, .g-item--c { grid-column: 1 / -1; margin-top: 0; aspect-ratio: 4/3; }
   .loc-item { grid-template-columns: 1fr; gap: 26px; }
   .step { grid-template-columns: 1fr; gap: 10px; padding: 30px 0; }
-  .site-footer__top { grid-template-columns: 1fr; gap: 40px; }
+  /* Two link columns sit side by side rather than stacking — the footer was
+     over 1300px tall on a phone. Brand and contact still span the full width. */
+  .site-footer__top { grid-template-columns: 1fr 1fr; gap: 34px 22px; }
+  .site-footer__brand, .site-footer__contact { grid-column: 1 / -1; }
+  .site-footer__links a { padding: 3px 0; font-size: 14px; }
   .site-footer__bottom { flex-direction: column; align-items: flex-start; }
   .menu-list a { font-size: clamp(17px, 4.8vw, 24px); }
   /* Narrow enough to wrap the stats two-up; dividers follow the new grid. */
