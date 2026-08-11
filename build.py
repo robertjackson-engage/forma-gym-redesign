@@ -743,11 +743,139 @@ def url_for(filename):
     return f"{SITE_BASE}/{filename}"
 
 
+# ============================================================ RESPONSIVE IMAGES
+# Variants are produced by tools/gen_responsive.py and committed, because that
+# script needs macOS `sips` and CI runs on Linux. Everything here only reads
+# what is on disk: no variants found means no srcset, and the plain src still
+# serves the full-size file. So a build without them is degraded, never broken.
+_VARIANT_DIR = os.path.join(OUT, "assets", "img", "r")
+
+# How wide each image actually renders, per context. Getting these right is the
+# whole point — a wrong `sizes` makes the browser pick the wrong file.
+SIZES_BY_CONTEXT = {
+    "hero__media":      "100vw",
+    "cta-band__media":  "100vw",
+    "vc-panel":         "100vw",
+    "choice__img":      "100vw",
+    # two-up on a phone, three-up above that
+    "card__media":      "(max-width: 820px) 50vw, 33vw",
+    # stacks full-width on a phone, half the row on desktop
+    "split__media":     "(max-width: 900px) 100vw, 50vw",
+    "loc-item__media":  "(max-width: 900px) 100vw, 50vw",
+    "g-item":           "(max-width: 900px) 100vw, 33vw",
+    # the strip is a fixed-height scroller
+    "marquee__track":   "320px",
+    "trainer-bio":      "150px",
+}
+
+
+def _variants(filename):
+    """[(width, filename), …] for whatever this image has on disk, ascending."""
+    stem, ext = os.path.splitext(filename)
+    out = []
+    for w in (400, 700, 1000, 1400):
+        cand = f"{stem}-{w}{ext}"
+        if os.path.exists(os.path.join(_VARIANT_DIR, cand)):
+            out.append((w, cand))
+    return out
+
+
+def _srcset_for(filename):
+    """srcset value, or "" when this image has no variants."""
+    v = _variants(filename)
+    if not v:
+        return ""
+    parts = [f"{SITE_BASE}/assets/img/r/{fn} {w}w" for w, fn in v]
+    # the untouched original is the top of the set
+    src_w = _natural_width(filename)
+    if src_w:
+        parts.append(f"{SITE_BASE}/assets/img/{filename} {src_w}w")
+    return ", ".join(parts)
+
+
+_WIDTH_CACHE = {}
+
+
+def _natural_width(filename):
+    """Pixel width of the full-size image, read once per build."""
+    if filename in _WIDTH_CACHE:
+        return _WIDTH_CACHE[filename]
+    path = os.path.join(OUT, "assets", "img", filename)
+    w = None
+    try:
+        with open(path, "rb") as fh:
+            head = fh.read(32)
+        if head[:2] == b"\xff\xd8":                      # JPEG
+            w = _jpeg_width(path)
+        elif head[:8] == b"\x89PNG\r\n\x1a\n":           # PNG
+            w = int.from_bytes(head[16:20], "big")
+    except OSError:
+        w = None
+    _WIDTH_CACHE[filename] = w
+    return w
+
+
+def _jpeg_width(path):
+    """Walk the JPEG segments to the frame header — avoids a Pillow dependency."""
+    with open(path, "rb") as fh:
+        fh.read(2)
+        while True:
+            b = fh.read(1)
+            if not b:
+                return None
+            if b != b"\xff":
+                continue
+            marker = fh.read(1)
+            while marker == b"\xff":
+                marker = fh.read(1)
+            if marker in (b"\xd8", b"\xd9") or b"\xd0" <= marker <= b"\xd7":
+                continue
+            length = int.from_bytes(fh.read(2), "big")
+            if 0xC0 <= marker[0] <= 0xCF and marker not in (b"\xc4", b"\xc8", b"\xcc"):
+                fh.read(3)
+                return int.from_bytes(fh.read(2), "big")
+            fh.read(length - 2)
+
+
+def add_srcset(html):
+    """Give every <img> a srcset + a `sizes` matched to how it actually renders.
+
+    Walks the document once tracking the most recent container class, rather
+    than peeking at a fixed window behind each tag — the photo strip holds a
+    dozen <img> in a row, so a window never reaches back to its wrapper. The
+    context resets at each </section> so a component cannot leak into the next.
+    """
+    token = _re.compile(r'class="(?P<cls>[^"]*)"|(?P<close></section>)'
+                        r'|(?P<img><img[^>]+src="[^"]*assets/img/(?P<file>[A-Za-z0-9._@%-]+)"[^>]*>)')
+    out, pos, context = [], 0, None
+    for m in token.finditer(html):
+        out.append(html[pos:m.start()])
+        pos = m.end()
+        if m.group("close"):
+            context = None
+            out.append(m.group(0))
+        elif m.group("cls") is not None:
+            hit = next((v for k, v in SIZES_BY_CONTEXT.items() if k in m.group("cls")), None)
+            if hit:
+                context = hit
+            out.append(m.group(0))
+        else:
+            tag, filename = m.group("img"), m.group("file")
+            srcset = "" if ("srcset=" in tag or filename.endswith(".svg")) else _srcset_for(filename)
+            out.append(tag if not srcset
+                       else tag[:-1] + f' srcset="{srcset}" sizes="{context or "100vw"}">')
+    out.append(html[pos:])
+    return "".join(out)
+
+
 def rewrite_urls(html):
     """Make every asset + internal link absolute-from-root and extensionless.
     Required because pages now live in subdirectories, so relative paths break.
     SITE_BASE prefixes them when the site is not served from a domain root —
     GitHub Pages serves this project under /forma-gym-redesign/."""
+    # srcset first, while the src paths are still relative and easy to match.
+    # It emits SITE_BASE-prefixed URLs itself, so the rewrites below skip it.
+    html = add_srcset(html)
     html = _re.sub(r'(href|src)="assets/', rf'\1="{SITE_BASE}/assets/', html)
     # data-src-* and poster carry asset paths too, and are not href/src.
     html = _re.sub(r'(data-src-desktop|data-src-mobile|poster)="assets/',
