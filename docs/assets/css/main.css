@@ -380,12 +380,15 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 /* ---------- stat band ---------- */
 .stats { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .section--light .stats { border-color: var(--line-dark); }
+/* auto-fit, not a fixed 4: home has three stats and locations has four, and a
+   hardcoded count left the odd column empty and the row bunched to the left. */
 .stats__grid {
-  display: grid; grid-template-columns: repeat(4, 1fr);
+  display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr);
 }
 .stat {
   padding: clamp(36px, 4.4vw, 70px) clamp(20px, 2.6vw, 48px);
   border-left: 1px solid var(--line); position: relative;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
 }
 .section--light .stat { border-color: var(--line-dark); }
 .stat:first-child { border-left: none; }

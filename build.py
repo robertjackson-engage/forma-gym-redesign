@@ -285,7 +285,7 @@ def header_html(active=""):
         <a class="btn btn--solid btn--sm only-member" href="group-fitness.html#schedule">Class Schedule</a>
       </div>
       <div class="menu-side__pass">
-        <p>Two Bay Area clubs, one membership. Come Play Every Day.</p>
+        <p>Two unique Bay Area clubs. Come Play Every Day.</p>
         <a class="btn btn--solid btn--sm" href="join.html">Join Now <span class="arr">→</span></a>
       </div>
       <div class="menu-side__group">
@@ -859,7 +859,7 @@ home_body = view_chooser + hero(
   </div>
 </section>
 """ + photo_marquee(STRIP_PHOTOS[5:] + STRIP_PHOTOS[:5]) + split(
-    "Two clubs, one membership", "03",
+    "Our clubs", "03",
     'Walnut <span class="serif">Creek</span>',
     ["The birthplace of Forma since 2009. Right off the 680/24 corridor and completely renovated — 35,000 square feet of indoor and outdoor fitness motivation, a heated outdoor lap pool under towering redwoods, onsite Kidzville, cryotherapy, a full-service day spa and the Forma Café.",
      "Open Monday–Thursday 5am–11pm, Friday 5am–10pm, weekends 6am–8pm. 1908 Olympic Blvd, Walnut Creek."],
@@ -867,7 +867,7 @@ home_body = view_chooser + hero(
     "Forma Gym Walnut Creek facade",
     cta=("Explore Walnut Creek", "walnut-creek.html"),
 ) + split(
-    "Two clubs, one membership", "04",
+    "Our clubs", "04",
     'San <span class="serif">Jose</span>',
     ["Serving South San Jose since 2015. A 40,000 sq. ft. luxury facility with an 8,000 sq. ft. covered outdoor fitness area — cardio, strength, group fitness, a heated 6-lane junior olympic pool with hot tub, and full-service locker rooms with sauna, steam and a Chilly Goat® cold plunge.",
      "Open Monday–Thursday 5am–11pm, Friday 5am–10pm, weekends 6am–8pm. 5434 Thornwood Dr, San Jose."],
@@ -1093,8 +1093,8 @@ training_body = hero(
 # ============================================================ LOCATIONS
 locations_body = hero(
     "Locations &amp; Hours",
-    ["Two clubs.", 'One <span class="serif">membership</span>.'],
-    "Walnut Creek and San Jose — both premium, both all-inclusive, both yours with a single membership. Find your home club below.",
+    ["Two unique", 'Bay Area <span class="serif">clubs</span>.'],
+    "Walnut Creek and San Jose — both premium, both all-inclusive. Find your home club below.",
     img=f"{IMG}/Forma_WalnutCreek_locations_pool_birdeye-2.jpg",
     crumb="Locations",
     actions=[("Visit Us", "join.html", True)],
@@ -1142,7 +1142,6 @@ locations_body = hero(
 </section>
 """ + stats_band([
     (2, "", "Premium Bay Area clubs"),
-    (1, "", "Membership covers both"),
     (75, "K+", "Combined square feet"),
     (14, "", "Group fitness formats"),
 ]) + cta_band(
@@ -1853,7 +1852,7 @@ trial_body = hero(
     "Visit Us", ac_id=33,
 ) + cta_band(
     'Come <span class="serif">play</span> with us',
-    "Two clubs, one membership. The only thing left to do is show up.",
+    "Two unique Bay Area clubs. The only thing left to do is show up.",
     f"{IMG}/slider-locations_turf_alysse_torey.jpg",
 )
 
@@ -2105,7 +2104,7 @@ PAGES = [
     ("givesback.html", "Forma Gives Back | Fitness for Everyone", "Forma believes fitness should be available to everyone on the spectrum of movement. Learn how Forma Gives Back to the Bay Area.", "", givesback_body),
     ("walnut-creek.html", "Forma Gym Walnut Creek | 1908 Olympic Blvd", "Forma Gym Walnut Creek — 35,000 sq ft of indoor &amp; outdoor fitness, heated pool, Kidzville, cryotherapy, day spa and Café.", "locations.html", walnutcreek_body),
     ("san-jose.html", "Forma Gym San Jose | 5434 Thornwood Dr", "Forma Gym San Jose — 40,000 sq ft luxury facility with covered outdoor turf, heated 6-lane pool, cold plunge and massage services.", "locations.html", sanjose_body),
-    ("locations.html", "Locations &amp; Hours | Forma Gym Walnut Creek &amp; San Jose", "Two premium Bay Area clubs, one membership. Hours, addresses and amenities for Forma Gym Walnut Creek &amp; San Jose.", "locations.html", locations_body),
+    ("locations.html", "Locations &amp; Hours | Forma Gym Walnut Creek &amp; San Jose", "Two premium Bay Area clubs. Hours, addresses and amenities for Forma Gym Walnut Creek &amp; San Jose.", "locations.html", locations_body),
     ("join.html", "Join Now | Forma Gym", "Join Forma Gym — all-inclusive access to both Bay Area clubs, every class and recovery amenity.", "", join_body),
     ("trial-pass.html", "Schedule a Visit | Forma Gym", "Schedule a visit, tour or guest workout at Forma Gym, plus a complimentary coaching session.", "", trial_body),
     ("outdoor-training.html", "Outdoor Fitness | Forma Gym", "Strength, cardio, group exercise and cycle — outdoors, year-round, at both Forma Gym clubs.", "", outdoor_body),
@@ -2157,7 +2156,7 @@ def build_404():
     <div class="rows reveal">
       <a class="row-item" href="group-fitness.html"><span class="row-item__idx">01</span><span class="row-item__title">Group Fitness</span><span class="row-item__desc">Every class included with membership.</span><span class="row-item__arrow">&rarr;</span></a>
       <a class="row-item" href="training.html"><span class="row-item__idx">02</span><span class="row-item__title">Personal Training</span><span class="row-item__desc">Coaching built around your goal.</span><span class="row-item__arrow">&rarr;</span></a>
-      <a class="row-item" href="join.html"><span class="row-item__idx">03</span><span class="row-item__title">Join Forma</span><span class="row-item__desc">Two clubs, one membership.</span><span class="row-item__arrow">&rarr;</span></a>
+      <a class="row-item" href="join.html"><span class="row-item__idx">03</span><span class="row-item__title">Join Forma</span><span class="row-item__desc">Two unique Bay Area clubs.</span><span class="row-item__arrow">&rarr;</span></a>
       <a class="row-item" href="contact.html"><span class="row-item__idx">04</span><span class="row-item__title">Contact a Club</span><span class="row-item__desc">Walnut Creek &amp; San Jose.</span><span class="row-item__arrow">&rarr;</span></a>
     </div>
   </div>
