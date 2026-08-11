@@ -850,8 +850,8 @@ home_body = view_chooser + hero(
     </div>
     <div class="card-grid" data-stagger>
       <a class="card" href="group-fitness.html"><div class="card__media"><img src="{IMG}/group_fit_jess.jpg" alt="Group fitness class" loading="lazy"><div class="card__label"><h3>Group<br>Fitness</h3><span class="go">Explore →</span></div></div></a>
-      <a class="card" href="training.html"><div class="card__media"><img src="{IMG}/jason_johnson_turf2.jpg" alt="Personal training" loading="lazy"><div class="card__label"><h3>Personal<br>Training</h3><span class="go">Explore →</span></div></div></a>
-      <a class="card" href="cycle.html"><div class="card__media"><img src="{IMG}/slider-WC_cycle_indoor_v2.jpg" alt="Cycle studio" loading="lazy"><div class="card__label"><h3>Cycle</h3><span class="go">Explore →</span></div></div></a>
+      <a class="card" href="training.html"><div class="card__media"><img src="{IMG}/pt_liz.jpg" alt="Personal training" loading="lazy"><div class="card__label"><h3>Personal<br>Training</h3><span class="go">Explore →</span></div></div></a>
+      <a class="card" href="cycle.html"><div class="card__media"><img src="{IMG}/cycle_sj.jpg" alt="Cycle studio" loading="lazy"><div class="card__label"><h3>Cycle</h3><span class="go">Explore →</span></div></div></a>
       <a class="card" href="recovery.html"><div class="card__media"><img src="{IMG}/Forma_WalnutCreek_locations_cryo.jpg" alt="Forma cryotherapy chamber" loading="lazy"><div class="card__label"><h3>Recovery<br>&amp; Cryo</h3><span class="go">Explore →</span></div></div></a>
       <a class="card" href="aqua.html"><div class="card__media"><img class="obj-r" src="{IMG}/slider-aqua_v3.jpg" alt="Aqua studio" loading="lazy"><div class="card__label"><h3>Aqua</h3><span class="go">Explore →</span></div></div></a>
       <a class="card" href="spa.html"><div class="card__media"><img src="{IMG}/Forma_Walnut-Creek_Spa_Header_2018.jpg" alt="The spa" loading="lazy"><div class="card__label"><h3>The<br>Spa</h3><span class="go">Explore →</span></div></div></a>
