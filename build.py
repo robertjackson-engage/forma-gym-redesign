@@ -825,11 +825,10 @@ home_body = view_chooser + hero(
     <div class="intro-grid">
       <div>
         <p class="eyebrow">Our mission</p>
-        <h2 class="h-display reveal">Fitness that becomes part of your <span class="serif">life</span></h2>
+        <h2 class="h-display reveal">Making exercise a part of your daily life, <span class="serif">for the rest of your life.</span></h2>
       </div>
       <div class="intro-grid__right">
-        <p class="lede reveal">"To make exercise a part of our member's daily lives, for the rest of their lives." That's the whole point of Forma.</p>
-        <p class="body-copy reveal">From luxury amenities to the industry's best instructors, we give you a safe, motivating space to show up and Play Every Day. Two unique Bay Area locations. A holistic approach to fitness. Modern, cutting-edge design with an authentic community feel.</p>
+        <p class="lede reveal">From luxury amenities to the industry's best instructors, we give you a safe, motivating space to show up and Play Every Day. Two unique Bay Area locations. A holistic approach to fitness. Modern, cutting-edge design with an authentic community feel.</p>
         <div class="reveal"><a class="inline-link" href="about.html">The Forma story →</a></div>
       </div>
     </div>
@@ -930,7 +929,7 @@ about_body = hero(
 ) + f"""
 <section class="section section--tight">
   <div class="wrap">
-    <div class="intro-grid">
+    <div class="intro-grid intro-grid--copy">
       <div>
         <p class="eyebrow">Our mission</p>
         <h2 class="h-display reveal">Play + move<br><span class="serif">every day</span></h2>
