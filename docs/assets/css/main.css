@@ -472,9 +472,13 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 .card__label {
   position: absolute; left: 22px; right: 22px; bottom: 20px; z-index: 2;
 }
+/* Card titles take the eyebrow treatment rather than the chunky display face —
+   letterspaced body type reads cleaner over a photo. Trying this out; the
+   display-face version is one rule away if it loses too much presence. */
 .card__label h3 {
-  font-family: var(--font-display); text-transform: uppercase; font-weight: 400;
-  font-size: clamp(22px, 1.9vw, 30px); line-height: 1.05; color: var(--white);
+  font-family: var(--font-body); text-transform: uppercase; font-weight: 600;
+  font-size: clamp(12px, 1.05vw, 14px); letter-spacing: 0.26em; line-height: 1.5;
+  color: var(--white);
 }
 .card__label .go {
   display: inline-flex; align-items: center; gap: 10px; margin-top: 10px;
