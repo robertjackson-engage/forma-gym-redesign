@@ -101,7 +101,7 @@ LOGO = "assets/img/forma-logo.svg"   # white vector wordmark
 
 
 def brand_logo(cls=""):
-    return f'<img class="brand__logo {cls}" src="{LOGO}" alt="Forma Gym" width="422" height="37" />'
+    return f'<img class="brand__logo {cls}" src="{LOGO}" alt="Forma Gym" width="385" height="34" />'
 
 
 # Brand glyphs, inline so they inherit currentColor and cost no extra request.
@@ -276,6 +276,14 @@ def header_html(active=""):
   <div class="menu-overlay__grid">
     <nav class="menu-list" aria-label="All pages">{menu_links}</nav>
     <aside class="menu-side">
+      <div class="menu-side__controls">
+        <div class="view-toggle" role="group" aria-label="View site as">
+          <button type="button" data-view-set="guest">Guest</button>
+          <button type="button" data-view-set="member">Member</button>
+        </div>
+        <a class="btn btn--sm only-guest" href="contact.html#tour">Book a Tour</a>
+        <a class="btn btn--solid btn--sm only-member" href="group-fitness.html#schedule">Class Schedule</a>
+      </div>
       <div class="menu-side__pass">
         <p>Two Bay Area clubs, one membership. Come Play Every Day.</p>
         <a class="btn btn--solid btn--sm" href="join.html">Join Now <span class="arr">→</span></a>

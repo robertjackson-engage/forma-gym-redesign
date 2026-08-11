@@ -22,7 +22,12 @@
   ].join("\n");
 
   // Forma 'f' mark — geometric, matches the wordmark
-  var MARK = '<svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M20 52 V18 a8 8 0 0 1 8-8 h16" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 32 h22" stroke="currentColor" stroke-width="8" stroke-linecap="round"/></svg>';
+  /* Forma "Fg" brand mark, inlined so it inherits currentColor and costs no
+     extra request. Source: Fg.svg (Illustrator export), paths unchanged. */
+  var MARK = '<svg viewBox="0 0 694.9 587.7" fill="currentColor" aria-hidden="true">' +
+    '<path d="M62.3,119.5l-.8,344.9c0,22.6-7.9,43.3-23,63.4h125.3l.9-215.7h129.2c23.1,0,48.2,8.1,75.7,24.8l.3-102.3c-25.6,16.5-51.1,24.3-76,24.3h-129.3c0,.1.4-160.5.4-160.5h378.5c25.8,0,50.7,8,73.6,24l.3-77.5H39.4c15,28.5,23.1,53.5,22.9,74.7Z"/>' +
+    '<path d="M542.2,439h53.4v33.5c-13.5,9.4-30.9,14.1-50.2,14.1-42.8,0-73.2-31.6-73.1-74.4v-.8c.1-39.8,31-73.1,69.6-73.1s44.3,8.6,62.8,23.5l24.1-46.5c-22.4-15.9-47.1-24.6-85.1-24.6-73.1,0-126.8,54.7-127.1,121.4v.6c0,69.5,51.7,120.8,127,120.8s78.4-16.8,103.3-37.3l.3-102h-105v44.7Z"/>' +
+    '</svg>';
 
   var CHIPS = [
     "What's included in membership?",
