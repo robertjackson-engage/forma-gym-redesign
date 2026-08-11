@@ -353,7 +353,11 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 /* For sections whose heading is short enough to break on its own — hand the
    spare width to the copy instead. */
 .intro-grid--copy { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
-.intro-grid__right { display: flex; flex-direction: column; gap: 26px; padding-top: clamp(8px, 2vw, 30px); }
+/* Drop the copy column by exactly the eyebrow's own height plus its bottom
+   margin, so its first line starts level with the heading beside it rather
+   than floating above it. */
+.intro-grid { --eyebrow-block: calc(18px + clamp(22px, 3vw, 40px)); }
+.intro-grid__right { display: flex; flex-direction: column; gap: 26px; padding-top: var(--eyebrow-block); }
 /* The heading breaks to its own lines, so the copy column gets the room. */
 .intro-grid__right .lede { max-width: 64ch; }
 
