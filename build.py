@@ -825,7 +825,7 @@ home_body = view_chooser + hero(
     <div class="intro-grid">
       <div>
         <p class="eyebrow">Our mission</p>
-        <h2 class="h-display reveal">Making exercise a part of your daily life, <span class="serif">for the rest of your life.</span></h2>
+        <h2 class="h-display reveal">Making exercise a part of your daily life. <span class="serif">For the rest of your life.</span></h2>
       </div>
       <div class="intro-grid__right">
         <p class="lede reveal">From luxury amenities to the industry's best instructors, we give you a safe, motivating space to show up and Play Every Day. Two unique Bay Area locations. A holistic approach to fitness. Modern, cutting-edge design with an authentic community feel.</p>
