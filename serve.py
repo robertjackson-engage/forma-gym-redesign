@@ -40,9 +40,29 @@ def load_dotenv():
 load_dotenv()
 
 
+# The built site is path-prefixed for GitHub Pages (see SITE_BASE in build.py),
+# so serve it under the same prefix here — otherwise every asset 404s locally.
+SITE_BASE = os.environ.get("SITE_BASE", "/forma-gym-redesign").rstrip("/")
+
+
 class Handler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=SITE, **kwargs)
+
+    def do_GET(self):
+        # Bare / -> the prefixed home, so localhost:PORT still just works.
+        if SITE_BASE and self.path.rstrip("/") in ("", SITE_BASE.rstrip("/")):
+            if self.path != SITE_BASE + "/":
+                self.send_response(302)
+                self.send_header("Location", SITE_BASE + "/")
+                self.end_headers()
+                return
+        super().do_GET()
+
+    def translate_path(self, path):
+        if SITE_BASE and path.startswith(SITE_BASE):
+            path = path[len(SITE_BASE):] or "/"
+        return super().translate_path(path)
 
     def do_POST(self):
         if self.path != "/api/chat":
