@@ -836,8 +836,8 @@ home_body = view_chooser + hero(
 </section>
 """ + stats_band([
     (2, "", "Unique Bay Area clubs"),
-    (75, "K+", "Square feet of indoor + outdoor fitness"),
-    (14, "", "Group fitness formats, all included"),
+    (75, "K+", "Sq. ft. of indoor/outdoor fitness"),
+    (14, "", "All-inclusive group fitness formats"),
 ]) + f"""
 <section class="section">
   <div class="wrap">
@@ -1568,7 +1568,6 @@ def class_page(slug, title, img, lead, others):
         <p class="eyebrow">More ways to move</p>
         <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Mix it <span class="serif">up</span></h2>
       </div>
-      <a class="inline-link reveal" href="group-fitness.html">All 14 classes →</a>
     </div>
     <div class="rows reveal">{other_cards}</div>
   </div>
