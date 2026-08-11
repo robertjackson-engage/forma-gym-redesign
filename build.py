@@ -1146,7 +1146,7 @@ locations_body = hero(
     (14, "", "Group fitness formats"),
 ]) + cta_band(
     'Find your <span class="serif">home club</span>',
-    "Both locations are all-inclusive: every class, the pool, the recovery suites — the works.",
+    "Both locations are all-inclusive: every class, the pool, the recovery suites - the works.",
     f"{IMG}/pool_sunset_SJ_500px.jpg",
 )
 
