@@ -469,10 +469,6 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   background: linear-gradient(to top, rgba(6,7,9,0.72) 0%, rgba(6,7,9,0.12) 38%, transparent 60%);
   transition: opacity .6s;
 }
-.card__num {
-  position: absolute; top: 18px; left: 20px; z-index: 2;
-  font-size: 11px; letter-spacing: 0.26em; color: rgba(243,240,233,0.85);
-}
 .card__label {
   position: absolute; left: 22px; right: 22px; bottom: 20px; z-index: 2;
 }
