@@ -463,10 +463,17 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
    set on the <img>: .obj-r pulls the window right, .obj-l left (BRAND-KIT §5) */
 .card__media img.obj-r { object-position: 72% 28%; }
 .card__media img.obj-l { object-position: 22% 30%; }
-/* lighter, label-only scrim so the photo reads clearly */
+/* Bottom-up scrim behind the label. Deeper and with an extra stop since the
+   titles went to light letterspaced type, which needs more separation from a
+   busy photo than the old display face did — the pool and spa shots are the
+   test cases. Still clears the top two-thirds of the image. */
 .card__media::after {
   content: ""; position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(6,7,9,0.72) 0%, rgba(6,7,9,0.12) 38%, transparent 60%);
+  background: linear-gradient(to top,
+    rgba(6,7,9,0.88) 0%,
+    rgba(6,7,9,0.55) 18%,
+    rgba(6,7,9,0.18) 38%,
+    transparent 62%);
   transition: opacity .6s;
 }
 .card__label {

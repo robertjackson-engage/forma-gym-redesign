@@ -844,9 +844,8 @@ home_body = view_chooser + hero(
     <div class="cards-head">
       <div>
         <p class="eyebrow">Find your movement</p>
-        <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Play every day <span class="serif">&amp; every way.</span></h2>
+        <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Play every day <span class="serif">in every way.</span></h2>
       </div>
-      <a class="inline-link reveal" href="group-fitness.html">View all classes →</a>
     </div>
     <div class="card-grid" data-stagger>
       <a class="card" href="group-fitness.html"><div class="card__media"><img src="{IMG}/group_fit_jess.jpg" alt="Group fitness class" loading="lazy"><div class="card__label"><h3>Group<br>Fitness</h3><span class="go">Explore →</span></div></div></a>
