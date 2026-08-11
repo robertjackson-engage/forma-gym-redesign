@@ -835,7 +835,7 @@ home_body = view_chooser + hero(
   </div>
 </section>
 """ + stats_band([
-    (2, "", "Bay Area clubs, one membership"),
+    (2, "", "Unique Bay Area clubs"),
     (75, "K+", "Square feet of indoor + outdoor fitness"),
     (14, "", "Group fitness formats, all included"),
 ]) + f"""
