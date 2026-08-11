@@ -33,6 +33,8 @@ STRIP_PHOTOS = [
 #   production: SITE_BASE="" python3 build.py
 SITE_BASE = os.environ.get("SITE_BASE", "/forma-gym-redesign").rstrip("/")
 
+FOUNDED = 2009            # Walnut Creek opened; drives the "years in the Bay Area" stat
+
 HERO_VIDEO_DESKTOP = "assets/video/SJ_WC_walkthru_combo_desktop_hero_18sec.m4v"  # landscape 1280x720, 18s
 HERO_VIDEO_MOBILE = "assets/video/WC_SJ_mobile_hero_18sec_edit.m4v"    # portrait 720x1280, 18s, ≤820px only
 
@@ -838,13 +840,14 @@ home_body = view_chooser + hero(
     (2, "", "Unique Bay Area clubs"),
     (75, "K+", "Sq. ft. of indoor/outdoor fitness"),
     (14, "", "All-inclusive group fitness formats"),
+    (time.localtime().tm_year - FOUNDED, "", "Years in the Bay Area"),
 ]) + f"""
 <section class="section">
   <div class="wrap">
     <div class="cards-head">
       <div>
         <p class="eyebrow">Find your movement</p>
-        <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Play every day <span class="serif">in every way.</span></h2>
+        <h2 class="h-display reveal break-accent" style="font-size:clamp(34px,4.6vw,72px)">Play every day <span class="serif">in every way.</span></h2>
       </div>
     </div>
     <div class="card-grid" data-stagger>

@@ -481,11 +481,6 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 .card__label {
   position: absolute; left: 22px; right: 22px; bottom: 10px; z-index: 2;
 }
-/* No hover, so Explore can never appear: drop it and let the title sit low. */
-@media (hover: none) {
-  .card__label .go { display: none; }
-  .card__label { bottom: 18px; }
-}
 /* Card titles take the eyebrow treatment rather than the chunky display face —
    letterspaced body type reads cleaner over a photo. Trying this out; the
    display-face version is one rule away if it loses too much presence. */
@@ -500,6 +495,12 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   opacity: 0; transform: translateY(8px); transition: opacity .5s, transform .5s var(--ease-out);
 }
 .card:hover .card__label .go { opacity: 1; transform: none; }
+/* No hover, so Explore can never appear — drop it entirely and let the title
+   sit near the bottom edge. Must come after the .go rules above to win. */
+@media (hover: none) {
+  .card__label .go { display: none; }
+  .card__label { bottom: 14px; }
+}
 .card__below { padding: 20px 2px 0; }
 .card__below p { color: var(--muted); font-size: 14.5px; }
 .section--light .card__below p { color: var(--muted-dark); }
@@ -870,6 +871,9 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 }
 
 @media (max-width: 820px) {
+  /* Break the accent half onto its own line rather than letting it wrap
+     mid-phrase — "Play every day / in every way." */
+  .break-accent .serif { display: block; }
   .site-header__inner { height: 70px; }
   /* Cap the wordmark so the hamburger always fits beside it. */
   .site-header .brand__logo { width: min(68vw, 268px); height: auto; }
