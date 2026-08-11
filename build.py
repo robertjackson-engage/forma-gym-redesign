@@ -939,7 +939,9 @@ view_chooser = f"""
 home_body = view_chooser + hero(
     "Walnut Creek &amp; San Jose · Est. 2009",
     ["Play", '<span class="serif">every</span> day'],
-    "Two luxury Bay Area clubs built around one idea: make movement the best part of your day. World-class instructors, resort-style amenities, and a community that actually feels like one.",
+    "Two unique Bay Area clubs built around one idea: making movement a part of your day - "
+    "every day. Featuring world-class trainers &amp; instructors, resort-style amenities &amp; an "
+    "authentic community atmosphere, Forma offers a dynamic, holistic approach to fitness.",
     poster=f"{IMG}/forma-hero-poster.jpg",
     walkthrough=True,
     actions=[

@@ -283,9 +283,11 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 .hero__title .ln > span { display: inline-block; transform: translateY(125%); transition: transform 1.15s var(--ease-power); }
 .is-loaded .hero__title .ln > span { transform: translateY(0); }
 .hero__title .serif { font-family: inherit; font-style: inherit; text-transform: inherit; letter-spacing: inherit; color: var(--accent); font-size: inherit; }
+/* Sized down a step and tightened, and a little wider, to carry the longer
+   intro copy without pushing the hero buttons off a phone screen. */
 .hero__sub {
-  max-width: 560px; margin-top: clamp(20px, 3.4vh, 36px);
-  font-size: clamp(16px, 1.3vw, 19px); line-height: 1.6; color: rgba(243,240,233,0.86);
+  max-width: 600px; margin-top: clamp(16px, 2.6vh, 28px);
+  font-size: clamp(15px, 1.15vw, 17px); line-height: 1.45; color: rgba(243,240,233,0.86);
   opacity: 0; transform: translateY(24px); transition: opacity .9s ease .55s, transform .9s var(--ease-out) .55s;
 }
 .is-loaded .hero__sub { opacity: 1; transform: none; }
@@ -880,7 +882,10 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   .hero__inner { padding-top: 130px; }
   .hero__meta { display: none; }
   .hero__title { font-size: clamp(46px, 13.5vw, 80px); }
-  .intro-grid { grid-template-columns: 1fr; gap: 36px; }
+  /* Stacked, so the column alignment padding is dead space — the heading sits
+     directly above the copy now, not beside it. */
+  .intro-grid { grid-template-columns: 1fr; gap: 18px; }
+  .intro-grid__right { padding-top: 0; }
   .split, .split--rev { grid-template-columns: 1fr; gap: 30px; }
   /* Stacked, the copy leads and the photo follows — a phone reader should hit
      the point before the picture. Applies to both directions. */
