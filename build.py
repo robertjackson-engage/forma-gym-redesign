@@ -345,7 +345,7 @@ def footer_html():
         <a class="tel" href="tel:9259326400">Walnut Creek</a>
         <a href="walnut-creek.html">1908 Olympic Blvd · (925) 932-6400</a>
         {socials("formawalnutcreek", "Walnut Creek")}
-        <a class="tel" href="tel:4083631010" style="margin-top:22px">San Jose</a>
+        <a class="tel" href="tel:4083631010">San Jose</a>
         <a href="san-jose.html">5434 Thornwood Dr · (408) 363-1010</a>
         {socials("formasanjose", "San Jose")}
       </div>
