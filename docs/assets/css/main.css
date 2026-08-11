@@ -879,7 +879,11 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   .site-header__inner { height: 70px; }
   /* Cap the wordmark so the hamburger always fits beside it. */
   .site-header .brand__logo { width: min(68vw, 268px); height: auto; }
-  .hero__inner { padding-top: 130px; }
+  /* The hero is bottom-anchored, so its height is what governs how much dead
+     space sits above the kicker. Trimming it lifts the whole fold and lets the
+     next section peek in, which also signals there is more below. */
+  .hero { min-height: 84svh; }
+  .hero__inner { padding-top: 96px; padding-bottom: clamp(36px, 5vh, 56px); }
   .hero__meta { display: none; }
   .hero__title { font-size: clamp(46px, 13.5vw, 80px); }
   /* Stacked, so the column alignment padding is dead space — the heading sits
