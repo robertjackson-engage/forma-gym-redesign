@@ -881,7 +881,6 @@ home_body = view_chooser + hero(
         <p class="eyebrow">Recover like an athlete</p>
         <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Wellness, <span class="serif">elevated</span></h2>
       </div>
-      <a class="inline-link reveal" href="recovery.html">More recovery →</a>
     </div>
     <div class="card-grid card-grid--2" data-stagger>
       <div class="card"><div class="card__media card__media--wide"><img src="{IMG}/chillyGOAT_SJ_500px.jpg" alt="Chilly Goat cold plunge" loading="lazy"><div class="card__label"><h3>Cryotherapy + Cold Plunge</h3></div></div><div class="card__below"><p>Burn 500–800 calories in a single 3-minute session, reduce inflammation and pain, heal injuries faster, and sleep better. A natural, non-invasive reset trusted by Olympic and pro athletes — and now part of your club.</p></div></div>
