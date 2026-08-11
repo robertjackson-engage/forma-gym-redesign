@@ -844,7 +844,7 @@ home_body = view_chooser + hero(
     <div class="cards-head">
       <div>
         <p class="eyebrow">Find your movement</p>
-        <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Every way to <span class="serif">play</span></h2>
+        <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Play every day <span class="serif">&amp; every way.</span></h2>
       </div>
       <a class="inline-link reveal" href="group-fitness.html">View all classes →</a>
     </div>
@@ -858,7 +858,7 @@ home_body = view_chooser + hero(
     </div>
   </div>
 </section>
-""" + photo_marquee(STRIP_PHOTOS[5:] + STRIP_PHOTOS[:5]) + split(
+""" + split(
     "Our clubs", "03",
     'Walnut <span class="serif">Creek</span>',
     ["The birthplace of Forma since 2009. Right off the 680/24 corridor and completely renovated — 35,000 square feet of indoor and outdoor fitness motivation, a heated outdoor lap pool under towering redwoods, onsite Kidzville, cryotherapy, a full-service day spa and the Forma Café.",

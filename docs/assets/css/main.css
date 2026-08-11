@@ -839,6 +839,12 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 /* ---------- responsive ---------- */
 @media (max-width: 1100px) {
   .nav-desktop { display: none; }
+  /* Once the hamburger is the nav, the header is logo + hamburger only. The
+     CTAs and the guest/member toggle move into the overlay, where there is
+     room — otherwise they crowd the bar with no nav links to justify it. */
+  .header-cta .btn { display: none; }
+  .header-cta .view-toggle { display: none; }
+  .menu-side__controls { display: flex; }
   .menu-overlay__grid { grid-template-columns: 1fr; padding-top: 120px; gap: 44px; }
   .menu-side { justify-content: flex-start; }
   .stats__grid { grid-template-columns: repeat(2, 1fr); }
@@ -854,11 +860,6 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 
 @media (max-width: 820px) {
   .site-header__inner { height: 70px; }
-  /* Mobile header is logo + hamburger only. The CTAs and the guest/member
-     toggle move into the menu overlay, where there is room for them. */
-  .header-cta .btn { display: none; }
-  .header-cta .view-toggle { display: none; }
-  .menu-side__controls { display: flex; }
   /* Cap the wordmark so the hamburger always fits beside it. */
   .site-header .brand__logo { width: min(68vw, 268px); height: auto; }
   .hero__inner { padding-top: 130px; }
