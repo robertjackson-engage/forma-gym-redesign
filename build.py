@@ -960,7 +960,7 @@ home_body = view_chooser + hero(
         <h2 class="h-display reveal">Making exercise a part of your daily life. <span class="serif">For the rest of your life.</span></h2>
       </div>
       <div class="intro-grid__right">
-        <p class="lede reveal">The goal here at Forma has always been to create a community where fitness and health is available to EVERYONE on the spectrum of movement - from those individuals that are struggling just to stand, to world-class athletes. We are very proud of what we’ve created and we love our Members, our Team, our Community and we LOVE being here for you!</p>
+        <p class="lede reveal">Our goal at Forma has always been to create a community where fitness and health is available to EVERYONE on the spectrum of movement - from those individuals that are struggling just to stand, to world-class athletes. We are very proud of what we’ve created and we love our Members, our Team, our Community and we LOVE being here for you!</p>
         <div class="reveal"><a class="inline-link" href="about.html">The Forma story →</a></div>
       </div>
     </div>
