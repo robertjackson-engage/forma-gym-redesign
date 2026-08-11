@@ -283,11 +283,13 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 .hero__title .ln > span { display: inline-block; transform: translateY(125%); transition: transform 1.15s var(--ease-power); }
 .is-loaded .hero__title .ln > span { transform: translateY(0); }
 .hero__title .serif { font-family: inherit; font-style: inherit; text-transform: inherit; letter-spacing: inherit; color: var(--accent); font-size: inherit; }
-/* Sized down a step and tightened, and a little wider, to carry the longer
-   intro copy without pushing the hero buttons off a phone screen. */
+/* Set to match the "Our mission" lede — same size, leading and light weight —
+   so the two big blocks of intro copy read as one voice. Widened to carry the
+   longer text without crowding. */
 .hero__sub {
-  max-width: 600px; margin-top: clamp(16px, 2.6vh, 28px);
-  font-size: clamp(15px, 1.15vw, 17px); line-height: 1.45; color: rgba(243,240,233,0.86);
+  max-width: 620px; margin-top: clamp(16px, 2.6vh, 28px);
+  font-size: clamp(17px, 1.35vw, 20px); line-height: 1.55; font-weight: 300;
+  color: rgba(243,240,233,0.9);
   opacity: 0; transform: translateY(24px); transition: opacity .9s ease .55s, transform .9s var(--ease-out) .55s;
 }
 .is-loaded .hero__sub { opacity: 1; transform: none; }
@@ -882,8 +884,11 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   /* The hero is bottom-anchored, so its height is what governs how much dead
      space sits above the kicker. Trimming it lifts the whole fold and lets the
      next section peek in, which also signals there is more below. */
-  .hero { min-height: 84svh; }
-  .hero__inner { padding-top: 96px; padding-bottom: clamp(36px, 5vh, 56px); }
+  .hero { min-height: 92svh; }
+  .hero__inner { padding-top: 118px; padding-bottom: clamp(44px, 6vh, 64px); }
+  /* Match the "Our mission" lede on a phone — 18px at 1.55 with the lighter
+     weight reads noticeably better over a photo than the smaller desktop size. */
+  .hero__sub { font-size: 18px; line-height: 1.55; font-weight: 300; }
   .hero__meta { display: none; }
   .hero__title { font-size: clamp(46px, 13.5vw, 80px); }
   /* Stacked, so the column alignment padding is dead space — the heading sits
