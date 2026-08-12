@@ -1192,25 +1192,13 @@ body.choice-done .view-chooser {
 .vc-panel:hover img { opacity: 0.9; transform: scale(1.04); }
 .vc-panel::after {
   content: ""; position: absolute; inset: 0;
-  /* Left-to-right rather than bottom-up: the copy sits on the left, so darken
-     that side and let the subject on the right stay bright. */
-  background: linear-gradient(to right,
+  /* Bottom-up in both layouts, and fully transparent by 67% so the top third
+     of every photo carries no darkening at all. */
+  background: linear-gradient(to top,
     rgba(11,11,12,0.92) 0%,
-    rgba(11,11,12,0.72) 30%,
-    rgba(11,11,12,0.32) 62%,
-    rgba(11,11,12,0.08) 100%);
-}
-/* Stacked, the panels are wide and shallow with the copy along the bottom, so
-   the scrim runs bottom-up there. Declared after the base rule above so it
-   wins — the 820px block earlier in this file does not. */
-@media (max-width: 820px) {
-  .vc-panel::after {
-    background: linear-gradient(to top,
-      rgba(11,11,12,0.92) 0%,
-      rgba(11,11,12,0.6) 34%,
-      rgba(11,11,12,0.22) 62%,
-      rgba(11,11,12,0.05) 100%);
-  }
+    rgba(11,11,12,0.6) 28%,
+    rgba(11,11,12,0.26) 48%,
+    rgba(11,11,12,0) 67%);
 }
 .vc-panel__body { position: absolute; left: clamp(24px, 4vw, 56px); right: clamp(24px, 4vw, 56px); bottom: clamp(24px, 5vh, 56px); z-index: 2; }
 .vc-panel__kicker { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent-soft); display: block; margin-bottom: 12px; font-weight: 600; }
