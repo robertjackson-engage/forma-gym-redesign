@@ -1200,6 +1200,18 @@ body.choice-done .view-chooser {
     rgba(11,11,12,0.32) 62%,
     rgba(11,11,12,0.08) 100%);
 }
+/* Stacked, the panels are wide and shallow with the copy along the bottom, so
+   the scrim runs bottom-up there. Declared after the base rule above so it
+   wins — the 820px block earlier in this file does not. */
+@media (max-width: 820px) {
+  .vc-panel::after {
+    background: linear-gradient(to top,
+      rgba(11,11,12,0.92) 0%,
+      rgba(11,11,12,0.6) 34%,
+      rgba(11,11,12,0.22) 62%,
+      rgba(11,11,12,0.05) 100%);
+  }
+}
 .vc-panel__body { position: absolute; left: clamp(24px, 4vw, 56px); right: clamp(24px, 4vw, 56px); bottom: clamp(24px, 5vh, 56px); z-index: 2; }
 .vc-panel__kicker { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent-soft); display: block; margin-bottom: 12px; font-weight: 600; }
 .vc-panel h3 {
