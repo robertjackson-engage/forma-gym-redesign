@@ -1152,7 +1152,10 @@ body.choice-done .view-chooser {
 .view-chooser__foot {
   flex: none; display: flex; align-items: center; justify-content: space-between;
   gap: clamp(14px, 3vw, 28px); flex-wrap: wrap;
-  padding: clamp(14px, 2.2vh, 22px) var(--pad); background: var(--ink);
+  padding: clamp(14px, 2.2vh, 22px) var(--pad);
+  /* Lifted off the page black so the bar separates from the photos' own dark
+     gradient above it — same token the dark section panels use. */
+  background: var(--ink-3); border-top: 1px solid var(--line);
 }
 .view-chooser__foot span {
   font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--accent);
