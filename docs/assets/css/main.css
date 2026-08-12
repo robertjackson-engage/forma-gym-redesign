@@ -1134,9 +1134,13 @@ body.choice-done .view-chooser {
   position: absolute; top: 0; left: 0; right: 0; z-index: 5; pointer-events: none;
   display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
   gap: 12px; padding: clamp(10px, 1.6vh, 16px) var(--pad);
+  /* Padding-box only reaches the bar's own height, so the scrim is drawn past
+     it and the fade carries a little further down the photo. */
+  padding-bottom: clamp(34px, 5vh, 52px);
   background: linear-gradient(to bottom,
     rgba(11,11,12,0.85) 0%,
-    rgba(11,11,12,0.45) 55%,
+    rgba(11,11,12,0.6) 38%,
+    rgba(11,11,12,0.28) 68%,
     rgba(11,11,12,0) 100%);
 }
 .view-chooser__bar > * { pointer-events: auto; }
