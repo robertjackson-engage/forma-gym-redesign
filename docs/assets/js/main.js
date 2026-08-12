@@ -34,10 +34,25 @@
         finishChoice();
       });
     });
-    /* Sign Up Now leaves for the join page, so persist a guest view first —
+    /* Sign me up leaves for the join page, so persist a guest view first —
        otherwise has-view is unset and the chooser greets them again there. */
     var join = chooser.querySelector(".vc-join");
     if (join) join.addEventListener("click", function () { setView("guest"); });
+    /* The hamburger is the way through for someone who does not want to pick a
+       side. Land them on the public (guest) site and remember it, so the gate
+       does not reappear on the next page. */
+    var skip = chooser.querySelector(".vc-skip");
+    if (skip) skip.addEventListener("click", function () {
+      setView("guest");
+      finishChoice();
+    });
+    /* Escape does the same — a dialog that traps you is a dialog people fight. */
+    document.addEventListener("keydown", function onEsc(e) {
+      if (e.key !== "Escape" || !document.body.classList.contains("choice-open")) return;
+      document.removeEventListener("keydown", onEsc);
+      setView("guest");
+      finishChoice();
+    });
   }
   function finishChoice() {
     document.body.classList.remove("choice-open");

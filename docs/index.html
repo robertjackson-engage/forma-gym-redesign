@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="/forma-gym-redesign/assets/img/forma-logo.svg">
-<link rel="stylesheet" href="/forma-gym-redesign/assets/css/main.css?v=1786492644">
+<link rel="stylesheet" href="/forma-gym-redesign/assets/css/main.css?v=1786494608">
 <script>(function(){try{
   if(sessionStorage.getItem("forma-intro"))document.documentElement.classList.add("no-preloader");
   var v=localStorage.getItem("forma-view");
@@ -80,8 +80,11 @@
 
 <div class="view-chooser" role="dialog" aria-label="Choose your experience">
   <div class="view-chooser__bar">
+    <span class="vc-bar__spacer" aria-hidden="true"></span>
     <span class="brand brand--chooser"><img class="brand__logo " src="/forma-gym-redesign/assets/img/forma-logo.svg" alt="Forma Gym" width="385" height="34" /></span>
-    <a class="btn btn--solid btn--sm vc-join" href="/forma-gym-redesign/join-now/">Sign Up Now</a>
+    <button class="menu-toggle vc-skip" type="button" aria-label="Skip and browse the site">
+      <span class="menu-toggle__icon"><i></i><i></i><i></i></span>
+    </button>
   </div>
   <div class="view-chooser__panels">
     <button class="vc-panel" type="button" data-choose="guest">
@@ -102,6 +105,10 @@
         <span class="go">Take me in →</span>
       </div>
     </button>
+  </div>
+  <div class="view-chooser__foot">
+    <span>I&rsquo;m ready to join now &mdash; let&rsquo;s go!</span>
+    <a class="btn btn--solid btn--sm vc-join" href="/forma-gym-redesign/join-now/">Sign me up</a>
   </div>
 </div>
 
@@ -304,8 +311,8 @@
     </div>
   </div>
 </footer>
-<script src="/forma-gym-redesign/assets/js/main.js?v=1786492644"></script>
-<script src="/forma-gym-redesign/assets/js/chat-config.js?v=1786492644"></script>
-<script src="/forma-gym-redesign/assets/js/chat.js?v=1786492644" defer></script>
+<script src="/forma-gym-redesign/assets/js/main.js?v=1786494608"></script>
+<script src="/forma-gym-redesign/assets/js/chat-config.js?v=1786494608"></script>
+<script src="/forma-gym-redesign/assets/js/chat.js?v=1786494608" defer></script>
 </body>
 </html>

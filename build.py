@@ -909,8 +909,11 @@ def page(filename, title, desc, active, body):
 view_chooser = f"""
 <div class="view-chooser" role="dialog" aria-label="Choose your experience">
   <div class="view-chooser__bar">
+    <span class="vc-bar__spacer" aria-hidden="true"></span>
     <span class="brand brand--chooser">{brand_logo()}</span>
-    <a class="btn btn--solid btn--sm vc-join" href="join.html">Sign Up Now</a>
+    <button class="menu-toggle vc-skip" type="button" aria-label="Skip and browse the site">
+      <span class="menu-toggle__icon"><i></i><i></i><i></i></span>
+    </button>
   </div>
   <div class="view-chooser__panels">
     <button class="vc-panel" type="button" data-choose="guest">
@@ -931,6 +934,10 @@ view_chooser = f"""
         <span class="go">Take me in →</span>
       </div>
     </button>
+  </div>
+  <div class="view-chooser__foot">
+    <span>I&rsquo;m ready to join now &mdash; let&rsquo;s go!</span>
+    <a class="btn btn--solid btn--sm vc-join" href="join.html">Sign me up</a>
   </div>
 </div>
 """
