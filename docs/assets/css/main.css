@@ -1193,7 +1193,6 @@ body.choice-done .view-chooser {
   /* The panels fill what the bar and CTA leave, and the gate measures 100svh,
      so the CTA sits above the fold with browser chrome accounted for. The
      panel bodies just sit tighter to claw back a little height. */
-  .vc-panel__body { bottom: clamp(16px, 3vh, 32px); }
   .vc-panel h3 { font-size: clamp(26px, 7.4vw, 36px); }
   .vc-panel p { font-size: 13.5px; margin-top: 6px; }
 }
@@ -1228,6 +1227,12 @@ body.choice-done .view-chooser {
     rgba(11,11,12,0) 67%);
 }
 .vc-panel__body { position: absolute; left: clamp(24px, 4vw, 56px); right: clamp(24px, 4vw, 56px); bottom: clamp(24px, 5vh, 56px); z-index: 2; }
+/* Stacked, the copy sits closer to the panel's base — 5vh of a tall viewport
+   left it floating well above the edge. Declared after the base rule above so
+   it wins on source order. */
+@media (max-width: 820px) {
+  .vc-panel__body { bottom: clamp(14px, 2.4vh, 24px); }
+}
 .vc-panel__kicker { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent-soft); display: block; margin-bottom: 12px; font-weight: 600; }
 .vc-panel h3 {
   font-family: var(--font-display); text-transform: uppercase; font-weight: 400;
