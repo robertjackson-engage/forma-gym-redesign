@@ -1127,9 +1127,19 @@ body.choice-done .view-chooser {
    the escape for someone who does not want to be labelled either way — it
    dismisses the gate and drops them on the public site. */
 .view-chooser__bar {
-  flex: none; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
-  gap: 12px; padding: clamp(10px, 1.6vh, 16px) var(--pad); background: var(--ink);
+  /* Floats over the photo rather than sitting on a black band: absolute, with
+     a top-down scrim that fades out so the image reads right up to the logo.
+     pointer-events are handed back to the controls only, so the top of the
+     panel underneath stays clickable. */
+  position: absolute; top: 0; left: 0; right: 0; z-index: 5; pointer-events: none;
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+  gap: 12px; padding: clamp(10px, 1.6vh, 16px) var(--pad);
+  background: linear-gradient(to bottom,
+    rgba(11,11,12,0.85) 0%,
+    rgba(11,11,12,0.45) 55%,
+    rgba(11,11,12,0) 100%);
 }
+.view-chooser__bar > * { pointer-events: auto; }
 .view-chooser__bar .brand--chooser { justify-self: center; }
 .view-chooser__bar .menu-toggle { justify-self: end; }
 .vc-bar__spacer { display: block; }
