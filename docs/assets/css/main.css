@@ -1176,7 +1176,7 @@ body.choice-done .view-chooser {
      wins — the earlier mobile block in this file does not. */
   .view-chooser__bar { display: flex; justify-content: space-between; }
   .vc-bar__spacer { display: none; }
-  .brand--chooser .brand__logo { width: min(71vw, 276px); }
+  .brand--chooser .brand__logo { width: min(62vw, 240px); }
   .view-chooser__panels { flex-direction: column; }
   /* The panels fill what the bar and CTA leave, and the gate measures 100svh,
      so the CTA sits above the fold with browser chrome accounted for. The
