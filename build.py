@@ -917,7 +917,7 @@ view_chooser = f"""
   </div>
   <div class="view-chooser__panels">
     <button class="vc-panel" type="button" data-choose="guest">
-      <img src="{IMG}/annabelle_kettle_HERO_2.jpg" alt="">
+      <img src="{IMG}/guest_kettle.jpg" alt="">
       <div class="vc-panel__body">
         <span class="vc-panel__kicker">Welcome to Forma Gym</span>
         <h3>I'm a <span class="serif">guest</span></h3>

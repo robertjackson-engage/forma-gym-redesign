@@ -1163,7 +1163,7 @@ body.choice-done .view-chooser {
 }
 .vc-panel:hover img { opacity: 0.9; transform: scale(1.04); }
 /* Bias each photo to its subject. */
-.vc-panel[data-choose="guest"] img { object-position: 84% 22%; }
+.vc-panel[data-choose="guest"] img { object-position: 56% 34%; }
 .vc-panel[data-choose="member"] img { object-position: 50% 58%; }
 .vc-panel::after {
   content: ""; position: absolute; inset: 0;
