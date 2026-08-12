@@ -1109,7 +1109,12 @@ html[data-view="member"] .only-guest { display: none !important; }
 
 /* member quick-links strip */
 
-/* full-screen experience chooser */
+/* ============================================================
+   WELCOME GATE (view chooser)
+   Base rules first, then every breakpoint override, so a later block always
+   wins on source order. Overrides scattered above the base rules silently
+   lost — that bit repeatedly while this was being built.
+   ============================================================ */
 .view-chooser {
   position: fixed; inset: 0; height: 100svh; z-index: 1600; background: var(--ink);
   display: flex; flex-direction: column;
@@ -1120,16 +1125,11 @@ body.choice-done .view-chooser {
   transform: translateY(-100%); opacity: 1; visibility: visible;
   transition: transform .9s var(--ease-power);
 }
-/* Side by side on desktop — stacked, each panel becomes a shallow letterbox
-   on a wide screen. Returns to a column on mobile. */
-.view-chooser__panels { flex: 1; display: flex; gap: 2px; min-height: 0; }
-/* Brand bar above the panels: logo centred, hamburger right. The hamburger is
-   the escape for someone who does not want to be labelled either way — it
-   dismisses the gate and drops them on the public site. */
+
+/* ---------- bar: mirrors .site-header__inner so the wordmark does not move
+     when the gate hands over to the site behind it. The scrim is painted by
+     ::before so it can reach further down without inflating this box. ---------- */
 .view-chooser__bar {
-  /* Same geometry as .site-header__inner, so the wordmark does not move when
-     the gate hands over to the site behind it. The scrim is painted by ::before
-     so it can reach further down without inflating this box. */
   position: absolute; top: 0; left: 0; right: 0; z-index: 5; pointer-events: none;
   max-width: var(--max); margin: 0 auto;
   display: flex; align-items: center; justify-content: space-between;
@@ -1147,57 +1147,11 @@ body.choice-done .view-chooser {
 }
 .view-chooser__bar > * { pointer-events: auto; }
 .vc-bar__spacer { display: none; }
-/* Join CTA closing the gate, for anyone who has already decided. */
-.view-chooser__foot {
-  flex: none; display: flex; align-items: center; justify-content: space-between;
-  gap: clamp(14px, 3vw, 28px); flex-wrap: wrap;
-  padding: clamp(14px, 2.2vh, 22px) var(--pad);
-  /* Lifted off the page black so the bar separates from the photos' own dark
-     gradient above it — same token the dark section panels use. */
-  background: var(--ink-3); border-top: 1px solid var(--line);
-}
-.view-chooser__foot span {
-  font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--accent);
-  display: flex; align-items: center; gap: 16px;
-}
-.view-chooser__foot span::after {
-  content: ""; width: clamp(28px, 6vw, 64px); height: 1px; background: currentColor; opacity: .5;
-}
-@media (max-width: 560px) {
-  .view-chooser__foot { justify-content: center; gap: 12px; }
-  .view-chooser__foot span::after { display: none; }
-}
 .brand--chooser { display: flex; align-items: center; }
-/* 25% larger. Also the point where the wordmark's aqua divider stops being
-   sub-pixel: at 140px it rendered ~0.7px wide and vanished. */
 .brand--chooser .brand__logo { height: 24px; width: auto; }
 
-@media (max-width: 820px) {
-  /* Match the site header: logo left, hamburger right. Centring only reads
-     well with the room desktop has. Declared after the base rules above so it
-     wins — the earlier mobile block in this file does not. */
-  .view-chooser__bar { display: flex; justify-content: space-between; }
-  .vc-bar__spacer { display: none; }
-  .brand--chooser .brand__logo { width: min(62vw, 240px); }
-  /* Lighter and shorter here — the full-strength scrim reached onto the
-     subject's face in the stacked layout. */
-  .view-chooser__bar { height: 70px; }
-  .view-chooser__bar::before {
-    height: 118px;
-    background: linear-gradient(to bottom,
-      rgba(11,11,12,0.8) 0%,
-      rgba(11,11,12,0.42) 45%,
-      rgba(11,11,12,0) 100%);
-  }
-  .view-chooser__panels { flex-direction: column; }
-  /* The panels fill what the bar and CTA leave, and the gate measures 100svh,
-     so the CTA sits above the fold with browser chrome accounted for. The
-     panel bodies just sit tighter to claw back a little height. */
-  .vc-panel h3 { font-size: clamp(26px, 7.4vw, 36px); }
-  .vc-panel p { font-size: 13.5px; margin-top: 6px; }
-}
-/* No arrow on this one, so centre the label in its own box. */
-.vc-join { justify-content: center; text-align: center; }
+/* ---------- panels ---------- */
+.view-chooser__panels { flex: 1; display: flex; gap: 2px; min-height: 0; }
 .vc-panel {
   position: relative; flex: 1; overflow: hidden; cursor: pointer; text-align: left;
   color: var(--bone); transition: flex .85s var(--ease-power);
@@ -1207,19 +1161,13 @@ body.choice-done .view-chooser {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
   opacity: 0.72; transition: opacity .7s, transform 1.4s var(--ease-out);
 }
-/* Stacked panels crop vertically, so bias each photo to its subject:
-   the guest portrait's face sits high, the pool sits low. */
+.vc-panel:hover img { opacity: 0.9; transform: scale(1.04); }
+/* Bias each photo to its subject. */
 .vc-panel[data-choose="guest"] img { object-position: 84% 22%; }
 .vc-panel[data-choose="member"] img { object-position: 50% 58%; }
-/* No hover on touch to lift the photo, so start it at the hovered brightness. */
-@media (hover: none) {
-  .vc-panel img { opacity: 0.9; }
-}
-.vc-panel:hover img { opacity: 0.9; transform: scale(1.04); }
 .vc-panel::after {
   content: ""; position: absolute; inset: 0;
-  /* Bottom-up in both layouts, and fully transparent by 67% so the top third
-     of every photo carries no darkening at all. */
+  /* Dark at the base, fully clear by 67% so the top third carries no scrim. */
   background: linear-gradient(to top,
     rgba(11,11,12,0.92) 0%,
     rgba(11,11,12,0.6) 28%,
@@ -1227,12 +1175,6 @@ body.choice-done .view-chooser {
     rgba(11,11,12,0) 67%);
 }
 .vc-panel__body { position: absolute; left: clamp(24px, 4vw, 56px); right: clamp(24px, 4vw, 56px); bottom: clamp(24px, 5vh, 56px); z-index: 2; }
-/* Stacked, the copy sits closer to the panel's base — 5vh of a tall viewport
-   left it floating well above the edge. Declared after the base rule above so
-   it wins on source order. */
-@media (max-width: 820px) {
-  .vc-panel__body { bottom: clamp(14px, 2.4vh, 24px); }
-}
 .vc-panel__kicker { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent-soft); display: block; margin-bottom: 12px; font-weight: 600; }
 .vc-panel h3 {
   font-family: var(--font-display); text-transform: uppercase; font-weight: 400;
@@ -1247,10 +1189,52 @@ body.choice-done .view-chooser {
 }
 .vc-panel:hover .go { opacity: 1; transform: none; }
 
+/* ---------- join CTA ---------- */
+.view-chooser__foot {
+  flex: none; display: flex; align-items: center; justify-content: space-between;
+  gap: clamp(14px, 3vw, 28px); flex-wrap: wrap;
+  padding: clamp(14px, 2.2vh, 22px) var(--pad);
+  /* Lifted off the page black so the bar separates from the photos above. */
+  background: var(--ink-3); border-top: 1px solid var(--line);
+}
+.view-chooser__foot span {
+  font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--accent);
+  display: flex; align-items: center; gap: 16px;
+}
+.view-chooser__foot span::after {
+  content: ""; width: clamp(28px, 6vw, 64px); height: 1px; background: currentColor; opacity: .5;
+}
+.vc-join { justify-content: center; text-align: center; }
+
+/* ---------- touch: no hover to lift the photo, so start it at hovered ---------- */
+@media (hover: none) {
+  .vc-panel img { opacity: 0.9; }
+}
+
+/* ---------- stacked ---------- */
 @media (max-width: 820px) {
+  /* Bar matches the site header: logo left, hamburger right. Lighter, shorter
+     scrim — the full-strength one reached onto the subject's face. */
+  .view-chooser__bar { height: 70px; }
+  .view-chooser__bar::before {
+    height: 118px;
+    background: linear-gradient(to bottom,
+      rgba(11,11,12,0.8) 0%,
+      rgba(11,11,12,0.42) 45%,
+      rgba(11,11,12,0) 100%);
+  }
+  .brand--chooser .brand__logo { width: min(62vw, 240px); }
+  .view-chooser__panels { flex-direction: column; }
   .vc-panel:hover { flex: 1.35; }
   .vc-panel h3 { font-size: clamp(28px, 8vw, 40px); }
-  }
+  /* Copy sits closer to the panel base; 5vh of a tall viewport floated it. */
+  .vc-panel__body { bottom: clamp(14px, 2.4vh, 24px); }
+}
+
+@media (max-width: 560px) {
+  .view-chooser__foot { justify-content: center; gap: 12px; }
+  .view-chooser__foot span::after { display: none; }
+}
 
 /* ============================================================
    GHF Coach — AI concierge
