@@ -646,6 +646,87 @@ WC_TRAINERS = [
 ]
 
 
+SJ_TRAINERS = [
+    {
+        "name": 'Ana', "role": 'Fitness Coach', "photo": 'coach_sj_ana.jpg',
+        "spec": ['Body Recomposition', 'HIIT Workouts', 'Weight Loss', 'Strength Training'],
+        "story": 'My primary goal is to help and guide individuals on their unique fitness journeys. We all have our own paths, and I truly believe that through love, positive energy, and kindness, I can be a source of inspiration and a positive example for my clients. Additionally, as a bilingual trainer, I am able to build stronger connections and provide more personalized support to a diverse range of clients.',
+        "phil": '',
+    },
+    {
+        "name": 'Sean', "role": 'Fitness Coach', "photo": 'coach_sj_sean.jpg',
+        "spec": ['Corrective Exercise', 'Squat Assessment', 'Mobility + Stability', 'Balance', 'Strength Training'],
+        "story": "Since I've been involved with the fitness industry for over 30 years, I believe you must first be Healthy before you can be Fit. Health and fitness starts and stops with understanding what works best for the individual and their lifestyle. Not only have I learned invaluable training from working with a wide variety of clients I've also gained first hand experience from my own successes and failures.",
+        "phil": '',
+    },
+    {
+        "name": 'Jaden', "role": 'Fitness Coach', "photo": 'coach_sj_jaden.jpg',
+        "spec": ['Body Recomposition', 'Muscle Building', 'Functional Strength Development'],
+        "story": "I’ve been around fitness since I was young. Great mentors taught me that fitness is less about looks and more about values. What I’ve learned is that most people stay stuck, not from a lack of effort but from a lack of direction. I use a well balanced program to help you build muscle, lose fat, and become someone you’re proud of. I’d love to be part of your journey. Let's push past your limits, and get real results.",
+        "phil": '',
+    },
+    {
+        "name": 'Emir', "role": 'Fitness Coach', "photo": 'coach_sj_emir.jpg',
+        "spec": ['Muscle Building', 'Nutritional Guidance', 'Strength Training', 'Body Recomposition', 'Weight Loss', 'Functional Fitness'],
+        "story": 'To me, fitness isn’t just about the physical transformation—it’s about reclaiming your mindset, your self-worth, and your belief in what’s possible. My mission is to empower people with the tools, support, and accountability they need to feel strong—inside and out. You don’t have to walk the journey alone. I’m here to guide you every step of the way.',
+        "phil": '',
+    },
+    {
+        "name": 'Erin', "role": 'Fitness Coach', "photo": 'coach_sj_erin.jpg',
+        "spec": ['Strength Training', 'Functional Movement', 'Nutrition Coaching', 'Habit Formation'],
+        "story": 'As a former athlete and now mother to teen athletes, I am passionate about growing your strength and skill as well as optimizing for good quality fuel. I have lived with and adjusted to the ever-changing complexities of aging and prioritizing health and fitness while balancing job and family. My hope is to work with your goals and limitations, to empower growth in wellness, to simplify the fitness process and to foster habits that will most effectively and efficiently grow sustainable lifestyle results.',
+        "phil": '',
+    },
+    {
+        "name": 'Arvi', "role": 'Fitness Coach', "photo": 'coach_sj_arvi.jpg',
+        "spec": ['Strength &amp; Conditioning', 'Body Recomposition', 'Metabolic Conditioning', 'Kettlebell Training', 'Olympic Lifts', 'Injury Prevention/Rehab'],
+        "story": 'I got into training because I used to play varsity basketball. I wanted to learn how to improve my performance. After years of playing ball, I injured both my knees and was in pain. I met my coach/ mentor. Through his guidance, I was able to regain strength, mobility, and most important of all, I was finally pain free to play the game that I love again. I am here at Forma to help our members startfeeling good again.',
+        "phil": '',
+    },
+    {
+        "name": 'Bernadette', "role": 'Fitness Coach', "photo": 'coach_sj_bernadette.jpg',
+        "spec": ['Bodybuilding', 'Busy Moms', 'Seniors', 'Mobility', 'Flexibility'],
+        "story": 'I entered the fitness industry in the 1980s with an interest in helping people stay fit and am still here now with much more energy and drive. I have had 34 years of experience in the fitness industry teaching group fitness. As an effective personal trainer, I have created workouts that are safe and individualized to the clients needs, and executed with proper form. I have always tried to emphasized a healthy, happy lifestyle and that the key to success is consistency. I encourage clients to have a positive attitude and passion toward their goal. Its rewarding for me to see them embrace this new lifestyle.',
+        "phil": 'I want to spread the passion and love for personal fitness, health and happiness. I truly love what I do!',
+    },
+    {
+        "name": 'Nora', "role": 'Fitness Coach', "photo": 'coach_sj_nora.jpg',
+        "spec": ['Body Recomposition', 'Strength + Conditioning', 'Athletic Training', 'Nutrition Coaching', 'Mental Coaching', 'Preventative/Corrective Exercise', 'Holistic Wellness'],
+        "story": 'My passion for training started blooming in college when I became quickly obsessed with strength and conditioning. With discipline, it became part of my lifestyle and, as time went on, I noticed how much it improved my overall well-being. I was excited to keep challenging myself in new ways, which kept me motivated to accomplish more every time. During the pandemic, I was gutted that everything shut down. I felt helpless. After wiping my tears, I chose to keep moving forward. The endless time I spent indoors was an opportunity for me to brainstorm what I wanted out of life. One day it just hit me...if I love training that much, why not help others do the same? And so I decided to become a certified personal trainer and it was one of the best decisions I ever made.',
+        "phil": '',
+    },
+    {
+        "name": 'Chelsea', "role": 'Fitness Coach', "photo": 'coach_sj_chelsea.jpg',
+        "spec": ['Functional Strength &amp; Cardio Conditioning', 'Nutrition Coaching', 'Weight Loss', 'Nutrition Coaching', 'Mobility &amp; Flexibility', 'Body Recomposition', 'NASM Weight Loss Specialist'],
+        "story": "From a young age, I knew I wanted a career helping others recover and grow stronger. My life took a dramatic turn in 2017 when I discovered strength training during a particularly dark time in my life where I was battling depression and was extremely underweight. As I witnessed my physical and mental transformation through consistent training, a newfound passion ignited – sharing this empowering knowledge with others. As a coach, work doesn't feel like work; it's a calling that has allowed me to connect with others while helping them grow physically and mentally stronger. My approach is straightforward: a balanced program combines resistance training, cardiovascular conditioning, proper nutrition, and recovery strategies. This holistic formula fosters long-term health and well-being. As a trainer, I aim to practice what I preach. I craft workouts that are both fun and challenging. I add in elements of play while pushing boundaries. By keeping things engaging and demanding, my clients build mental toughness alongside physical strength.",
+        "phil": '',
+    },
+    {
+        "name": 'Steve', "role": 'Fitness Coach', "photo": 'coach_sj_steve.jpg',
+        "spec": ['Bodybuilding', 'Fat Loss', 'Nutrition'],
+        "story": 'With a background in MMA and wrestling, Steve developed a deep passion for discipline, strength, and high-performance training early in life. After competing in Division I athletics, he transitioned from competitive sports into coaching, with the goal of helping others improve their health, confidence, and overall performance. Steve is a certified personal trainer and certified nutritionist who specializes in helping clients lose weight, lower body fat, build lean muscle, and improve endurance. His training philosophy combines athletic conditioning, strength training, and practical nutrition strategies designed for real-world results. Drawing from his competitive athletic experience, Steve designs programs that focus on functional strength, mobility, metabolic conditioning, and sustainable nutrition habits. Whether someone is beginning their fitness journey or looking to break through a plateau, his coaching emphasizes accountability, discipline, and long-term lifestyle change.',
+        "phil": 'I believe fitness is not just about appearance – it’s about building resilience, confidence, and a strong version of yourself both physically and mentally. I am a NASM Certified Personal Trainer (CPT) and Certified Nutritionist.',
+    },
+    {
+        "name": 'Nicole', "role": 'Fitness Coach', "photo": 'coach_sj_nicole.jpg',
+        "spec": ['Body Recomposition', 'Strength + Conditioning', 'Weightlifting', 'Weight Loss', 'Nutritional Guidance'],
+        "story": 'My mission is to empower clients to transform both physically and mentally, guiding them toward a life that’s healthier, happier, and more fulfilling. I focus on sustainable habits, mindset shifts, and personalized strategies to support lasting change. And as I continue learning and growing in the areas of fitness, nutrition, and overall well-being, I’m committed to giving every client the absolute best of what I’ve learned.',
+        "phil": 'I believe everyone deserves to feel strong, confident, and capable.',
+    },
+    {
+        "name": 'Martin', "role": 'Fitness Coach', "photo": 'coach_sj_martin.jpg',
+        "spec": ['Weight Management', 'Body Recomposition', 'Nutrition'],
+        "story": 'My passion for fitness started at a young age through soccer and endurance training. Over time, that passion grew into strength training and learning the science behind proper workouts and nutrition. Before becoming a certified personal trainer, I helped coach three of my family members on their fitness journeys, and together they lost over 150 pounds. Seeing how much their lives changed motivated me to pursue my certifications and turn my passion into a career. Today, my goal is to help others build sustainable habits, live an active lifestyle, and reach their fitness goals.',
+        "phil": '',
+    },
+    {
+        "name": 'Jackie', "role": 'Fitness Coach', "photo": 'coach_sj_jackie.jpg',
+        "spec": ['Weight Loss', 'Endurance', 'Multi-Sport Training', 'Athletic Performance', 'Mobility + Balance', 'Senior Wellness'],
+        "story": 'Physical fitness and mental discipline have shaped my life since childhood, helping me manage ADHD and a thyroid condition. Regular exercise, sports, and nutrition improved my focus and body image. As a competitive athlete in softball and swimming, I strengthened my skills through rigorous training. My journey continued as a group exercise instructor, teaching various fitness classes. Inspired by triathlons, I competed for decades, achieving Bronze level All World Athlete status in Ironman 70.3, qualifying for seven national championships, and finishing fifth in my age group in my first full Ironman. Now, I aim to share these benefits with others as a dedicated personal trainer.',
+        "phil": '',
+    },
+]
+
 def trainer_accordion(trainers):
     """Coach photo beside their bio. The photos are WordPress 500x500 crops,
     already centred on the coach, so no per-photo focal point is needed."""
@@ -1219,7 +1300,10 @@ training_body = hero(
       </div>
       <p class="body-copy reveal" style="max-width:34ch">Years of experience, a range of specialties, and a genuine passion for helping you feel strong, confident and excited about fitness.</p>
     </div>
+    <h3 class="team-club">Walnut Creek</h3>
     {trainer_accordion(WC_TRAINERS)}
+    <h3 class="team-club">San Jose</h3>
+    {trainer_accordion(SJ_TRAINERS)}
   </div>
 </section>
 """ + cta_band(

@@ -626,6 +626,13 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 .acc__body { max-height: 0; overflow: hidden; transition: max-height .7s var(--ease-power); }
 .acc__body-inner { padding: 0 0 36px; max-width: 70ch; color: var(--muted); font-size: 15.5px; }
 .section--light .acc__body-inner { color: var(--muted-dark); }
+/* Club heading above each roster. */
+.team-club {
+  font-family: var(--font-body); font-size: 11px; letter-spacing: 0.32em;
+  text-transform: uppercase; font-weight: 600; color: var(--accent);
+  margin: clamp(30px, 4vw, 52px) 0 14px;
+}
+.acc + .team-club { margin-top: clamp(44px, 6vw, 76px); }
 /* Coach headshot beside their bio inside an accordion panel. */
 .trainer-bio { display: flex; gap: 22px; align-items: flex-start; }
 .trainer-bio__photo {
