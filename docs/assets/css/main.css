@@ -276,12 +276,14 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   background: linear-gradient(to top, rgba(11,11,12,0.92) 0%, rgba(11,11,12,0.35) 45%, rgba(11,11,12,0.42) 100%);
 }
 /* For bright or busy photos: a flat scrim under the standard gradient so the
-   headline and body copy stay legible. */
+   headline and body copy stay legible. Dialled back once the mobile scrim below
+   started carrying part of this load — the spa shot is dim to begin with, and
+   the old values buried the towels. */
 .hero__media--tinted::before {
   content: ""; position: absolute; inset: 0; z-index: 1;
-  background: rgba(11,11,12,0.42);
+  background: rgba(11,11,12,0.26);
 }
-.hero__media--tinted::after { background: linear-gradient(to top, rgba(11,11,12,0.94) 0%, rgba(11,11,12,0.55) 50%, rgba(11,11,12,0.6) 100%); }
+.hero__media--tinted::after { background: linear-gradient(to top, rgba(11,11,12,0.92) 0%, rgba(11,11,12,0.42) 50%, rgba(11,11,12,0.46) 100%); }
 /* Every hero on a phone: the copy runs the full width with nowhere quiet to
    sit, so a busy or brightly lit frame swallows it. Flat scrim under the
    standard gradient, mobile only — desktop has the room for the text to clear
@@ -292,6 +294,11 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
     content: ""; position: absolute; inset: 0; z-index: 1;
     background: rgba(11,11,12,0.45);
   }
+  /* Tinted frames are already dim and carry a heavier gradient, so the full
+     mobile scrim on top of that buries the photo. Must be re-declared here:
+     same specificity as the rule above, and later source order is what makes
+     it win. */
+  .hero__media--tinted::before { background: rgba(11,11,12,0.30); }
 }
 .hero__inner {
   position: relative; z-index: 2; width: 100%;
