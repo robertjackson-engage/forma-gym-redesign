@@ -1091,7 +1091,7 @@ home_body = view_chooser + hero(
     'San <span class="serif">Jose</span>',
     ["Serving South San Jose since 2015. A 40,000 sq. ft. luxury facility with an 8,000 sq. ft. covered outdoor fitness area — cardio, strength, group fitness, a heated 6-lane junior olympic pool with hot tub, and full-service locker rooms with sauna, steam and a Chilly Goat® cold plunge.",
      "Open Monday–Thursday 5am–11pm, Friday 5am–10pm, weekends 6am–8pm. 5434 Thornwood Dr, San Jose."],
-    f"{IMG}/formaSJ_facade_bkgrnd4.jpg",
+    f"{IMG}/sj_facade.jpg",
     "Forma Gym San Jose facade",
     rev=True, cta=("Explore San Jose", "san-jose.html"),
 ) + f"""
@@ -1342,7 +1342,7 @@ locations_body = hero(
         </div>
       </div>
       <div class="loc-item">
-        <div class="loc-item__media reveal-img"><img src="{IMG}/formaSJ_facade_bkgrnd4.jpg" alt="Forma San Jose" loading="lazy"></div>
+        <div class="loc-item__media reveal-img"><img src="{IMG}/sj_facade.jpg" alt="Forma San Jose" loading="lazy"></div>
         <div>
           <span class="loc-badge">Since 2015 · 40,000 sq ft</span>
           <h3>San Jose</h3>
@@ -1420,7 +1420,7 @@ walnutcreek_body = location_page(
      "All group fitness: Zumba, Yoga, Barre, HIIT, Pilates, Dance &amp; Cycle", "Expert fitness &amp; nutrition coaches",
      "Heated, outdoor lap pool under the redwoods", "Onsite Kidzville childcare", "Cryotherapy + Cold Plunge by Chilly Goat®",
      "Full-service day spa", "Luxury amenities: sauna, eucalyptus steam room, hot tub", "Forma Café + Smoothie Bar"],
-    "formaWC_facade_bkgrnd.jpg",
+    "wc_facade.jpg",
     ["Forma_WalnutCreek_locations_pool_birdeye-2.jpg", "facade2_WC_500px.jpg", "WC_pool_class_662x501_v1.jpg"],
     [("Mon–Thu", "5am – 11pm"), ("Friday", "5am – 10pm"), ("Sat–Sun", "6am – 8pm")],
 )
@@ -1433,7 +1433,7 @@ sanjose_body = location_page(
      "Indoor &amp; outdoor group fitness: Zumba, Yoga, Barre, HIIT, Pilates, Dance &amp; Cycle",
      "Full-service locker rooms with sauna, steam room &amp; hot tub", "Onsite sports &amp; therapeutic massage services",
      "Expert fitness &amp; nutrition coaches", "Towel service, including chilled eucalyptus towels", "NEW Cold Plunge by Chilly Goat®"],
-    "formaSJ_facade_bkgrnd4.jpg",
+    "sj_facade.jpg",
     ["pool_sunset_SJ_500px.jpg", "SJ_gym_floor_HERO_gradient-scaled.jpg", "SJ_pool_662x501_v1.jpg"],
     [("Mon–Thu", "5am – 11pm"), ("Friday", "5am – 10pm"), ("Sat–Sun", "6am – 8pm")],
 )
@@ -1835,16 +1835,16 @@ join_body = hero(
             <h2 class="join-step__title">Select your <span class="serif">club</span></h2>
             <p class="join-step__hint">Choose the Forma location most convenient for you. Premier members get both.</p>
             <div class="choice-grid">
-              <button class="choice" type="button" data-club="Walnut Creek" data-img="{IMG}/formaWC_facade_bkgrnd.jpg">
+              <button class="choice" type="button" data-club="Walnut Creek" data-img="{IMG}/wc_facade.jpg">
                 <span class="choice__chip">Since 2009</span><span class="choice__check">✓</span>
-                <div class="choice__img"><img src="{IMG}/formaWC_facade_bkgrnd.jpg" alt="Walnut Creek" loading="lazy"></div>
+                <div class="choice__img"><img src="{IMG}/wc_facade.jpg" alt="Walnut Creek" loading="lazy"></div>
                 <h3>Forma Walnut Creek</h3>
                 <p class="meta">1908 Olympic Blvd · 35,000 sq ft</p>
                 <ul class="choice__perks"><li>Complimentary Fitness Consultation</li><li>Complimentary Nutrition Consultation</li><li>30-Day Money-Back Guarantee</li></ul>
               </button>
-              <button class="choice" type="button" data-club="San Jose" data-img="{IMG}/formaSJ_facade_bkgrnd4.jpg">
+              <button class="choice" type="button" data-club="San Jose" data-img="{IMG}/sj_facade.jpg">
                 <span class="choice__chip">Since 2015</span><span class="choice__check">✓</span>
-                <div class="choice__img"><img src="{IMG}/formaSJ_facade_bkgrnd4.jpg" alt="San Jose" loading="lazy"></div>
+                <div class="choice__img"><img src="{IMG}/sj_facade.jpg" alt="San Jose" loading="lazy"></div>
                 <h3>Forma San Jose</h3>
                 <p class="meta">5434 Thornwood Dr · 40,000 sq ft</p>
                 <ul class="choice__perks"><li>Complimentary Fitness Consultation</li><li>Complimentary Nutrition Consultation</li><li>30-Day Money-Back Guarantee</li></ul>
@@ -2030,8 +2030,8 @@ contact_body = hero(
       </div>
     </div>
     <div class="card-grid card-grid--2" data-stagger>
-      <div class="card"><div class="card__media card__media--wide"><img src="{IMG}/formaWC_facade_bkgrnd.jpg" alt="Walnut Creek" loading="lazy"><div class="card__label"><h3>Walnut Creek</h3></div></div><div class="card__below"><p>1908 Olympic Blvd, Walnut Creek, CA 94596<br><a href="tel:9259326400" style="color:var(--accent)">(925) 932-6400</a><br>Mon–Thu 5am–11pm · Fri 5am–10pm · Sat–Sun 6am–8pm</p></div></div>
-      <div class="card"><div class="card__media card__media--wide"><img src="{IMG}/formaSJ_facade_bkgrnd4.jpg" alt="San Jose" loading="lazy"><div class="card__label"><h3>San Jose</h3></div></div><div class="card__below"><p>5434 Thornwood Dr, San Jose, CA 95123<br><a href="tel:4083631010" style="color:var(--accent)">(408) 363-1010</a><br>Mon–Thu 5am–11pm · Fri 5am–10pm · Sat–Sun 6am–8pm</p></div></div>
+      <div class="card"><div class="card__media card__media--wide"><img src="{IMG}/wc_facade.jpg" alt="Walnut Creek" loading="lazy"><div class="card__label"><h3>Walnut Creek</h3></div></div><div class="card__below"><p>1908 Olympic Blvd, Walnut Creek, CA 94596<br><a href="tel:9259326400" style="color:var(--accent)">(925) 932-6400</a><br>Mon–Thu 5am–11pm · Fri 5am–10pm · Sat–Sun 6am–8pm</p></div></div>
+      <div class="card"><div class="card__media card__media--wide"><img src="{IMG}/sj_facade.jpg" alt="San Jose" loading="lazy"><div class="card__label"><h3>San Jose</h3></div></div><div class="card__below"><p>5434 Thornwood Dr, San Jose, CA 95123<br><a href="tel:4083631010" style="color:var(--accent)">(408) 363-1010</a><br>Mon–Thu 5am–11pm · Fri 5am–10pm · Sat–Sun 6am–8pm</p></div></div>
     </div>
   </div>
 </section>
