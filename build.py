@@ -1365,6 +1365,7 @@ locations_body = hero(
     (2, "", "Premium Bay Area clubs"),
     (75, "K+", "Combined square feet"),
     (14, "", "Group fitness formats"),
+    (time.localtime().tm_year - FOUNDED, "", "Years in the Bay Area"),
 ]) + cta_band(
     'Find your <span class="serif">home club</span>',
     "Both locations are all-inclusive: every class, the pool, the recovery suites - the works.",
