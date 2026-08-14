@@ -468,7 +468,9 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 .marquee--photo img {
   display: block;
   width: clamp(190px, 24vw, 330px);
-  height: clamp(140px, 17vw, 240px);
+  /* Taller so the strip carries its own band rather than leaving a gap under
+     it — near square at the top of the range. */
+  height: clamp(190px, 22vw, 330px);
   object-fit: cover;
   filter: saturate(1.02);
 }

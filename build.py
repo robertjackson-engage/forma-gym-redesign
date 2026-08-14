@@ -1065,7 +1065,7 @@ home_body = view_chooser + hero(
     <div class="cards-head">
       <div>
         <p class="eyebrow">Find your movement</p>
-        <h2 class="h-display reveal break-accent" style="font-size:clamp(34px,4.6vw,72px)">Play every day <span class="serif">in every way.</span></h2>
+        <h2 class="h-display reveal break-accent" style="font-size:clamp(34px,4.6vw,72px)">Play every day. <span class="serif">In every way.</span></h2>
       </div>
     </div>
     <div class="card-grid" data-stagger>
