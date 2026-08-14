@@ -364,14 +364,16 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 /* ---------- generic section scaffolding ---------- */
 /* Tightened from clamp(80px, 11vw, 170px) — the gaps between sections were
    eating a lot of scroll, especially on a phone. */
-.section { position: relative; padding: clamp(54px, 7.5vw, 120px) 0; }
+/* The clamp floor only binds below 720px, so lowering it trims phone scroll
+   without touching desktop rhythm — where 7.5vw is still doing the work. */
+.section { position: relative; padding: clamp(36px, 7.5vw, 120px) 0; }
 .section--flush { padding: 0; }
 .section--light { background: var(--bone); color: var(--ink); }
 /* Dark panel: separates a section from the page black without going bright.
    Keeps the on-dark type colours, unlike section--light. */
 .section--panel { background: var(--ink-3); }
 .section--accent { background: var(--accent); color: var(--white); }
-.section--tight { padding: clamp(40px, 5vw, 78px) 0; }
+.section--tight { padding: clamp(28px, 5vw, 78px) 0; }
 .wrap { max-width: var(--max); margin: 0 auto; padding-left: var(--pad); padding-right: var(--pad); }
 
 .eyebrow {
