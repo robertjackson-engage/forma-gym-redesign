@@ -1256,7 +1256,7 @@ training_body = hero(
     "Personal Training",
     ["The best", 'in the <span class="serif">Bay</span>.'],
     "A team of fitness professionals with diverse backgrounds, deep experience, and a shared passion for health and wellness. We'll meet you where you are and build the plan that gets you where you want to be.",
-    img=f"{IMG}/annabelle_kettle_HERO_2.jpg",
+    img=f"{IMG}/training_hero.jpg",
     crumb="Training",
     actions=[("Book a Consult", "contact.html#tour", True), ("Meet the Team", "#team", False)],
     meta=["1-on-1 &amp; small group", "Nutrition guidance included", "Both clubs"],
@@ -1264,8 +1264,7 @@ training_body = hero(
 ) + f"""
 <section class="section">
   <div class="wrap">
-    <div class="split split--rev">
-      <div class="split__media reveal-img"><img src="{IMG}/jason_johnson_turf2.jpg" alt="1 on 1 personal training" loading="lazy"></div>
+    <div class="split split--solo">
       <div class="split__body">
         <p class="eyebrow">One-on-one personal training</p>
         <h2 class="h-display" style="font-size:clamp(30px,3.8vw,58px)">A plan built around <span class="serif">you</span></h2>

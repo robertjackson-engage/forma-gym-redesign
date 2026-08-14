@@ -23,6 +23,19 @@
   --font-serif: "Montserrat", "Helvetica Neue", sans-serif;  /* accent typeface retired — Proxima Nova via Adobe kit pending */
   --font-body: "Montserrat", "Helvetica Neue", -apple-system, sans-serif;  /* stand-in for Proxima Nova (Adobe kit pending) */
 
+  /* Scrim behind the fixed nav so the wordmark reads over a photo hero.
+     Shared by .site-header and the gate's bar so the two cannot drift. */
+  --nav-scrim: linear-gradient(to bottom,
+    rgba(11,11,12,0.95) 0%,
+    rgba(11,11,12,0.8) 30%,
+    rgba(11,11,12,0.45) 60%,
+    rgba(11,11,12,0.16) 82%,
+    rgba(11,11,12,0) 100%);
+  --nav-scrim-soft: linear-gradient(to bottom,
+    rgba(11,11,12,0.8) 0%,
+    rgba(11,11,12,0.42) 45%,
+    rgba(11,11,12,0) 100%);
+
   --pad: clamp(20px, 4.5vw, 72px);
   --max: 1560px;
 
@@ -113,6 +126,15 @@ body.page-exit { opacity: 0; }
   transition: transform .55s var(--ease-out), background .45s, border-color .45s;
   border-bottom: 1px solid transparent;
 }
+.site-header::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 190px;
+  z-index: -1; pointer-events: none; background: var(--nav-scrim);
+  transition: opacity .45s;
+}
+/* The scrolled bar brings its own background, and the menu overlay its own
+   backdrop — no scrim wanted in either. */
+.site-header.is-scrolled::before,
+body.menu-open .site-header::before { opacity: 0; }
 .site-header.is-scrolled {
   background: rgba(11, 11, 12, 0.82);
   backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
@@ -290,6 +312,8 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   max-width: 620px; margin-top: clamp(16px, 2.6vh, 28px);
   font-size: clamp(17px, 1.35vw, 20px); line-height: 1.55; font-weight: 300;
   color: rgba(243,240,233,0.9);
+  /* Light 300 weight over a photo needs a little separation on bright frames. */
+  text-shadow: 0 1px 2px rgba(11,11,12,0.5), 0 2px 14px rgba(11,11,12,0.55);
   opacity: 0; transform: translateY(24px); transition: opacity .9s ease .55s, transform .9s var(--ease-out) .55s;
 }
 .is-loaded .hero__sub { opacity: 1; transform: none; }
@@ -371,6 +395,9 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(36px, 5.5vw, 100px); align-items: center;
 }
+/* No photo in this one, so the copy takes the full row. */
+.split--solo { grid-template-columns: minmax(0, 1fr); }
+.split--solo .split__body { max-width: 74ch; }
 .split--rev .split__media { order: 2; }
 .split--rev .split__body { order: 1; }
 .split__media { position: relative; overflow: hidden; aspect-ratio: 4 / 4.6; }
@@ -886,6 +913,8 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
      mid-phrase — "Play every day / in every way." */
   .break-accent .serif { display: block; }
   .site-header__inner { height: 70px; }
+  /* Lighter and shorter on a phone, matching the gate. */
+  .site-header::before { height: 118px; background: var(--nav-scrim-soft); }
   /* Cap the wordmark so the hamburger always fits beside it. */
   .site-header .brand__logo { width: min(68vw, 268px); height: auto; }
   /* The hero is bottom-anchored, so its height is what governs how much dead
@@ -1144,13 +1173,7 @@ body.choice-done .view-chooser {
 }
 .view-chooser__bar::before {
   content: ""; position: absolute; left: 0; right: 0; top: 0; height: 190px;
-  z-index: -1; pointer-events: none;
-  background: linear-gradient(to bottom,
-    rgba(11,11,12,0.95) 0%,
-    rgba(11,11,12,0.8) 30%,
-    rgba(11,11,12,0.45) 60%,
-    rgba(11,11,12,0.16) 82%,
-    rgba(11,11,12,0) 100%);
+  z-index: -1; pointer-events: none; background: var(--nav-scrim);
 }
 .view-chooser__bar > * { pointer-events: auto; }
 .vc-bar__spacer { display: none; }
@@ -1224,11 +1247,7 @@ body.choice-done .view-chooser {
      scrim — the full-strength one reached onto the subject's face. */
   .view-chooser__bar { height: 70px; }
   .view-chooser__bar::before {
-    height: 118px;
-    background: linear-gradient(to bottom,
-      rgba(11,11,12,0.8) 0%,
-      rgba(11,11,12,0.42) 45%,
-      rgba(11,11,12,0) 100%);
+    height: 118px; background: var(--nav-scrim-soft);
   }
   .brand--chooser .brand__logo { width: min(62vw, 240px); }
   .view-chooser__panels { flex-direction: column; }
