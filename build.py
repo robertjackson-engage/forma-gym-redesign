@@ -1254,7 +1254,7 @@ groupfit_body = hero(
 # ============================================================ TRAINING
 training_body = hero(
     "Personal Training",
-    ["Your goal.", 'Our <span class="serif">obsession</span>.'],
+    ["The best", 'in the <span class="serif">Bay</span>.'],
     "A team of fitness professionals with diverse backgrounds, deep experience, and a shared passion for health and wellness. We'll meet you where you are and build the plan that gets you where you want to be.",
     img=f"{IMG}/annabelle_kettle_HERO_2.jpg",
     crumb="Training",
