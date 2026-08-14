@@ -1373,7 +1373,8 @@ locations_body = hero(
 )
 
 
-def location_page(name, badge, phone, tel, address, intro, amenities, hero_img, gallery_imgs, hours):
+def location_page(name, badge, phone, tel, address, intro, amenities, hero_img, gallery_imgs, hours,
+                  hero_focal="50% 50%"):
     am = "".join(f"<li>{a}</li>" for a in amenities)
     g = ""
     cls = ["g-item--a", "g-item--b", "g-item--c"]
@@ -1381,10 +1382,10 @@ def location_page(name, badge, phone, tel, address, intro, amenities, hero_img, 
         g += f'<div class="g-item {cls[i]} reveal-img"><img src="{IMG}/{im}" alt="{name}" loading="lazy"></div>'
     hrs = "".join(f'<div><dt>{d}</dt><dd>{h}</dd></div>' for d, h in hours)
     return hero(
-        f"Forma {name}", [name.split()[0], f'<span class="serif">{name.split()[-1] if len(name.split())>1 else "Club"}</span>'],
+        f"Forma {name}", [f'{name.split()[0]} <span class="serif">{name.split()[-1] if len(name.split())>1 else "Club"}</span>'],
         intro, img=f"{IMG}/{hero_img}", crumb=f'<a href="locations.html">Locations</a> &nbsp;/&nbsp; {name}',
         actions=[("Visit Us", "join.html", True), (f"Call {phone}", f"tel:{tel}", False)],
-        meta=[badge], page=True,
+        meta=[badge], page=True, focal=hero_focal,
     ) + f"""
 <section class="section section--tight">
   <div class="wrap">
@@ -1436,6 +1437,7 @@ sanjose_body = location_page(
     "sj_facade.jpg",
     ["pool_sunset_SJ_500px.jpg", "SJ_gym_floor_HERO_gradient-scaled.jpg", "SJ_pool_662x501_v1.jpg"],
     [("Mon–Thu", "5am – 11pm"), ("Friday", "5am – 10pm"), ("Sat–Sun", "6am – 8pm")],
+    hero_focal="0% 50%",    # hard left onto the plain wood — the lit sign sat right behind the copy
 )
 
 # ============================================================ RECOVERY
