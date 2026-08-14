@@ -332,11 +332,12 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 }
 /* smaller title so a longer first line ("More than a gym.") stays on one line → 2 lines total */
 .hero__title--fit { font-size: clamp(34px, 6vw, 98px); max-width: 20ch; }
-/* Halved desktop display size — 9.2vw/158px becomes 4.6vw/79px. Desktop only:
-   the phone size is set separately in the 820px block and was already right.
-   On trial on the San Jose club page before going sitewide. */
+/* Desktop display size cut from 9.2vw/158px to 5.8vw/100px — a bit short of
+   halving, which dropped the title below the width of its own paragraph and
+   flipped the hierarchy. Desktop only: the phone size is set separately in the
+   820px block and was already right. On trial on San Jose before going sitewide. */
 @media (min-width: 821px) {
-  .hero__title--sm { font-size: clamp(40px, 4.6vw, 79px); }
+  .hero__title--sm { font-size: clamp(40px, 5.8vw, 100px); }
 }
 /* padding+negative margin give italic serif descenders (y, g, p) room
    inside the animation mask so they don't get sliced off */
