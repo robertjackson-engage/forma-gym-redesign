@@ -1008,6 +1008,10 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   .split .split__body, .split--rev .split__body { order: 1; }
   .split .split__media, .split--rev .split__media { order: 2; }
   .split__media { aspect-ratio: 4/3.4; }
+  /* Restated after the line above, which would otherwise override it — equal
+     specificity, later source order wins. Without this --wide does nothing on a
+     phone, and 4/3.4 is too narrow to hold all three figures. */
+  .split__media--wide { aspect-ratio: 4 / 3; }
   /* Two-up on a phone: six full-width cards ran ~2000px of scroll on their
      own. Back to a squarer frame since each card is now half the width. */
   .card-grid, .card-grid--2, .card-grid--4 { grid-template-columns: repeat(2, 1fr); }

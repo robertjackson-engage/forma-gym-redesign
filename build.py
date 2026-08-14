@@ -461,7 +461,7 @@ def stats_band(items, light=False):
 """
 
 
-def split(eyebrow, num, title, paras, img, alt, rev=False, cta=None, light=False, wide=False):
+def split(eyebrow, num, title, paras, img, alt, rev=False, cta=None, light=False, wide=False, focal=None):
     body_paras = "".join(f'<p class="body-copy">{p}</p>' for p in paras)
     cta_html = f'<div class="split__cta"><a class="inline-link" href="{cta[1]}">{cta[0]} →</a></div>' if cta else ""
     return f"""
@@ -469,7 +469,7 @@ def split(eyebrow, num, title, paras, img, alt, rev=False, cta=None, light=False
   <div class="wrap">
     <div class="split{' split--rev' if rev else ''}">
       <div class="split__media{' split__media--wide' if wide else ''} reveal-img">
-        <img src="{img}" alt="{alt}" loading="lazy">
+        <img src="{img}" alt="{alt}" loading="lazy"{f' style="object-position:{focal}"' if focal else ''}>
       </div>
       <div class="split__body">
         <p class="eyebrow">{f'' if num else ''}{eyebrow}</p>
@@ -1186,6 +1186,10 @@ about_body = hero(
     f"{IMG}/slider-hero_ladies_v1.jpg",
     "Forma community members in class",
     cta=("Visit a club", "locations.html"),
+    # 2000x954 in the default portrait box shows only the middle 41.5% — the three
+    # figures span 54.5%, so the right-hand one was always cut. Wide box + a shift
+    # right onto the group's true centre (60% of the frame, not 50%).
+    wide=True, focal="78% 50%",
 ) + form_section(
     "tour", "04", "Book a tour",
     'Come see it for <span class="serif">yourself</span>',
