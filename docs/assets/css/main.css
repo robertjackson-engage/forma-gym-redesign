@@ -379,7 +379,7 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 .eyebrow {
   display: flex; align-items: center; gap: 16px;
   font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; font-weight: 600;
-  color: var(--accent); margin-bottom: clamp(22px, 3vw, 40px);
+  color: var(--accent); margin-bottom: clamp(14px, 3vw, 40px);
 }
 .eyebrow::after { content: ""; flex: 0 0 52px; height: 1px; background: currentColor; opacity: .5; }
 
@@ -412,7 +412,9 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 /* Drop the copy column by exactly the eyebrow's own height plus its bottom
    margin, so its first line starts level with the heading beside it rather
    than floating above it. */
-.intro-grid { --eyebrow-block: calc(18px + clamp(22px, 3vw, 40px)); }
+/* Must mirror .eyebrow's margin-bottom exactly — this is what pads the right
+   column down so its first line sits level with the left column's headline. */
+.intro-grid { --eyebrow-block: calc(18px + clamp(14px, 3vw, 40px)); }
 .intro-grid__right { display: flex; flex-direction: column; gap: 26px; padding-top: var(--eyebrow-block); }
 /* The heading breaks to its own lines, so the copy column gets the room. */
 .intro-grid__right .lede { max-width: 64ch; }
@@ -432,8 +434,11 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 .split__media img {
   width: 100%; height: 100%; object-fit: cover;
 }
-.split__body .h-mid, .split__body .h-display { margin-bottom: 24px; }
-.split__body .eyebrow { margin-bottom: 20px; }
+/* Were flat 24/20px, which read the same on a 375px phone as on a 27" display.
+   Scaled so the head block collapses toward the copy on mobile and keeps its
+   full breathing room on desktop. */
+.split__body .h-mid, .split__body .h-display { margin-bottom: clamp(15px, 2vw, 24px); }
+.split__body .eyebrow { margin-bottom: clamp(12px, 1.7vw, 20px); }
 .split__cta { margin-top: 34px; }
 
 /* ---------- stat band ---------- */
