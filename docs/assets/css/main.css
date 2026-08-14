@@ -993,6 +993,11 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   .hero__sub { font-size: 18px; line-height: 1.55; font-weight: 400; }
   .hero__meta { display: none; }
   .hero__title { font-size: clamp(46px, 13.5vw, 80px); }
+  /* Longer headlines need a step down on a phone or the first line wraps —
+     "More than a gym." needs 363px at the base size but only has 335px. Must sit
+     after the rule above: identical specificity, so source order is what makes it
+     apply. (The old --fit size sat earlier in the file and silently did nothing.) */
+  .hero__title--fit { font-size: clamp(34px, 12vw, 72px); }
   /* Stacked, so the column alignment padding is dead space — the heading sits
      directly above the copy now, not beside it. */
   .intro-grid { grid-template-columns: 1fr; gap: 18px; }
