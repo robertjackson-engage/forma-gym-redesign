@@ -290,6 +290,9 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   display: flex; align-items: center; gap: 16px;
   font-size: 11px; letter-spacing: 0.34em; text-transform: uppercase; color: var(--bone);
   margin-bottom: clamp(18px, 3vh, 34px); font-weight: 600;
+  /* Same reason as .hero__sub: small text over a photo needs separation. The
+     display title is heavy enough not to. */
+  text-shadow: 0 1px 2px rgba(11,11,12,0.5), 0 2px 12px rgba(11,11,12,0.5);
 }
 .hero__kicker::before { content: ""; width: 52px; height: 1px; background: var(--accent); display: inline-block; }
 .hero__title {
