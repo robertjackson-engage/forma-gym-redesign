@@ -1369,7 +1369,8 @@ locations_body = hero(
 ]) + cta_band(
     'Find your <span class="serif">home club</span>',
     "Both locations are all-inclusive: every class, the pool, the recovery suites - the works.",
-    f"{IMG}/pool_sunset_SJ_500px.jpg",
+    # was pool_sunset_SJ_500px.jpg — a 500px square stretched across a 100vw band
+    f"{IMG}/sj_pool_sunset.jpg",
 )
 
 
@@ -1434,10 +1435,14 @@ sanjose_body = location_page(
      "Indoor &amp; outdoor group fitness: Zumba, Yoga, Barre, HIIT, Pilates, Dance &amp; Cycle",
      "Full-service locker rooms with sauna, steam room &amp; hot tub", "Onsite sports &amp; therapeutic massage services",
      "Expert fitness &amp; nutrition coaches", "Towel service, including chilled eucalyptus towels", "NEW Cold Plunge by Chilly Goat®"],
-    "sj_facade.jpg",
-    ["pool_sunset_SJ_500px.jpg", "SJ_gym_floor_HERO_gradient-scaled.jpg", "SJ_pool_662x501_v1.jpg"],
+    "sj_pool_sunset.jpg",
+    # pool_sunset_SJ_500px.jpg dropped — it is this same shot, and the hero already carries it
+    ["SJ_gym_floor_HERO_gradient-scaled.jpg", "SJ_pool_662x501_v1.jpg"],
     [("Mon–Thu", "5am – 11pm"), ("Friday", "5am – 10pm"), ("Sat–Sun", "6am – 8pm")],
-    hero_focal="0% 50%",    # hard left onto the plain wood — the lit sign sat right behind the copy
+    # Desktop has no horizontal overflow on this frame, so the x value is purely a
+    # phone crop: 32% lands on the palm cluster, pink sky and lane lines. Anything
+    # past ~50% slides onto the perimeter wall and loses both the sunset and the pool.
+    hero_focal="32% 50%",
 )
 
 # ============================================================ RECOVERY
