@@ -1083,7 +1083,7 @@ home_body = view_chooser + hero(
     'Walnut <span class="serif">Creek</span>',
     ["The birthplace of Forma since 2009. Right off the 680/24 corridor and completely renovated — 35,000 square feet of indoor and outdoor fitness motivation, a heated outdoor lap pool under towering redwoods, onsite Kidzville, cryotherapy, a full-service day spa and the Forma Café.",
      "Open Monday–Thursday 5am–11pm, Friday 5am–10pm, weekends 6am–8pm. 1908 Olympic Blvd, Walnut Creek."],
-    f"{IMG}/formaWC_facade_bkgrnd.jpg",
+    f"{IMG}/wc_facade.jpg",
     "Forma Gym Walnut Creek facade",
     cta=("Explore Walnut Creek", "walnut-creek.html"),
 ) + split(
@@ -1325,7 +1325,7 @@ locations_body = hero(
   <div class="wrap">
     <div class="loc">
       <div class="loc-item">
-        <div class="loc-item__media reveal-img"><img src="{IMG}/formaWC_facade_bkgrnd.jpg" alt="Forma Walnut Creek" loading="lazy"></div>
+        <div class="loc-item__media reveal-img"><img src="{IMG}/wc_facade.jpg" alt="Forma Walnut Creek" loading="lazy"></div>
         <div>
           <span class="loc-badge">Since 2009 · 35,000 sq ft</span>
           <h3>Walnut Creek</h3>

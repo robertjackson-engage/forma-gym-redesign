@@ -342,14 +342,16 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 }
 @keyframes scrollHint { 0% { top: -50%; } 60%, 100% { top: 110%; } }
 /* ---------- generic section scaffolding ---------- */
-.section { position: relative; padding: clamp(80px, 11vw, 170px) 0; }
+/* Tightened from clamp(80px, 11vw, 170px) — the gaps between sections were
+   eating a lot of scroll, especially on a phone. */
+.section { position: relative; padding: clamp(54px, 7.5vw, 120px) 0; }
 .section--flush { padding: 0; }
 .section--light { background: var(--bone); color: var(--ink); }
 /* Dark panel: separates a section from the page black without going bright.
    Keeps the on-dark type colours, unlike section--light. */
 .section--panel { background: var(--ink-3); }
 .section--accent { background: var(--accent); color: var(--white); }
-.section--tight { padding: clamp(56px, 7vw, 110px) 0; }
+.section--tight { padding: clamp(40px, 5vw, 78px) 0; }
 .wrap { max-width: var(--max); margin: 0 auto; padding-left: var(--pad); padding-right: var(--pad); }
 
 .eyebrow {
@@ -467,7 +469,7 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 .marquee--photo span { padding: 0; display: block; }
 .marquee--photo img {
   display: block;
-  width: clamp(190px, 24vw, 330px);
+  width: clamp(230px, 29vw, 420px);
   /* Taller so the strip carries its own band rather than leaving a gap under
      it — near square at the top of the range. */
   height: clamp(190px, 22vw, 330px);
