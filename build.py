@@ -1375,7 +1375,7 @@ locations_body = hero(
 
 
 def location_page(name, badge, phone, tel, address, intro, amenities, hero_img, gallery_imgs, hours,
-                  hero_focal="50% 50%", hero_media_mod=""):
+                  hero_focal="50% 50%", hero_media_mod="", hero_title_mod=""):
     am = "".join(f"<li>{a}</li>" for a in amenities)
     g = ""
     cls = ["g-item--a", "g-item--b", "g-item--c"]
@@ -1387,6 +1387,7 @@ def location_page(name, badge, phone, tel, address, intro, amenities, hero_img, 
         intro, img=f"{IMG}/{hero_img}", crumb=f'<a href="locations.html">Locations</a> &nbsp;/&nbsp; {name}',
         actions=[("Visit Us", "join.html", True), (f"Call {phone}", f"tel:{tel}", False)],
         meta=[badge], page=True, focal=hero_focal, media_mod=hero_media_mod,
+        title_mod=hero_title_mod,
     ) + f"""
 <section class="section section--tight">
   <div class="wrap">
@@ -1444,6 +1445,7 @@ sanjose_body = location_page(
     # past ~50% slides onto the perimeter wall and loses both the sunset and the pool.
     hero_focal="32% 50%",
     hero_media_mod="hero__media--sky",
+    hero_title_mod="hero__title--sm",   # trial of the halved desktop title, this page only
 )
 
 # ============================================================ RECOVERY
