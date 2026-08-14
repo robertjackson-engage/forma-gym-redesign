@@ -1385,7 +1385,7 @@ def location_page(name, badge, phone, tel, address, intro, amenities, hero_img, 
         f"Forma {name}", [f'{name.split()[0]} <span class="serif">{name.split()[-1] if len(name.split())>1 else "Club"}</span>'],
         intro, img=f"{IMG}/{hero_img}", crumb=f'<a href="locations.html">Locations</a> &nbsp;/&nbsp; {name}',
         actions=[("Visit Us", "join.html", True), (f"Call {phone}", f"tel:{tel}", False)],
-        meta=[badge], page=True, focal=hero_focal, media_mod="hero__media--club",
+        meta=[badge], page=True, focal=hero_focal,
     ) + f"""
 <section class="section section--tight">
   <div class="wrap">
