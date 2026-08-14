@@ -375,7 +375,7 @@ def footer_html():
 
 def hero(kicker, lines, sub="", img=None, video=None, poster=None, crumb=None,
          actions=None, meta=None, page=False, title_mod="", focal=None,
-         walkthrough=False, tinted=False):
+         walkthrough=False, tinted=False, media_mod=""):
     lns = ""
     for i, ln in enumerate(lines):
         lns += f'<span class="ln"><span style="transition-delay:{0.12 + i * 0.09:.2f}s">{ln}</span></span>'
@@ -410,7 +410,7 @@ def hero(kicker, lines, sub="", img=None, video=None, poster=None, crumb=None,
     sub_html = f'<p class="hero__sub">{sub}</p>' if sub else ""
     return f"""
 <section class="hero{' hero--page' if page else ''}">
-  <div class="hero__media{' hero__media--tinted' if tinted else ''}">{media}</div>
+  <div class="hero__media{' hero__media--tinted' if tinted else ''}{f' {media_mod}' if media_mod else ''}">{media}</div>
   <div class="hero__inner">
     <p class="hero__kicker">{kicker}</p>
     <h1 class="hero__title{(' ' + title_mod) if title_mod else ''}">{lns}</h1>
@@ -1385,7 +1385,7 @@ def location_page(name, badge, phone, tel, address, intro, amenities, hero_img, 
         f"Forma {name}", [f'{name.split()[0]} <span class="serif">{name.split()[-1] if len(name.split())>1 else "Club"}</span>'],
         intro, img=f"{IMG}/{hero_img}", crumb=f'<a href="locations.html">Locations</a> &nbsp;/&nbsp; {name}',
         actions=[("Visit Us", "join.html", True), (f"Call {phone}", f"tel:{tel}", False)],
-        meta=[badge], page=True, focal=hero_focal,
+        meta=[badge], page=True, focal=hero_focal, media_mod="hero__media--club",
     ) + f"""
 <section class="section section--tight">
   <div class="wrap">

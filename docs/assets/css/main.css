@@ -282,6 +282,15 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   background: rgba(11,11,12,0.42);
 }
 .hero__media--tinted::after { background: linear-gradient(to top, rgba(11,11,12,0.94) 0%, rgba(11,11,12,0.55) 50%, rgba(11,11,12,0.6) 100%); }
+/* Club heroes on a phone: the facade shots are busy and lit, and the copy runs
+   the full width with nowhere quiet to sit. Flat scrim, mobile only — desktop
+   has room for the text to clear the subject. */
+@media (max-width: 820px) {
+  .hero__media--club::before {
+    content: ""; position: absolute; inset: 0; z-index: 1;
+    background: rgba(11,11,12,0.45);
+  }
+}
 .hero__inner {
   position: relative; z-index: 2; width: 100%;
   max-width: var(--max); margin: 0 auto; padding: 160px var(--pad) clamp(48px, 8vh, 96px);
@@ -318,7 +327,7 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   /* Light 300 weight over a photo needs a little separation on bright frames. */
   /* Three stops: a tight one for edge definition, then two wide soft ones that
      act as a local scrim behind the text on busy or bright frames. */
-  text-shadow: 0 1px 2px rgba(11,11,12,0.6), 0 2px 10px rgba(11,11,12,0.65), 0 4px 30px rgba(11,11,12,0.7);
+  text-shadow: 0 1px 2px rgba(11,11,12,0.6), 0 2px 10px rgba(11,11,12,0.65), 0 4px 30px rgba(11,11,12,0.5);
   opacity: 0; transform: translateY(24px); transition: opacity .9s ease .55s, transform .9s var(--ease-out) .55s;
 }
 .is-loaded .hero__sub { opacity: 1; transform: none; }
