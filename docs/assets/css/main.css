@@ -331,13 +331,18 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   color: var(--white); font-weight: 400; max-width: 14ch;
 }
 /* smaller title so a longer first line ("More than a gym.") stays on one line → 2 lines total */
-.hero__title--fit { font-size: clamp(34px, 6vw, 98px); max-width: 20ch; }
+/* Wider measure for longer headlines. No font-size of its own: 20ch scales with
+   the font, so the line can never wrap out of it — the old smaller size only made
+   the About hero look undersized next to the clubs. (On mobile its font-size was
+   already dead, overridden by the base rule in the 820px block.) */
+.hero__title--fit { max-width: 20ch; }
 /* Desktop display size cut from 9.2vw/158px to 5.8vw/100px — a bit short of
    halving, which dropped the title below the width of its own paragraph and
    flipped the hierarchy. Desktop only: the phone size is set separately in the
-   820px block and was already right. On trial on San Jose before going sitewide. */
+   820px block and was already right.
+   Sits after the rules above so it wins the cascade on desktop. */
 @media (min-width: 821px) {
-  .hero__title--sm { font-size: clamp(40px, 5.8vw, 100px); }
+  .hero__title { font-size: clamp(40px, 5.8vw, 100px); }
 }
 /* padding+negative margin give italic serif descenders (y, g, p) room
    inside the animation mask so they don't get sliced off */
@@ -770,6 +775,13 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 .loc-item__media { overflow: hidden; aspect-ratio: 16/10; position: relative; }
 .loc-item__media img { width: 100%; height: 100%; object-fit: cover; }
 .loc-item h3 { font-family: var(--font-display); text-transform: uppercase; font-weight: 400; font-size: clamp(30px, 3.6vw, 56px); line-height: 1; margin-bottom: 8px; }
+/* Club pages. The rules below are scoped to .loc-item, which only exists on the
+   locations index, so here dt/dd fell back to block and split every day onto two
+   lines. One line per day, "Mon–Thu: 5am – 11pm". */
+.loc-hours--inline div { display: flex; gap: 7px; padding: 5px 0; font-size: 15.5px; line-height: 1.7; }
+.loc-hours--inline dt { color: var(--muted); }
+.loc-hours--inline dt::after { content: ":"; }
+.loc-hours--inline dd { margin: 0; }
 .loc-item .loc-hours { margin: 26px 0; }
 .loc-item .loc-hours div { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 14.5px; }
 .loc-item .loc-hours dt { color: var(--muted); }
