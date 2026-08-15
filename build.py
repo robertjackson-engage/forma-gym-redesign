@@ -1758,6 +1758,10 @@ givesback_body = hero(
     crumb="Gives Back",
     actions=[("Get Involved", "contact.html#tour", True)],
     page=True,
+    # A 2.1:1 frame in a 0.6:1 phone hero shows only 29% of the width, so the
+    # default centre landed on mid-thigh. 64% puts two faces in shot instead, and
+    # still clears the whole group on desktop, where 88% of the width is visible.
+    focal="64% 50%",
 ) + split(
     "Our belief", "01",
     'A community for <span class="serif">all</span>',
@@ -2210,6 +2214,7 @@ merchant_body = hero(
     crumb="Member Savings",
     actions=[("Become a Member", "join.html", True)],
     page=True,
+    focal="64% 50%",   # same reason as the Gives Back hero
 ) + f"""
 <section class="section section--tight">
   <div class="wrap">
