@@ -1193,7 +1193,7 @@ about_body = hero(
 ) + form_section(
     "tour", "04", "Book a tour",
     'Come see it for <span class="serif">yourself</span>',
-    "Join the Forma Family and experience how we can help you — featuring the best trainers, programs and classes in the Bay Area. Tell us a little about you and we'll set up your visit.",
+    "Join the Forma Family and experience the best trainers, programs and classes in the Bay Area. Tell us a little about you and we'll set up your visit.",
     "Book My Tour", ac_id=33,
 ) + cta_band(
     'Come <span class="serif">play</span> with us',
