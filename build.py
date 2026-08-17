@@ -1139,7 +1139,7 @@ about_body = hero(
     "Our mission has driven everything we've built since 2009. It's simple – make exercise a part of "
     "our member's daily lives, for the rest of their lives. The goal at Forma has always been to create "
     "a community where fitness and health is available to EVERYONE on the spectrum of movement — from "
-    "those struggling just to stand, to world-class athletes.",
+    "those struggling just to stand, to Olympic athletes.",
     img=f"{IMG}/slider-locations_turf_alysse_torey.jpg",
     crumb="About",
     actions=[("Book a Tour", "contact.html#tour", True)],
