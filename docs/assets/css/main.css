@@ -1246,8 +1246,13 @@ body.choice-done .view-chooser {
   display: flex; align-items: center; justify-content: space-between;
   gap: 24px; height: 84px; padding: 0 var(--pad);
 }
+/* Break out to the viewport. Unlike .site-header, which is full-width with the
+   max-width on a separate __inner, this bar carries max-width itself — so a plain
+   left:0/right:0 scrim stopped at the bar and left the screen edges bare on any
+   display wider than --max (1560px). */
 .view-chooser__bar::before {
-  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 190px;
+  content: ""; position: absolute; top: 0; height: 190px;
+  left: calc(50% - 50vw); right: calc(50% - 50vw);
   z-index: -1; pointer-events: none; background: var(--nav-scrim);
 }
 .view-chooser__bar > * { pointer-events: auto; }
