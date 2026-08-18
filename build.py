@@ -1475,7 +1475,7 @@ recovery_body = hero(
 ) + split(
     "The spa", "02",
     'The optimum wellness <span class="serif">experience</span>',
-    ["A comprehensive menu of therapeutic treatments — massage, facials and clinical skin care — performed by skilled, professional therapists dedicated to easing pain, restoring function and rejuvenating face and body.",
+    ["A comprehensive menu of therapeutic treatments — massage, facials, Reiki and clinical skin care — performed by skilled, professional therapists dedicated to easing pain, restoring function and rejuvenating face and body.",
      "Conveniently located adjacent to the locker rooms, so sauna, steam or Jacuzzi can be enjoyed before or after your treatment."],
     f"{IMG}/Forma_Walnut-Creek_Spa_Header_2018.jpg",
     "The Spa at Forma",
@@ -1561,12 +1561,12 @@ cryo_body = hero(
 spa_body = hero(
     "The Spa",
     ["Pause.", '<span class="serif">Restore.</span>'],
-    "A comprehensive menu of therapeutic treatments — massage, facials and clinical skin care — in a cozy, luxurious setting steps from the sauna, steam and Jacuzzi. Skilled therapists dedicated to easing pain and rejuvenating face and body.",
+    "A comprehensive menu of therapeutic treatments — massage, facials, Reiki and clinical skin care — in a cozy, luxurious setting steps from the sauna, steam and Jacuzzi. Skilled therapists dedicated to easing pain and rejuvenating face and body.",
     img=f"{IMG}/Forma_San-Jose-spa_Header_2018.jpg",
     focal="50% 68%", tinted=True,
     crumb="The Spa",
     actions=[("Book a Treatment", "tel:9259326400", True)],
-    meta=["Massage · facials · skin care", "Walnut Creek &amp; San Jose"],
+    meta=["Massage · facials · Reiki · skin care", "Walnut Creek &amp; San Jose"],
     page=True,
 ) + f"""
 <section class="section">
@@ -2339,7 +2339,7 @@ PAGES = [
     ("training.html", "Personal Training | Forma Gym", "1-on-1 and small group personal training with the best coaches in the Bay Area. Nutrition guidance, accountability, and a plan built around you.", "training.html", training_body),
     ("recovery.html", "Recovery, Cryotherapy &amp; Cold Plunge | Forma Gym", "Recover like an athlete — cryotherapy, cold plunge, full-service spa, sauna, steam and hot tubs at Forma Gym.", "recovery.html", recovery_body),
     ("cryo.html", "Cryotherapy + Cold Plunge | Forma Gym", "Whole-body cryotherapy and cold plunge at Forma Gym. Burn 500–800 calories per session, reduce pain and inflammation, recover faster.", "", cryo_body),
-    ("spa.html", "The Spa at Forma | Massage, Facials &amp; Skin Care", "A full-service day spa at Forma Gym — therapeutic massage, facials and clinical skin care in Walnut Creek &amp; San Jose.", "", spa_body),
+    ("spa.html", "The Spa at Forma | Massage, Facials, Reiki &amp; Skin Care", "A full-service day spa at Forma Gym — therapeutic massage, facials, Reiki and clinical skin care in Walnut Creek &amp; San Jose.", "", spa_body),
     ("mindbodylab.html", "Mind Body LAB &amp; DrBrainRX | Forma Gym", "Where science meets self-care — brain health, recovery tech, meditation and the mind-body connection at Forma Gym.", "", mbl_body),
     ("kidzville.html", "Kidzville Childcare | Forma Gym Walnut Creek", "Free, safe, active childcare for ages 6 weeks–12 years while you work out. Forma Kidzville at Walnut Creek.", "", kidz_body),
     ("rise.html", "RISE Program | Exercise-Based Therapy for Paralysis | Forma", "RISE is an exercise-based therapy program for individuals living with paralysis. Movement is medicine. Scholarships available.", "", rise_body),

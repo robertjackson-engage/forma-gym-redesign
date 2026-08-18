@@ -17,6 +17,9 @@
   --line: rgba(244, 247, 248, 0.14);
   --line-dark: rgba(6, 7, 9, 0.12);
   --muted: rgba(244, 247, 248, 0.60);
+  /* Reading text. Full-strength bone: --muted at 0.60 gave body copy only
+     6.8:1 on --ink, this is 18.3:1. Small uppercase labels stay --muted. */
+  --copy: #f4f7f8;
   --muted-dark: rgba(6, 7, 9, 0.62);
 
   --font-display: "Anton", "Arial Narrow", sans-serif;
@@ -420,7 +423,7 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   font-size: clamp(18px, 1.6vw, 24px); line-height: 1.55; font-weight: 300;
   max-width: 56ch;
 }
-.body-copy { color: var(--muted); max-width: 62ch; font-size: 16px; }
+.body-copy { color: var(--copy); max-width: 62ch; font-size: 16px; }
 .section--light .body-copy { color: var(--muted-dark); }
 .body-copy + .body-copy { margin-top: 1.2em; }
 .body-copy strong { color: inherit; font-weight: 600; }
@@ -591,7 +594,7 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   .card__label { bottom: 22px; }
 }
 .card__below { padding: 20px 2px 0; }
-.card__below p { color: var(--muted); font-size: 14.5px; }
+.card__below p { color: var(--copy); font-size: 14.5px; }
 .section--light .card__below p { color: var(--muted-dark); }
 
 /* ---------- numbered list rows ---------- */
@@ -610,7 +613,7 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   font-family: var(--font-display); text-transform: uppercase; font-weight: 400;
   font-size: clamp(22px, 2.4vw, 38px); line-height: 1.05;
 }
-.row-item__desc { color: var(--muted); font-size: 15px; max-width: 52ch; }
+.row-item__desc { color: var(--copy); font-size: 15px; max-width: 52ch; }
 .section--light .row-item__desc { color: var(--muted-dark); }
 .row-item__arrow {
   width: 52px; height: 52px; border: 1px solid var(--line); border-radius: 50%;
@@ -629,7 +632,7 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 .section--light .pillar:hover { background: var(--bone-2); }
 .pillar__num { font-size: 11px; letter-spacing: 0.3em; color: var(--accent); display: block; margin-bottom: 26px; }
 .pillar h3 { font-family: var(--font-display); text-transform: uppercase; font-weight: 400; font-size: clamp(22px, 2.2vw, 34px); margin-bottom: 16px; line-height: 1.06; }
-.pillar p { color: var(--muted); font-size: 15px; }
+.pillar p { color: var(--copy); font-size: 15px; }
 .section--light .pillar p { color: var(--muted-dark); }
 .pillar a.inline-link { margin-top: 18px; }
 
@@ -709,7 +712,7 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 .acc__item.is-open .acc__icon { background: var(--accent); border-color: var(--accent); color: #fff; }
 .acc__item.is-open .acc__icon::after { transform: rotate(90deg); }
 .acc__body { max-height: 0; overflow: hidden; transition: max-height .7s var(--ease-power); }
-.acc__body-inner { padding: 0 0 36px; max-width: 70ch; color: var(--muted); font-size: 15.5px; }
+.acc__body-inner { padding: 0 0 36px; max-width: 70ch; color: var(--copy); font-size: 15.5px; }
 .section--light .acc__body-inner { color: var(--muted-dark); }
 /* Club heading above each roster. */
 .team-club {
@@ -845,7 +848,7 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 .site-footer h5 { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--muted); margin-bottom: 22px; font-weight: 600; }
 .site-footer__links a { display: block; padding: 6px 0; font-size: 15px; color: rgba(243,240,233,0.8); transition: color .3s, transform .4s var(--ease-out); }
 .site-footer__links a:hover { color: var(--accent); transform: translateX(6px); }
-.site-footer__brand p { color: var(--muted); font-size: 15px; max-width: 36ch; margin-top: 18px; }
+.site-footer__brand p { color: var(--copy); font-size: 15px; max-width: 36ch; margin-top: 18px; }
 /* Address + phone read as one unit — keep them off two lines wherever the
    column is wide enough to take them. */
 .site-footer__contact a { color: rgba(243,240,233,0.85); display: block; padding: 4px 0; transition: color .3s; text-wrap: balance; }
@@ -952,7 +955,7 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   color: transparent; -webkit-text-stroke: 1px var(--accent);
 }
 .step h3 { font-family: var(--font-display); text-transform: uppercase; font-weight: 400; font-size: clamp(22px, 2.4vw, 38px); line-height: 1.05; }
-.step p { color: var(--muted); font-size: 15.5px; max-width: 56ch; }
+.step p { color: var(--copy); font-size: 15.5px; max-width: 56ch; }
 .section--light .step p { color: var(--muted-dark); }
 
 /* ---------- responsive ---------- */
