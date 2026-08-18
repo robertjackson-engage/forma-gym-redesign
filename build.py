@@ -461,14 +461,14 @@ def stats_band(items, light=False):
 """
 
 
-def split(eyebrow, num, title, paras, img, alt, rev=False, cta=None, light=False, wide=False, focal=None):
+def split(eyebrow, num, title, paras, img, alt, rev=False, cta=None, light=False, wide=False, focal=None, ratio=None):
     body_paras = "".join(f'<p class="body-copy">{p}</p>' for p in paras)
     cta_html = f'<div class="split__cta"><a class="inline-link" href="{cta[1]}">{cta[0]} →</a></div>' if cta else ""
     return f"""
 <section class="section{' section--panel' if light else ''}">
   <div class="wrap">
     <div class="split{' split--rev' if rev else ''}">
-      <div class="split__media{' split__media--wide' if wide else ''} reveal-img">
+      <div class="split__media{' split__media--wide' if wide else ''} reveal-img"{f' style="aspect-ratio:{ratio}"' if ratio else ''}>
         <img src="{img}" alt="{alt}" loading="lazy"{f' style="object-position:{focal}"' if focal else ''}>
       </div>
       <div class="split__body">
@@ -1086,6 +1086,9 @@ home_body = view_chooser + hero(
     f"{IMG}/wc_facade.jpg",
     "Forma Gym Walnut Creek facade",
     cta=("Explore Walnut Creek", "walnut-creek.html"),
+    # The default portrait 4/4.6 crops the facades down to the sign. 4/3.4 is what
+    # the phone already used, and the extra width is what shows the building.
+    ratio="4/3.4",
 ) + split(
     "Our clubs", "04",
     'San <span class="serif">Jose</span>',
@@ -1094,6 +1097,7 @@ home_body = view_chooser + hero(
     f"{IMG}/sj_facade.jpg",
     "Forma Gym San Jose facade",
     rev=True, cta=("Explore San Jose", "san-jose.html"),
+    ratio="4/3.4",
 ) + f"""
 <section class="section section--panel">
   <div class="wrap">
