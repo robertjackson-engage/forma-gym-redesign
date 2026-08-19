@@ -843,7 +843,6 @@ SIZES_BY_CONTEXT = {
     # stacks full-width on a phone, half the row on desktop
     "split__media":     "(max-width: 900px) 100vw, 50vw",
     "loc-item__media":  "(max-width: 900px) 100vw, 50vw",
-    "g-item":           "(max-width: 900px) 100vw, 33vw",
     # the strip is a fixed-height scroller
     "marquee__track":   "320px",
     "trainer-bio":      "150px",
@@ -1233,13 +1232,6 @@ groupfit_body = hero(
   </div>
 </section>
 
-<section class="section section--flush">
-  <div class="gallery wrap">
-    <div class="g-item g-item--a reveal-img"><img src="{IMG}/slider-WC_cycle_indoor_v2.jpg" alt="Cycle class" loading="lazy"></div>
-    <div class="g-item g-item--b reveal-img"><img src="{IMG}/slider-TRX_v4.jpg" alt="TRX class" loading="lazy"></div>
-    <div class="g-item g-item--c reveal-img"><img src="{IMG}/slider-sculpt_v2.jpg" alt="Sculpt class" loading="lazy"></div>
-  </div>
-</section>
 """ + split(
     "Where you'll sweat", "02",
     'Studios built for <span class="serif">energy</span>',
@@ -1382,13 +1374,9 @@ locations_body = hero(
 )
 
 
-def location_page(name, badge, phone, tel, address, intro, amenities, hero_img, gallery_imgs, hours,
+def location_page(name, badge, phone, tel, address, intro, amenities, hero_img, cta_img, hours,
                   hero_focal="50% 50%", hero_media_mod=""):
     am = "".join(f"<li>{a}</li>" for a in amenities)
-    g = ""
-    cls = ["g-item--a", "g-item--b", "g-item--c"]
-    for i, im in enumerate(gallery_imgs[:3]):
-        g += f'<div class="g-item {cls[i]} reveal-img"><img src="{IMG}/{im}" alt="{name}" loading="lazy"></div>'
     hrs = "".join(f'<div><dt>{d}</dt><dd>{h}</dd></div>' for d, h in hours)
     return hero(
         f"Forma {name}", [f'{name.split()[0]} <span class="serif">{name.split()[-1] if len(name.split())>1 else "Club"}</span>'],
@@ -1412,13 +1400,10 @@ def location_page(name, badge, phone, tel, address, intro, amenities, hero_img, 
   </div>
 </section>
 
-<section class="section section--flush">
-  <div class="gallery wrap">{g}</div>
-</section>
 """ + cta_band(
         f'Come play in <span class="serif">{name.split()[-1]}</span>',
         "Book a tour or jump straight in. Every class and amenity, included.",
-        f"{IMG}/{gallery_imgs[0]}",
+        f"{IMG}/{cta_img}",
     )
 
 
@@ -1431,7 +1416,7 @@ walnutcreek_body = location_page(
      "Heated, outdoor lap pool under the redwoods", "Onsite Kidzville childcare", "Cryotherapy + Cold Plunge by Chilly Goat®",
      "Full-service day spa", "Luxury amenities: sauna, eucalyptus steam room, hot tub", "Forma Café + Smoothie Bar"],
     "wc_facade.jpg",
-    ["Forma_WalnutCreek_locations_pool_birdeye-2.jpg", "facade2_WC_500px.jpg", "WC_pool_class_662x501_v1.jpg"],
+    "Forma_WalnutCreek_locations_pool_birdeye-2.jpg",   # CTA band backdrop
     [("Mon–Thu", "5am – 11pm"), ("Friday", "5am – 10pm"), ("Sat–Sun", "6am – 8pm")],
 )
 
@@ -1444,8 +1429,7 @@ sanjose_body = location_page(
      "Full-service locker rooms with sauna, steam room &amp; hot tub", "Onsite sports &amp; therapeutic massage services",
      "Expert fitness &amp; nutrition coaches", "Towel service, including chilled eucalyptus towels", "NEW Cold Plunge by Chilly Goat®"],
     "sj_pool_sunset.jpg",
-    # pool_sunset_SJ_500px.jpg dropped — it is this same shot, and the hero already carries it
-    ["SJ_gym_floor_HERO_gradient-scaled.jpg", "SJ_pool_662x501_v1.jpg"],
+    "SJ_gym_floor_HERO_gradient-scaled.jpg",            # CTA band backdrop
     [("Mon–Thu", "5am – 11pm"), ("Friday", "5am – 10pm"), ("Sat–Sun", "6am – 8pm")],
     # Desktop has no horizontal overflow on this frame, so the x value is purely a
     # phone crop: 32% lands on the palm cluster, pink sky and lane lines. Anything
