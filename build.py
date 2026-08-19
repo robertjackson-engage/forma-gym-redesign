@@ -2034,10 +2034,14 @@ contact_body = hero(
     "Contact &amp; Tours",
     ["Come <span class=\"serif\">say hi</span>"],
     "Book a tour, ask a question, or just tell us your goal – we'll point you to the right club, class or coach. No pressure, no scripts.",
-    img=f"{IMG}/jason_johnson_turf2.jpg",
+    img=f"{IMG}/ana_chalk.jpg",
     crumb="Contact",
     actions=[("Book a Tour", "#tour", True)],
     page=True,
+    # Portrait 1132x1306 in a wide hero: desktop crops 53% of the height,
+    # a phone crops 42% of the width. 38% keeps her body centred with the
+    # chalk still in frame; 20% holds her face and hands on desktop.
+    focal="38% 20%",
 ) + form_section(
     "tour", "01", "Book a tour",
     'Let\'s find your <span class="serif">fit</span>',
