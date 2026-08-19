@@ -1092,13 +1092,12 @@ home_body = view_chooser + hero(
     ratio="4/3.4",
     body_html=(
         '<p class="body-copy">The birthplace of Forma since 2009. Right off the 680/24 corridor and completely renovated — 35,000 square feet of indoor and outdoor fitness motivation, a heated outdoor lap pool under towering redwoods, onsite Kidzville, cryotherapy, a full-service day spa and the Forma Café.</p>'
-        '<a class="phone" href="tel:9259326400">(925) 932-6400</a>'
         '<div class="loc-hours">'
         '<div><dt>Mon–Thu</dt><dd>5am – 11pm</dd></div>'
         '<div><dt>Friday</dt><dd>5am – 10pm</dd></div>'
         '<div><dt>Sat–Sun</dt><dd>6am – 8pm</dd></div>'
         '</div>'
-        '<address class="club-address">1908 Olympic Blvd, Walnut Creek, CA 94596</address>'
+        '<address class="club-address">1908 Olympic Blvd, Walnut Creek, CA 94596 &middot; <a href="tel:9259326400">(925) 932-6400</a></address>'
     ),
 ) + split(
     "Our clubs", "04",
@@ -1110,13 +1109,12 @@ home_body = view_chooser + hero(
     ratio="4/3.4",
     body_html=(
         '<p class="body-copy">Serving South San Jose since 2015. A 40,000 sq. ft. luxury facility with an 8,000 sq. ft. covered outdoor fitness area — cardio, strength, group fitness, a heated 6-lane junior olympic pool with hot tub, and full-service locker rooms with sauna, steam and a Chilly Goat® cold plunge.</p>'
-        '<a class="phone" href="tel:4083631010">(408) 363-1010</a>'
         '<div class="loc-hours">'
         '<div><dt>Mon–Thu</dt><dd>5am – 11pm</dd></div>'
         '<div><dt>Friday</dt><dd>5am – 10pm</dd></div>'
         '<div><dt>Sat–Sun</dt><dd>6am – 8pm</dd></div>'
         '</div>'
-        '<address class="club-address">5434 Thornwood Dr, San Jose, CA 95123</address>'
+        '<address class="club-address">5434 Thornwood Dr, San Jose, CA 95123 &middot; <a href="tel:4083631010">(408) 363-1010</a></address>'
     ),
 ) + f"""
 <section class="section section--panel">
