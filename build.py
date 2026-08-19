@@ -2053,8 +2053,8 @@ contact_body = hero(
       </div>
     </div>
     <div class="card-grid card-grid--2" data-stagger>
-      <div class="card"><div class="card__media card__media--wide"><img src="{IMG}/wc_facade.jpg" alt="Walnut Creek" loading="lazy"><div class="card__label"><h3>Walnut Creek</h3></div></div><div class="card__below"><p>1908 Olympic Blvd, Walnut Creek, CA 94596<br><a href="tel:9259326400" style="color:var(--accent)">(925) 932-6400</a><br>Mon–Thu 5am–11pm · Fri 5am–10pm · Sat–Sun 6am–8pm</p></div></div>
-      <div class="card"><div class="card__media card__media--wide"><img src="{IMG}/sj_facade.jpg" alt="San Jose" loading="lazy"><div class="card__label"><h3>San Jose</h3></div></div><div class="card__below"><p>5434 Thornwood Dr, San Jose, CA 95123<br><a href="tel:4083631010" style="color:var(--accent)">(408) 363-1010</a><br>Mon–Thu 5am–11pm · Fri 5am–10pm · Sat–Sun 6am–8pm</p></div></div>
+      <div class="card card--stack"><div class="card__media card__media--wide"><img src="{IMG}/wc_facade.jpg" alt="Walnut Creek" loading="lazy"></div><div class="card__below"><h3 class="card__title">Walnut Creek</h3><p>1908 Olympic Blvd, Walnut Creek, CA 94596<br><a href="tel:9259326400" style="color:var(--accent)">(925) 932-6400</a><br>Mon–Thu 5am–11pm · Fri 5am–10pm · Sat–Sun 6am–8pm</p></div></div>
+      <div class="card card--stack"><div class="card__media card__media--wide"><img src="{IMG}/sj_facade.jpg" alt="San Jose" loading="lazy"></div><div class="card__below"><h3 class="card__title">San Jose</h3><p>5434 Thornwood Dr, San Jose, CA 95123<br><a href="tel:4083631010" style="color:var(--accent)">(408) 363-1010</a><br>Mon–Thu 5am–11pm · Fri 5am–10pm · Sat–Sun 6am–8pm</p></div></div>
     </div>
   </div>
 </section>
