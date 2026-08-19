@@ -593,6 +593,16 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   .card__label .go { display: none; }
   .card__label { bottom: 22px; }
 }
+/* Recover cards: title sits below the photo instead of over it. The overlay
+   treatment is right for Find your movement, where the label IS the card; here
+   there is body copy underneath, and stacking title + copy reads as one block.
+   Same type spec as .card__label h3 so the two sections still feel related. */
+.card--stack .card__media::after { content: none; }
+.card__title {
+  font-family: var(--font-body); text-transform: uppercase; font-weight: 600;
+  font-size: clamp(12px, 1.05vw, 14px); letter-spacing: 0.26em; line-height: 1.5;
+  color: var(--white); margin-bottom: 12px;
+}
 .card__below { padding: 20px 2px 0; }
 .card__below p { color: var(--copy); font-size: 14.5px; }
 .section--light .card__below p { color: var(--muted-dark); }
