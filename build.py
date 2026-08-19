@@ -486,11 +486,14 @@ def split(eyebrow, num, title, paras, img, alt, rev=False, cta=None, light=False
 
 
 def cta_band(title_html, text, img, primary=("Join Now", "join.html"),
-             secondary=("Book a Tour", "contact.html#tour")):
+             secondary=("Book a Tour", "contact.html#tour"), focal=None):
     sec = f'<a class="btn" href="{secondary[1]}">{secondary[0]} <span class="arr">→</span></a>' if secondary else ""
+    # A band is wide and short, so on a phone it crops the width hard — a
+    # subject sitting off-centre needs pulling back into frame.
+    focal_attr = f' style="object-position:{focal}"' if focal else ""
     return f"""
 <section class="cta-band">
-  <div class="cta-band__media"><img src="{img}" alt="" loading="lazy"></div>
+  <div class="cta-band__media"><img src="{img}" alt="" loading="lazy"{focal_attr}></div>
   <div class="wrap">
     <h2 class="reveal">{title_html}</h2>
     <p class="reveal">{text}</p>
@@ -1831,7 +1834,7 @@ join_body = hero(
     "Join Forma Online",
     ["Join in", '<span class="serif">minutes</span>'],
     'Pick your club, choose your membership, and you\'re in. <em>Must be 18+ to join without a parent or guardian.</em>',
-    img=f"{IMG}/gym_floor_WC_500px.jpg",
+    img=f"{IMG}/forma_family_header.jpg",
     crumb="Join Now",
     actions=[("Start My Membership", "#wizard", True), ("Book a Tour", "contact.html#tour", False)],
     meta=["30 day money back guarantee"],
@@ -2025,8 +2028,9 @@ join_body = hero(
 """ + cta_band(
     'Questions before you <span class="serif">join?</span>',
     "Book a tour and we'll show you around, answer everything, and help you pick the right membership.",
-    f"{IMG}/jason_johnson_turf2.jpg",
+    f"{IMG}/annabelle_kettle.jpg",
     primary=("Book a Tour", "contact.html#tour"), secondary=None,
+    focal="82% 50%",   # she stands at the right edge; centred crops to a leg on mobile
 )
 
 # ============================================================ CONTACT
