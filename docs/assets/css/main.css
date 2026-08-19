@@ -1045,6 +1045,9 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
      own. Back to a squarer frame since each card is now half the width. */
   .card-grid, .card-grid--2, .card-grid--4 { grid-template-columns: repeat(2, 1fr); }
   .card__media { aspect-ratio: 4 / 4.4; }
+  /* --wide means landscape; restated here because the line above would
+     otherwise override it at equal specificity and force these portrait. */
+  .card__media--wide { aspect-ratio: 16 / 10; }
   .card__label { left: 14px; right: 14px; }
   .card__label h3 { letter-spacing: 0.16em; }
   .cards-head { flex-direction: column; align-items: flex-start; gap: 22px; }
