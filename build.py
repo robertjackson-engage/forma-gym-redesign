@@ -1833,9 +1833,12 @@ def class_page(slug, title, img, lead, others):
 join_body = hero(
     "Join Forma Online",
     ["Join in", '<span class="serif">minutes</span>'],
-    'Pick your club, choose your membership, and you\'re in. <em>Must be 18+ to join without a parent or guardian.</em>',
-    img=f"{IMG}/forma_family_header.jpg",
+    'Pick your club, choose your membership, join the Family.',
+    img=f"{IMG}/annabelle_kettle.jpg",
     crumb="Join Now",
+    # She stands right of frame and a phone shows only 28% of the width, so the
+    # default centre misses her. Desktop shows the full width — inert there.
+    focal="85% 50%",
     actions=[("Start My Membership", "#wizard", True), ("Book a Tour", "contact.html#tour", False)],
     meta=["30 day money back guarantee"],
     page=True,
@@ -2028,9 +2031,8 @@ join_body = hero(
 """ + cta_band(
     'Questions before you <span class="serif">join?</span>',
     "Book a tour and we'll show you around, answer everything, and help you pick the right membership.",
-    f"{IMG}/annabelle_kettle.jpg",
+    f"{IMG}/forma_family_header.jpg",
     primary=("Book a Tour", "contact.html#tour"), secondary=None,
-    focal="82% 50%",   # she stands at the right edge; centred crops to a leg on mobile
 )
 
 # ============================================================ CONTACT
