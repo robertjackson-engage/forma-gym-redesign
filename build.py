@@ -1091,6 +1091,7 @@ home_body = view_chooser + hero(
     # the phone already used, and the extra width is what shows the building.
     ratio="4/3.4",
     body_html=(
+        '<p class="body-copy">The birthplace of Forma since 2009. Right off the 680/24 corridor and completely renovated — 35,000 square feet of indoor and outdoor fitness motivation, a heated outdoor lap pool under towering redwoods, onsite Kidzville, cryotherapy, a full-service day spa and the Forma Café.</p>'
         '<a class="phone" href="tel:9259326400">(925) 932-6400</a>'
         '<div class="loc-hours">'
         '<div><dt>Mon–Thu</dt><dd>5am – 11pm</dd></div>'
@@ -1108,6 +1109,7 @@ home_body = view_chooser + hero(
     rev=True, cta=("Explore San Jose", "san-jose.html"),
     ratio="4/3.4",
     body_html=(
+        '<p class="body-copy">Serving South San Jose since 2015. A 40,000 sq. ft. luxury facility with an 8,000 sq. ft. covered outdoor fitness area — cardio, strength, group fitness, a heated 6-lane junior olympic pool with hot tub, and full-service locker rooms with sauna, steam and a Chilly Goat® cold plunge.</p>'
         '<a class="phone" href="tel:4083631010">(408) 363-1010</a>'
         '<div class="loc-hours">'
         '<div><dt>Mon–Thu</dt><dd>5am – 11pm</dd></div>'

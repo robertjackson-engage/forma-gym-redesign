@@ -812,6 +812,9 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 .loc-hours--inline dd { margin: 0; }
 .club-address { font-style: normal; color: var(--muted); font-size: 15.5px; line-height: 1.7; display: block; }
 .phone { font-family: var(--font-display); font-size: 22px; color: var(--accent); letter-spacing: 0.04em; }
+/* On the homepage the phone follows a paragraph rather than the headline, so it
+   needs its own space. inline-block because margin-top does nothing on an inline. */
+.split__body .phone { display: inline-block; margin-top: 20px; }
 /* A plain label, not a boxed one — the stroke read as a button. */
 .loc-badge {
   display: inline-block; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
