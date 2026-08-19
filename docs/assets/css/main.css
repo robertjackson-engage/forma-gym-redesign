@@ -1043,7 +1043,10 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   .split__media--wide { aspect-ratio: 4 / 3; }
   /* Two-up on a phone: six full-width cards ran ~2000px of scroll on their
      own. Back to a squarer frame since each card is now half the width. */
-  .card-grid, .card-grid--2, .card-grid--4 { grid-template-columns: repeat(2, 1fr); }
+  .card-grid, .card-grid--4 { grid-template-columns: repeat(2, 1fr); }
+  /* Two-card grids go one-up: at half width a 16/10 card is only ~99px tall,
+     which is too small for the photo to carry. Full width doubles the area. */
+  .card-grid--2 { grid-template-columns: 1fr; }
   .card__media { aspect-ratio: 4 / 4.4; }
   /* --wide means landscape; restated here because the line above would
      otherwise override it at equal specificity and force these portrait. */
