@@ -799,18 +799,19 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 .loc-item__media { overflow: hidden; aspect-ratio: 16/10; position: relative; }
 .loc-item__media img { width: 100%; height: 100%; object-fit: cover; }
 .loc-item h3 { font-family: var(--font-display); text-transform: uppercase; font-weight: 400; font-size: clamp(30px, 3.6vw, 56px); line-height: 1; margin-bottom: 8px; }
-/* Club pages. The rules below are scoped to .loc-item, which only exists on the
-   locations index, so here dt/dd fell back to block and split every day onto two
-   lines. One line per day, "Mon–Thu: 5am – 11pm". */
-.loc-hours--inline div { display: flex; gap: 7px; padding: 5px 0; font-size: 15.5px; line-height: 1.7; }
+/* Unscoped from .loc-item so the homepage Our Clubs blocks can use the same
+   treatment. Day left, time right, ruled — the default. */
+.loc-hours { margin: 26px 0; }
+.loc-hours div { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 14.5px; }
+.loc-hours dt { color: var(--muted); }
+/* Club pages run it as one line per day, "Mon–Thu: 5am – 11pm". Must stay AFTER
+   the base rules above: identical specificity, so source order decides. */
+.loc-hours--inline div { display: flex; justify-content: flex-start; gap: 7px; padding: 5px 0; border-bottom: 0; font-size: 15.5px; line-height: 1.7; }
 .loc-hours--inline dt { color: var(--muted); }
 .loc-hours--inline dt::after { content: ":"; }
 .loc-hours--inline dd { margin: 0; }
-.loc-item .loc-hours { margin: 26px 0; }
-.loc-item .loc-hours div { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 14.5px; }
-.loc-item .loc-hours dt { color: var(--muted); }
-.loc-item address { font-style: normal; color: var(--muted); font-size: 15.5px; line-height: 1.7; }
-.loc-item .phone { font-family: var(--font-display); font-size: 22px; color: var(--accent); letter-spacing: 0.04em; }
+.club-address { font-style: normal; color: var(--muted); font-size: 15.5px; line-height: 1.7; display: block; }
+.phone { font-family: var(--font-display); font-size: 22px; color: var(--accent); letter-spacing: 0.04em; }
 /* A plain label, not a boxed one — the stroke read as a button. */
 .loc-badge {
   display: inline-block; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;

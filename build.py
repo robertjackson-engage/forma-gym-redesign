@@ -461,8 +461,11 @@ def stats_band(items, light=False):
 """
 
 
-def split(eyebrow, num, title, paras, img, alt, rev=False, cta=None, light=False, wide=False, focal=None, ratio=None):
-    body_paras = "".join(f'<p class="body-copy">{p}</p>' for p in paras)
+def split(eyebrow, num, title, paras, img, alt, rev=False, cta=None, light=False, wide=False, focal=None, ratio=None,
+          body_html=None):
+    # body_html replaces the paragraphs outright — the homepage club blocks use
+    # it to carry the locations-page phone / hours / address treatment.
+    body_paras = body_html or "".join(f'<p class="body-copy">{p}</p>' for p in paras)
     cta_html = f'<div class="split__cta"><a class="inline-link" href="{cta[1]}">{cta[0]} →</a></div>' if cta else ""
     return f"""
 <section class="section{' section--panel' if light else ''}">
@@ -1080,23 +1083,39 @@ home_body = view_chooser + hero(
 """ + split(
     "Our clubs", "03",
     'Walnut <span class="serif">Creek</span>',
-    ["The birthplace of Forma since 2009. Right off the 680/24 corridor and completely renovated — 35,000 square feet of indoor and outdoor fitness motivation, a heated outdoor lap pool under towering redwoods, onsite Kidzville, cryotherapy, a full-service day spa and the Forma Café.",
-     "Open Monday–Thursday 5am–11pm, Friday 5am–10pm, weekends 6am–8pm. 1908 Olympic Blvd, Walnut Creek."],
+    [],
     f"{IMG}/wc_facade.jpg",
     "Forma Gym Walnut Creek facade",
     cta=("Explore Walnut Creek", "walnut-creek.html"),
     # The default portrait 4/4.6 crops the facades down to the sign. 4/3.4 is what
     # the phone already used, and the extra width is what shows the building.
     ratio="4/3.4",
+    body_html=(
+        '<a class="phone" href="tel:9259326400">(925) 932-6400</a>'
+        '<div class="loc-hours">'
+        '<div><dt>Mon–Thu</dt><dd>5am – 11pm</dd></div>'
+        '<div><dt>Friday</dt><dd>5am – 10pm</dd></div>'
+        '<div><dt>Sat–Sun</dt><dd>6am – 8pm</dd></div>'
+        '</div>'
+        '<address class="club-address">1908 Olympic Blvd, Walnut Creek, CA 94596</address>'
+    ),
 ) + split(
     "Our clubs", "04",
     'San <span class="serif">Jose</span>',
-    ["Serving South San Jose since 2015. A 40,000 sq. ft. luxury facility with an 8,000 sq. ft. covered outdoor fitness area — cardio, strength, group fitness, a heated 6-lane junior olympic pool with hot tub, and full-service locker rooms with sauna, steam and a Chilly Goat® cold plunge.",
-     "Open Monday–Thursday 5am–11pm, Friday 5am–10pm, weekends 6am–8pm. 5434 Thornwood Dr, San Jose."],
+    [],
     f"{IMG}/sj_facade.jpg",
     "Forma Gym San Jose facade",
     rev=True, cta=("Explore San Jose", "san-jose.html"),
     ratio="4/3.4",
+    body_html=(
+        '<a class="phone" href="tel:4083631010">(408) 363-1010</a>'
+        '<div class="loc-hours">'
+        '<div><dt>Mon–Thu</dt><dd>5am – 11pm</dd></div>'
+        '<div><dt>Friday</dt><dd>5am – 10pm</dd></div>'
+        '<div><dt>Sat–Sun</dt><dd>6am – 8pm</dd></div>'
+        '</div>'
+        '<address class="club-address">5434 Thornwood Dr, San Jose, CA 95123</address>'
+    ),
 ) + f"""
 <section class="section section--panel">
   <div class="wrap">
@@ -1335,7 +1354,7 @@ locations_body = hero(
             <div><dt>Friday</dt><dd>5am – 10pm</dd></div>
             <div><dt>Sat–Sun</dt><dd>6am – 8pm</dd></div>
           </div>
-          <address>1908 Olympic Blvd, Walnut Creek, CA 94596</address>
+          <address class="club-address">1908 Olympic Blvd, Walnut Creek, CA 94596</address>
           <div class="hero__actions" style="opacity:1;transform:none;margin-top:26px">
             <a class="btn btn--sm" href="walnut-creek.html">Explore Walnut Creek <span class="arr">→</span></a>
           </div>
@@ -1352,7 +1371,7 @@ locations_body = hero(
             <div><dt>Friday</dt><dd>5am – 10pm</dd></div>
             <div><dt>Sat–Sun</dt><dd>6am – 8pm</dd></div>
           </div>
-          <address>5434 Thornwood Dr, San Jose, CA 95123</address>
+          <address class="club-address">5434 Thornwood Dr, San Jose, CA 95123</address>
           <div class="hero__actions" style="opacity:1;transform:none;margin-top:26px">
             <a class="btn btn--sm" href="san-jose.html">Explore San Jose <span class="arr">→</span></a>
           </div>
