@@ -1122,11 +1122,11 @@ home_body = view_chooser + hero(
         <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Built for your whole <span class="serif">life</span></h2>
       </div>
     </div>
-    <div class="rows reveal">
-      <a class="row-item" href="kidzville.html"><span class="row-item__idx">01</span><span class="row-item__title">Kidzville</span><span class="row-item__desc">Enjoy your workout while your kids (ages 6 weeks–12 years) are free to play in a safe, active and educational indoor/outdoor space.</span><span class="row-item__arrow">→</span></a>
-      <a class="row-item" href="mindbodylab.html"><span class="row-item__idx">02</span><span class="row-item__title">Mind Body LAB</span><span class="row-item__desc">Where science meets self-care — brain health, recovery tech and the mind-body connection.</span><span class="row-item__arrow">→</span></a>
-      <a class="row-item" href="rise.html"><span class="row-item__idx">03</span><span class="row-item__title">RISE Program</span><span class="row-item__desc">Exercise-based therapy for individuals living with paralysis. Focused on function, strength and improving the physiology and neurological function of the body.</span><span class="row-item__arrow">→</span></a>
-      <a class="row-item" href="training.html"><span class="row-item__idx">04</span><span class="row-item__title">Training</span><span class="row-item__desc">Representing years of experience in the industry with a passion for your health and wellness.</span><span class="row-item__arrow">→</span></a>
+    <div class="rows rows--plain reveal">
+      <a class="row-item" href="kidzville.html"><span class="row-item__title">Kidzville</span><span class="row-item__desc">Enjoy your workout while your kids (ages 6 weeks–12 years) are free to play in a safe, active and educational indoor/outdoor space.</span><span class="row-item__arrow">→</span></a>
+      <a class="row-item" href="mindbodylab.html"><span class="row-item__title">Mind Body LAB</span><span class="row-item__desc">Where science meets self-care — brain health, recovery tech and the mind-body connection.</span><span class="row-item__arrow">→</span></a>
+      <a class="row-item" href="rise.html"><span class="row-item__title">RISE Program</span><span class="row-item__desc">Exercise-based therapy for individuals living with paralysis. Focused on function, strength and improving the physiology and neurological function of the body.</span><span class="row-item__arrow">→</span></a>
+      <a class="row-item" href="training.html"><span class="row-item__title">Training</span><span class="row-item__desc">Representing years of experience in the industry with a passion for your health and wellness.</span><span class="row-item__arrow">→</span></a>
     </div>
   </div>
 </section>
@@ -1208,7 +1208,7 @@ about_body = hero(
 # ============================================================ GROUP FITNESS
 class_rows = ""
 for i, (label, href, desc) in enumerate(ALL_CLASSES, 1):
-    class_rows += f'<a class="row-item" href="{href}"><span class="row-item__idx">{i:02d}</span><span class="row-item__title">{label}</span><span class="row-item__desc">{desc}</span><span class="row-item__arrow">→</span></a>'
+    class_rows += f'<a class="row-item" href="{href}"><span class="row-item__title">{label}</span><span class="row-item__desc">{desc}</span><span class="row-item__arrow">→</span></a>'
 
 groupfit_body = hero(
     "Group Fitness",
@@ -1225,11 +1225,11 @@ groupfit_body = hero(
     <div class="cards-head">
       <div>
         <p class="eyebrow">The full lineup</p>
-        <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Fourteen ways to <span class="serif">move</span></h2>
+        <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Infinite ways to <span class="serif">move</span></h2>
       </div>
       <p class="body-copy reveal" style="max-width:36ch">Whether you're kickstarting your journey or chasing your next level, there's a class with your name on it — included with every membership.</p>
     </div>
-    <div class="rows reveal">{class_rows}</div>
+    <div class="rows rows--plain reveal">{class_rows}</div>
   </div>
 </section>
 
@@ -2395,11 +2395,11 @@ def build_404():
     ) + """
 <section class="section section--tight">
   <div class="wrap">
-    <div class="rows reveal">
-      <a class="row-item" href="group-fitness.html"><span class="row-item__idx">01</span><span class="row-item__title">Group Fitness</span><span class="row-item__desc">Every class included with membership.</span><span class="row-item__arrow">&rarr;</span></a>
-      <a class="row-item" href="training.html"><span class="row-item__idx">02</span><span class="row-item__title">Personal Training</span><span class="row-item__desc">Coaching built around your goal.</span><span class="row-item__arrow">&rarr;</span></a>
-      <a class="row-item" href="join.html"><span class="row-item__idx">03</span><span class="row-item__title">Join Forma</span><span class="row-item__desc">Two unique Bay Area clubs.</span><span class="row-item__arrow">&rarr;</span></a>
-      <a class="row-item" href="contact.html"><span class="row-item__idx">04</span><span class="row-item__title">Contact a Club</span><span class="row-item__desc">Walnut Creek &amp; San Jose.</span><span class="row-item__arrow">&rarr;</span></a>
+    <div class="rows rows--plain reveal">
+      <a class="row-item" href="group-fitness.html"><span class="row-item__title">Group Fitness</span><span class="row-item__desc">Every class included with membership.</span><span class="row-item__arrow">&rarr;</span></a>
+      <a class="row-item" href="training.html"><span class="row-item__title">Personal Training</span><span class="row-item__desc">Coaching built around your goal.</span><span class="row-item__arrow">&rarr;</span></a>
+      <a class="row-item" href="join.html"><span class="row-item__title">Join Forma</span><span class="row-item__desc">Two unique Bay Area clubs.</span><span class="row-item__arrow">&rarr;</span></a>
+      <a class="row-item" href="contact.html"><span class="row-item__title">Contact a Club</span><span class="row-item__desc">Walnut Creek &amp; San Jose.</span><span class="row-item__arrow">&rarr;</span></a>
     </div>
   </div>
 </section>

@@ -632,6 +632,11 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 .section--light .row-item { border-color: var(--line-dark); }
 .row-item:hover { padding-left: 18px; }
 .row-item__idx { font-size: 12px; letter-spacing: 0.2em; color: var(--accent); }
+/* Lists with no index column. The ordinals were decoration — nothing here is
+   ranked or sequential — so they are gone from the markup and the 80px column
+   goes with them. The "more to explore" list keeps its arrow index, hence the
+   modifier rather than a change to the base grid. */
+.rows--plain .row-item { grid-template-columns: 1fr 1.2fr auto; }
 .row-item__title {
   font-family: var(--font-display); text-transform: uppercase; font-weight: 400;
   font-size: clamp(22px, 2.4vw, 38px); line-height: 1.05;
