@@ -1454,7 +1454,7 @@ sanjose_body = location_page(
     # phone crop: 32% lands on the palm cluster, pink sky and lane lines. Anything
     # past ~50% slides onto the perimeter wall and loses both the sunset and the pool.
     hero_focal="32% 50%",
-    hero_media_mod="hero__media--sky",
+    hero_media_mod="hero__media--open-top",
 )
 
 # ============================================================ RECOVERY
@@ -2042,6 +2042,7 @@ contact_body = hero(
     # a phone crops 42% of the width. 38% keeps her body centred with the
     # chalk still in frame; 20% holds her face and hands on desktop.
     focal="38% 20%",
+    media_mod="hero__media--open-top",   # her face sits in the band the top stop was darkening
 ) + form_section(
     "tour", "01", "Book a tour",
     'Let\'s find your <span class="serif">fit</span>',

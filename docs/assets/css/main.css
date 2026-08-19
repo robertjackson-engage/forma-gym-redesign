@@ -287,11 +287,12 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   background: rgba(11,11,12,0.26);
 }
 .hero__media--tinted::after { background: linear-gradient(to top, rgba(11,11,12,0.92) 0%, rgba(11,11,12,0.42) 50%, rgba(11,11,12,0.46) 100%); }
-/* Sky-led frames (the San Jose sunset): the copy sits 18% down, so the standard
-   gradient's 0.42 top stop darkens a band that carries no text and happens to be
-   the whole reason the photo was chosen. Eased at the top only — the bottom stop,
+/* Frames whose subject sits high (San Jose sunset, Ana on contact): the copy
+   starts ~18% down, so the standard
+   gradient's 0.42 top stop darkens a band that carries no text but does carry the
+   subject. Eased at the top only — the bottom stop,
    which is what the headline and buttons actually sit on, is untouched. */
-.hero__media--sky::after { background: linear-gradient(to top, rgba(11,11,12,0.92) 0%, rgba(11,11,12,0.34) 45%, rgba(11,11,12,0.06) 100%); }
+.hero__media--open-top::after { background: linear-gradient(to top, rgba(11,11,12,0.92) 0%, rgba(11,11,12,0.34) 45%, rgba(11,11,12,0.06) 100%); }
 /* Every hero on a phone: the copy runs the full width with nowhere quiet to
    sit, so a busy or brightly lit frame swallows it. Flat scrim under the
    standard gradient, mobile only — desktop has the room for the text to clear
@@ -310,7 +311,7 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   /* Same story for the flat mobile scrim: full strength where the copy sits,
      fading out over the top third so the sunset survives. Re-declared after the
      generic rule above because they have identical specificity. */
-  .hero__media--sky::before {
+  .hero__media--open-top::before {
     background: linear-gradient(to top, rgba(11,11,12,0.5) 0%,
       rgba(11,11,12,0.46) 55%, rgba(11,11,12,0.10) 100%);
   }
