@@ -2064,9 +2064,9 @@ contact_body = hero(
   </div>
 </section>
 """ + cta_band(
-    'Two clubs, one <span class="serif">membership</span>',
+    'Two clubs. <span class="serif">One membership</span>',
     "Ready when you are. Join online in minutes, or book a tour and let us show you around.",
-    f"{IMG}/slider-locations_turf_alysse_torey.jpg",
+    f"{IMG}/pool_sj_day.jpg",
 )
 
 # ============================================================ TRIAL PASS
