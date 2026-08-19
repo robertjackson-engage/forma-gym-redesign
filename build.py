@@ -1010,7 +1010,7 @@ view_chooser = f"""
       <div class="vc-panel__body">
         <span class="vc-panel__kicker">Welcome back Forma family</span>
         <h3>I'm a <span class="serif">member</span></h3>
-        <p>Class schedules, club hours, Kidzville and your member perks.</p>
+        <p>Class schedules, club hours, Kidzville, Member benefits &amp; more.</p>
         <span class="go">Take me in →</span>
       </div>
     </button>
