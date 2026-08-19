@@ -286,7 +286,7 @@
       var btn = f.querySelector("button[type=submit]");
       if (btn) {
         var txt = btn.innerHTML;
-        btn.innerHTML = "Request received — we'll be in touch";
+        btn.innerHTML = "Request received – we'll be in touch";
         btn.disabled = true;
         setTimeout(function () { btn.innerHTML = txt; btn.disabled = false; f.reset(); }, 4200);
       }

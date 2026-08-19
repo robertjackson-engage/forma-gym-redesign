@@ -6,12 +6,12 @@
   var MODEL = CFG.model || "claude-sonnet-4-6";
 
   var SYSTEM = [
-    "You are the Forma Concierge, the friendly AI assistant for Forma Gym — formagym.com, two premium fitness clubs in the Bay Area (Walnut Creek & San Jose). You live on their website.",
-    "Voice: warm, upbeat, concise — like Forma's legendary front-desk team, not a salesperson. Short paragraphs. The brand mantra is 'Play Every Day.' Mission: 'make exercise a part of our member's daily lives, for the rest of their lives.'",
+    "You are the Forma Concierge, the friendly AI assistant for Forma Gym – formagym.com, two premium fitness clubs in the Bay Area (Walnut Creek & San Jose). You live on their website.",
+    "Voice: warm, upbeat, concise – like Forma's legendary front-desk team, not a salesperson. Short paragraphs. The brand mantra is 'Play Every Day.' Mission: 'make exercise a part of our member's daily lives, for the rest of their lives.'",
     "FACTS:",
-    "- 2 locations, one membership covers both. WALNUT CREEK: 1908 Olympic Blvd, Walnut Creek, CA 94596, (925) 932-6400 — the original (since 2009), 35,000 sq ft, heated outdoor lap pool under redwoods, onsite Kidzville childcare, cryotherapy + cold plunge, full-service day spa, Forma Café + Smoothie Bar, 4 studios + Pilates Reformer studio. SAN JOSE: 5434 Thornwood Dr, San Jose, CA 95123, (408) 363-1010 — since 2015, 40,000 sq ft with 8,000 sq ft covered outdoor area, heated 6-lane junior olympic pool + hot tub, sauna/steam/hot tub, cold plunge by Chilly Goat, onsite sports & therapeutic massage, chilled eucalyptus towel service.",
+    "- 2 locations, one membership covers both. WALNUT CREEK: 1908 Olympic Blvd, Walnut Creek, CA 94596, (925) 932-6400 – the original (since 2009), 35,000 sq ft, heated outdoor lap pool under redwoods, onsite Kidzville childcare, cryotherapy + cold plunge, full-service day spa, Forma Café + Smoothie Bar, 4 studios + Pilates Reformer studio. SAN JOSE: 5434 Thornwood Dr, San Jose, CA 95123, (408) 363-1010 – since 2015, 40,000 sq ft with 8,000 sq ft covered outdoor area, heated 6-lane junior olympic pool + hot tub, sauna/steam/hot tub, cold plunge by Chilly Goat, onsite sports & therapeutic massage, chilled eucalyptus towel service.",
     "- Hours (both clubs): Mon-Thu 5am-11pm, Fri 5am-10pm, Sat & Sun 6am-8pm.",
-    "- Membership: all-inclusive — every group fitness class, both clubs, heated pools, sauna/steam/hot tub, cold plunge, covered outdoor turf, expert coaches. SUMMER SPECIAL: join now and the first 2 weeks are free. Must be 18+ to join without a parent/guardian (13+ with approval). Forma does not publish flat prices online — a membership advisor tailors the rate; to get one, join online (join.html) or book a tour (contact.html#tour). Never invent a dollar price; instead mention the 2-weeks-free special and offer to connect them with an advisor.",
+    "- Membership: all-inclusive – every group fitness class, both clubs, heated pools, sauna/steam/hot tub, cold plunge, covered outdoor turf, expert coaches. SUMMER SPECIAL: join now and the first 2 weeks are free. Must be 18+ to join without a parent/guardian (13+ with approval). Forma does not publish flat prices online – a membership advisor tailors the rate; to get one, join online (join.html) or book a tour (contact.html#tour). Never invent a dollar price; instead mention the 2-weeks-free special and offer to connect them with an advisor.",
     "- 14 group fitness formats, all included: Aqua, Barre, Cardio + HIIT, Cycle, Dance, Low Impact + Balance, Kickboxing + Martial Arts, Meditation + Breathwork, Mat Pilates, Pilates Reformer, Sculpt, Stretch + Recovery, TRX, Yoga + Mind Body.",
     "- Personal Training: 1-on-1 and Small Group (4-8 people, one trainer). Free consultation. Nutrition guidance included. Coaches: Dave, Montana, Jason, Marco.",
     "- Recovery: Cryotherapy + Cold Plunge (chamber to -195°F, 3-min sessions burn 500-800 cal, reduce pain/inflammation, better sleep). Full-service Spa (massage from $65/25min to $160/80min; facials $140-$230; add-ons CBD $10, hot stone $20). Mind Body LAB + DrBrainRX (brain health). Sauna, eucalyptus steam, hot tub.",
@@ -57,7 +57,7 @@
     '    <textarea rows="1" placeholder="Ask about classes, pricing, hours…" aria-label="Message"></textarea>' +
     '    <button class="chat-send" aria-label="Send">→</button>' +
     "  </div>" +
-    '  <div class="chat-note">Forma Concierge is an AI assistant — for account questions call your club: Walnut Creek (925) 932-6400 or San Jose (408) 363-1010.</div>' +
+    '  <div class="chat-note">Forma Concierge is an AI assistant – for account questions call your club: Walnut Creek (925) 932-6400 or San Jose (408) 363-1010.</div>' +
     "</div>";
   document.body.appendChild(root);
 
@@ -70,7 +70,7 @@
   try { history = JSON.parse(sessionStorage.getItem("forma-chat") || "[]"); } catch (e) {}
 
   /* activation link: visiting any page with #ck=<api-key> stores the key in
-     this browser and cleans the URL — the key never lives in the repo */
+     this browser and cleans the URL – the key never lives in the repo */
   try {
     var ckm = location.hash.match(/[#&]ck=([^&]+)/);
     if (ckm) {
@@ -116,7 +116,7 @@
   function welcome() {
     var w = document.createElement("div");
     w.className = "chat-welcome";
-    w.innerHTML = "<h3>What can we help you crush today?</h3><p>Classes, pricing, hours, programs — ask me anything about GHF.</p>" +
+    w.innerHTML = "<h3>What can we help you crush today?</h3><p>Classes, pricing, hours, programs – ask me anything about GHF.</p>" +
       '<div class="chat-chips">' + CHIPS.map(function (c) { return "<button>" + c + "</button>"; }).join("") + "</div>";
     msgs.appendChild(w);
     w.querySelectorAll("button").forEach(function (b) {
@@ -222,8 +222,8 @@
       var isAuth = /401|403/.test(err.message);
       if (isAuth) { try { localStorage.removeItem("forma-anthropic-key"); } catch (e) {} }
       addMsg("ai", "<p>" + (isAuth
-        ? "That API key didn't work — let's try again."
-        : "I'm having trouble connecting right now. You can always reach a club — Walnut Creek <a href='tel:9259326400'>(925) 932-6400</a> or San Jose <a href='tel:4083631010'>(408) 363-1010</a>.") + "</p>");
+        ? "That API key didn't work – let's try again."
+        : "I'm having trouble connecting right now. You can always reach a club – Walnut Creek <a href='tel:9259326400'>(925) 932-6400</a> or San Jose <a href='tel:4083631010'>(408) 363-1010</a>.") + "</p>");
       if (isAuth) keyGate();
       history.pop();
     }).finally(function () {

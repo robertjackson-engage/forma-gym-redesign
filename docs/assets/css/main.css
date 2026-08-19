@@ -803,11 +803,11 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
    treatment. Day left, time right, ruled — the default. */
 .loc-hours { margin: 26px 0; }
 .loc-hours div { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 14.5px; }
-.loc-hours dt { color: var(--muted); }
+.loc-hours dt { color: var(--copy); }
 /* Club pages run it as one line per day, "Mon–Thu: 5am – 11pm". Must stay AFTER
    the base rules above: identical specificity, so source order decides. */
 .loc-hours--inline div { display: flex; justify-content: flex-start; gap: 7px; padding: 5px 0; border-bottom: 0; font-size: 15.5px; line-height: 1.7; }
-.loc-hours--inline dt { color: var(--muted); }
+.loc-hours--inline dt { color: var(--copy); }
 .loc-hours--inline dt::after { content: ":"; }
 .loc-hours--inline dd { margin: 0; }
 .club-address { font-style: normal; color: var(--muted); font-size: 15.5px; line-height: 1.7; display: block; }

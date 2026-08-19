@@ -167,28 +167,28 @@ MENU = [
 # slug, title, img, lead, short (for the group-fitness list)
 CLASS_PAGES = [
     ("aqua", "Aqua Studio", "slider-aqua_v3.jpg",
-     "A refreshing, low-impact workout in our heated pools. Improve cardiovascular fitness, muscle strength and conditioning with water's natural resistance — ideal for every level, including recovery and joint-friendly training.",
+     "A refreshing, low-impact workout in our heated pools. Improve cardiovascular fitness, muscle strength and conditioning with water's natural resistance – ideal for every level, including recovery and joint-friendly training.",
      "Low-impact strength &amp; cardio in heated water"),
     ("barre", "Barre", "slider-loan_long_stretch_v5-1.jpg",
      "Ballet, Pilates and strength training in one elegant burn. Using the barre for support, you'll move through small, isometric movements that target specific muscle groups for a toned, sculpted physique.",
      "Ballet, Pilates &amp; strength for a sculpted body"),
     ("cardio-hiit", "Cardio + HIIT", "slider-cardio_HIIT_v1.jpg",
-     "High-energy intervals that torch calories and build serious conditioning. Cardio and HIIT classes alternate bursts of intense effort with active recovery — an efficient, heart-pumping way to get stronger and faster, scaled to every level.",
+     "High-energy intervals that torch calories and build serious conditioning. Cardio and HIIT classes alternate bursts of intense effort with active recovery – an efficient, heart-pumping way to get stronger and faster, scaled to every level.",
      "High-intensity intervals that torch calories"),
     ("cycle", "Cycle Studio", "SJ_cycle_studio_2500px.jpg",
-     "An exhilarating, immersive cardio ride for every fitness level. Simulated terrain, climbs, sprints and endurance sets — all driven by the beat. The music keeps you engaged and pushes you to match its rhythm and intensity.",
+     "An exhilarating, immersive cardio ride for every fitness level. Simulated terrain, climbs, sprints and endurance sets – all driven by the beat. The music keeps you engaged and pushes you to match its rhythm and intensity.",
      "Immersive, beat-driven indoor rides"),
     ("dance", "Dance", "slider-locations_group_dance.jpg",
-     "Music, movement and pure joy. Our dance classes combine rhythm and technique into a workout that never feels like one — building coordination, cardio and confidence while you have an absolute blast.",
+     "Music, movement and pure joy. Our dance classes combine rhythm and technique into a workout that never feels like one – building coordination, cardio and confidence while you have an absolute blast.",
      "Cardio that feels like a celebration"),
     ("low-impact", "Low Impact + Balance", "slider-LIT_balance_v3.jpg",
-     "Build fitness, strength, coordination and stability with a gentler approach. Low Impact and Balance classes create a supportive environment for anyone who prefers — or needs — to move with care, without sacrificing results.",
+     "Build fitness, strength, coordination and stability with a gentler approach. Low Impact and Balance classes create a supportive environment for anyone who prefers – or needs – to move with care, without sacrificing results.",
      "Gentle, supportive strength &amp; stability"),
     ("kickboxing", "Kickboxing + Martial Arts", "slider-kickbox_v3.jpg",
-     "Dynamic, engaging classes that combine cardiovascular fitness, self-defense technique, discipline and mental focus — improving strength, flexibility, coordination and confidence while you punch, kick and sweat it out.",
+     "Dynamic, engaging classes that combine cardiovascular fitness, self-defense technique, discipline and mental focus – improving strength, flexibility, coordination and confidence while you punch, kick and sweat it out.",
      "Power, focus and serious cardio"),
     ("meditation", "Meditation + Breathwork", "slider-meditate_v2.jpg",
-     "A peaceful, rejuvenating space for relaxation, stress reduction and mental clarity. Learn and practice meditation and breathwork techniques under expert guidance — for everyone from first-timers to seasoned practitioners.",
+     "A peaceful, rejuvenating space for relaxation, stress reduction and mental clarity. Learn and practice meditation and breathwork techniques under expert guidance – for everyone from first-timers to seasoned practitioners.",
      "Reset your nervous system and mind"),
     ("mat-pilates", "Mat Pilates", "slider-mat_pilates_v2.jpg",
      "A comprehensive, full-body workout focused on core strength, flexibility and muscular endurance. Classes take place on a mat, making them accessible and suitable for individuals of all fitness levels.",
@@ -197,16 +197,16 @@ CLASS_PAGES = [
      "A dynamic, full-body workout combining the principles of Pilates with the specialized Reformer. Build long, lean strength, flexibility, balance and core control with spring-loaded resistance and expert guidance.",
      "Spring-loaded, full-body Pilates"),
     ("sculpt", "Sculpt", "slider-sculpt_v2.jpg",
-     "A dynamic, challenging session built to tone and define. Sculpt classes build lean muscle, increase strength and transform overall body composition — every rep with intention.",
+     "A dynamic, challenging session built to tone and define. Sculpt classes build lean muscle, increase strength and transform overall body composition – every rep with intention.",
      "Tone, define and build lean muscle"),
     ("stretch", "Stretch + Recovery", "slider-stretch_recovery_v1.jpg",
-     "A rejuvenating, restorative class to increase flexibility, relieve muscle tension and promote overall recovery and well-being. A dedicated space to unwind, restore your body and feel better — the perfect complement to any workout.",
+     "A rejuvenating, restorative class to increase flexibility, relieve muscle tension and promote overall recovery and well-being. A dedicated space to unwind, restore your body and feel better – the perfect complement to any workout.",
      "Mobility, release and deep recovery"),
     ("trx", "TRX&reg; Suspension", "slider-TRX_v4.jpg",
-     "Leverage your own body weight as resistance on the TRX suspension system. Adjustable straps let you scale every move — building strength, stability and control from your first rep to your hardest.",
+     "Leverage your own body weight as resistance on the TRX suspension system. Adjustable straps let you scale every move – building strength, stability and control from your first rep to your hardest.",
      "Suspension training that scales to you"),
     ("yoga", "Yoga + Mind Body", "slider-mind_body_v1.jpg",
-     "Move, breathe, and reconnect. From gentle restorative flows to dynamic vinyasa, our yoga and mind-body classes build flexibility, strength and calm — guided by instructors who meet you exactly where you are.",
+     "Move, breathe, and reconnect. From gentle restorative flows to dynamic vinyasa, our yoga and mind-body classes build flexibility, strength and calm – guided by instructors who meet you exactly where you are.",
      "Flexibility, strength and stillness"),
 ]
 
@@ -255,7 +255,7 @@ def header_html(active=""):
     return f"""
 <header class="site-header">
   <div class="site-header__inner">
-    <a class="brand" href="index.html" aria-label="Forma Gym — home">
+    <a class="brand" href="index.html" aria-label="Forma Gym – home">
       {brand_logo()}
     </a>
     <nav class="nav-desktop" aria-label="Primary">{links}</nav>
@@ -292,8 +292,8 @@ def header_html(active=""):
       </div>
       <div class="menu-side__group">
         <h6>Visit</h6>
-        <a href="walnut-creek.html">Walnut Creek — 1908 Olympic Blvd</a>
-        <a href="san-jose.html">San Jose — 5434 Thornwood Dr</a>
+        <a href="walnut-creek.html">Walnut Creek – 1908 Olympic Blvd</a>
+        <a href="san-jose.html">San Jose – 5434 Thornwood Dr</a>
       </div>
       <div class="menu-side__group">
         <h6>Talk to us</h6>
@@ -317,7 +317,7 @@ def footer_html():
     <div class="site-footer__top">
       <div class="site-footer__brand">
         <a class="brand brand--footer" href="index.html">{brand_logo()}</a>
-        <p>Two Bay Area clubs. A holistic, luxury approach to fitness — and a community that shows up to Play Every Day.</p>
+        <p>Two Bay Area clubs. A holistic, luxury approach to fitness – and a community that shows up to Play Every Day.</p>
       </div>
       <div>
         <div class="site-footer__links">
@@ -424,7 +424,7 @@ def hero(kicker, lines, sub="", img=None, video=None, poster=None, crumb=None,
 
 
 def photo_marquee(images):
-    """Continuously scrolling strip of club photos — the visual counterpart to
+    """Continuously scrolling strip of club photos – the visual counterpart to
     the text marquee. Decorative, so the images carry empty alt text."""
     seg = "".join(f'<span><img src="{IMG}/{im}" alt="" loading="lazy"></span>' for im in images)
     return f"""
@@ -553,7 +553,7 @@ def form_section(sec_id, num, eyebrow, title_html, text, btn, light=True, extra=
           </div>
           <button class="btn {'btn--dark' if light else ''} field--full" type="submit" style="justify-content:center">{btn} <span class="arr">→</span></button>
         </form>'''}
-        <p class="form-note">By submitting, you confirm you're at least 13 and agree to our Privacy Policy &amp; Terms. Forma is a SPAM-FREE ZONE — we never share or sell your info.</p>
+        <p class="form-note">By submitting, you confirm you're at least 13 and agree to our Privacy Policy &amp; Terms. Forma is a SPAM-FREE ZONE – we never share or sell your info.</p>
       </div>
     </div>
   </div>
@@ -644,7 +644,7 @@ WC_TRAINERS = [
         "name": 'Jacki', "role": 'Fitness Coach', "photo": 'coach_jacki.jpg',
         "spec": ['Injury Prevention', 'Rehabilitation', 'Bodybuilding', 'Strength &amp; Conditioning', 'Functional Training', 'Mobility &amp; Flexibility', 'Aquatic Fitness Training'],
         "story": 'After dealing with multiple injuries as a student-athlete, I shifted focus to athletic training, where I developed a deep understanding of recovery, injury prevention, and mental resilience. This experience allows me to approach fitness from both a physical and psychological perspective, offering personalized support for clients at all levels. I have over 13 years of training experience and specialize in crafting personalized, injury-conscious fitness plans that focus on strength, mobility, and overall functionality.',
-        "phil": "Fitness is not just about the body—it's about healing, rebuilding, and becoming stronger in mind and spirit. True strength is found in overcoming the obstacles we face, both physical and mental.",
+        "phil": "Fitness is not just about the body–it's about healing, rebuilding, and becoming stronger in mind and spirit. True strength is found in overcoming the obstacles we face, both physical and mental.",
     },
 ]
 
@@ -671,7 +671,7 @@ SJ_TRAINERS = [
     {
         "name": 'Emir', "role": 'Fitness Coach', "photo": 'coach_sj_emir.jpg',
         "spec": ['Muscle Building', 'Nutritional Guidance', 'Strength Training', 'Body Recomposition', 'Weight Loss', 'Functional Fitness'],
-        "story": 'To me, fitness isn’t just about the physical transformation—it’s about reclaiming your mindset, your self-worth, and your belief in what’s possible. My mission is to empower people with the tools, support, and accountability they need to feel strong—inside and out. You don’t have to walk the journey alone. I’m here to guide you every step of the way.',
+        "story": 'To me, fitness isn’t just about the physical transformation–it’s about reclaiming your mindset, your self-worth, and your belief in what’s possible. My mission is to empower people with the tools, support, and accountability they need to feel strong–inside and out. You don’t have to walk the journey alone. I’m here to guide you every step of the way.',
         "phil": '',
     },
     {
@@ -899,7 +899,7 @@ def _natural_width(filename):
 
 
 def _jpeg_width(path):
-    """Walk the JPEG segments to the frame header — avoids a Pillow dependency."""
+    """Walk the JPEG segments to the frame header – avoids a Pillow dependency."""
     with open(path, "rb") as fh:
         fh.read(2)
         while True:
@@ -924,7 +924,7 @@ def add_srcset(html):
     """Give every <img> a srcset + a `sizes` matched to how it actually renders.
 
     Walks the document once tracking the most recent container class, rather
-    than peeking at a fixed window behind each tag — the photo strip holds a
+    than peeking at a fixed window behind each tag – the photo strip holds a
     dozen <img> in a row, so a window never reaches back to its wrapper. The
     context resets at each </section> so a component cannot leak into the next.
     """
@@ -954,7 +954,7 @@ def add_srcset(html):
 def rewrite_urls(html):
     """Make every asset + internal link absolute-from-root and extensionless.
     Required because pages now live in subdirectories, so relative paths break.
-    SITE_BASE prefixes them when the site is not served from a domain root —
+    SITE_BASE prefixes them when the site is not served from a domain root –
     GitHub Pages serves this project under /forma-gym-redesign/."""
     # srcset first, while the src paths are still relative and easy to match.
     # It emits SITE_BASE-prefixed URLs itself, so the rewrites below skip it.
@@ -1019,7 +1019,7 @@ view_chooser = f"""
     </button>
   </div>
   <div class="view-chooser__foot">
-    <span>I&rsquo;m ready to join now &mdash; let&rsquo;s go!</span>
+    <span>I&rsquo;m ready to join now &ndash; let&rsquo;s go!</span>
     <a class="btn btn--solid btn--sm vc-join" href="join.html">Sign me up</a>
   </div>
 </div>
@@ -1091,7 +1091,7 @@ home_body = view_chooser + hero(
     # the phone already used, and the extra width is what shows the building.
     ratio="4/3.4",
     body_html=(
-        '<p class="body-copy">The birthplace of Forma since 2009. Right off the 680/24 corridor and completely renovated — 35,000 square feet of indoor and outdoor fitness motivation, a heated outdoor lap pool under towering redwoods, onsite Kidzville, cryotherapy, a full-service day spa and the Forma Café.</p>'
+        '<p class="body-copy">The birthplace of Forma since 2009. Right off the 680/24 corridor and completely renovated – 35,000 square feet of indoor and outdoor fitness motivation, a heated outdoor lap pool under towering redwoods, onsite Kidzville, cryotherapy, a full-service day spa and the Forma Café.</p>'
         '<div class="loc-hours">'
         '<div><dt>Mon–Thu</dt><dd>5am – 11pm</dd></div>'
         '<div><dt>Friday</dt><dd>5am – 10pm</dd></div>'
@@ -1108,7 +1108,7 @@ home_body = view_chooser + hero(
     rev=True, cta=("Explore San Jose", "san-jose.html"),
     ratio="4/3.4",
     body_html=(
-        '<p class="body-copy">Serving South San Jose since 2015. A 40,000 sq. ft. luxury facility with an 8,000 sq. ft. covered outdoor fitness area — cardio, strength, group fitness, a heated 6-lane junior olympic pool with hot tub, and full-service locker rooms with sauna, steam and a Chilly Goat® cold plunge.</p>'
+        '<p class="body-copy">Serving South San Jose since 2015. A 40,000 sq. ft. luxury facility with an 8,000 sq. ft. covered outdoor fitness area – cardio, strength, group fitness, a heated 6-lane junior olympic pool with hot tub, and full-service locker rooms with sauna, steam and a Chilly Goat® cold plunge.</p>'
         '<div class="loc-hours">'
         '<div><dt>Mon–Thu</dt><dd>5am – 11pm</dd></div>'
         '<div><dt>Friday</dt><dd>5am – 10pm</dd></div>'
@@ -1126,8 +1126,8 @@ home_body = view_chooser + hero(
       </div>
     </div>
     <div class="card-grid card-grid--2" data-stagger>
-      <a class="card card--stack" href="cryo.html"><div class="card__media card__media--wide"><img src="{IMG}/chillyGOAT_SJ_500px.jpg" alt="Chilly Goat cold plunge" loading="lazy"></div><div class="card__below"><h3 class="card__title">Cryo + Cold Plunge</h3><p>Burn 500–800 calories in a single 3-minute session, reduce inflammation and pain, heal injuries faster, and sleep better. A natural, non-invasive reset trusted by Olympic and pro athletes — and now part of your club.</p><span class="go">Explore &rarr;</span></div></a>
-      <a class="card card--stack" href="spa.html"><div class="card__media card__media--wide"><img src="{IMG}/Forma_Walnut-Creek_Spa_Header_2018.jpg" alt="The Spa" loading="lazy"></div><div class="card__below"><h3 class="card__title">The Spa at Forma</h3><p>Massage, facials, Reiki and clinical skin care from skilled therapists — steps from the sauna, steam and hot tub. Restore, rejuvenate and walk out feeling like a brand new person.</p><span class="go">Explore &rarr;</span></div></a>
+      <a class="card card--stack" href="cryo.html"><div class="card__media card__media--wide"><img src="{IMG}/chillyGOAT_SJ_500px.jpg" alt="Chilly Goat cold plunge" loading="lazy"></div><div class="card__below"><h3 class="card__title">Cryo + Cold Plunge</h3><p>Burn 500–800 calories in a single 3-minute session, reduce inflammation and pain, heal injuries faster, and sleep better. A natural, non-invasive reset trusted by Olympic and pro athletes – and now part of your club.</p><span class="go">Explore &rarr;</span></div></a>
+      <a class="card card--stack" href="spa.html"><div class="card__media card__media--wide"><img src="{IMG}/Forma_Walnut-Creek_Spa_Header_2018.jpg" alt="The Spa" loading="lazy"></div><div class="card__below"><h3 class="card__title">The Spa at Forma</h3><p>Massage, facials, Reiki and clinical skin care from skilled therapists – steps from the sauna, steam and hot tub. Restore, rejuvenate and walk out feeling like a brand new person.</p><span class="go">Explore &rarr;</span></div></a>
     </div>
   </div>
 </section>
@@ -1142,7 +1142,7 @@ home_body = view_chooser + hero(
     </div>
     <div class="rows rows--plain reveal">
       <a class="row-item" href="kidzville.html"><span class="row-item__title">Kidzville</span><span class="row-item__desc">Enjoy your workout while your kids (ages 6 weeks–12 years) are free to play in a safe, active and educational indoor/outdoor space.</span><span class="row-item__arrow">→</span></a>
-      <a class="row-item" href="mindbodylab.html"><span class="row-item__title">Mind Body LAB</span><span class="row-item__desc">Where science meets self-care — brain health, recovery tech and the mind-body connection.</span><span class="row-item__arrow">→</span></a>
+      <a class="row-item" href="mindbodylab.html"><span class="row-item__title">Mind Body LAB</span><span class="row-item__desc">Where science meets self-care – brain health, recovery tech and the mind-body connection.</span><span class="row-item__arrow">→</span></a>
       <a class="row-item" href="rise.html"><span class="row-item__title">RISE Program</span><span class="row-item__desc">Exercise-based therapy for individuals living with paralysis. Focused on function, strength and improving the physiology and neurological function of the body.</span><span class="row-item__arrow">→</span></a>
       <a class="row-item" href="training.html"><span class="row-item__title">Training</span><span class="row-item__desc">Representing years of experience in the industry with a passion for your health and wellness.</span><span class="row-item__arrow">→</span></a>
     </div>
@@ -1160,7 +1160,7 @@ about_body = hero(
     ["More than a gym.", 'It\'s <span class="serif">Family</span>.'],
     "Our mission has driven everything we've built since 2009. It's simple – make exercise a part of "
     "our member's daily lives, for the rest of their lives. The goal at Forma has always been to create "
-    "a community where fitness and health is available to EVERYONE on the spectrum of movement — from "
+    "a community where fitness and health is available to EVERYONE on the spectrum of movement – from "
     "those struggling just to stand, to Olympic athletes.",
     img=f"{IMG}/slider-locations_turf_alysse_torey.jpg",
     crumb="About",
@@ -1176,7 +1176,7 @@ about_body = hero(
         <h2 class="h-display reveal">Play + move<br><span class="serif">every day</span></h2>
       </div>
       <div class="intro-grid__right">
-        <p class="lede reveal">We're very proud of what we've created, and we love our Members, our Team, our Community — and we LOVE being here for you. That's not a slogan. It's how the clubs feel the moment you walk in.</p>
+        <p class="lede reveal">We're very proud of what we've created, and we love our Members, our Team, our Community – and we LOVE being here for you. That's not a slogan. It's how the clubs feel the moment you walk in.</p>
       </div>
     </div>
   </div>
@@ -1196,14 +1196,14 @@ about_body = hero(
       <div class="pillar"><span class="pillar__num">03</span><h3>Always growing</h3><p>Continuously pursue personal and professional growth and improvement.</p></div>
       <div class="pillar"><span class="pillar__num">04</span><h3>Open &amp; honest</h3><p>Build trust through open and honest communication.</p></div>
       <div class="pillar"><span class="pillar__num">05</span><h3>Stay open-minded</h3><p>Make your life an adventure, be creative, and stay completely open-minded.</p></div>
-      <div class="pillar"><span class="pillar__num">06</span><h3>Play every day</h3><p>Embrace change. And above all — play every day.</p></div>
+      <div class="pillar"><span class="pillar__num">06</span><h3>Play every day</h3><p>Embrace change. And above all – play every day.</p></div>
     </div>
   </div>
 </section>
 """ + split(
     "The community", "03",
     'Everyone on the spectrum of <span class="serif">movement</span>',
-    ["From first-timers nervous to walk in, to parents reclaiming an hour, to athletes chasing a PR — Forma was built for all of it. Our instructors meet you where you are and help you go further than you thought you could.",
+    ["From first-timers nervous to walk in, to parents reclaiming an hour, to athletes chasing a PR – Forma was built for all of it. Our instructors meet you where you are and help you go further than you thought you could.",
      "It's why people don't just join Forma. They belong to it."],
     f"{IMG}/slider-hero_ladies_v1.jpg",
     "Forma community members in class",
@@ -1231,7 +1231,7 @@ for i, (label, href, desc) in enumerate(ALL_CLASSES, 1):
 groupfit_body = hero(
     "Group Fitness",
     ["Stronger", '<span class="serif">together</span>'],
-    "Forma Gym is your destination for group fitness that takes your workout to the next level. A vibrant community, expertly crafted classes, and 14 formats that energize, motivate and challenge — for every level, beginner to advanced.",
+    "Forma Gym is your destination for group fitness that takes your workout to the next level. A vibrant community, expertly crafted classes, and 14 formats that energize, motivate and challenge – for every level, beginner to advanced.",
     img=f"{IMG}/slider-locations_group_dance.jpg",
     crumb="Group Fitness",
     actions=[("Visit Us", "join.html", True), ("Book a Tour", "contact.html#tour", False)],
@@ -1245,7 +1245,7 @@ groupfit_body = hero(
         <p class="eyebrow">The full lineup</p>
         <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Infinite ways to <span class="serif">move</span></h2>
       </div>
-      <p class="body-copy reveal" style="max-width:36ch">Whether you're kickstarting your journey or chasing your next level, there's a class with your name on it — included with every membership.</p>
+      <p class="body-copy reveal" style="max-width:36ch">Whether you're kickstarting your journey or chasing your next level, there's a class with your name on it – included with every membership.</p>
     </div>
     <div class="rows rows--plain reveal">{class_rows}</div>
   </div>
@@ -1254,7 +1254,7 @@ groupfit_body = hero(
 """ + split(
     "Where you'll sweat", "02",
     'Studios built for <span class="serif">energy</span>',
-    ["Across both clubs you'll find dedicated studios — cycle, reformer Pilates, mind-body, and multi-purpose group fitness rooms — plus covered outdoor turf and heated pools for classes under the California sky.",
+    ["Across both clubs you'll find dedicated studios – cycle, reformer Pilates, mind-body, and multi-purpose group fitness rooms – plus covered outdoor turf and heated pools for classes under the California sky.",
      "Walnut Creek features 4 studios plus a Pilates Reformer studio. San Jose brings indoor and outdoor classes across 40,000 square feet."],
     f"{IMG}/SJ_cycle_studio_2500px.jpg",
     "Cycle studio at Forma San Jose",
@@ -1262,11 +1262,11 @@ groupfit_body = hero(
 ) + form_section(
     "schedule", "03", "Schedule a visit",
     'Find your first <span class="serif">class</span>',
-    "Join the Forma Family and experience the difference — featuring the best trainers, programs and classes in the Bay Area. Tell us your preferred club and we'll get you on the schedule.",
+    "Join the Forma Family and experience the difference – featuring the best trainers, programs and classes in the Bay Area. Tell us your preferred club and we'll get you on the schedule.",
     "Get the Schedule", ac_id=33,
 ) + cta_band(
     'Come <span class="serif">move</span> with us',
-    "Come try a class — or five. Every format is included with membership.",
+    "Come try a class – or five. Every format is included with membership.",
     f"{IMG}/slider-kickbox_v3.jpg",
 )
 
@@ -1289,8 +1289,8 @@ training_body = hero(
         <h2 class="h-display" style="font-size:clamp(30px,3.8vw,58px)">A plan built around <span class="serif">you</span></h2>
         <ul class="checklist reveal" style="margin-top:10px">
           <li>Assess where you are now and where to start</li>
-          <li>Nutritional consultation &amp; guidance — understand the power of food</li>
-          <li>Education on movement technique and equipment — master your exercise</li>
+          <li>Nutritional consultation &amp; guidance – understand the power of food</li>
+          <li>Education on movement technique and equipment – master your exercise</li>
           <li>The perfect strategy for your individual goals</li>
           <li>Accountability for your fitness journey</li>
           <li>Learn to repair and recover, and keep your work/life balance</li>
@@ -1303,7 +1303,7 @@ training_body = hero(
 """ + split(
     "Small group training", "",
     'The best of both <span class="serif">worlds</span>',
-    ["Small Group Training brings 4–8 people together with one trainer — the energy and accountability of community, with the attention and programming of personal training.",
+    ["Small Group Training brings 4–8 people together with one trainer – the energy and accountability of community, with the attention and programming of personal training.",
      "It's affordable, it's motivating, and the workouts change constantly so you never plateau or get bored."],
     f"{IMG}/Darlene_ropes2.jpg",
     "Small group training at Forma",
@@ -1334,7 +1334,7 @@ training_body = hero(
 locations_body = hero(
     "Locations &amp; Hours",
     ["Two unique", 'Bay Area <span class="serif">clubs</span>.'],
-    "Walnut Creek and San Jose — both premium, both all-inclusive. Find your home club below.",
+    "Walnut Creek and San Jose – both premium, both all-inclusive. Find your home club below.",
     img=f"{IMG}/Forma_WalnutCreek_locations_pool_birdeye-2.jpg",
     crumb="Locations",
     actions=[("Visit Us", "join.html", True)],
@@ -1429,7 +1429,7 @@ def location_page(name, badge, phone, tel, address, intro, amenities, hero_img, 
 walnutcreek_body = location_page(
     "Walnut Creek", "Open Mon–Thu 5am–11pm", "(925) 932-6400", "9259326400",
     "1908 Olympic Blvd, Walnut Creek, CA 94596",
-    "The birthplace of Forma since 2009. Completely renovated, right off the 680/24 corridor — 35,000 square feet of indoor and outdoor fitness motivation. Come experience why we're Walnut Creek's premier fitness club.",
+    "The birthplace of Forma since 2009. Completely renovated, right off the 680/24 corridor – 35,000 square feet of indoor and outdoor fitness motivation. Come experience why we're Walnut Creek's premier fitness club.",
     ["Indoor + covered outdoor, fully-equipped fitness playgrounds", "4 Studios + a dedicated Pilates Reformer Studio",
      "All group fitness: Zumba, Yoga, Barre, HIIT, Pilates, Dance &amp; Cycle", "Expert fitness &amp; nutrition coaches",
      "Heated, outdoor lap pool under the redwoods", "Onsite Kidzville childcare", "Cryotherapy + Cold Plunge by Chilly Goat®",
@@ -1442,7 +1442,7 @@ walnutcreek_body = location_page(
 sanjose_body = location_page(
     "San Jose", "Open Mon–Thu 5am–11pm", "(408) 363-1010", "4083631010",
     "5434 Thornwood Dr, San Jose, CA 95123",
-    "Serving the South San Jose community since 2015. A 40,000 sq. ft. luxury fitness facility with an 8,000 sq. ft. covered outdoor fitness area — complete with cardio, strength, group fitness, a heated 6-lane junior olympic pool with hot tub, and full-service locker rooms.",
+    "Serving the South San Jose community since 2015. A 40,000 sq. ft. luxury fitness facility with an 8,000 sq. ft. covered outdoor fitness area – complete with cardio, strength, group fitness, a heated 6-lane junior olympic pool with hot tub, and full-service locker rooms.",
     ["8,000 sq. ft. fully-equipped, covered outdoor playground", "Heated, outdoor 6-lane junior olympic pool &amp; hot tub",
      "Indoor &amp; outdoor group fitness: Zumba, Yoga, Barre, HIIT, Pilates, Dance &amp; Cycle",
      "Full-service locker rooms with sauna, steam room &amp; hot tub", "Onsite sports &amp; therapeutic massage services",
@@ -1461,7 +1461,7 @@ sanjose_body = location_page(
 recovery_body = hero(
     "Recovery",
     ["Recover like an", '<span class="serif">athlete</span>'],
-    "At Forma, recovery isn't an afterthought — it's part of the work. Cryotherapy, cold plunge, a full-service spa, sauna, steam and hot tubs. An integrated view of wellness, all under one roof.",
+    "At Forma, recovery isn't an afterthought – it's part of the work. Cryotherapy, cold plunge, a full-service spa, sauna, steam and hot tubs. An integrated view of wellness, all under one roof.",
     img=f"{IMG}/neck_hold_BLUR_2000x1333px_v2.jpg",
     crumb="Recovery",
     actions=[("Book Recovery", "contact.html#tour", True), ("Explore Cryo", "cryo.html", False)],
@@ -1478,7 +1478,7 @@ recovery_body = hero(
 ) + split(
     "The spa", "02",
     'The optimum wellness <span class="serif">experience</span>',
-    ["A comprehensive menu of therapeutic treatments — massage, facials, Reiki and clinical skin care — performed by skilled, professional therapists dedicated to easing pain, restoring function and rejuvenating face and body.",
+    ["A comprehensive menu of therapeutic treatments – massage, facials, Reiki and clinical skin care – performed by skilled, professional therapists dedicated to easing pain, restoring function and rejuvenating face and body.",
      "Conveniently located adjacent to the locker rooms, so sauna, steam or Jacuzzi can be enjoyed before or after your treatment."],
     f"{IMG}/Forma_Walnut-Creek_Spa_Header_2018.jpg",
     "The Spa at Forma",
@@ -1486,7 +1486,7 @@ recovery_body = hero(
 ) + split(
     "Mind Body LAB", "03",
     'Where science meets <span class="serif">self-care</span>',
-    ["Our Mind Body LAB brings together recovery technology, brain health and the mind-body connection — including DrBrainRX — to help you feel as good mentally as you do physically.",
+    ["Our Mind Body LAB brings together recovery technology, brain health and the mind-body connection – including DrBrainRX – to help you feel as good mentally as you do physically.",
      "Because true wellness isn't just how you move. It's how you think, recover, and feel."],
     f"{IMG}/slider-meditate_v2.jpg",
     "Mind Body LAB at Forma",
@@ -1501,7 +1501,7 @@ recovery_body = hero(
 cryo_body = hero(
     "Cryotherapy + Cold Plunge",
     ["Three minutes.", 'Total <span class="serif">reset</span>.'],
-    "An integrated view of wellness and recovery. We experienced cryotherapy and cold plunges ourselves — then brought them here so you can enjoy the benefits and the convenience, all in one location.",
+    "An integrated view of wellness and recovery. We experienced cryotherapy and cold plunges ourselves – then brought them here so you can enjoy the benefits and the convenience, all in one location.",
     img=f"{IMG}/Forma_WalnutCreek_locations_cryo.jpg",
     crumb='<a href="recovery.html">Recovery</a> &nbsp;/&nbsp; Cryotherapy',
     actions=[("Book a Session", "contact.html#tour", True)],
@@ -1528,7 +1528,7 @@ cryo_body = hero(
     "How it works", "02",
     'Natural, non-invasive, <span class="serif">cutting-edge</span>',
     ["Cryotherapy uses brief, intense exposure to gasiform nitrogen to lower the skin's temperature to 41–50°F, with the chamber dropping to -195°F. The skin signals the brain, stimulating immune and basic body systems, releasing endorphins and blocking pain.",
-     "The result is vasoconstriction followed by vasodilation — blood returning to your extremities highly oxygenated and nutrient-rich, helping the body repair and strengthen. The buoyant effects can last up to 8 hours, and many clients report better sleep after a single session."],
+     "The result is vasoconstriction followed by vasodilation – blood returning to your extremities highly oxygenated and nutrient-rich, helping the body repair and strengthen. The buoyant effects can last up to 8 hours, and many clients report better sleep after a single session."],
     f"{IMG}/chillyGOAT_SJ_500px.jpg",
     "Cryotherapy facility",
     rev=True,
@@ -1542,9 +1542,9 @@ cryo_body = hero(
       </div>
     </div>
     <div class="card-grid" data-stagger>
-      <div class="card"><div class="card__below" style="padding-top:0"><blockquote style="font-family:var(--font-serif);font-style:italic;font-size:24px;line-height:1.4;margin-bottom:18px">“I was able to reduce the inflammation, reduce the soreness… it's prolonged my enjoyment of exercise and weightlifting.”</blockquote><p style="color:var(--accent-ink);font-weight:600;letter-spacing:.04em">— Dave M.</p></div></div>
-      <div class="card"><div class="card__below" style="padding-top:0"><blockquote style="font-family:var(--font-serif);font-style:italic;font-size:24px;line-height:1.4;margin-bottom:18px">“When I came in, I had sharp pains in my back… and I just didn't have the pain like I had when I walked in.”</blockquote><p style="color:var(--accent-ink);font-weight:600;letter-spacing:.04em">— Tracy B.</p></div></div>
-      <div class="card"><div class="card__below" style="padding-top:0"><blockquote style="font-family:var(--font-serif);font-style:italic;font-size:24px;line-height:1.4;margin-bottom:18px">“Movement is medicine — and recovery is how you keep moving. Cryo is part of my weekly routine now.”</blockquote><p style="color:var(--accent-ink);font-weight:600;letter-spacing:.04em">— Joshua S.</p></div></div>
+      <div class="card"><div class="card__below" style="padding-top:0"><blockquote style="font-family:var(--font-serif);font-style:italic;font-size:24px;line-height:1.4;margin-bottom:18px">“I was able to reduce the inflammation, reduce the soreness… it's prolonged my enjoyment of exercise and weightlifting.”</blockquote><p style="color:var(--accent-ink);font-weight:600;letter-spacing:.04em">– Dave M.</p></div></div>
+      <div class="card"><div class="card__below" style="padding-top:0"><blockquote style="font-family:var(--font-serif);font-style:italic;font-size:24px;line-height:1.4;margin-bottom:18px">“When I came in, I had sharp pains in my back… and I just didn't have the pain like I had when I walked in.”</blockquote><p style="color:var(--accent-ink);font-weight:600;letter-spacing:.04em">– Tracy B.</p></div></div>
+      <div class="card"><div class="card__below" style="padding-top:0"><blockquote style="font-family:var(--font-serif);font-style:italic;font-size:24px;line-height:1.4;margin-bottom:18px">“Movement is medicine – and recovery is how you keep moving. Cryo is part of my weekly routine now.”</blockquote><p style="color:var(--accent-ink);font-weight:600;letter-spacing:.04em">– Joshua S.</p></div></div>
     </div>
   </div>
 </section>
@@ -1564,7 +1564,7 @@ cryo_body = hero(
 spa_body = hero(
     "The Spa",
     ["Pause.", '<span class="serif">Restore.</span>'],
-    "A comprehensive menu of therapeutic treatments — massage, facials, Reiki and clinical skin care — in a cozy, luxurious setting steps from the sauna, steam and Jacuzzi. Skilled therapists dedicated to easing pain and rejuvenating face and body.",
+    "A comprehensive menu of therapeutic treatments – massage, facials, Reiki and clinical skin care – in a cozy, luxurious setting steps from the sauna, steam and Jacuzzi. Skilled therapists dedicated to easing pain and rejuvenating face and body.",
     img=f"{IMG}/Forma_San-Jose-spa_Header_2018.jpg",
     focal="50% 68%", tinted=True,
     crumb="The Spa",
@@ -1620,7 +1620,7 @@ spa_body = hero(
 mbl_body = hero(
     "Mind Body LAB",
     ["Train your", '<span class="serif">brain</span>, too'],
-    "Where science meets self-care. The Mind Body LAB brings together recovery technology, brain health and the mind-body connection — because true wellness is how you think and feel, not just how you move.",
+    "Where science meets self-care. The Mind Body LAB brings together recovery technology, brain health and the mind-body connection – because true wellness is how you think and feel, not just how you move.",
     img=f"{IMG}/circle_connect_BLUR_2000x1333px.jpg",
     crumb="Mind Body LAB",
     actions=[("Book a Tour", "contact.html#tour", True)],
@@ -1628,15 +1628,15 @@ mbl_body = hero(
 ) + split(
     "DrBrainRX", "01",
     'Fitness for your <span class="serif">mind</span>',
-    ["DrBrainRX brings brain-training and cognitive wellness into the club — tools to sharpen focus, manage stress, and support long-term brain health as part of your overall fitness.",
-     "Because the strongest version of you is sharp, calm and resilient — not just physically fit."],
+    ["DrBrainRX brings brain-training and cognitive wellness into the club – tools to sharpen focus, manage stress, and support long-term brain health as part of your overall fitness.",
+     "Because the strongest version of you is sharp, calm and resilient – not just physically fit."],
     f"{IMG}/drsara_square_transparent_HERO_v2.png",
     "DrBrainRX brain health",
     cta=("Ask us about DrBrainRX", "contact.html#tour"),
 ) + split(
     "Meditation + breathwork", "02",
     'Find your <span class="serif">stillness</span>',
-    ["Our meditation and breathwork classes offer a structured, peaceful space to reduce stress and build mental clarity — guided by experienced instructors, suitable for everyone from first-timers to seasoned practitioners.",
+    ["Our meditation and breathwork classes offer a structured, peaceful space to reduce stress and build mental clarity – guided by experienced instructors, suitable for everyone from first-timers to seasoned practitioners.",
      "Reset your nervous system, then carry that calm into the rest of your day."],
     f"{IMG}/slider-meditate_v2.jpg",
     "Meditation class at Forma",
@@ -1666,8 +1666,8 @@ kidz_body = hero(
         <h2 class="h-display reveal">Where kids actually want to <span class="serif">be</span></h2>
       </div>
       <div class="intro-grid__right">
-        <p class="lede reveal">We offer you the time and space to break free from family responsibilities for a little while — to socialize and work out — while our reliable, capable staff helps your kids enjoy plenty of play and learning.</p>
-        <p class="body-copy reveal">Forma Kidzville was created to provide a safe, stimulating and playful environment where children and preteens are free to learn, explore, experiment, and be active, imaginative and creative. We incorporate innovative games and activities — giving your child the chance to participate with groups, pursue individual interests, or just play with old and new friends.</p>
+        <p class="lede reveal">We offer you the time and space to break free from family responsibilities for a little while – to socialize and work out – while our reliable, capable staff helps your kids enjoy plenty of play and learning.</p>
+        <p class="body-copy reveal">Forma Kidzville was created to provide a safe, stimulating and playful environment where children and preteens are free to learn, explore, experiment, and be active, imaginative and creative. We incorporate innovative games and activities – giving your child the chance to participate with groups, pursue individual interests, or just play with old and new friends.</p>
       </div>
     </div>
   </div>
@@ -1700,7 +1700,7 @@ kidz_body = hero(
 rise_body = hero(
     "RISE Program",
     ["Movement is", '<span class="serif">medicine</span>'],
-    "RISE is an exercise-based therapy program for individuals living with paralysis — focused on function, strength, and improving the physiological and neurological function of the body. Your life is an opportunity. RISE to it.",
+    "RISE is an exercise-based therapy program for individuals living with paralysis – focused on function, strength, and improving the physiological and neurological function of the body. Your life is an opportunity. RISE to it.",
     img=f"{IMG}/rise_room_blur.jpg",
     crumb="RISE",
     actions=[("Get Started", "contact.html#tour", True), ("Learn More", "#method", False)],
@@ -1710,7 +1710,7 @@ rise_body = hero(
   <div class="wrap">
     <figure class="quote-band reveal">
       <span class="quote-band__mark">“</span>
-      <blockquote>We believe MOVEMENT IS MEDICINE — and we encourage you to play every day, embrace change, and build an open-minded environment to improve function and your quality of life.</blockquote>
+      <blockquote>We believe MOVEMENT IS MEDICINE – and we encourage you to play every day, embrace change, and build an open-minded environment to improve function and your quality of life.</blockquote>
       <figcaption>The RISE Program</figcaption>
     </figure>
   </div>
@@ -1726,8 +1726,8 @@ rise_body = hero(
     </div>
     <div class="pillars" data-stagger style="grid-template-columns:repeat(3,1fr)">
       <div class="pillar"><span class="pillar__num">01</span><h3>Wheelchair free</h3><p>Your body was designed to MOVE. Recovery sessions are conducted out of your chair to get you moving again.</p></div>
-      <div class="pillar"><span class="pillar__num">02</span><h3>Less medication</h3><p>Many clients find a reduced dependency on medication — or rid their use of it entirely.</p></div>
-      <div class="pillar"><span class="pillar__num">03</span><h3>Better quality of life</h3><p>We stimulate your central nervous system to promote neuroplasticity — rebuilding the pathways your brain needs.</p></div>
+      <div class="pillar"><span class="pillar__num">02</span><h3>Less medication</h3><p>Many clients find a reduced dependency on medication – or rid their use of it entirely.</p></div>
+      <div class="pillar"><span class="pillar__num">03</span><h3>Better quality of life</h3><p>We stimulate your central nervous system to promote neuroplasticity – rebuilding the pathways your brain needs.</p></div>
     </div>
   </div>
 </section>
@@ -1745,7 +1745,7 @@ rise_body = hero(
       <div class="step"><span class="step__num">01</span><h3>Assess</h3><p>The most important first step is the client's body, mindset and willingness to overcome obstacles.</p></div>
       <div class="step"><span class="step__num">02</span><h3>Diagnose</h3><p>Identifying and understanding the injury or condition is crucial to educate ourselves and the client and build a plan.</p></div>
       <div class="step"><span class="step__num">03</span><h3>Educate</h3><p>We review the assessment, recovery goals, and the mental and physical fortitude the journey will require.</p></div>
-      <div class="step"><span class="step__num">04</span><h3>Program</h3><p>We design a program according to the client — built entirely around their recovery needs and goals.</p></div>
+      <div class="step"><span class="step__num">04</span><h3>Program</h3><p>We design a program according to the client – built entirely around their recovery needs and goals.</p></div>
     </div>
   </div>
 </section>
@@ -1760,7 +1760,7 @@ rise_body = hero(
 givesback_body = hero(
     "Forma Gives Back",
     ["Fitness for", '<span class="serif">everyone</span>'],
-    "From those struggling just to stand to world-class athletes, we believe fitness and health should be available to EVERYONE on the spectrum of movement. Giving back isn't a campaign at Forma — it's who we are.",
+    "From those struggling just to stand to world-class athletes, we believe fitness and health should be available to EVERYONE on the spectrum of movement. Giving back isn't a campaign at Forma – it's who we are.",
     img=f"{IMG}/slider-hero_ladies_v1.jpg",
     crumb="Gives Back",
     actions=[("Get Involved", "contact.html#tour", True)],
@@ -1772,7 +1772,7 @@ givesback_body = hero(
 ) + split(
     "Our belief", "01",
     'A community for <span class="serif">all</span>',
-    ["We're very proud of what we've created, and we love our Members, our Team, and our Community. That love shows up in how we give back — making space, programs and scholarships available to people who need them most.",
+    ["We're very proud of what we've created, and we love our Members, our Team, and our Community. That love shows up in how we give back – making space, programs and scholarships available to people who need them most.",
      "The RISE Program's scholarship fund, accessible programming, and local partnerships are all part of how Forma shows up for the Bay Area."],
     f"{IMG}/slider-locations_turf_alysse_torey.jpg",
     "Forma community giving back",
@@ -1937,11 +1937,11 @@ join_body = hero(
 
           <div class="join-step" data-step="5">
             <h2 class="join-step__title">Enhance your <span class="serif">membership</span></h2>
-            <p class="join-step__hint">All optional. Add what you want — skip the rest.</p>
+            <p class="join-step__hint">All optional. Add what you want – skip the rest.</p>
 
             <h6 class="addon-head">Jump Start Packages <span>one-time, available only at sign-up</span></h6>
             <div class="addon-grid">
-              <label class="addon"><input type="checkbox" data-addon="onetime" data-label="Personal Training Jump Start" data-amt="175"><div><h4>Personal Training</h4><p>5 sessions, 1-on-1 — up to a $XXX value.</p><span class="addon__price">$175</span></div></label>
+              <label class="addon"><input type="checkbox" data-addon="onetime" data-label="Personal Training Jump Start" data-amt="175"><div><h4>Personal Training</h4><p>5 sessions, 1-on-1 – up to a $XXX value.</p><span class="addon__price">$175</span></div></label>
               <label class="addon"><input type="checkbox" data-addon="onetime" data-label="Recovery Jump Start" data-amt="175"><div><h4>Recovery</h4><p>Sensitivity session, trigger-point or sports massage + Echo Brain Water.</p><span class="addon__price">$175</span></div></label>
               <label class="addon"><input type="checkbox" data-addon="onetime" data-label="Stretch &amp; Recovery" data-amt="50"><div><h4>Stretch &amp; Recovery</h4><p>Improve flexibility, range of motion and circulation.</p><span class="addon__price">$50</span></div></label>
             </div>
@@ -1954,7 +1954,7 @@ join_body = hero(
             </div>
 
             <div class="premier-perk" hidden>
-              <h6 class="addon-head">Your Premier perk <span>included — choose one</span></h6>
+              <h6 class="addon-head">Your Premier perk <span>included – choose one</span></h6>
               <div class="seg seg--wrap" role="group" aria-label="Premier perk">
                 <button type="button" class="is-on" data-perk="One Personal Training">Personal Training</button>
                 <button type="button" data-perk="One Massage">Massage</button>
@@ -1978,7 +1978,7 @@ join_body = hero(
               <div class="field"><input type="text" name="ccexp" id="j-ccexp" placeholder=" "><label for="j-ccexp">Expiry (MM/YY)</label></div>
               <div class="field"><input type="text" name="cccvc" id="j-cccvc" placeholder=" " inputmode="numeric"><label for="j-cccvc">CVC</label></div>
             </div>
-            <label class="review-agree"><input type="checkbox" id="agree"><span>I'm 18+ (or joining with a parent/guardian), I agree to the <a href="contact.html">Terms of Service</a> and <a href="privacy.html">Privacy Policy</a>, and I understand this is a 12-month commitment with monthly billing, backed by a 30-day money-back guarantee. This is a design demo — no payment will be processed.</span></label>
+            <label class="review-agree"><input type="checkbox" id="agree"><span>I'm 18+ (or joining with a parent/guardian), I agree to the <a href="contact.html">Terms of Service</a> and <a href="privacy.html">Privacy Policy</a>, and I understand this is a 12-month commitment with monthly billing, backed by a 30-day money-back guarantee. This is a design demo – no payment will be processed.</span></label>
           </div>
 
         </div>
@@ -1992,8 +1992,8 @@ join_body = hero(
       <aside class="join__summary" aria-label="Order summary">
         <div class="join__summary-head"><h4>Order Summary</h4><span>FORMA</span></div>
         <div class="join__summary-body">
-          <div class="sum-row"><dt>Club</dt><dd class="empty" data-sum="loc">—</dd></div>
-          <div class="sum-row"><dt>Membership</dt><dd class="empty" data-sum="plan">—</dd></div>
+          <div class="sum-row"><dt>Club</dt><dd class="empty" data-sum="loc">–</dd></div>
+          <div class="sum-row"><dt>Membership</dt><dd class="empty" data-sum="plan">–</dd></div>
           <div class="sum-lines" data-sum-lines></div>
           <div class="sum-rate"><span class="lbl">Monthly total</span><span class="amt" data-sum-monthly>$0<small>/mo</small></span></div>
           <div class="sum-due"><span>Due today</span><b data-sum-today>$0.00</b></div>
@@ -2014,7 +2014,7 @@ join_body = hero(
   <div class="join-success__inner">
     <div class="mark">✓</div>
     <h2 data-success-name>Welcome to the Forma Family.</h2>
-    <p>Your membership request is in. Because this is a design demo, no payment was processed — on the live site you'd be all set to walk in and get started. Time to Play Every Day.</p>
+    <p>Your membership request is in. Because this is a design demo, no payment was processed – on the live site you'd be all set to walk in and get started. Time to Play Every Day.</p>
     <div class="hero__actions">
       <a class="btn btn--solid" href="index.html">Back to Home <span class="arr">→</span></a>
       <a class="btn" href="group-fitness.html">Browse Classes <span class="arr">→</span></a>
@@ -2033,7 +2033,7 @@ join_body = hero(
 contact_body = hero(
     "Contact &amp; Tours",
     ["Come <span class=\"serif\">say hi</span>"],
-    "Book a tour, ask a question, or just tell us your goal — we'll point you to the right club, class or coach. No pressure, no scripts.",
+    "Book a tour, ask a question, or just tell us your goal – we'll point you to the right club, class or coach. No pressure, no scripts.",
     img=f"{IMG}/jason_johnson_turf2.jpg",
     crumb="Contact",
     actions=[("Book a Tour", "#tour", True)],
@@ -2041,7 +2041,7 @@ contact_body = hero(
 ) + form_section(
     "tour", "01", "Book a tour",
     'Let\'s find your <span class="serif">fit</span>',
-    "Tell us a little about you and your preferred club, and we'll set up your visit — featuring the best trainers, programs and classes in the Bay Area.",
+    "Tell us a little about you and your preferred club, and we'll set up your visit – featuring the best trainers, programs and classes in the Bay Area.",
     "Book My Tour", light=True, ac_id=33,
 ) + f"""
 <section class="section">
@@ -2068,7 +2068,7 @@ contact_body = hero(
 trial_body = hero(
     "Schedule Your Visit",
     ["Try Forma.", 'Book your <span class="serif">visit</span>.'],
-    "Fill out the form below to schedule a visit, a tour, and/or a guest workout — and a complimentary fitness coaching session.",
+    "Fill out the form below to schedule a visit, a tour, and/or a guest workout – and a complimentary fitness coaching session.",
     img=f"{IMG}/annabelle_kettle_HERO_2.jpg",
     crumb="Trial Pass",
     actions=[("Schedule My Visit", "#tour", True), ("Join Online", "join.html", False)],
@@ -2084,7 +2084,7 @@ trial_body = hero(
       </div>
       <div class="intro-grid__right">
         <p class="lede reveal">Forma Gym is a family-run gym created not only to help you shape your body, but to help you take control of every aspect of your life.</p>
-        <p class="body-copy reveal">Our metric of wellness is your outlook on life — connection, gratitude, eating well, moving every day, and living a life of fulfillment. Whether you're recapturing your health, increasing your capacity, or changing your physique, we understand that everyone has obstacles to achieving their goals. Forma has the tools and support you need to feel comfortable, have fun, and enjoy the journey.</p>
+        <p class="body-copy reveal">Our metric of wellness is your outlook on life – connection, gratitude, eating well, moving every day, and living a life of fulfillment. Whether you're recapturing your health, increasing your capacity, or changing your physique, we understand that everyone has obstacles to achieving their goals. Forma has the tools and support you need to feel comfortable, have fun, and enjoy the journey.</p>
       </div>
     </div>
   </div>
@@ -2092,7 +2092,7 @@ trial_body = hero(
 """ + form_section(
     "tour", "02", "Schedule your visit",
     'Book your <span class="serif">visit</span>',
-    "We have a fitness solution for you — hundreds of monthly classes across every intensity and experience level, whether you've never had a gym membership or you've tried them all. Complete the form and we'll set up your visit and coaching session.",
+    "We have a fitness solution for you – hundreds of monthly classes across every intensity and experience level, whether you've never had a gym membership or you've tried them all. Complete the form and we'll set up your visit and coaching session.",
     "Visit Us", ac_id=33,
 ) + cta_band(
     'Come <span class="serif">play</span> with us',
@@ -2104,7 +2104,7 @@ trial_body = hero(
 outdoor_body = hero(
     "Outdoor Fitness",
     ["Train under the", '<span class="serif">California sky</span>'],
-    "Our members LOVE to exercise outdoors — and we LOVE giving them the environment and tools to show up and move every day. We've expanded our outdoor footprint so you have everything you need, all year-round.",
+    "Our members LOVE to exercise outdoors – and we LOVE giving them the environment and tools to show up and move every day. We've expanded our outdoor footprint so you have everything you need, all year-round.",
     img=f"{IMG}/slider-locations_turf_alysse_torey.jpg",
     crumb="Outdoor",
     actions=[("Visit Us", "join.html", True)],
@@ -2123,13 +2123,13 @@ outdoor_body = hero(
     <div class="pillars" data-stagger style="grid-template-columns:repeat(2,1fr)">
       <div class="pillar"><span class="pillar__num">01</span><h3>Strength Training</h3><p>Full outdoor strength setups so you never have to choose between iron and fresh air.</p></div>
       <div class="pillar"><span class="pillar__num">02</span><h3>Cardio Equipment</h3><p>Treadmills, bikes and more, set up under cover for year-round outdoor sessions.</p></div>
-      <div class="pillar"><span class="pillar__num">03</span><h3>Group Exercise</h3><p>Take your favorite classes into the open air — energy hits different outside.</p></div>
-      <div class="pillar"><span class="pillar__num">04</span><h3>Outdoor Cycle</h3><p>Beat-driven rides with a view — the best seat in the house is outdoors.</p></div>
+      <div class="pillar"><span class="pillar__num">03</span><h3>Group Exercise</h3><p>Take your favorite classes into the open air – energy hits different outside.</p></div>
+      <div class="pillar"><span class="pillar__num">04</span><h3>Outdoor Cycle</h3><p>Beat-driven rides with a view – the best seat in the house is outdoors.</p></div>
     </div>
   </div>
 </section>
 """ + cta_band(
-    'Move <span class="serif">every day</span> — indoors or out',
+    'Move <span class="serif">every day</span> – indoors or out',
     "It's all included with your membership. Come find your favorite spot under the sky.",
     f"{IMG}/SJ_gym_floor_HERO_gradient-scaled.jpg",
 )
@@ -2138,7 +2138,7 @@ outdoor_body = hero(
 drbrain_body = hero(
     "DrBrainRX",
     ["Longevity,", '<span class="serif">optimized</span>'],
-    "GLP-1 weight loss care, peptide therapy and longevity medicine — available to Forma members through our DrBrainRX partnership. Because feeling your best is about more than the workout.",
+    "GLP-1 weight loss care, peptide therapy and longevity medicine – available to Forma members through our DrBrainRX partnership. Because feeling your best is about more than the workout.",
     img=f"{IMG}/circle_connect_BLUR_2000x1333px.jpg",
     crumb='<a href="mindbodylab.html">Mind Body LAB</a> &nbsp;/&nbsp; DrBrainRX',
     actions=[("Member Offer", "#offer", True)],
@@ -2181,7 +2181,7 @@ drbrain_body = hero(
 app_body = hero(
     "The Forma App",
     ["Your club, in", 'your <span class="serif">pocket</span>'],
-    "Book classes, reserve your lane, check schedules and manage your membership — all from the Forma app. Your whole Forma experience, wherever you are.",
+    "Book classes, reserve your lane, check schedules and manage your membership – all from the Forma app. Your whole Forma experience, wherever you are.",
     img=f"{IMG}/slider-WC_cycle_indoor_v2.jpg",
     crumb="App",
     actions=[("Get the App", "#download", True)],
@@ -2197,7 +2197,7 @@ app_body = hero(
     </div>
     <div class="pillars" data-stagger style="grid-template-columns:repeat(3,1fr)">
       <div class="pillar"><span class="pillar__num">01</span><h3>Reserve classes &amp; lanes</h3><p>Grab your spot in any group fitness class or book a swim lane in seconds.</p></div>
-      <div class="pillar"><span class="pillar__num">02</span><h3>Live schedules</h3><p>See what's on today across both clubs — and never miss your favorite instructor.</p></div>
+      <div class="pillar"><span class="pillar__num">02</span><h3>Live schedules</h3><p>See what's on today across both clubs – and never miss your favorite instructor.</p></div>
       <div class="pillar"><span class="pillar__num">03</span><h3>Manage membership</h3><p>Your account, check-ins and member perks, all in the palm of your hand.</p></div>
     </div>
     <div class="hero__actions reveal" id="download" style="opacity:1;transform:none;margin-top:48px">
@@ -2216,7 +2216,7 @@ app_body = hero(
 merchant_body = hero(
     "Preferred Merchant Program",
     ["Member perks,", 'around <span class="serif">town</span>'],
-    "As a locally owned, private fitness club, Forma's goal is to deliver exceptional service and benefits to our members — including preferred pricing at local businesses we love.",
+    "As a locally owned, private fitness club, Forma's goal is to deliver exceptional service and benefits to our members – including preferred pricing at local businesses we love.",
     img=f"{IMG}/slider-hero_ladies_v1.jpg",
     crumb="Member Savings",
     actions=[("Become a Member", "join.html", True)],
@@ -2231,8 +2231,8 @@ merchant_body = hero(
         <h2 class="h-display reveal">Save with our local <span class="serif">partners</span></h2>
       </div>
       <div class="intro-grid__right">
-        <p class="lede reveal">We're partnering with local businesses to give you preferred pricing — a discount to locally owned and operated shops, restaurants and services around the Bay.</p>
-        <p class="body-copy reveal">It's our way of supporting the community that supports us — and giving members one more reason to love being part of the Forma Family. Ask the front desk for the current list of preferred merchants.</p>
+        <p class="lede reveal">We're partnering with local businesses to give you preferred pricing – a discount to locally owned and operated shops, restaurants and services around the Bay.</p>
+        <p class="body-copy reveal">It's our way of supporting the community that supports us – and giving members one more reason to love being part of the Forma Family. Ask the front desk for the current list of preferred merchants.</p>
       </div>
     </div>
   </div>
@@ -2251,7 +2251,7 @@ def legal_page(title, intro):
     ) + f"""
 <section class="section section--tight">
   <div class="wrap" style="max-width:820px">
-    <p class="body-copy reveal">This is a redesign demonstration of formagym.com. The full {title.lower()} from Forma Gym applies to all members and visitors. For the complete, current policy, please contact a club directly — Walnut Creek (925) 932-6400 or San Jose (408) 363-1010 — or visit the front desk.</p>
+    <p class="body-copy reveal">This is a redesign demonstration of formagym.com. The full {title.lower()} from Forma Gym applies to all members and visitors. For the complete, current policy, please contact a club directly – Walnut Creek (925) 932-6400 or San Jose (408) 363-1010 – or visit the front desk.</p>
     <p class="body-copy reveal">Forma Gym is committed to providing an inclusive, welcoming experience for every member and guest, online and in our clubs. If you encounter any difficulty using this site or need assistance, our team is happy to help.</p>
   </div>
 </section>
@@ -2273,7 +2273,7 @@ privacy_body = legal_page("Privacy Policy",
 freeze_body = hero(
     "Member Services",
     ["Freeze or cancel", 'your <span class="serif">membership</span>.'],
-    "Life changes — travel, injury, a season away. Put your membership on hold, or close it out. Either way, start the request here and our membership team will confirm by email.",
+    "Life changes – travel, injury, a season away. Put your membership on hold, or close it out. Either way, start the request here and our membership team will confirm by email.",
     img=f"{IMG}/neck_hold_BLUR_2000x1333px_v2.jpg",
     crumb="Freeze or Cancel",
     meta=["Members only", "Requests handled by the membership team", "Written request required"],
@@ -2299,7 +2299,7 @@ freeze_body = hero(
         <h2 class="h-display reveal">Freeze, or <span class="serif">cancel</span></h2>
       </div>
       <div class="intro-grid__right">
-        <p class="lede reveal">Most members who need a break choose a freeze — it holds your membership and your rate while you're away, so you can pick up where you left off.</p>
+        <p class="lede reveal">Most members who need a break choose a freeze – it holds your membership and your rate while you're away, so you can pick up where you left off.</p>
         <p class="body-copy reveal">A cancellation closes your membership. Both require a written request, which is what the form below creates. Your club can confirm current terms, any applicable fees, and your minimum-term status before anything is finalized.</p>
       </div>
     </div>
@@ -2310,7 +2310,7 @@ freeze_body = hero(
   <div class="wrap">
     <div class="pillars" data-stagger>
       <div class="pillar"><span class="pillar__num">01</span><h3>Freeze</h3><p>Temporarily pause your membership and hold your current rate. Good for travel, injury, deployment, or a season away.</p></div>
-      <div class="pillar"><span class="pillar__num">02</span><h3>Cancel</h3><p>Close your membership. A written request is required — this form submits one and starts the confirmation process.</p></div>
+      <div class="pillar"><span class="pillar__num">02</span><h3>Cancel</h3><p>Close your membership. A written request is required – this form submits one and starts the confirmation process.</p></div>
       <div class="pillar"><span class="pillar__num">03</span><h3>Not sure?</h3><p>Talk to us first. Walnut Creek <a href="tel:9259326400" style="color:var(--accent)">(925) 932-6400</a> · San Jose <a href="tel:4083631010" style="color:var(--accent)">(408) 363-1010</a>.</p></div>
     </div>
   </div>
@@ -2318,48 +2318,48 @@ freeze_body = hero(
 """ + form_section(
     "request", "02", "Submit your request",
     'Start your <span class="serif">request</span>',
-    "Tell us your name, the email on your account, and your home club. Add your request details in the message — whether you're freezing or cancelling, and the dates involved. A membership team member will reply by email to confirm.",
+    "Tell us your name, the email on your account, and your home club. Add your request details in the message – whether you're freezing or cancelling, and the dates involved. A membership team member will reply by email to confirm.",
     "Submit Request",
     light=False, ac_id=93,
 ) + """
 <section class="section section--tight">
   <div class="wrap" style="max-width:820px">
-    <p class="body-copy reveal">Submitting this form creates your written request and time-stamps it. It is not an instant cancellation — you'll receive an email confirming the details and effective date. If you don't hear back within a few business days, please call your home club directly.</p>
+    <p class="body-copy reveal">Submitting this form creates your written request and time-stamps it. It is not an instant cancellation – you'll receive an email confirming the details and effective date. If you don't hear back within a few business days, please call your home club directly.</p>
   </div>
 </section>
 </div>
 """ + cta_band(
     'Still want to <span class="serif">stay</span>?',
-    "If it's a schedule or cost issue, a membership change might solve it. Talk to the team before you go — we'd rather keep you.",
+    "If it's a schedule or cost issue, a membership change might solve it. Talk to the team before you go – we'd rather keep you.",
     f"{IMG}/slider-locations_turf_alysse_torey.jpg",
 )
 
 # ============================================================ BUILD ALL
 PAGES = [
-    ("index.html", "Forma Gym | Walnut Creek &amp; San Jose | Play Every Day", "Two luxury Bay Area fitness clubs — Walnut Creek &amp; San Jose. All group fitness, personal training, pools, cryotherapy, spa and Kidzville.", "", home_body),
-    ("about.html", "About Forma Gym | Our Mission &amp; Story", "To make exercise a part of our member's daily lives, for the rest of their lives. Meet Forma Gym — two Bay Area clubs and one community.", "about.html", about_body),
-    ("group-fitness.html", "Group Fitness Classes | Forma Gym", "14 group fitness formats included with membership — Cycle, Yoga, Barre, HIIT, Pilates, Dance, TRX, Aqua and more, across Walnut Creek &amp; San Jose.", "group-fitness.html", groupfit_body),
+    ("index.html", "Forma Gym | Walnut Creek &amp; San Jose | Play Every Day", "Two luxury Bay Area fitness clubs – Walnut Creek &amp; San Jose. All group fitness, personal training, pools, cryotherapy, spa and Kidzville.", "", home_body),
+    ("about.html", "About Forma Gym | Our Mission &amp; Story", "To make exercise a part of our member's daily lives, for the rest of their lives. Meet Forma Gym – two Bay Area clubs and one community.", "about.html", about_body),
+    ("group-fitness.html", "Group Fitness Classes | Forma Gym", "14 group fitness formats included with membership – Cycle, Yoga, Barre, HIIT, Pilates, Dance, TRX, Aqua and more, across Walnut Creek &amp; San Jose.", "group-fitness.html", groupfit_body),
     ("training.html", "Personal Training | Forma Gym", "1-on-1 and small group personal training with the best coaches in the Bay Area. Nutrition guidance, accountability, and a plan built around you.", "training.html", training_body),
-    ("recovery.html", "Recovery, Cryotherapy &amp; Cold Plunge | Forma Gym", "Recover like an athlete — cryotherapy, cold plunge, full-service spa, sauna, steam and hot tubs at Forma Gym.", "recovery.html", recovery_body),
+    ("recovery.html", "Recovery, Cryotherapy &amp; Cold Plunge | Forma Gym", "Recover like an athlete – cryotherapy, cold plunge, full-service spa, sauna, steam and hot tubs at Forma Gym.", "recovery.html", recovery_body),
     ("cryo.html", "Cryotherapy + Cold Plunge | Forma Gym", "Whole-body cryotherapy and cold plunge at Forma Gym. Burn 500–800 calories per session, reduce pain and inflammation, recover faster.", "", cryo_body),
-    ("spa.html", "The Spa at Forma | Massage, Facials, Reiki &amp; Skin Care", "A full-service day spa at Forma Gym — therapeutic massage, facials, Reiki and clinical skin care in Walnut Creek &amp; San Jose.", "", spa_body),
-    ("mindbodylab.html", "Mind Body LAB &amp; DrBrainRX | Forma Gym", "Where science meets self-care — brain health, recovery tech, meditation and the mind-body connection at Forma Gym.", "", mbl_body),
+    ("spa.html", "The Spa at Forma | Massage, Facials, Reiki &amp; Skin Care", "A full-service day spa at Forma Gym – therapeutic massage, facials, Reiki and clinical skin care in Walnut Creek &amp; San Jose.", "", spa_body),
+    ("mindbodylab.html", "Mind Body LAB &amp; DrBrainRX | Forma Gym", "Where science meets self-care – brain health, recovery tech, meditation and the mind-body connection at Forma Gym.", "", mbl_body),
     ("kidzville.html", "Kidzville Childcare | Forma Gym Walnut Creek", "Free, safe, active childcare for ages 6 weeks–12 years while you work out. Forma Kidzville at Walnut Creek.", "", kidz_body),
     ("rise.html", "RISE Program | Exercise-Based Therapy for Paralysis | Forma", "RISE is an exercise-based therapy program for individuals living with paralysis. Movement is medicine. Scholarships available.", "", rise_body),
     ("givesback.html", "Forma Gives Back | Fitness for Everyone", "Forma believes fitness should be available to everyone on the spectrum of movement. Learn how Forma Gives Back to the Bay Area.", "", givesback_body),
-    ("walnut-creek.html", "Forma Gym Walnut Creek | 1908 Olympic Blvd", "Forma Gym Walnut Creek — 35,000 sq ft of indoor &amp; outdoor fitness, heated pool, Kidzville, cryotherapy, day spa and Café.", "locations.html", walnutcreek_body),
-    ("san-jose.html", "Forma Gym San Jose | 5434 Thornwood Dr", "Forma Gym San Jose — 40,000 sq ft luxury facility with covered outdoor turf, heated 6-lane pool, cold plunge and massage services.", "locations.html", sanjose_body),
+    ("walnut-creek.html", "Forma Gym Walnut Creek | 1908 Olympic Blvd", "Forma Gym Walnut Creek – 35,000 sq ft of indoor &amp; outdoor fitness, heated pool, Kidzville, cryotherapy, day spa and Café.", "locations.html", walnutcreek_body),
+    ("san-jose.html", "Forma Gym San Jose | 5434 Thornwood Dr", "Forma Gym San Jose – 40,000 sq ft luxury facility with covered outdoor turf, heated 6-lane pool, cold plunge and massage services.", "locations.html", sanjose_body),
     ("locations.html", "Locations &amp; Hours | Forma Gym Walnut Creek &amp; San Jose", "Two premium Bay Area clubs. Hours, addresses and amenities for Forma Gym Walnut Creek &amp; San Jose.", "locations.html", locations_body),
-    ("join.html", "Join Now | Forma Gym", "Join Forma Gym — all-inclusive access to both Bay Area clubs, every class and recovery amenity.", "", join_body),
+    ("join.html", "Join Now | Forma Gym", "Join Forma Gym – all-inclusive access to both Bay Area clubs, every class and recovery amenity.", "", join_body),
     ("trial-pass.html", "Schedule a Visit | Forma Gym", "Schedule a visit, tour or guest workout at Forma Gym, plus a complimentary coaching session.", "", trial_body),
-    ("outdoor-training.html", "Outdoor Fitness | Forma Gym", "Strength, cardio, group exercise and cycle — outdoors, year-round, at both Forma Gym clubs.", "", outdoor_body),
-    ("drbrainrx.html", "DrBrainRX — GLP-1, Peptides &amp; Longevity | Forma Gym", "GLP-1 weight loss care, peptide therapy and longevity medicine for Forma members through DrBrainRX. 1 month free + $70 off, code FORMAGYM.", "", drbrain_body),
+    ("outdoor-training.html", "Outdoor Fitness | Forma Gym", "Strength, cardio, group exercise and cycle – outdoors, year-round, at both Forma Gym clubs.", "", outdoor_body),
+    ("drbrainrx.html", "DrBrainRX – GLP-1, Peptides &amp; Longevity | Forma Gym", "GLP-1 weight loss care, peptide therapy and longevity medicine for Forma members through DrBrainRX. 1 month free + $70 off, code FORMAGYM.", "", drbrain_body),
     ("app.html", "The Forma App | Forma Gym", "Book classes, reserve lanes, check schedules and manage your membership with the Forma app.", "", app_body),
     ("merchant.html", "Preferred Merchant Program | Forma Gym", "Forma members get preferred pricing at locally owned Bay Area businesses through our Preferred Merchant Program.", "", merchant_body),
-    ("contact.html", "Contact &amp; Book a Tour | Forma Gym", "Book a tour or reach a Forma Gym club — Walnut Creek (925) 932-6400 or San Jose (408) 363-1010.", "", contact_body),
+    ("contact.html", "Contact &amp; Book a Tour | Forma Gym", "Book a tour or reach a Forma Gym club – Walnut Creek (925) 932-6400 or San Jose (408) 363-1010.", "", contact_body),
     ("freeze-cancel.html", "Freeze or Cancel Your Membership | Forma Gym", "Active Forma Gym members can request a membership freeze or cancellation. Submit your written request and the membership team will confirm by email.", "", freeze_body),
     ("accessibility.html", "Accessibility Statement | Forma Gym", "Forma Gym is committed to making our clubs and website accessible and welcoming to everyone.", "", accessibility_body),
-    ("privacy.html", "Privacy Policy | Forma Gym", "Forma is a SPAM-FREE ZONE — we never share or sell your information.", "", privacy_body),
+    ("privacy.html", "Privacy Policy | Forma Gym", "Forma is a SPAM-FREE ZONE – we never share or sell your information.", "", privacy_body),
 ]
 
 # class detail pages — all 14 formats
@@ -2367,7 +2367,7 @@ _others_pool = [(l, h, d) for l, h, d in ALL_CLASSES]
 for slug, title, img, lead, short in CLASS_PAGES:
     others = [o for o in _others_pool if o[1] != f"{slug}.html"][:6]
     PAGES.append((f"{slug}.html", f"{title} | Group Fitness | Forma Gym",
-                  f"{title} at Forma Gym — included with membership, all levels welcome.",
+                  f"{title} at Forma Gym – included with membership, all levels welcome.",
                   "group-fitness.html", class_page(slug, title, img, lead, others)))
 
 
@@ -2453,7 +2453,7 @@ def build_headers():
 def copy_redirects():
     src = os.path.join(os.path.dirname(os.path.abspath(__file__)), "deploy", "_redirects")
     if not os.path.exists(src):
-        print("WARNING: deploy/_redirects missing — run deploy/build_redirects.py")
+        print("WARNING: deploy/_redirects missing – run deploy/build_redirects.py")
         return
     with open(src) as f:
         rules = f.read()
