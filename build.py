@@ -1125,8 +1125,8 @@ home_body = view_chooser + hero(
     <div class="rows reveal">
       <a class="row-item" href="kidzville.html"><span class="row-item__idx">01</span><span class="row-item__title">Kidzville</span><span class="row-item__desc">Enjoy your workout while your kids (ages 6 weeks–12 years) are free to play in a safe, active and educational indoor/outdoor space.</span><span class="row-item__arrow">→</span></a>
       <a class="row-item" href="mindbodylab.html"><span class="row-item__idx">02</span><span class="row-item__title">Mind Body LAB</span><span class="row-item__desc">Where science meets self-care — brain health, recovery tech and the mind-body connection.</span><span class="row-item__arrow">→</span></a>
-      <a class="row-item" href="rise.html"><span class="row-item__idx">03</span><span class="row-item__title">RISE Program</span><span class="row-item__desc">Exercise-based therapy for individuals living with paralysis. Movement is medicine.</span><span class="row-item__arrow">→</span></a>
-      <a class="row-item" href="training.html"><span class="row-item__idx">04</span><span class="row-item__title">Training</span><span class="row-item__desc">Represent years of experience in the industry with a passion for your health and wellness.</span><span class="row-item__arrow">→</span></a>
+      <a class="row-item" href="rise.html"><span class="row-item__idx">03</span><span class="row-item__title">RISE Program</span><span class="row-item__desc">Exercise-based therapy for individuals living with paralysis. Focused on function, strength and improving the physiology and neurological function of the body.</span><span class="row-item__arrow">→</span></a>
+      <a class="row-item" href="training.html"><span class="row-item__idx">04</span><span class="row-item__title">Training</span><span class="row-item__desc">Representing years of experience in the industry with a passion for your health and wellness.</span><span class="row-item__arrow">→</span></a>
     </div>
   </div>
 </section>
