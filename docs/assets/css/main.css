@@ -603,6 +603,19 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   font-size: clamp(12px, 1.05vw, 14px); letter-spacing: 0.26em; line-height: 1.5;
   color: var(--white); margin-bottom: 12px;
 }
+/* Explore rollover, same spec as the overlay cards' .go but sitting under the
+   copy rather than over the photo. Hover reveals it on pointer devices; on touch
+   it stays visible, because there is no hover to reveal it and the card would
+   otherwise carry no cue that it is a link. */
+.card--stack .go {
+  display: inline-flex; align-items: center; gap: 10px; margin-top: 16px;
+  font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--accent-soft);
+  opacity: 0; transform: translateY(8px); transition: opacity .5s, transform .5s var(--ease-out);
+}
+.card--stack:hover .go { opacity: 1; transform: none; }
+@media (hover: none) {
+  .card--stack .go { opacity: 1; transform: none; }
+}
 .card__below { padding: 20px 2px 0; }
 .card__below p { color: var(--copy); font-size: 14.5px; }
 .section--light .card__below p { color: var(--muted-dark); }
