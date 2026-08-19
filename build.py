@@ -1108,8 +1108,8 @@ home_body = view_chooser + hero(
       </div>
     </div>
     <div class="card-grid card-grid--2" data-stagger>
-      <div class="card card--stack"><div class="card__media card__media--wide"><img src="{IMG}/chillyGOAT_SJ_500px.jpg" alt="Chilly Goat cold plunge" loading="lazy"></div><div class="card__below"><h3 class="card__title">Cryotherapy + Cold Plunge</h3><p>Burn 500–800 calories in a single 3-minute session, reduce inflammation and pain, heal injuries faster, and sleep better. A natural, non-invasive reset trusted by Olympic and pro athletes — and now part of your club.</p></div></div>
-      <div class="card card--stack"><div class="card__media card__media--wide"><img src="{IMG}/Forma_Walnut-Creek_Spa_Header_2018.jpg" alt="The Spa" loading="lazy"></div><div class="card__below"><h3 class="card__title">The Full-Service Day Spa</h3><p>Massage, facials, Reiki and clinical skin care from skilled therapists — steps from the sauna, steam and hot tub. Restore, rejuvenate and walk out feeling like a brand new person.</p></div></div>
+      <div class="card card--stack"><div class="card__media card__media--wide"><img src="{IMG}/chillyGOAT_SJ_500px.jpg" alt="Chilly Goat cold plunge" loading="lazy"></div><div class="card__below"><h3 class="card__title">Cryo + Cold Plunge</h3><p>Burn 500–800 calories in a single 3-minute session, reduce inflammation and pain, heal injuries faster, and sleep better. A natural, non-invasive reset trusted by Olympic and pro athletes — and now part of your club.</p></div></div>
+      <div class="card card--stack"><div class="card__media card__media--wide"><img src="{IMG}/Forma_Walnut-Creek_Spa_Header_2018.jpg" alt="The Spa" loading="lazy"></div><div class="card__below"><h3 class="card__title">The Spa at Forma</h3><p>Massage, facials, Reiki and clinical skin care from skilled therapists — steps from the sauna, steam and hot tub. Restore, rejuvenate and walk out feeling like a brand new person.</p></div></div>
     </div>
   </div>
 </section>
