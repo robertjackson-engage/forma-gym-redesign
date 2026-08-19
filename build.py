@@ -1126,7 +1126,7 @@ home_body = view_chooser + hero(
       <a class="row-item" href="kidzville.html"><span class="row-item__idx">01</span><span class="row-item__title">Kidzville</span><span class="row-item__desc">Enjoy your workout while your kids (ages 6 weeks–12 years) are free to play in a safe, active and educational indoor/outdoor space.</span><span class="row-item__arrow">→</span></a>
       <a class="row-item" href="mindbodylab.html"><span class="row-item__idx">02</span><span class="row-item__title">Mind Body LAB</span><span class="row-item__desc">Where science meets self-care — brain health, recovery tech and the mind-body connection.</span><span class="row-item__arrow">→</span></a>
       <a class="row-item" href="rise.html"><span class="row-item__idx">03</span><span class="row-item__title">RISE Program</span><span class="row-item__desc">Exercise-based therapy for individuals living with paralysis. Movement is medicine.</span><span class="row-item__arrow">→</span></a>
-      <a class="row-item" href="givesback.html"><span class="row-item__idx">04</span><span class="row-item__title">Forma Gives Back</span><span class="row-item__desc">Fitness available to everyone on the spectrum of movement — and a community that shows up.</span><span class="row-item__arrow">→</span></a>
+      <a class="row-item" href="training.html"><span class="row-item__idx">04</span><span class="row-item__title">Training</span><span class="row-item__desc">Represent years of experience in the industry with a passion for your health and wellness.</span><span class="row-item__arrow">→</span></a>
     </div>
   </div>
 </section>
