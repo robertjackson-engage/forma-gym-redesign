@@ -1353,7 +1353,7 @@ training_body = hero(
     'The best of both <span class="serif">worlds</span>',
     ["Small Group Training brings 4–8 people together with one trainer – the energy and accountability of community, with the attention and programming of personal training.",
      "It's affordable, it's motivating, and the workouts change constantly so you never plateau or get bored."],
-    f"{IMG}/Darlene_ropes2.jpg",
+    f"{IMG}/small_group_class.jpg",
     "Small group training at Forma",
     rev=True, cta=("Ask about small group", "contact.html#tour"),
 ) + f"""

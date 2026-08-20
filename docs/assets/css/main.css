@@ -304,10 +304,10 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   .hero__media--scrim-left::before {
     content: ""; position: absolute; inset: 0; z-index: 1;
     background: linear-gradient(to right,
-      rgba(11,11,12,0.96) 0%,
-      rgba(11,11,12,0.88) 30%,
-      rgba(11,11,12,0.62) 55%,
-      rgba(11,11,12,0.24) 78%,
+      rgba(11,11,12,0.72) 0%,
+      rgba(11,11,12,0.66) 30%,
+      rgba(11,11,12,0.47) 55%,
+      rgba(11,11,12,0.18) 78%,
       rgba(11,11,12,0) 100%);
   }
 }
