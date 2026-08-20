@@ -679,6 +679,10 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 /* Match the 16px body copy under the section headline. Scoped to --3 so the
    Our Core Values panels keep their own 15px. */
 .pillars--3 .pillar p { font-size: 16px; }
+/* Tighter than the core-values panels: those are 2-up with far fewer of them,
+   where 56px of padding reads generous. At 3-up x 5 rows it just spreads the
+   grid out. Mobile keeps its own padding in the 820px block below. */
+.pillars--3 .pillar { padding: clamp(22px, 2.3vw, 34px); }
 @media (max-width: 820px) { .pillars--3 { grid-template-columns: repeat(2, 1fr); } }
 a.pillar { display: block; }
 .pillar--filler { display: none; }
@@ -1044,7 +1048,7 @@ a.pillar:hover h3 { color: var(--accent); }
   .pillars--3 { grid-template-columns: repeat(2, 1fr); }
   .pillars--3 .pillar { padding: clamp(16px, 4.2vw, 24px); }
   .pillars--3 .pillar__num { margin-bottom: 14px; }
-  .pillars--3 .pillar h3 { font-size: clamp(17px, 4.4vw, 21px); margin-bottom: 9px; }
+  .pillars--3 .pillar h3 { font-size: clamp(19px, 5.2vw, 24px); margin-bottom: 9px; }
   /* 15px on a phone: 16px in a 2-up panel pushed several descriptions to four
      lines and every panel in the row stretched to match. Desktop stays 16px. */
   .pillars--3 .pillar p { font-size: 15px; line-height: 1.45; }
