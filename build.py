@@ -1319,7 +1319,7 @@ training_body = hero(
     "Personal Training",
     ["The best", 'in the <span class="serif">Bay</span>.'],
     "A team of fitness professionals with diverse backgrounds, deep experience, and a shared passion for health and wellness. We'll meet you where you are and build the plan that gets you where you want to be.",
-    img=f"{IMG}/training_hero.jpg",
+    img=f"{IMG}/hanna_pull_up.jpg",
     crumb="Training",
     actions=[("Book a Consult", "contact.html#tour", True), ("Meet the Team", "#team", False)],
     meta=["1-on-1 &amp; small group", "Nutrition guidance included", "Both clubs"],
