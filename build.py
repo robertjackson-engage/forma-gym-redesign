@@ -492,8 +492,12 @@ def split(eyebrow, num, title, paras, img, alt, rev=False, cta=None, light=False
 # gets the same treatment on every page that uses it — the homepage and the
 # cycle class page both run the cycle studio.
 DARK_BAND_PHOTOS = {
-    "SJ_cycle_studio_2500px.jpg",   # 29.6
-}
+    "slider-meditate_v2.jpg",            # 20.1
+    "SJ_cycle_studio_2500px.jpg",        # 29.6
+    "annabelle_kettle_HERO_2.jpg",       # 32.2
+    "slider-TRX_v4.jpg",                 # 33.7
+    "slider-stretch_recovery_v1.jpg",    # 37.2
+}                                        # next brightest is aqua at 53.2
 
 
 def cta_band(title_html, text, img, primary=("Join Now", "join.html"),
