@@ -486,6 +486,16 @@ def split(eyebrow, num, title, paras, img, alt, rev=False, cta=None, light=False
 """
 
 
+# Band photos dark enough that the standard 0.78 scrim crushes them to near
+# black. Measured mean luminance /255 across every band photo on the site: these
+# sit at 20-30 where the brightest are 116-142. Keyed on the filename so a photo
+# gets the same treatment on every page that uses it — the homepage and the
+# cycle class page both run the cycle studio.
+DARK_BAND_PHOTOS = {
+    "SJ_cycle_studio_2500px.jpg",   # 29.6
+}
+
+
 def cta_band(title_html, text, img, primary=("Join Now", "join.html"),
              secondary=("Book a Tour", "contact.html#tour"), focal=None, soft=False):
     sec = f'<a class="btn" href="{secondary[1]}">{secondary[0]} <span class="arr">→</span></a>' if secondary else ""
@@ -495,7 +505,7 @@ def cta_band(title_html, text, img, primary=("Join Now", "join.html"),
     # soft=True for photos that are already dark — the standard 78% scrim leaves
     # them almost black. Measured: this cycle studio is 29/255 mean luminance
     # against 116 and 142 for the other band photos.
-    soft_cls = " cta-band--soft" if soft else ""
+    soft_cls = " cta-band--soft" if (soft or img.rsplit("/", 1)[-1] in DARK_BAND_PHOTOS) else ""
     return f"""
 <section class="cta-band{soft_cls}">
   <div class="cta-band__media"><img src="{img}" alt="" loading="lazy"{focal_attr}></div>
@@ -1160,7 +1170,6 @@ home_body = view_chooser + hero(
     'Your <span class="serif">club</span> is waiting',
     "Tour a club, take a class, hit the spa. Come see why Forma members never want to leave.",
     f"{IMG}/SJ_cycle_studio_2500px.jpg",
-    soft=True,
 )
 
 # ============================================================ ABOUT
