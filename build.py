@@ -1277,7 +1277,7 @@ groupfit_body = hero(
         <p class="eyebrow">The full lineup</p>
         <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Infinite ways to <span class="serif">move</span></h2>
       </div>
-      <p class="body-copy reveal">Whether you're kickstarting your journey or chasing your next level, there's a class with your name on it – included with every membership.</p>
+      <p class="body-copy reveal">Whether you're kickstarting your journey or chasing your next level, there's a class with your name on it – included with every membership. Get ready to join a vibrant community of health and fitness enthusiasts and embark on an exhilarating journey towards achieving your health and wellness goals.</p>
     </div>
     <div class="pillars pillars--3 reveal" data-stagger>{class_rows}</div>
   </div>
