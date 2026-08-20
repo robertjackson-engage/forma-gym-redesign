@@ -1155,7 +1155,7 @@ home_body = view_chooser + hero(
 """ + cta_band(
     'Your <span class="serif">club</span> is waiting',
     "Tour a club, take a class, hit the spa. Come see why Forma members never want to leave.",
-    f"{IMG}/slider-locations_turf_alysse_torey.jpg",
+    f"{IMG}/SJ_cycle_studio_2500px.jpg",
 )
 
 # ============================================================ ABOUT
