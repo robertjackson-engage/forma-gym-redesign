@@ -360,7 +360,7 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 .hero__sub {
   max-width: 620px; margin-top: clamp(16px, 2.6vh, 28px);
   font-size: clamp(17px, 1.35vw, 20px); line-height: 1.55; font-weight: 400;
-  color: rgba(243,240,233,0.9);
+  color: var(--copy);
   /* Even at 400 the strokes are thin enough to need separation on bright frames. */
   /* Three stops: a tight one for edge definition, then two wide soft ones that
      act as a local scrim behind the text on busy or bright frames. */
@@ -866,7 +866,7 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   font-size: clamp(44px, 7.4vw, 120px); line-height: 0.98; color: var(--white);
 }
 .cta-band h2 .serif { font-family: inherit; font-style: inherit; text-transform: inherit; color: var(--accent); }
-.cta-band p { max-width: 52ch; margin: 26px 0 0; color: rgba(243,240,233,0.8); font-size: 17px; }
+.cta-band p { max-width: 52ch; margin: 26px 0 0; color: var(--copy); font-size: 17px; }
 .cta-band .hero__actions { opacity: 1; transform: none; }
 
 /* ---------- footer ---------- */
@@ -1329,7 +1329,7 @@ body.choice-done .view-chooser {
   font-size: clamp(34px, 4.6vw, 64px); line-height: 1;
 }
 .vc-panel h3 .serif { font-family: inherit; font-style: inherit; text-transform: inherit; color: var(--accent-soft); }
-.vc-panel p { color: rgba(243,240,233,0.75); margin-top: 10px; font-size: 14.5px; max-width: 40ch; }
+.vc-panel p { color: var(--copy); margin-top: 10px; font-size: 14.5px; max-width: 40ch; }
 .vc-panel .go {
   display: inline-flex; align-items: center; gap: 10px; margin-top: 18px;
   font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--bone);
@@ -1577,7 +1577,7 @@ body.chat-open .chat-panel { opacity: 1; transform: none; pointer-events: auto; 
 .plan-card__addl { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
 .plan-card h6 { font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--accent); margin: 16px 0 10px; }
 .plan-card__list { list-style: none; padding: 0; }
-.plan-card__list li { font-size: 13.5px; color: rgba(244,247,248,0.82); padding: 5px 0 5px 22px; position: relative; }
+.plan-card__list li { font-size: 13.5px; color: var(--copy); padding: 5px 0 5px 22px; position: relative; }
 .plan-card__list li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-size: 11px; top: 6px; }
 .plan-card__pick { display: block; text-align: center; margin-top: 22px; border: 1px solid var(--line); padding: 13px; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; transition: background .4s, color .4s, border-color .4s; }
 .plan-card:hover .plan-card__pick, .plan-card.is-selected .plan-card__pick { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
