@@ -781,11 +781,11 @@ def trainer_accordion(trainers):
                       f'loading="lazy" width="320" height="320">'
                       f'<div class="trainer-bio__text">{body}</div>'
                       f'</div>'))
-    return accordion(items, open_first=False)
+    return accordion(items, open_first=False, grid=True)
 
 
-def accordion(items, open_first=True):
-    out = '<div class="acc reveal">'
+def accordion(items, open_first=True, grid=False):
+    out = f'<div class="acc{" acc--grid" if grid else ""} reveal">'
     for i, (q, a) in enumerate(items):
         out += f"""
       <div class="acc__item{' is-open' if (open_first and i == 0) else ''}">

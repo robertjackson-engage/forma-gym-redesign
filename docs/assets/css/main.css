@@ -786,6 +786,28 @@ a.pillar:hover h3 { color: var(--accent); }
 .acc__icon::after { width: 1.5px; height: 14px; }
 .acc__item.is-open .acc__icon { background: var(--accent); border-color: var(--accent); color: #fff; }
 .acc__item.is-open .acc__icon::after { transform: rotate(90deg); }
+/* ---------- grid variant: coach tiles ----------
+   Names sit in a grid rather than a stack of full-width rows. The open item
+   takes grid-column 1/-1 so it spans the row and its bio still gets the full
+   width — no JS change needed, the existing max-height measure runs after the
+   class lands so it reads the new width. */
+.acc--grid { display: grid; grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 821px) { .acc--grid { grid-template-columns: repeat(4, 1fr); } }
+.acc--grid .acc__item { border-right: 1px solid var(--line); }
+/* No rule on the last column, or the grid gets an edge it does not need. */
+.acc--grid .acc__item:nth-child(2n) { border-right: 0; }
+@media (min-width: 821px) {
+  .acc--grid .acc__item:nth-child(2n) { border-right: 1px solid var(--line); }
+  .acc--grid .acc__item:nth-child(4n) { border-right: 0; }
+}
+/* Stacked head: name, role, then the control beneath — the row layout has no
+   room for a 44px circle beside the text at a quarter of the width. */
+.acc--grid .acc__head {
+  display: block; padding: clamp(20px, 2.2vw, 30px) clamp(16px, 1.6vw, 24px) clamp(22px, 2.4vw, 32px);
+}
+.acc--grid .acc__icon { width: 44px; margin-top: clamp(14px, 1.6vw, 22px); }
+.acc--grid .acc__body-inner { padding: 0 clamp(16px, 1.6vw, 24px) 36px; }
+.acc--grid .acc__item.is-open { grid-column: 1 / -1; border-right: 0; }
 .acc__body { max-height: 0; overflow: hidden; transition: max-height .7s var(--ease-power); }
 .acc__body-inner { padding: 0 0 36px; max-width: 70ch; color: var(--copy); font-size: 15.5px; }
 .section--light .acc__body-inner { color: var(--muted-dark); }
