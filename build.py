@@ -1264,7 +1264,7 @@ groupfit_body = hero(
     actions=[("Visit Us", "join.html", True), ("Book a Tour", "contact.html#tour", False)],
     meta=["14 class formats", "All included in membership", "Indoor + outdoor studios"],
     page=True,
-) + photo_marquee(STRIP_PHOTOS[3:] + STRIP_PHOTOS[:3]) + f"""
+) + f"""
 <section class="section" id="classes">
   <div class="wrap">
     <div class="cards-head">
