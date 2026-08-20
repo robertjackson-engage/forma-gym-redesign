@@ -211,7 +211,7 @@ CLASS_PAGES = [
 ]
 
 # derived: the list used across nav/footer/group-fitness, each linking to its page
-ALL_CLASSES = [(t, f"{slug}.html", short) for slug, t, img, lead, short in CLASS_PAGES]
+ALL_CLASSES = [(t, f"{slug}.html", short, img) for slug, t, img, lead, short in CLASS_PAGES]
 
 
 def head(title, desc):
@@ -309,7 +309,7 @@ def header_html(active=""):
 
 
 def footer_html():
-    cls_links = "".join(f'<a href="{href}">{label}</a>' for label, href, _ in ALL_CLASSES[:8])
+    cls_links = "".join(f'<a href="{href}">{label}</a>' for label, href, _, _ in ALL_CLASSES[:8])
     return f"""
 </main>
 <footer class="site-footer">
@@ -1250,10 +1250,15 @@ about_body = hero(
 # a quarter of the page. Same content in a dense grid instead: it packs 4-6 across
 # on desktop and 2 across on a phone.
 class_rows = ""
-for label, href, desc in ALL_CLASSES:
-    class_rows += (f'<a class="fmt" href="{href}">'
-                   f'<span class="fmt__name">{label}</span>'
-                   f'<span class="fmt__desc">{desc}</span></a>')
+for i, (label, href, desc, img) in enumerate(ALL_CLASSES, 1):
+    class_rows += (f'<a class="pillar" href="{href}">'
+                   f'<span class="pillar__num">{i:02d}</span>'
+                   f'<h3>{label}</h3><p>{desc}</p></a>')
+# 14 panels divide evenly into the 2-up phone layout but leave one cell short at
+# 3-up, where the grid's 1px background showed through as a grey block. One
+# filler panel, present only at 3-up.
+if len(ALL_CLASSES) % 3:
+    class_rows += '<span class="pillar pillar--filler" aria-hidden="true"></span>'
 
 groupfit_body = hero(
     "Group Fitness",
@@ -1267,14 +1272,14 @@ groupfit_body = hero(
 ) + f"""
 <section class="section" id="classes">
   <div class="wrap">
-    <div class="cards-head">
+    <div class="cards-head cards-head--stack">
       <div>
         <p class="eyebrow">The full lineup</p>
         <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Infinite ways to <span class="serif">move</span></h2>
       </div>
-      <p class="body-copy reveal" style="max-width:36ch">Whether you're kickstarting your journey or chasing your next level, there's a class with your name on it – included with every membership.</p>
+      <p class="body-copy reveal">Whether you're kickstarting your journey or chasing your next level, there's a class with your name on it – included with every membership.</p>
     </div>
-    <div class="fmt-grid reveal">{class_rows}</div>
+    <div class="pillars pillars--3 reveal" data-stagger>{class_rows}</div>
   </div>
 </section>
 
@@ -2399,7 +2404,7 @@ PAGES = [
 ]
 
 # class detail pages — all 14 formats
-_others_pool = [(l, h, d) for l, h, d in ALL_CLASSES]
+_others_pool = [(l, h, d) for l, h, d, _ in ALL_CLASSES]
 for slug, title, img, lead, short in CLASS_PAGES:
     others = [o for o in _others_pool if o[1] != f"{slug}.html"][:6]
     PAGES.append((f"{slug}.html", f"{title} | Group Fitness | Forma Gym",
