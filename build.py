@@ -501,7 +501,7 @@ DARK_BAND_PHOTOS = {
 
 
 def cta_band(title_html, text, img, primary=("Join Now", "join.html"),
-             secondary=("Book a Tour", "contact.html#tour"), focal=None, soft=False):
+             secondary=("Book a Tour", "contact.html#tour"), focal=None, soft=False, raise_=False):
     sec = f'<a class="btn" href="{secondary[1]}">{secondary[0]} <span class="arr">→</span></a>' if secondary else ""
     # A band is wide and short, so on a phone it crops the width hard — a
     # subject sitting off-centre needs pulling back into frame.
@@ -510,6 +510,9 @@ def cta_band(title_html, text, img, primary=("Join Now", "join.html"),
     # them almost black. Measured: this cycle studio is 29/255 mean luminance
     # against 116 and 142 for the other band photos.
     soft_cls = " cta-band--soft" if (soft or img.rsplit("/", 1)[-1] in DARK_BAND_PHOTOS) else ""
+    # The band image is 118% tall and top-anchored, so its bottom 18% is clipped.
+    # raise_ shifts it up to bring that lower band of the photo into view.
+    soft_cls += " cta-band--raise" if raise_ else ""
     return f"""
 <section class="cta-band{soft_cls}">
   <div class="cta-band__media"><img src="{img}" alt="" loading="lazy"{focal_attr}></div>
@@ -1299,7 +1302,10 @@ groupfit_body = hero(
 ) + cta_band(
     'Come <span class="serif">move</span> with us',
     "Come try a class – or five. Every format is included with membership.",
-    f"{IMG}/slider-kickbox_v3.jpg",
+    f"{IMG}/jess_yoga.jpg",
+    # A band shows only 33% of the width on a phone and she sits centre-right;
+    # 62% keeps her face, shoulders and hands in frame. Desktop shows 93%.
+    focal="62% 50%", raise_=True,
 )
 
 # ============================================================ TRAINING

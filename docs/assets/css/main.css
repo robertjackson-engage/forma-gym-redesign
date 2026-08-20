@@ -882,6 +882,12 @@ a.pillar:hover h3 { color: var(--accent); }
    luminance where the other band photos sit at 116-142, so 0.78 crushed it
    to near black. Text stays well clear of AA at this level. */
 .cta-band--soft .cta-band__media::after { background: rgba(11,11,12,0.62); }
+/* The band image is 118% tall and top-anchored, so its bottom 18% is clipped.
+   Shifting up by half that brings the lower part of the frame into view —
+   used where a subject sits right against the photo's bottom edge. `top`
+   percentages resolve against the media box height, and relative positioning
+   leaves the parallax transform alone. */
+.cta-band--raise .cta-band__media img { position: relative; top: -9%; }
 .cta-band .wrap { position: relative; z-index: 2; padding-top: clamp(90px, 12vw, 180px); padding-bottom: clamp(90px, 12vw, 180px); }
 .cta-band h2 {
   font-family: var(--font-display); text-transform: uppercase; font-weight: 400;
