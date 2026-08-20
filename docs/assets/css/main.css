@@ -621,6 +621,36 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 .card__below p { color: var(--copy); font-size: 14.5px; }
 .section--light .card__below p { color: var(--muted-dark); }
 
+/* ---------- class-format grid ----------
+   14 formats as stacked rows ate a quarter of the group-fitness page. Same
+   content, packed: auto-fill at 150px means 4-6 columns on desktop and 2 on a
+   phone, instead of one item per line. */
+.fmt-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1px; background: var(--line); border: 1px solid var(--line);
+}
+/* 150px keeps two columns on a 375px phone, but on a wide display it packs to
+   nine and the cells get cramped. A larger floor above the phone breakpoint
+   gives seven across in the 1295px container at 1440 — exactly two full rows
+   for the 14 formats, with no empty cells trailing the grid. */
+@media (min-width: 821px) {
+  .fmt-grid { grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); }
+}
+.fmt {
+  display: block; background: var(--ink); padding: 16px 16px 18px;
+  transition: background .35s var(--ease-out);
+}
+.fmt:hover { background: var(--ink-2); }
+.fmt__name {
+  display: block; font-family: var(--font-display); text-transform: uppercase;
+  font-weight: 400; font-size: 17px; line-height: 1.1; color: var(--copy);
+}
+.fmt__desc {
+  display: block; margin-top: 7px; font-size: 12.5px; line-height: 1.45;
+  color: var(--muted);
+}
+.fmt:hover .fmt__desc { color: var(--copy); }
+
 /* ---------- numbered list rows ---------- */
 .rows { border-top: 1px solid var(--line); }
 .section--light .rows { border-color: var(--line-dark); }

@@ -1246,9 +1246,14 @@ about_body = hero(
 )
 
 # ============================================================ GROUP FITNESS
+# 14 formats as full-width rows ran 1,690px on desktop and 1,510px on a phone —
+# a quarter of the page. Same content in a dense grid instead: it packs 4-6 across
+# on desktop and 2 across on a phone.
 class_rows = ""
-for i, (label, href, desc) in enumerate(ALL_CLASSES, 1):
-    class_rows += f'<a class="row-item" href="{href}"><span class="row-item__title">{label}</span><span class="row-item__desc">{desc}</span><span class="row-item__arrow">→</span></a>'
+for label, href, desc in ALL_CLASSES:
+    class_rows += (f'<a class="fmt" href="{href}">'
+                   f'<span class="fmt__name">{label}</span>'
+                   f'<span class="fmt__desc">{desc}</span></a>')
 
 groupfit_body = hero(
     "Group Fitness",
@@ -1269,7 +1274,7 @@ groupfit_body = hero(
       </div>
       <p class="body-copy reveal" style="max-width:36ch">Whether you're kickstarting your journey or chasing your next level, there's a class with your name on it – included with every membership.</p>
     </div>
-    <div class="rows rows--plain reveal">{class_rows}</div>
+    <div class="fmt-grid reveal">{class_rows}</div>
   </div>
 </section>
 
