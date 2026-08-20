@@ -1289,7 +1289,7 @@ groupfit_body = hero(
 """ + split(
     "Where you'll sweat", "02",
     'Studios built for <span class="serif">energy</span>',
-    ["Across both clubs you'll find dedicated studios – cycle, reformer Pilates, mind-body, and multi-purpose group fitness rooms – plus covered outdoor turf and heated pools for classes under the California sky.",
+    ["Across both clubs you'll find dedicated studios – Cycle, Reformer Pilates, Mind Body, and wide-open group fitness rooms – plus covered outdoor turf and heated pools for classes under beautiful California skies.",
      "Walnut Creek features 4 studios plus a Pilates Reformer studio. San Jose brings indoor and outdoor classes across 40,000 square feet."],
     f"{IMG}/SJ_cycle_studio_2500px.jpg",
     "Cycle studio at Forma San Jose",

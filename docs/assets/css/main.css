@@ -1425,8 +1425,10 @@ body.choice-done .view-chooser {
       rgba(11,11,12,0.5) 58%,
       rgba(11,11,12,0.18) 100%);
   }
-  /* Shift her right, clear of the left-aligned headline. */
-  .vc-panel[data-choose="guest"] img { object-position: 26% 30%; }
+  /* Shift her right, clear of the left-aligned headline. The panel shows only
+     58% of this photo's width, so 10% is close to the left edge of the source —
+     about as far right as she can go before her hair clips. */
+  .vc-panel[data-choose="guest"] img { object-position: 10% 30%; }
 }
 
 @media (max-width: 560px) {
