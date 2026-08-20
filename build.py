@@ -211,6 +211,12 @@ CLASS_PAGES = [
 ]
 
 # derived: the list used across nav/footer/group-fitness, each linking to its page
+def sup_reg(text):
+    """Superscript the ® for display. The plain label still feeds <title> and the
+    meta description, which must not carry markup."""
+    return text.replace("&reg;", "<sup>&reg;</sup>")
+
+
 ALL_CLASSES = [(t, f"{slug}.html", short, img) for slug, t, img, lead, short in CLASS_PAGES]
 
 
@@ -1256,7 +1262,7 @@ class_rows = ""
 for i, (label, href, desc, img) in enumerate(ALL_CLASSES, 1):
     class_rows += (f'<a class="pillar" href="{href}">'
                    f'<span class="pillar__num">{i:02d}</span>'
-                   f'<h3>{label}</h3><p>{desc}</p></a>')
+                   f'<h3>{sup_reg(label)}</h3><p>{desc}</p></a>')
 # 14 panels divide evenly into the 2-up phone layout but leave one cell short at
 # 3-up, where the grid's 1px background showed through as a grey block. One
 # filler panel, present only at 3-up.
@@ -1838,10 +1844,10 @@ CLASS_FOCAL = {
 def class_page(slug, title, img, lead, others):
     other_cards = ""
     for ol, oh, od in others:
-        other_cards += f'<a class="row-item" href="{oh}"><span class="row-item__idx">→</span><span class="row-item__title">{ol}</span><span class="row-item__desc">{od}</span><span class="row-item__arrow">→</span></a>'
+        other_cards += f'<a class="row-item" href="{oh}"><span class="row-item__idx">→</span><span class="row-item__title">{sup_reg(ol)}</span><span class="row-item__desc">{od}</span><span class="row-item__arrow">→</span></a>'
     return hero(
-        "Group Fitness", [title.split()[0], f'<span class="serif">{" ".join(title.split()[1:]) or "Studio"}</span>'] if len(title.split()) > 1 else [f'<span class="serif">{title}</span>'],
-        lead, img=f"{IMG}/{img}", crumb=f'<a href="group-fitness.html">Group Fitness</a> &nbsp;/&nbsp; {title}',
+        "Group Fitness", [sup_reg(title.split()[0]), f'<span class="serif">{" ".join(title.split()[1:]) or "Studio"}</span>'] if len(title.split()) > 1 else [f'<span class="serif">{title}</span>'],
+        lead, img=f"{IMG}/{img}", crumb=f'<a href="group-fitness.html">Group Fitness</a> &nbsp;/&nbsp; {sup_reg(title)}',
         actions=[("Visit Us", "join.html", True), ("Full Schedule", "group-fitness.html#schedule", False)],
         meta=["Included with membership", "All levels welcome"], page=True,
         focal=CLASS_FOCAL.get(slug),

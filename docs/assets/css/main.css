@@ -1004,6 +1004,11 @@ a.pillar:hover h3 { color: var(--accent); }
   font-family: var(--font-display); font-size: clamp(64px, 7vw, 120px); line-height: 1; color: var(--bone);
 }
 .temp__deg sup { font-size: 0.4em; color: var(--accent); }
+/* Registered mark in class titles — small and raised, without the browser
+   default that adds leading and pushes the line box around. */
+.pillar h3 sup, .hero__title sup, .row-item__title sup, .hero__crumb sup {
+  font-size: 0.42em; vertical-align: super; line-height: 0; letter-spacing: 0;
+}
 .temp h4 { font-family: var(--font-body); font-style: normal; font-weight: 400; font-size: 26px; margin: 14px 0 14px; }
 .temp p { color: var(--muted); font-size: 15px; }
 .temp__bar { position: absolute; top: 0; left: 0; height: 3px; background: var(--accent); width: 100%; transform: scaleX(0); transform-origin: left; transition: transform .8s var(--ease-power); }
@@ -1048,7 +1053,7 @@ a.pillar:hover h3 { color: var(--accent); }
   .pillars--3 { grid-template-columns: repeat(2, 1fr); }
   .pillars--3 .pillar { padding: clamp(16px, 4.2vw, 24px); }
   .pillars--3 .pillar__num { margin-bottom: 14px; }
-  .pillars--3 .pillar h3 { font-size: clamp(19px, 5.2vw, 24px); margin-bottom: 9px; }
+  .pillars--3 .pillar h3 { font-size: clamp(18px, 4.9vw, 22px); margin-bottom: 9px; }
   /* 15px on a phone: 16px in a 2-up panel pushed several descriptions to four
      lines and every panel in the row stretched to match. Desktop stays 16px. */
   .pillars--3 .pillar p { font-size: 15px; line-height: 1.45; }
