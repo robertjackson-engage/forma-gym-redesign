@@ -1308,7 +1308,7 @@ groupfit_body = hero(
 ) + cta_band(
     'Come <span class="serif">move</span> with us',
     "Come try a class – or five. Every format is included with membership.",
-    f"{IMG}/jess_yoga.jpg",
+    f"{IMG}/forma_family_sign.jpg",
     # A band shows only 33% of the width on a phone and she sits centre-right;
     # 62% keeps her face, shoulders and hands in frame. Desktop shows 93%.
     focal="62% 50%", raise_=True,
