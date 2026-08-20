@@ -379,17 +379,18 @@ def hero(kicker, lines, sub="", img=None, video=None, poster=None, crumb=None,
     lns = ""
     for i, ln in enumerate(lines):
         lns += f'<span class="ln"><span style="transition-delay:{0.12 + i * 0.09:.2f}s">{ln}</span></span>'
-    # Only the home hero runs the club walkthrough video (walkthrough=True); at
-    # ~9.7 MB on mobile it is far too heavy to repeat on every page. Everywhere
+    # walkthrough=True runs the club walkthrough video — the home hero and Join
+    # Now, both high-intent pages. 4.3 MB on mobile, lazy (preload="none", src set
+    # by main.js) and skipped entirely under data-saver. Everywhere
     # else the page's own photo IS the background, as on formagym.com. `focal`
     # sets object-position so a 2:1 landscape still crops sensibly into a tall
     # phone hero. main.js picks the desktop or mobile video source by viewport.
     post = poster or img or ""
     fstyle = f' style="object-position:{focal}"' if focal else ""
     if video:
-        media = f'<video src="{video}" poster="{post}" autoplay muted loop playsinline preload="auto"></video>'
+        media = f'<video src="{video}" poster="{post}" autoplay muted loop playsinline preload="auto"{fstyle}></video>'
     elif walkthrough:
-        media = (f'<video poster="{post}" autoplay muted loop playsinline preload="none" '
+        media = (f'<video poster="{post}" autoplay muted loop playsinline preload="none"{fstyle} '
                  f'data-src-desktop="{HERO_VIDEO_DESKTOP}" data-src-mobile="{HERO_VIDEO_MOBILE}"></video>')
     else:
         media = f'<img src="{post}" alt="" fetchpriority="high"{fstyle}>'
@@ -1836,9 +1837,10 @@ join_body = hero(
     'Pick your club, choose your membership, join the Family.',
     img=f"{IMG}/andres_press.jpg",
     crumb="Join Now",
-    # A phone shows only 28% of the width; 66% centres him with the bar overhead.
-    # Desktop shows the full width, so this is a mobile-only crop.
-    focal="66% 50%",
+    # The walkthrough video plays here; Andres is the poster behind it, which is
+    # what data-saver users see. 58% keeps his face clear of the headline.
+    focal="58% 50%",
+    walkthrough=True,
     actions=[("Start My Membership", "#wizard", True), ("Book a Tour", "contact.html#tour", False)],
     meta=["30 day money back guarantee"],
     page=True,
