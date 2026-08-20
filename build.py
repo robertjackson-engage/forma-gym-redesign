@@ -1321,6 +1321,10 @@ training_body = hero(
     "A team of fitness professionals with diverse backgrounds, deep experience, and a shared passion for health and wellness. We'll meet you where you are and build the plan that gets you where you want to be.",
     img=f"{IMG}/hanna_pull_up.jpg",
     crumb="Training",
+    # Desktop shows the full width, so no focal is wanted there. The phone
+    # window is only 28% wide and the copy is left-aligned over her face —
+    # the modifier shifts her right on small screens only.
+    media_mod="hero__media--focus-right hero__media--scrim-left",
     actions=[("Book a Consult", "contact.html#tour", True), ("Meet the Team", "#team", False)],
     meta=["1-on-1 &amp; small group", "Nutrition guidance included", "Both clubs"],
     page=True,
