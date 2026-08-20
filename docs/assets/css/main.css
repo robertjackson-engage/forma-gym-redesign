@@ -545,7 +545,11 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
    width instead of sitting in a narrow column beside the headline. .cards-head
    itself is on ~27 pages, so this stays a modifier. */
 .cards-head--stack { display: block; }
-.cards-head--stack > p { max-width: none; margin-top: 16px; }
+/* Capped so the line does not run the full 1295px container — uncapped it hit
+   ~150 characters a line at 1440. 70ch stopped so far short of the headline and
+   grid that it read as cut off, so 95ch: wide enough to look deliberate, still
+   well inside the container. A phone is narrower than this, so desktop only. */
+.cards-head--stack > p { max-width: 95ch; margin-top: 16px; }
 .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(18px, 2.4vw, 36px); }
 .card-grid--2 { grid-template-columns: repeat(2, 1fr); }
 .card-grid--4 { grid-template-columns: repeat(4, 1fr); }
