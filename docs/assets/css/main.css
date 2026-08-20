@@ -1031,7 +1031,9 @@ a.pillar:hover h3 { color: var(--accent); }
   .pillars--3 .pillar { padding: clamp(16px, 4.2vw, 24px); }
   .pillars--3 .pillar__num { margin-bottom: 14px; }
   .pillars--3 .pillar h3 { font-size: clamp(17px, 4.4vw, 21px); margin-bottom: 9px; }
-  .pillars--3 .pillar p { font-size: 16px; line-height: 1.45; }
+  /* 15px on a phone: 16px in a 2-up panel pushed several descriptions to four
+     lines and every panel in the row stretched to match. Desktop stays 16px. */
+  .pillars--3 .pillar p { font-size: 15px; line-height: 1.45; }
 }
 
 @media (max-width: 820px) {
