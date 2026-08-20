@@ -1332,17 +1332,17 @@ training_body = hero(
 <section class="section">
   <div class="wrap">
     <div class="split split--solo">
-      <div class="split__body">
+      <div class="split__body split__body--wide">
         <p class="eyebrow">One-on-one personal training</p>
         <h2 class="h-display" style="font-size:clamp(30px,3.8vw,58px)">A plan built around <span class="serif">you</span></h2>
-        <ul class="checklist reveal" style="margin-top:10px">
-          <li>Assess where you are now and where to start</li>
-          <li>Nutritional consultation &amp; guidance – understand the power of food</li>
-          <li>Education on movement technique and equipment – master your exercise</li>
-          <li>The perfect strategy for your individual goals</li>
-          <li>Accountability for your fitness journey</li>
-          <li>Learn to repair and recover, and keep your work/life balance</li>
-        </ul>
+        <div class="pillars pillars--3 reveal" data-stagger style="margin-top:34px">
+          <div class="pillar"><span class="pillar__num">01</span><h3>Assess</h3><p>Assess where you are now and where to start.</p></div>
+          <div class="pillar"><span class="pillar__num">02</span><h3>Nutrition</h3><p>Nutritional consultation and guidance &ndash; understand the power of food.</p></div>
+          <div class="pillar"><span class="pillar__num">03</span><h3>Technique</h3><p>Technique and equipment &ndash; master your exercise.</p></div>
+          <div class="pillar"><span class="pillar__num">04</span><h3>Strategy</h3><p>The perfect strategy for your individual goals.</p></div>
+          <div class="pillar"><span class="pillar__num">05</span><h3>Accountability</h3><p>Someone in your corner for the whole fitness journey.</p></div>
+          <div class="pillar"><span class="pillar__num">06</span><h3>Recover</h3><p>Learn to repair and recover, and keep your work/life balance.</p></div>
+        </div>
         <div class="split__cta"><a class="inline-link" href="contact.html#tour">Book a consult →</a></div>
       </div>
     </div>

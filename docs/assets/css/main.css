@@ -478,6 +478,10 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 /* No photo in this one, so the copy takes the full row. */
 .split--solo { grid-template-columns: minmax(0, 1fr); }
 .split--solo .split__body { max-width: 74ch; }
+/* 74ch keeps prose readable, but a panel grid inside wants the full column.
+   Higher specificity than the rule above, so order does not matter. */
+.split--solo .split__body--wide { max-width: none; }
+.split__body--wide > .eyebrow, .split__body--wide > h2 { max-width: 74ch; }
 .split--rev .split__media { order: 2; }
 .split--rev .split__body { order: 1; }
 .split__media { position: relative; overflow: hidden; aspect-ratio: 4 / 4.6; }
