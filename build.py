@@ -1834,11 +1834,11 @@ join_body = hero(
     "Join Forma Online",
     ["Join in", '<span class="serif">minutes</span>'],
     'Pick your club, choose your membership, join the Family.',
-    img=f"{IMG}/annabelle_kettle.jpg",
+    img=f"{IMG}/andres_press.jpg",
     crumb="Join Now",
-    # She stands right of frame and a phone shows only 28% of the width, so the
-    # default centre misses her. Desktop shows the full width — inert there.
-    focal="85% 50%",
+    # A phone shows only 28% of the width; 66% centres him with the bar overhead.
+    # Desktop shows the full width, so this is a mobile-only crop.
+    focal="66% 50%",
     actions=[("Start My Membership", "#wizard", True), ("Book a Tour", "contact.html#tour", False)],
     meta=["30 day money back guarantee"],
     page=True,
@@ -2031,7 +2031,7 @@ join_body = hero(
 """ + cta_band(
     'Questions before you <span class="serif">join?</span>',
     "Book a tour and we'll show you around, answer everything, and help you pick the right membership.",
-    f"{IMG}/forma_family_header.jpg",
+    f"{IMG}/sj_gym_floor.jpg",
     primary=("Book a Tour", "contact.html#tour"), secondary=None,
 )
 

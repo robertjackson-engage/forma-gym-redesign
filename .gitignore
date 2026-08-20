@@ -5,3 +5,7 @@ __pycache__/
 .DS_Store
 .anthropic-key
 .env
+
+# Drop zone for raw source photos. Read from here, optimise into
+# docs/assets/img/, never commit the originals.
+_incoming/
