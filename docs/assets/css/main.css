@@ -1070,9 +1070,16 @@ a.pillar:hover h3 { color: var(--accent); }
   .temps { grid-template-columns: 1fr; }
   .sched { grid-template-columns: 1fr; }
   .pillars { grid-template-columns: 1fr; }
-  /* Must sit after the line above — same specificity, so source order decides,
-     and 14 panels one-up runs 2,400px. Two-up needs tighter padding and type to
-     avoid squeezing "Kickboxing + Martial Arts" onto five lines. */
+  /* Core-values panels go one-up on a narrow laptop, but the class and
+     training grids stay three across down to the phone breakpoint. Must sit
+     after the line above: same specificity, later wins. */
+  .pillars--3 { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 820px) {
+  /* Phone only. These sat in the 1100px block by mistake, which handed every
+     821-1100px laptop the two-up phone treatment. Must also come after the
+     .pillars 1fr rule in that block — same specificity, later wins. */
   .pillars--3 { grid-template-columns: repeat(2, 1fr); }
   .pillars--3 .pillar { padding: clamp(16px, 4.2vw, 24px); }
   .pillars--3 .pillar__num { margin-bottom: 14px; }
@@ -1080,9 +1087,6 @@ a.pillar:hover h3 { color: var(--accent); }
   /* 15px on a phone: 16px in a 2-up panel pushed several descriptions to four
      lines and every panel in the row stretched to match. Desktop stays 16px. */
   .pillars--3 .pillar p { font-size: 15px; line-height: 1.45; }
-}
-
-@media (max-width: 820px) {
   /* Break the accent half onto its own line rather than letting it wrap
      mid-phrase — "Play every day / in every way." */
   .break-accent .serif { display: block; }
