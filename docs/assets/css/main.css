@@ -668,6 +668,9 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
    numbering — at 3 across rather than 2, since 14 panels at 2-up run seven rows
    deep. Only the column count differs. */
 .pillars--3 { grid-template-columns: repeat(3, 1fr); }
+/* Match the 16px body copy under the section headline. Scoped to --3 so the
+   Our Core Values panels keep their own 15px. */
+.pillars--3 .pillar p { font-size: 16px; }
 @media (max-width: 820px) { .pillars--3 { grid-template-columns: repeat(2, 1fr); } }
 a.pillar { display: block; }
 .pillar--filler { display: none; }
@@ -1028,7 +1031,7 @@ a.pillar:hover h3 { color: var(--accent); }
   .pillars--3 .pillar { padding: clamp(16px, 4.2vw, 24px); }
   .pillars--3 .pillar__num { margin-bottom: 14px; }
   .pillars--3 .pillar h3 { font-size: clamp(17px, 4.4vw, 21px); margin-bottom: 9px; }
-  .pillars--3 .pillar p { font-size: 13.5px; line-height: 1.45; }
+  .pillars--3 .pillar p { font-size: 16px; line-height: 1.45; }
 }
 
 @media (max-width: 820px) {
