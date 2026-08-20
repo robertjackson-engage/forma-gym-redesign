@@ -233,6 +233,10 @@ body.menu-open .menu-toggle__icon i:nth-child(3) { top: 7px; transform: rotate(-
 }
 body.menu-open .menu-overlay { clip-path: inset(0 0 0% 0); visibility: visible; }
 body.menu-open { overflow: hidden; }
+/* Gate open: pin the page. iOS Safari keeps scrolling a body that only has
+   overflow:hidden, which let the guest site show and scroll under the gate.
+   main.js stores the offset and restores it when the gate closes. */
+body.choice-open { position: fixed; left: 0; right: 0; width: 100%; overflow: hidden; }
 .menu-overlay__grid {
   flex: 1; display: grid; grid-template-columns: 1.4fr 1fr;
   max-width: var(--max); margin: 0 auto; width: 100%;
@@ -1411,11 +1415,42 @@ body.choice-done .view-chooser {
   .vc-panel h3 { font-size: clamp(28px, 8vw, 40px); }
   /* Copy sits closer to the panel base; 5vh of a tall viewport floated it. */
   .vc-panel__body { bottom: clamp(14px, 2.4vh, 24px); }
+  /* Stacked panels are short and the copy sits over the brightest part of both
+     photos, so the desktop gradient — clear by 67% — washed out the kicker and
+     body copy on a phone. Starts darker and carries further up. */
+  .vc-panel::after {
+    background: linear-gradient(to top,
+      rgba(11,11,12,0.95) 0%,
+      rgba(11,11,12,0.8) 32%,
+      rgba(11,11,12,0.5) 58%,
+      rgba(11,11,12,0.18) 100%);
+  }
+  /* Shift her right, clear of the left-aligned headline. */
+  .vc-panel[data-choose="guest"] img { object-position: 26% 30%; }
 }
 
 @media (max-width: 560px) {
   .view-chooser__foot { justify-content: center; gap: 12px; }
   .view-chooser__foot span::after { display: none; }
+}
+
+/* Phone held sideways: ~430px of height total. Stacked, each panel gets barely
+   150px and neither is readable. Side by side instead, and the join bar comes
+   off to hand that height back to the panels — Sign me up is still one tap away
+   inside the guest site. Sits after the width queries above so it wins on
+   source order at equal specificity. */
+@media (orientation: landscape) and (max-height: 540px) {
+  .view-chooser__panels { flex-direction: row; }
+  .view-chooser__foot { display: none; }
+  .vc-panel__body {
+    left: clamp(16px, 3vw, 28px); right: clamp(16px, 3vw, 28px);
+    bottom: clamp(12px, 3vh, 20px);
+  }
+  .vc-panel__kicker { margin-bottom: 7px; }
+  .vc-panel h3 { font-size: clamp(21px, 4.4vw, 30px); }
+  .vc-panel p { font-size: 13px; margin-top: 6px; }
+  .view-chooser__bar { height: 58px; }
+  .view-chooser__bar::before { height: 92px; }
 }
 
 /* ============================================================

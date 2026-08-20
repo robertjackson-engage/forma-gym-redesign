@@ -25,9 +25,24 @@
 
   function reveal() { document.body.classList.add("is-loaded"); }
 
+  /* The gate is a fixed overlay, but nothing stopped the page behind it from
+     scrolling — the guest site showed and scrolled underneath. overflow:hidden on
+     body is not enough on iOS Safari, so pin the body and restore the offset. */
+  var lockedY = 0;
+  function lockScroll() {
+    lockedY = window.pageYOffset || document.documentElement.scrollTop || 0;
+    document.body.style.top = (-lockedY) + "px";
+    document.body.classList.add("choice-open");
+  }
+  function unlockScroll() {
+    document.body.classList.remove("choice-open");
+    document.body.style.top = "";
+    window.scrollTo(0, lockedY);
+  }
+
   function ready() {
     if (!needChoice) { reveal(); return; }
-    document.body.classList.add("choice-open");
+    lockScroll();
     chooser.querySelectorAll("[data-choose]").forEach(function (p) {
       p.addEventListener("click", function () {
         setView(p.getAttribute("data-choose"));
@@ -55,7 +70,7 @@
     });
   }
   function finishChoice() {
-    document.body.classList.remove("choice-open");
+    unlockScroll();
     document.body.classList.add("choice-done");
     setTimeout(reveal, 350);
     setTimeout(function () { chooser.remove(); document.body.classList.remove("choice-done"); }, 1000);
