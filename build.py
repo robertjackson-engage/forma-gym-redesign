@@ -487,13 +487,17 @@ def split(eyebrow, num, title, paras, img, alt, rev=False, cta=None, light=False
 
 
 def cta_band(title_html, text, img, primary=("Join Now", "join.html"),
-             secondary=("Book a Tour", "contact.html#tour"), focal=None):
+             secondary=("Book a Tour", "contact.html#tour"), focal=None, soft=False):
     sec = f'<a class="btn" href="{secondary[1]}">{secondary[0]} <span class="arr">→</span></a>' if secondary else ""
     # A band is wide and short, so on a phone it crops the width hard — a
     # subject sitting off-centre needs pulling back into frame.
     focal_attr = f' style="object-position:{focal}"' if focal else ""
+    # soft=True for photos that are already dark — the standard 78% scrim leaves
+    # them almost black. Measured: this cycle studio is 29/255 mean luminance
+    # against 116 and 142 for the other band photos.
+    soft_cls = " cta-band--soft" if soft else ""
     return f"""
-<section class="cta-band">
+<section class="cta-band{soft_cls}">
   <div class="cta-band__media"><img src="{img}" alt="" loading="lazy"{focal_attr}></div>
   <div class="wrap">
     <h2 class="reveal">{title_html}</h2>
@@ -1156,6 +1160,7 @@ home_body = view_chooser + hero(
     'Your <span class="serif">club</span> is waiting',
     "Tour a club, take a class, hit the spa. Come see why Forma members never want to leave.",
     f"{IMG}/SJ_cycle_studio_2500px.jpg",
+    soft=True,
 )
 
 # ============================================================ ABOUT
