@@ -16,6 +16,13 @@ IMG = os.path.join(ROOT, "docs", "assets", "img")
 OUT = os.path.join(IMG, "r")
 WIDTHS = [400, 700, 1000, 1400]
 QUALITY = "68"
+# A few photos are almost entirely high-frequency detail — woven textiles, busy
+# prints, wood grain edge to edge — and cost 3-5x a normal frame at QUALITY. The
+# same texture also hides compression artefacts, so they can take a harder pass
+# without looking worse. Keyed by filename so the choice travels with the photo.
+BUSY = {
+    "MB_LAB_1_1000px.jpg": "45",   # striped blanket + printed dress + wood floor
+}
 FORCE = "--force" in sys.argv
 
 
@@ -60,8 +67,9 @@ def main():
             if not FORCE and os.path.exists(dst) and os.path.getmtime(dst) >= os.path.getmtime(src):
                 skipped += 1
                 continue
+            quality = BUSY.get(os.path.basename(src), QUALITY)
             subprocess.run(["sips", "-Z", str(target), "--setProperty", "formatOptions",
-                            QUALITY, src, "--out", dst],
+                            quality, src, "--out", dst],
                            capture_output=True, check=False)
             if not os.path.exists(dst):
                 continue
