@@ -1067,6 +1067,9 @@ a.pillar:hover h3 { color: var(--accent); }
 .pillar h3 sup, .hero__title sup, .row-item__title sup, .hero__crumb sup {
   font-size: 0.42em; vertical-align: super; line-height: 0; letter-spacing: 0;
 }
+/* Same treatment in body copy, but 0.42em of a 16px paragraph is unreadably
+   small — the display faces can carry a much smaller mark than text can. */
+.hero__sub sup { font-size: 0.62em; vertical-align: super; line-height: 0; }
 .temp h4 { font-family: var(--font-body); font-style: normal; font-weight: 400; font-size: 26px; margin: 14px 0 14px; }
 .temp p { color: var(--muted); font-size: 15px; }
 .temp__bar { position: absolute; top: 0; left: 0; height: 3px; background: var(--accent); width: 100%; transform: scaleX(0); transform-origin: left; transition: transform .8s var(--ease-power); }
