@@ -706,6 +706,9 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
    where 56px of padding reads generous. At 3-up x 5 rows it just spreads the
    grid out. Mobile keeps its own padding in the 820px block below. */
 .pillars--3 .pillar { padding: clamp(22px, 2.3vw, 34px); }
+/* Tighter gap between the index and its title than the core-values panels
+   use — with five rows of these the 26px adds up. */
+.pillars--3 .pillar__num { margin-bottom: 16px; }
 @media (max-width: 820px) { .pillars--3 { grid-template-columns: repeat(2, 1fr); } }
 a.pillar { display: block; }
 .pillar--filler { display: none; }
@@ -1109,7 +1112,7 @@ a.pillar:hover h3 { color: var(--accent); }
      .pillars 1fr rule in that block — same specificity, later wins. */
   .pillars--3 { grid-template-columns: repeat(2, 1fr); }
   .pillars--3 .pillar { padding: clamp(16px, 4.2vw, 24px); }
-  .pillars--3 .pillar__num { margin-bottom: 14px; }
+  .pillars--3 .pillar__num { margin-bottom: 9px; }
   .pillars--3 .pillar h3 { font-size: clamp(18px, 4.9vw, 22px); margin-bottom: 9px; }
   /* 15px on a phone: 16px in a 2-up panel pushed several descriptions to four
      lines and every panel in the row stretched to match. Desktop stays 16px. */
