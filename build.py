@@ -1535,12 +1535,12 @@ recovery_body = hero(
 ) + cta_band(
     'Restore. Rejuvenate. <span class="serif">Repeat.</span>',
     "Recovery is included in the Forma experience. Incorporate into your wellness routine and walk out feeling brand new.",
-    f"{IMG}/hanna_stare_2000px.jpg",
-    # The phone crops this band to 29% of the source width and she stands at 66%
-    # across, so a centred crop puts her face at 106% — right off the frame. 62%
+    f"{IMG}/hanna_lift_2000px.jpg",
+    # The phone crops this band to 29% of the source width and her face sits at
+    # 69.5% across, so a centred crop puts it at 118% — right off the frame. 67%
     # lands it at 76%, beside the title rather than under it. Desktop shows 96%
-    # of the width, so the same value is near-inert there: 66.6% -> 66.1%.
-    focal="62% 50%",
+    # of the width, so the same value is near-inert there: 70.2% -> 69.6%.
+    focal="67% 50%",
 )
 
 # ============================================================ CRYO
