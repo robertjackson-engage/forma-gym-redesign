@@ -966,6 +966,14 @@ a.pillar:hover h3 { color: var(--accent); }
    percentages resolve against the media box height, and relative positioning
    leaves the parallax transform alone. */
 .cta-band--raise .cta-band__media img { position: relative; top: -9%; }
+/* Phone-only lift. The narrow crop puts this band's subject mid-frame, right
+   behind the body copy; desktop shows nearly the full width and clears her
+   without moving. Bounded at 15%: the image is 118% tall and the parallax
+   drifts it +/-14px, so a deeper lift would raise the bottom edge off the box
+   and flash a gap mid-scroll. */
+@media (max-width: 820px) {
+  .cta-band--raise-m .cta-band__media img { position: relative; top: -15%; }
+}
 .cta-band .wrap { position: relative; z-index: 2; padding-top: clamp(90px, 12vw, 180px); padding-bottom: clamp(90px, 12vw, 180px); }
 .cta-band h2 {
   font-family: var(--font-display); text-transform: uppercase; font-weight: 400;

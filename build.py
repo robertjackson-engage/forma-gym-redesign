@@ -505,18 +505,22 @@ DARK_BAND_PHOTOS = {
 
 
 def cta_band(title_html, text, img, primary=("Join Now", "join.html"),
-             secondary=("Book a Tour", "contact.html#tour"), focal=None, soft=False, raise_=False):
+             secondary=("Book a Tour", "contact.html#tour"), focal=None, soft=False, raise_=False, raise_m=False):
     sec = f'<a class="btn" href="{secondary[1]}">{secondary[0]} <span class="arr">→</span></a>' if secondary else ""
     # A band is wide and short, so on a phone it crops the width hard — a
     # subject sitting off-centre needs pulling back into frame.
     focal_attr = f' style="object-position:{focal}"' if focal else ""
-    # soft=True for photos that are already dark — the standard 78% scrim leaves
-    # them almost black. Measured: this cycle studio is 29/255 mean luminance
-    # against 116 and 142 for the other band photos.
+    # soft=True lightens the scrim from 78% to 62%. Two reasons to want that:
+    # a photo that is already dark and goes near-black under the standard scrim
+    # (the cycle studio measures 29/255 against 116 and 142 for the others), or
+    # a frame bright enough to be worth showing through more.
     soft_cls = " cta-band--soft" if (soft or img.rsplit("/", 1)[-1] in DARK_BAND_PHOTOS) else ""
     # The band image is 118% tall and top-anchored, so its bottom 18% is clipped.
     # raise_ shifts it up to bring that lower band of the photo into view.
     soft_cls += " cta-band--raise" if raise_ else ""
+    # raise_m is the phone-only version: desktop shows nearly the full width and
+    # has room for the subject to clear the copy on its own.
+    soft_cls += " cta-band--raise-m" if raise_m else ""
     return f"""
 <section class="cta-band{soft_cls}">
   <div class="cta-band__media"><img src="{img}" alt="" loading="lazy"{focal_attr}></div>
@@ -1541,6 +1545,10 @@ recovery_body = hero(
     # lands it at 76%, beside the title rather than under it. Desktop shows 96%
     # of the width, so the same value is near-inert there: 70.2% -> 69.6%.
     focal="67% 50%",
+    raise_m=True,
+    # Lighter scrim on this band only. Same 0.62 the dark photos get, but for the
+    # opposite reason: the standard 0.78 was burying a frame worth showing.
+    soft=True,
 )
 
 # ============================================================ CRYO
