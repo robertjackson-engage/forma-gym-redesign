@@ -1375,7 +1375,7 @@ training_body = hero(
 """ + cta_band(
     'Train with the <span class="serif">best</span> in the Bay',
     "Join Forma, tell us your goal, and we'll pair you with the coach who's right for you.",
-    f"{IMG}/trainer_jason_turf.jpg",
+    f"{IMG}/trainers_sled.jpg",
 )
 
 # ============================================================ LOCATIONS
