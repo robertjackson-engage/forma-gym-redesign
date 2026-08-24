@@ -1325,7 +1325,7 @@ training_body = hero(
     # window is only 28% wide and the copy is left-aligned over her face —
     # the modifier shifts her right on small screens only.
     media_mod="hero__media--focus-right hero__media--scrim-left",
-    actions=[("Book a Consult", "contact.html#tour", True), ("Meet the Team", "#team", False)],
+    actions=[("Join Now", "join.html", True), ("Meet the Team", "#team", False)],
     meta=["1-on-1 &amp; small group", "Nutrition guidance included", "Both clubs"],
     page=True,
 ) + f"""

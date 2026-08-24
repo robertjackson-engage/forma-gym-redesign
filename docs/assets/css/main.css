@@ -808,6 +808,11 @@ a.pillar:hover h3 { color: var(--accent); }
 .acc--grid .acc__icon { width: 44px; margin-top: clamp(14px, 1.6vw, 22px); }
 .acc--grid .acc__body-inner { padding: 0 clamp(16px, 1.6vw, 24px) 36px; }
 .acc--grid .acc__item.is-open { grid-column: 1 / -1; border-right: 0; }
+/* Bio stacks in the grid variant: photo first, then specialties and story
+   running the full width beneath it. Beside the photo the text was losing
+   150px of measure for no reason once the row already spans everything. */
+.acc--grid .trainer-bio { display: block; }
+.acc--grid .trainer-bio__photo { margin-bottom: clamp(18px, 2vw, 26px); }
 .acc__body { max-height: 0; overflow: hidden; transition: max-height .7s var(--ease-power); }
 .acc__body-inner { padding: 0 0 36px; max-width: 70ch; color: var(--copy); font-size: 15.5px; }
 .section--light .acc__body-inner { color: var(--muted-dark); }
