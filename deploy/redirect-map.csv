@@ -119,8 +119,8 @@ live_url,group,target,note
 /mind-body/gen-do,REDIRECT,/group-fitness,explicit mapping
 /mind-body/mat-pilates,REDIRECT,/mat-gfit,explicit mapping
 /mind-body/yoga,REDIRECT,/yoga-gfit,explicit mapping
-/mindbodylab,NATIVE,/mindbodylab,redesign serves this path directly
-/mindset,REDIRECT,/mindbodylab,explicit mapping
+/mindbodylab,REDIRECT,/recovery,Mind Body LAB retired from the offering
+/mindset,REDIRECT,/recovery,explicit mapping
 /mission.html,REDIRECT,/about,explicit mapping
 /morning-exercise-download,REDIRECT,/,explicit mapping
 /morning-routine-thank-you,DECIDE,,AD/CONVERSION PAGE - confirm target with marketing

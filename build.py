@@ -149,7 +149,6 @@ MENU = [
     ("Outdoor Fitness", "outdoor-training.html"),
     ("Recovery &amp; Cryo", "recovery.html"),
     ("The Spa", "spa.html"),
-    ("Mind Body LAB", "mindbodylab.html"),
     ("DrBrainRX", "drbrainrx.html"),
     ("Kidzville", "kidzville.html"),
     ("RISE Program", "rise.html"),
@@ -340,7 +339,6 @@ def footer_html():
         <div class="site-footer__links">
           <a href="recovery.html">Recovery &amp; Cryo</a>
           <a href="spa.html">The Spa</a>
-          <a href="mindbodylab.html">Mind Body LAB</a>
           <a href="kidzville.html">Kidzville</a>
           <a href="outdoor-training.html">Outdoor Fitness</a>
           <a href="rise.html">RISE Program</a>
@@ -810,7 +808,6 @@ URL_MAP = {
     "recovery.html": "recovery",
     "cryo.html": "cryo",
     "spa.html": "locations/walnut-creek/spa",
-    "mindbodylab.html": "mindbodylab",
     "kidzville.html": "kidzville",
     "rise.html": "rise",
     "givesback.html": "givesback",
@@ -1173,7 +1170,6 @@ home_body = view_chooser + hero(
     </div>
     <div class="rows rows--plain reveal">
       <a class="row-item" href="kidzville.html"><span class="row-item__title">Kidzville</span><span class="row-item__desc">Enjoy your workout while your kids (ages 6 weeks–12 years) are free to play in a safe, active and educational indoor/outdoor space.</span><span class="row-item__arrow">→</span></a>
-      <a class="row-item" href="mindbodylab.html"><span class="row-item__title">Mind Body LAB</span><span class="row-item__desc">Where science meets self-care – brain health, recovery tech and the mind-body connection.</span><span class="row-item__arrow">→</span></a>
       <a class="row-item" href="rise.html"><span class="row-item__title">RISE Program</span><span class="row-item__desc">Exercise-based therapy for individuals living with paralysis. Focused on function, strength and improving the physiology and neurological function of the body.</span><span class="row-item__arrow">→</span></a>
       <a class="row-item" href="training.html"><span class="row-item__title">Training</span><span class="row-item__desc">Representing years of experience in the industry with a passion for your health and wellness.</span><span class="row-item__arrow">→</span></a>
     </div>
@@ -1536,14 +1532,6 @@ recovery_body = hero(
     f"{IMG}/spa_WC_1000px.jpg",
     "The Spa at Forma",
     rev=True, cta=("See spa menu &amp; pricing", "spa.html"),
-) + split(
-    "Mind Body LAB", "03",
-    'Where science meets <span class="serif">self-care</span>',
-    ["Our Mind Body LAB brings together recovery technology, brain health and the mind-body connection to help you feel as good mentally as you do physically.",
-     "Because true wellness isn't just how you move. It's how you think, recover, and feel."],
-    f"{IMG}/MB_LAB_1_1000px.jpg",
-    "Mind Body LAB at Forma",
-    cta=("Explore the LAB", "mindbodylab.html"),
 ) + cta_band(
     'Restore. Rejuvenate. <span class="serif">Repeat.</span>',
     "Recovery is included in the Forma experience. Incorporate into your wellness routine and walk out feeling brand new.",
@@ -1667,37 +1655,6 @@ spa_body = hero(
     "Treatments can be enjoyed before or after the sauna, steam or hot tub. Call your club to book.",
     f"{IMG}/Forma_San-Jose-spa_Header_2018.jpg",
     primary=("Call to Book", "tel:9259326400"), secondary=("San Jose Spa", "tel:4083631010"),
-)
-
-# ============================================================ MIND BODY LAB
-mbl_body = hero(
-    "Mind Body LAB",
-    ["Train your", '<span class="serif">brain</span>, too'],
-    "Where science meets self-care. The Mind Body LAB brings together recovery technology, brain health and the mind-body connection – because true wellness is how you think and feel, not just how you move.",
-    img=f"{IMG}/circle_connect_BLUR_2000x1333px.jpg",
-    crumb="Mind Body LAB",
-    actions=[("Book a Tour", "contact.html#tour", True)],
-    page=True,
-) + split(
-    "DrBrainRX", "01",
-    'Fitness for your <span class="serif">mind</span>',
-    ["DrBrainRX brings brain-training and cognitive wellness into the club – tools to sharpen focus, manage stress, and support long-term brain health as part of your overall fitness.",
-     "Because the strongest version of you is sharp, calm and resilient – not just physically fit."],
-    f"{IMG}/drsara_square_transparent_HERO_v2.png",
-    "DrBrainRX brain health",
-    cta=("Ask us about DrBrainRX", "contact.html#tour"),
-) + split(
-    "Meditation + breathwork", "02",
-    'Find your <span class="serif">stillness</span>',
-    ["Our meditation and breathwork classes offer a structured, peaceful space to reduce stress and build mental clarity – guided by experienced instructors, suitable for everyone from first-timers to seasoned practitioners.",
-     "Reset your nervous system, then carry that calm into the rest of your day."],
-    f"{IMG}/slider-meditate_v2.jpg",
-    "Meditation class at Forma",
-    rev=True, cta=("See the class lineup", "group-fitness.html#classes"),
-) + cta_band(
-    'Strong body. <span class="serif">Clear mind.</span>',
-    "The Mind Body LAB is part of the Forma experience. Come explore what whole-person wellness feels like.",
-    f"{IMG}/slider-stretch_recovery_v1.jpg",
 )
 
 # ============================================================ KIDZVILLE
@@ -2202,7 +2159,7 @@ drbrain_body = hero(
     ["Longevity,", '<span class="serif">optimized</span>'],
     "GLP-1 weight loss care, peptide therapy and longevity medicine – available to Forma members through our DrBrainRX partnership. Because feeling your best is about more than the workout.",
     img=f"{IMG}/circle_connect_BLUR_2000x1333px.jpg",
-    crumb='<a href="mindbodylab.html">Mind Body LAB</a> &nbsp;/&nbsp; DrBrainRX',
+    crumb="DrBrainRX",
     actions=[("Member Offer", "#offer", True)],
     meta=["GLP-1 weight loss care", "Peptide therapy", "Longevity medicine"],
     page=True,
@@ -2405,7 +2362,6 @@ PAGES = [
     ("recovery.html", "Recovery, Cryotherapy &amp; Cold Plunge | Forma Gym", "Recover like an athlete – cryotherapy, cold plunge, full-service spa, sauna, steam and hot tubs at Forma Gym.", "recovery.html", recovery_body),
     ("cryo.html", "Cryotherapy + Cold Plunge | Forma Gym", "Whole-body cryotherapy and cold plunge at Forma Gym. Burn 500–800 calories per session, reduce pain and inflammation, recover faster.", "", cryo_body),
     ("spa.html", "The Spa at Forma | Massage, Facials, Reiki &amp; Skin Care", "A full-service day spa at Forma Gym – therapeutic massage, facials, Reiki and clinical skin care in Walnut Creek &amp; San Jose.", "", spa_body),
-    ("mindbodylab.html", "Mind Body LAB &amp; DrBrainRX | Forma Gym", "Where science meets self-care – brain health, recovery tech, meditation and the mind-body connection at Forma Gym.", "", mbl_body),
     ("kidzville.html", "Kidzville Childcare | Forma Gym Walnut Creek", "Free, safe, active childcare for ages 6 weeks–12 years while you work out. Forma Kidzville at Walnut Creek.", "", kidz_body),
     ("rise.html", "RISE Program | Exercise-Based Therapy for Paralysis | Forma", "RISE is an exercise-based therapy program for individuals living with paralysis. Movement is medicine. Scholarships available.", "", rise_body),
     ("givesback.html", "Forma Gives Back | Fitness for Everyone", "Forma believes fitness should be available to everyone on the spectrum of movement. Learn how Forma Gives Back to the Bay Area.", "", givesback_body),

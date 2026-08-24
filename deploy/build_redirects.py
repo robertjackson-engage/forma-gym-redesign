@@ -22,7 +22,7 @@ SRC = "/tmp/live_current.txt"
 # Paths the redesign will serve directly (Option A: directory-style output
 # matching the live URLs exactly). No redirect required for these.
 NATIVE = {
-    "/", "/about", "/group-fitness", "/training", "/cryo", "/mindbodylab",
+    "/", "/about", "/group-fitness", "/training", "/cryo",
     "/kidzville", "/rise", "/givesback", "/locations", "/locations/walnut-creek",
     "/locations/san-jose", "/locations/walnut-creek/spa", "/locations/san-jose/spa",
     "/join-now", "/trial-pass", "/outdoor-training", "/drbrainrx", "/app",
@@ -112,7 +112,8 @@ EXPLICIT = {
     "/events": "/",
     "/events-calendar": "/",
     "/fg-virtual": "/app",
-    "/mindset": "/mindbodylab",
+    "/mindset": "/recovery",
+    "/mindbodylab": "/recovery",
     "/sync-demo": "/",
     "/morning-exercise-download": "/",
     "/image_captcha": "/",

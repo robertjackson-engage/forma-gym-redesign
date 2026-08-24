@@ -15,9 +15,9 @@ python3 serve.py          # serves docs/ on http://localhost:4174
 never ships to the browser. To activate the concierge on the static GitHub Pages build,
 visit any page with `#ck=YOUR_ANTHROPIC_KEY` once (stored locally, scrubbed from the URL).
 
-## Pages (24)
+## Pages (23)
 
-index, about, group-fitness, training, recovery, cryo, spa, mindbodylab, kidzville, rise,
+index, about, group-fitness, training, recovery, cryo, spa, kidzville, rise,
 givesback, walnut-creek, san-jose, locations, join, contact, plus class pages
 (cycle, yoga, pilates-reformer, barre, trx, aqua, dance, sculpt).
 
