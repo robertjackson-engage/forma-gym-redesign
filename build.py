@@ -1539,7 +1539,7 @@ recovery_body = hero(
 ) + split(
     "Mind Body LAB", "03",
     'Where science meets <span class="serif">self-care</span>',
-    ["Our Mind Body LAB brings together recovery technology, brain health and the mind-body connection – including DrBrainRX – to help you feel as good mentally as you do physically.",
+    ["Our Mind Body LAB brings together recovery technology, brain health and the mind-body connection to help you feel as good mentally as you do physically.",
      "Because true wellness isn't just how you move. It's how you think, recover, and feel."],
     f"{IMG}/slider-meditate_v2.jpg",
     "Mind Body LAB at Forma",
