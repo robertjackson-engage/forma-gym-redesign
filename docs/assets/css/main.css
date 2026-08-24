@@ -331,6 +331,11 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
      on her face. Shift the crop right. No inline focal on this hero, so a
      stylesheet rule is free to win. */
   .hero__media--focus-right img { object-position: 42% 50%; }
+  /* Phone crop has no vertical overflow — the full image height already shows —
+     so object-position cannot move the subject up. Give the image a taller box
+     and hang it above the container instead, lifting his head clear of the
+     headline. Desktop is untouched. */
+  .hero__media--lift img { height: 116%; top: -14%; }
   /* Same story for the flat mobile scrim: full strength where the copy sits,
      fading out over the top third so the sunset survives. Re-declared after the
      generic rule above because they have identical specificity. */

@@ -1510,8 +1510,13 @@ recovery_body = hero(
     "Recovery",
     ["Recover like an", '<span class="serif">athlete</span>'],
     "At Forma, recovery isn't an afterthought – it's part of the plan. Cryotherapy, cold plunge, a full-service spa, sports stretching, sauna, steam and hot tubs. An integrated wellness solution, all under one roof.",
-    img=f"{IMG}/neck_hold_BLUR_2000x1333px_v2.jpg",
+    img=f"{IMG}/cold_plunge_hero.jpg",
     crumb="Recovery",
+    # Desktop shows the full width, so this is a phone-only crop: the frame
+    # narrows to 27% there and he sits at 72% across, well outside a centred
+    # crop. 80% lands his face dead centre.
+    focal="80% 50%",
+    media_mod="hero__media--lift",
     actions=[("Book Recovery", "contact.html#tour", True), ("Explore Cryo", "cryo.html", False)],
     meta=["Cryo + cold plunge", "Full-service spa", "Sports stretching", "Sauna · steam · hot tub"],
     page=True,
