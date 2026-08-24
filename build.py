@@ -1513,7 +1513,7 @@ recovery_body = hero(
     img=f"{IMG}/neck_hold_BLUR_2000x1333px_v2.jpg",
     crumb="Recovery",
     actions=[("Book Recovery", "contact.html#tour", True), ("Explore Cryo", "cryo.html", False)],
-    meta=["Cryo + cold plunge", "Full-service spa", "Sauna · steam · hot tub"],
+    meta=["Cryo + cold plunge", "Full-service spa", "Sports stretching", "Sauna · steam · hot tub"],
     page=True,
 ) + split(
     "Cryotherapy + cold plunge", "01",
