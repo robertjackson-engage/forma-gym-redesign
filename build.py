@@ -1546,7 +1546,7 @@ recovery_body = hero(
     cta=("Explore the LAB", "mindbodylab.html"),
 ) + cta_band(
     'Restore. Rejuvenate. <span class="serif">Repeat.</span>',
-    "Recovery is included in the Forma experience. Book a session and walk out feeling brand new.",
+    "Recovery is included in the Forma experience. Incorporate into your wellness routine and walk out feeling brand new.",
     f"{IMG}/chillyGOAT_SJ_500px.jpg",
 )
 
