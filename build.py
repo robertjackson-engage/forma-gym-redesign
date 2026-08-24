@@ -1509,7 +1509,7 @@ sanjose_body = location_page(
 recovery_body = hero(
     "Recovery",
     ["Recover like an", '<span class="serif">athlete</span>'],
-    "At Forma, recovery isn't an afterthought – it's part of the work. Cryotherapy, cold plunge, a full-service spa, sauna, steam and hot tubs. An integrated view of wellness, all under one roof.",
+    "At Forma, recovery isn't an afterthought – it's part of the plan. Cryotherapy, cold plunge, a full-service spa, sports stretching, sauna, steam and hot tubs. An integrated wellness solution, all under one roof.",
     img=f"{IMG}/neck_hold_BLUR_2000x1333px_v2.jpg",
     crumb="Recovery",
     actions=[("Book Recovery", "contact.html#tour", True), ("Explore Cryo", "cryo.html", False)],
