@@ -297,6 +297,18 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
    subject. Eased at the top only — the bottom stop,
    which is what the headline and buttons actually sit on, is untouched. */
 .hero__media--open-top::after { background: linear-gradient(to top, rgba(11,11,12,0.92) 0%, rgba(11,11,12,0.34) 45%, rgba(11,11,12,0.06) 100%); }
+/* Corner-weighted scrim: heaviest at the bottom left, where the eyebrow, headline
+   and buttons all sit, clearing toward the top right so the frame stays open.
+   Replaces the standard to-top gradient rather than stacking on it, so it must
+   stay after the base rule above — identical specificity, source order decides. */
+.hero__media--diag::after {
+  background: linear-gradient(to top right,
+    rgba(11,11,12,0.95) 0%,
+    rgba(11,11,12,0.80) 28%,
+    rgba(11,11,12,0.55) 55%,
+    rgba(11,11,12,0.30) 78%,
+    rgba(11,11,12,0.16) 100%);
+}
 /* Horizontal scrim for a hero whose subject sits right and copy sits left —
    dark under the text, clearing before it reaches her. Desktop only: the phone
    uses ::before for its flat scrim and its copy spans the full width anyway. */

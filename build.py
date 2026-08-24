@@ -1516,7 +1516,7 @@ recovery_body = hero(
     # narrows to 27% there and he sits at 72% across, well outside a centred
     # crop. 80% lands his face dead centre.
     focal="76% 50%",
-    media_mod="hero__media--lift",
+    media_mod="hero__media--lift hero__media--diag",
     actions=[("Book Recovery", "contact.html#tour", True), ("Explore Cryo", "cryo.html", False)],
     meta=["Cryo + cold plunge", "Full-service spa", "Sports stretching", "Sauna · steam · hot tub"],
     page=True,
@@ -1525,7 +1525,7 @@ recovery_body = hero(
     'Perform better, recover <span class="serif">faster</span>',
     ["After experiencing cryotherapy and cold plunges for ourselves, we brought them in-house so you can enjoy the benefits and the convenience of a comprehensive wellness solution in one location.",
      "Burn 500–800 calories in a single 3-minute session, reduce inflammation and pain, heal injuries faster, improve circulation, sleep better and feel invigorated. Natural, non-invasive, and trusted by Olympic and professional athletes."],
-    f"{IMG}/Forma_WalnutCreek_locations_cryo.jpg",
+    f"{IMG}/cryo_1000px.jpg",
     "Cryotherapy chamber at Forma",
     cta=("All about cryo", "cryo.html"),
 ) + split(
@@ -1533,7 +1533,7 @@ recovery_body = hero(
     'The optimum wellness <span class="serif">experience</span>',
     ["A comprehensive menu of therapeutic treatments – massage, facials, Reiki and clinical skin care – performed by skilled, professional therapists dedicated to easing pain, restoring function and rejuvenating face and body.",
      "Conveniently located adjacent to the locker rooms, so sauna, steam or Jacuzzi can be enjoyed before or after your treatment."],
-    f"{IMG}/Forma_Walnut-Creek_Spa_Header_2018.jpg",
+    f"{IMG}/spa_WC_1000px.jpg",
     "The Spa at Forma",
     rev=True, cta=("See spa menu &amp; pricing", "spa.html"),
 ) + split(
