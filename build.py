@@ -1509,7 +1509,7 @@ sanjose_body = location_page(
 recovery_body = hero(
     "Recovery",
     ["Recover like an", '<span class="serif">athlete</span>'],
-    "At Forma, recovery isn't an afterthought – it's part of the plan. Cryotherapy, ChillyGOAT<sup>&reg;</sup> cold plunge by Michael Phelps, a full-service spa, sports stretching, sauna, steam and hot tubs. An integrated wellness solution, all under one roof.",
+    "At Forma, recovery isn't an afterthought – it's part of the plan. Cryo, ChillyGOAT<sup>&reg;</sup> cold plunge by Michael Phelps, a full-service spa, sports stretching, sauna, steam and hot tubs. An integrated wellness solution, all under one roof.",
     img=f"{IMG}/cold_plunge_hero.jpg",
     crumb="Recovery",
     # Desktop shows the full width, so this is a phone-only crop: the frame
