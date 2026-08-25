@@ -1646,7 +1646,14 @@ spa_body = hero(
     meta=["Massage · facials · Reiki · skin care", "Walnut Creek &amp; San Jose"],
     page=True,
 ) + f"""
-<section class="section">
+<nav class="subnav" aria-label="Spa treatments">
+  <div class="wrap">
+    <a href="#massage">Massage</a>
+    <a href="#skincare">Skincare</a>
+  </div>
+</nav>
+
+<section class="section" id="massage">
   <div class="wrap">
     <div class="cards-head">
       <div>
@@ -1667,7 +1674,7 @@ spa_body = hero(
   </div>
 </section>
 
-<section class="section section--panel">
+<section class="section section--panel" id="skincare">
   <div class="wrap">
     <div class="cards-head">
       <div>

@@ -51,6 +51,9 @@
 
 html {
   scroll-behavior: smooth;
+  /* The nav is sticky and 71px tall, so an un-offset anchor lands its heading
+     underneath it. Applies to every in-page jump, #classes and #offer included. */
+  scroll-padding-top: 88px;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -165,7 +168,8 @@ body.menu-open .nav-desktop, body.menu-open .header-cta .btn { opacity: 0; point
 .brand__logo { height: 24px; width: auto; flex-shrink: 0; transition: height .45s var(--ease-out); }
 .site-header.is-scrolled .brand__logo { height: 28px; }
 .brand--footer .brand__logo { height: 46px; }
-@media (max-width: 820px) { .brand__logo { height: 28px; } }
+@media (max-width: 820px) {
+ .brand__logo { height: 28px; } }
 
 .nav-desktop { display: flex; align-items: center; gap: clamp(18px, 2.4vw, 38px); }
 .nav-desktop > a {
@@ -901,6 +905,37 @@ a.pillar:hover h3 { color: var(--accent); }
 .sched__col dt { color: var(--muted); }
 .section--light .sched__col dt { color: var(--muted-dark); }
 .sched__col dd { text-align: right; font-weight: 500; }
+/* The last row's rule has nothing under it but padding — a stranded line and a
+   few dead pixels in every cell. */
+.sched__col dl > div:last-child { border-bottom: 0; padding-bottom: 0; }
+/* Phone: two columns means half the width per cell, so the display face and the
+   row type come down with it. Must sit after the base rules above — same
+   specificity, later wins. */
+@media (max-width: 820px) {
+  .sched__col { padding: clamp(14px, 3.8vw, 20px); }
+  .sched__col h4 { font-size: 16px; line-height: 1.15; margin-bottom: 4px; }
+  .sched__col .where { font-size: 9px; letter-spacing: 0.2em; margin-bottom: 10px; }
+  .sched__col dl > div { padding: 7px 0; font-size: 13px; gap: 8px; }
+}
+
+/* ---------- in-page jump nav ---------- */
+/* Sits in the gap under a hero. Two sections of priced treatments stacked on a
+   phone means ~2400px of scrolling to find out the second one exists — this
+   makes the far one reachable without discovering it by accident. */
+.subnav { border-bottom: 1px solid var(--line); }
+.subnav .wrap {
+  display: flex; flex-wrap: wrap; gap: clamp(8px, 1.6vw, 14px);
+  padding-top: clamp(14px, 1.8vw, 22px); padding-bottom: clamp(14px, 1.8vw, 22px);
+}
+.subnav a {
+  font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--copy); text-decoration: none; border: 1px solid var(--line);
+  padding: 11px clamp(15px, 2.2vw, 24px);
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.subnav a:hover, .subnav a:focus-visible {
+  background: var(--accent); color: var(--on-accent); border-color: var(--accent);
+}
 
 /* ---------- location cards ---------- */
 .loc { border-top: 1px solid var(--line); }
@@ -1138,7 +1173,9 @@ a.pillar:hover h3 { color: var(--accent); }
   .split__body .checklist { grid-template-columns: 1fr; }
   .card-grid, .card-grid--4 { grid-template-columns: repeat(2, 1fr); }
   .temps { grid-template-columns: 1fr; }
-  .sched { grid-template-columns: 1fr; }
+  /* Two across, not one. Six treatments in a single column ran 1657px on a
+     phone; the names are short enough to pair up. */
+  .sched { grid-template-columns: repeat(2, 1fr); }
   .pillars { grid-template-columns: 1fr; }
   /* Core-values panels go one-up on a narrow laptop, but the class and
      training grids stay three across down to the phone breakpoint. Must sit
