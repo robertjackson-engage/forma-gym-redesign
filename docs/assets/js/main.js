@@ -389,6 +389,77 @@
     }
   }
 
+  /* ---------- photo strip: auto-scroll, and swipe/drag to take over ---------- */
+  /* The text marquees still run on the CSS keyframe. This one cannot: a
+     transform is not grabbable, so the strip is a real scroll container and we
+     move scrollLeft ourselves. Two identical tracks let it wrap seamlessly. */
+  document.querySelectorAll(".marquee--photo").forEach(function (el) {
+    var track = el.querySelector(".marquee__track");
+    if (!track) return;
+    var slow = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var TRACK_GAP = 8;                 // matches .marquee--photo .marquee__track + .marquee__track
+    var LOOP_MS = 52000;               // the duration the keyframe used, kept identical
+    var held = false, resumeAt = 0, onScreen = true, last = 0;
+    var dragging = false, startX = 0, startLeft = 0;
+
+    function loopWidth() {
+      var w = track.getBoundingClientRect().width;
+      return w > 0 ? w + TRACK_GAP : 0;
+    }
+    function wrap() {
+      var w = loopWidth();
+      if (!w) return;
+      if (el.scrollLeft >= w) el.scrollLeft -= w;
+      else if (el.scrollLeft <= 0) el.scrollLeft += w;
+    }
+    function frame(ts) {
+      var dt = last ? Math.min(ts - last, 50) : 16;   // cap so a background tab cannot jump it
+      last = ts;
+      if (!slow && !held && !dragging && onScreen && ts >= resumeAt) {
+        var w = loopWidth();
+        if (w) {
+          el.scrollLeft += (w / LOOP_MS) * dt;
+          if (el.scrollLeft >= w) el.scrollLeft -= w;
+        }
+      }
+      requestAnimationFrame(frame);
+    }
+
+    // Pause while the user is on it, then hand it back after a beat.
+    function hold() { held = true; }
+    function release() { held = false; resumeAt = performance.now() + 1200; }
+    el.addEventListener("pointerdown", function (e) {
+      hold();
+      if (e.pointerType === "mouse") {   // touch keeps native scrolling; only mouse needs a drag
+        dragging = true; startX = e.clientX; startLeft = el.scrollLeft;
+        el.classList.add("is-dragging");
+        try { el.setPointerCapture(e.pointerId); } catch (err) {}
+      }
+    });
+    el.addEventListener("pointermove", function (e) {
+      if (!dragging) return;
+      el.scrollLeft = startLeft - (e.clientX - startX);
+      wrap();
+    });
+    ["pointerup", "pointercancel", "pointerleave"].forEach(function (evt) {
+      el.addEventListener(evt, function () {
+        dragging = false; el.classList.remove("is-dragging"); release();
+      });
+    });
+    el.addEventListener("touchstart", hold, { passive: true });
+    el.addEventListener("touchend", release, { passive: true });
+    el.addEventListener("wheel", function () { release(); }, { passive: true });
+    // A swipe carries past the seam on its own momentum, so keep wrapping after release.
+    el.addEventListener("scroll", function () { if (!dragging) wrap(); }, { passive: true });
+
+    if (window.IntersectionObserver) {
+      new IntersectionObserver(function (entries) {
+        onScreen = entries[0].isIntersecting;
+      }, { rootMargin: "100px" }).observe(el);
+    }
+    requestAnimationFrame(frame);
+  });
+
   /* ---------- hero video: pick desktop/mobile source by viewport, respect data saver ---------- */
   var heroVids = document.querySelectorAll(".hero__media video[data-src-desktop]");
   if (heroVids.length) {

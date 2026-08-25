@@ -562,8 +562,20 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 
 /* photo strip variant — uniform tiles so mixed source aspect ratios
    (squares, 3:2, 2:1) still read as an even band */
-.marquee--photo { padding: 0; border-top: none; border-bottom: none; }
-.marquee--photo .marquee__track { gap: 8px; animation-duration: 52s; }
+/* Auto-scrolls AND takes a swipe, so it is a real scroll container driven by
+   scrollLeft in main.js rather than the keyframe transform the text marquees
+   use — a transform cannot be grabbed. Base .marquee sets overflow:hidden, so
+   this rule has to stay after it. */
+.marquee--photo {
+  padding: 0; border-top: none; border-bottom: none;
+  overflow-x: auto; overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none; cursor: grab;
+}
+.marquee--photo::-webkit-scrollbar { display: none; }
+.marquee--photo.is-dragging { cursor: grabbing; }
+.marquee--photo .marquee__track { gap: 8px; animation: none; }
 .marquee--photo .marquee__track + .marquee__track { margin-left: 8px; }
 .marquee--photo span { padding: 0; display: block; }
 .marquee--photo img {

@@ -430,10 +430,15 @@ def hero(kicker, lines, sub="", img=None, video=None, poster=None, crumb=None,
 
 def photo_marquee(images):
     """Continuously scrolling strip of club photos – the visual counterpart to
-    the text marquee. Decorative, so the images carry empty alt text."""
+    the text marquee. Auto-scrolls and takes a swipe; main.js drives it. Two
+    identical tracks so the loop can wrap without a visible seam.
+
+    Decorative, so the images carry empty alt text. tabindex=-1 keeps the
+    scroll container out of the tab order: browsers make scrollers keyboard
+    focusable, and a focusable element inside aria-hidden is an a11y fault."""
     seg = "".join(f'<span><img src="{IMG}/{im}" alt="" loading="lazy"></span>' for im in images)
     return f"""
-<div class="marquee marquee--photo" aria-hidden="true">
+<div class="marquee marquee--photo" aria-hidden="true" tabindex="-1">
   <div class="marquee__track">{seg}</div>
   <div class="marquee__track">{seg}</div>
 </div>
@@ -1066,6 +1071,7 @@ home_body = view_chooser + hero(
     "authentic community atmosphere, Forma offers a dynamic, holistic approach to fitness.",
     poster=f"{IMG}/forma-hero-poster.jpg",
     walkthrough=True,
+    focal="73% 50%",
     actions=[
         ("Visit Us", "join.html", True, "only-guest"),
         ("Explore the Clubs", "locations.html", False, "only-guest"),
