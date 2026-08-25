@@ -1660,7 +1660,10 @@ spa_body = hero(
         <p class="eyebrow">Massage</p>
         <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Therapeutic <span class="serif">touch</span></h2>
       </div>
-      <p class="body-copy reveal" style="max-width:32ch">Call to schedule: <a href="tel:9259326400" style="color:var(--accent)">(925) 932-6400</a></p>
+      <!-- Guests cannot book a treatment, so the phone number is a dead end for
+           them. Members get it; guests get the step that comes first. -->
+      <p class="body-copy reveal only-member" style="max-width:32ch">Call to schedule: <a href="tel:9259326400" style="color:var(--accent)">(925) 932-6400</a></p>
+      <a class="btn btn--solid reveal only-guest" href="join.html">Join Now <span class="arr">&rarr;</span></a>
     </div>
     <div class="sched" data-stagger>
       <div class="sched__col"><h4>Signature Swedish</h4><span class="where">Relax &amp; restore</span><dl><div><dt>25 min</dt><dd>$65</dd></div><div><dt>50 min</dt><dd>$115</dd></div><div><dt>80 min</dt><dd>$160</dd></div></dl></div>

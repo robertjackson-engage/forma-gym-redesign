@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="/forma-gym-redesign/assets/img/forma-logo.svg">
-<link rel="stylesheet" href="/forma-gym-redesign/assets/css/main.css?v=1787644103">
+<link rel="stylesheet" href="/forma-gym-redesign/assets/css/main.css?v=1787644300">
 <script>(function(){try{
   if(sessionStorage.getItem("forma-intro"))document.documentElement.classList.add("no-preloader");
   var v=localStorage.getItem("forma-view");
@@ -104,7 +104,10 @@
         <p class="eyebrow">Massage</p>
         <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Therapeutic <span class="serif">touch</span></h2>
       </div>
-      <p class="body-copy reveal" style="max-width:32ch">Call to schedule: <a href="tel:9259326400" style="color:var(--accent)">(925) 932-6400</a></p>
+      <!-- Guests cannot book a treatment, so the phone number is a dead end for
+           them. Members get it; guests get the step that comes first. -->
+      <p class="body-copy reveal only-member" style="max-width:32ch">Call to schedule: <a href="tel:9259326400" style="color:var(--accent)">(925) 932-6400</a></p>
+      <a class="btn btn--solid reveal only-guest" href="/forma-gym-redesign/join-now/">Join Now <span class="arr">&rarr;</span></a>
     </div>
     <div class="sched" data-stagger>
       <div class="sched__col"><h4>Signature Swedish</h4><span class="where">Relax &amp; restore</span><dl><div><dt>25 min</dt><dd>$65</dd></div><div><dt>50 min</dt><dd>$115</dd></div><div><dt>80 min</dt><dd>$160</dd></div></dl></div>
@@ -200,8 +203,8 @@
     </div>
   </div>
 </footer>
-<script src="/forma-gym-redesign/assets/js/main.js?v=1787644103"></script>
-<script src="/forma-gym-redesign/assets/js/chat-config.js?v=1787644103"></script>
-<script src="/forma-gym-redesign/assets/js/chat.js?v=1787644103" defer></script>
+<script src="/forma-gym-redesign/assets/js/main.js?v=1787644300"></script>
+<script src="/forma-gym-redesign/assets/js/chat-config.js?v=1787644300"></script>
+<script src="/forma-gym-redesign/assets/js/chat.js?v=1787644300" defer></script>
 </body>
 </html>
