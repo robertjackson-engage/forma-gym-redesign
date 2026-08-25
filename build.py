@@ -377,7 +377,7 @@ def footer_html():
 """
 
 
-def hero(kicker, lines, sub="", img=None, video=None, poster=None, crumb=None,
+def hero(kicker, lines, sub="", img=None, video=None, poster=None, poster_mobile=None, crumb=None,
          actions=None, meta=None, page=False, title_mod="", focal=None,
          walkthrough=False, tinted=False, media_mod=""):
     lns = ""
@@ -394,7 +394,15 @@ def hero(kicker, lines, sub="", img=None, video=None, poster=None, crumb=None,
     if video:
         media = f'<video src="{video}" poster="{post}" autoplay muted loop playsinline preload="auto"{fstyle}></video>'
     elif walkthrough:
-        media = (f'<video poster="{post}" autoplay muted loop playsinline preload="none"{fstyle} '
+        # Two posters, because one cannot serve both shapes: the phone hero is
+        # portrait and the desktop hero is landscape, so a still that fills one
+        # loses the subject in the other. The mobile crop is the src, since it is
+        # the lighter file and most of the traffic; main.js swaps in the desktop
+        # crop above 820px. Both must be set before the data-saver check, which
+        # is exactly when the poster is all the visitor gets.
+        pm = poster_mobile or post
+        media = (f'<video poster="{pm}" autoplay muted loop playsinline preload="none"{fstyle} '
+                 f'data-poster-desktop="{post}" data-poster-mobile="{pm}" '
                  f'data-src-desktop="{HERO_VIDEO_DESKTOP}" data-src-mobile="{HERO_VIDEO_MOBILE}"></video>')
     else:
         media = f'<img src="{post}" alt="" fetchpriority="high"{fstyle}>'
@@ -997,8 +1005,11 @@ def rewrite_urls(html):
     # It emits SITE_BASE-prefixed URLs itself, so the rewrites below skip it.
     html = add_srcset(html)
     html = _re.sub(r'(href|src)="assets/', rf'\1="{SITE_BASE}/assets/', html)
-    # data-src-* and poster carry asset paths too, and are not href/src.
-    html = _re.sub(r'(data-src-desktop|data-src-mobile|poster)="assets/',
+    # data-src-*, data-poster-* and poster carry asset paths too, and are not
+    # href/src. Miss one and it ships a relative URL that 404s from any page in
+    # a subdirectory.
+    html = _re.sub(r'(data-src-desktop|data-src-mobile'
+                   r'|data-poster-desktop|data-poster-mobile|poster)="assets/',
                    rf'\1="{SITE_BASE}/assets/', html)
 
     def _link(m):
@@ -1069,7 +1080,8 @@ home_body = view_chooser + hero(
     "Two unique Bay Area clubs built around one idea: making movement a part of your day - "
     "every day. Featuring world-class trainers &amp; instructors, resort-style amenities &amp; an "
     "authentic community atmosphere, Forma offers a dynamic, holistic approach to fitness.",
-    poster=f"{IMG}/hero_poster_cable_trainer.jpg",
+    poster=f"{IMG}/hero_poster_trainer_desktop.jpg",
+    poster_mobile=f"{IMG}/hero_poster_trainer_mobile.jpg",
     walkthrough=True,
     actions=[
         ("Visit Us", "join.html", True, "only-guest"),

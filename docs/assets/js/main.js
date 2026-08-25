@@ -466,7 +466,14 @@
     var saveData = navigator.connection && navigator.connection.saveData;
     var mqMobile = window.matchMedia("(max-width: 820px)");
     var applyHeroSrc = function () {
-      if (saveData) return; // keep the poster image only — don't pull a hero video
+      // Poster first, and outside the data-saver check: the phone hero is
+      // portrait and the desktop hero is landscape, so the wrong crop loses the
+      // subject — and on a saved-data connection the poster is the whole hero.
+      heroVids.forEach(function (v) {
+        var wantP = mqMobile.matches ? v.dataset.posterMobile : v.dataset.posterDesktop;
+        if (wantP && v.getAttribute("poster") !== wantP) v.setAttribute("poster", wantP);
+      });
+      if (saveData) return; // poster only — don't pull a hero video
       var want = mqMobile.matches ? "srcMobile" : "srcDesktop";
       heroVids.forEach(function (v) {
         var src = v.dataset[want];
