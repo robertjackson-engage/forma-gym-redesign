@@ -1537,7 +1537,10 @@ recovery_body = hero(
     "The Spa at Forma",
     rev=True, cta=("See spa menu &amp; pricing", "spa.html"),
 ) + cta_band(
-    'Restore. Rejuvenate. <span class="serif">Repeat.</span>',
+    # Hard break so "Repeat." drops to its own line and stops running across her
+    # head on desktop. The phone already wrapped at this exact point, so its
+    # three lines are unchanged.
+    'Restore. Rejuvenate.<br><span class="serif">Repeat.</span>',
     "Recovery is included in the Forma experience. Incorporate into your wellness routine and walk out feeling brand new.",
     f"{IMG}/hanna_lift_2000px.jpg",
     # The phone crops this band to 29% of the source width and her face sits at
