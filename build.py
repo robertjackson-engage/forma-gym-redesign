@@ -1194,6 +1194,7 @@ home_body = view_chooser + hero(
       <a class="row-item" href="kidzville.html"><span class="row-item__title">Kidzville</span><span class="row-item__desc">Enjoy your workout while your kids (ages 6 weeks–12 years) are free to play in a safe, active and educational indoor/outdoor space.</span><span class="row-item__arrow">→</span></a>
       <a class="row-item" href="rise.html"><span class="row-item__title">RISE Program</span><span class="row-item__desc">Exercise-based therapy for individuals living with paralysis. Focused on function, strength and improving the physiology and neurological function of the body.</span><span class="row-item__arrow">→</span></a>
       <a class="row-item" href="training.html"><span class="row-item__title">Training</span><span class="row-item__desc">Representing years of experience in the industry with a passion for your health and wellness.</span><span class="row-item__arrow">→</span></a>
+        <a class="row-item" href="recovery.html"><span class="row-item__title">Recovery</span><span class="row-item__desc">Cryotherapy, cold plunge, a full-service spa, sports stretching, sauna, steam and hot tubs &ndash; recovery built into your routine.</span><span class="row-item__arrow">→</span></a>
     </div>
   </div>
 </section>
