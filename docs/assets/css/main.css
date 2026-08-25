@@ -898,13 +898,16 @@ a.pillar:hover h3 { color: var(--accent); }
 .sched__col { background: var(--ink); padding: clamp(28px, 3vw, 44px); }
 .section--light .sched__col { background: var(--bone); }
 .sched__col h4 { font-family: var(--font-display); text-transform: uppercase; font-weight: 400; font-size: 22px; margin-bottom: 6px; }
-.sched__col .where { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 22px; display: block; }
+.sched__col .where { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; display: block; }
 .sched__col dl { display: flex; flex-direction: column; }
 .sched__col dl > div { display: flex; justify-content: space-between; gap: 16px; padding: 11px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
 .section--light .sched__col dl > div { border-color: var(--line-dark); }
 .sched__col dt { color: var(--muted); }
 .section--light .sched__col dt { color: var(--muted-dark); }
 .sched__col dd { text-align: right; font-weight: 500; }
+/* The first row's top padding stacks on the label's margin, so the gap under
+   "Relax & restore" read as 33px against 11px between the rows below it. */
+.sched__col dl > div:first-child { padding-top: 4px; }
 /* The last row's rule has nothing under it but padding — a stranded line and a
    few dead pixels in every cell. */
 .sched__col dl > div:last-child { border-bottom: 0; padding-bottom: 0; }
