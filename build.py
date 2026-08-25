@@ -1083,6 +1083,7 @@ home_body = view_chooser + hero(
     poster=f"{IMG}/hero_poster_trainer_desktop.jpg",
     poster_mobile=f"{IMG}/hero_poster_trainer_mobile.jpg",
     walkthrough=True,
+    media_mod="hero__media--scrim-wide",
     actions=[
         ("Visit Us", "join.html", True, "only-guest"),
         ("Explore the Clubs", "locations.html", False, "only-guest"),

@@ -478,6 +478,11 @@
       heroVids.forEach(function (v) {
         var src = v.dataset[want];
         if (!src || v.getAttribute("src") === src) return;
+        // The poster-only scrim comes off the moment real footage is up.
+        v.addEventListener("playing", function () {
+          var media = v.closest(".hero__media");
+          if (media) media.classList.add("is-playing");
+        }, { once: true });
         v.setAttribute("src", src);   // autoplay attr starts playback once the src loads
         var p = v.play();             // best-effort nudge; ignore autoplay-policy rejects
         if (p && p.catch) p.catch(function () {});

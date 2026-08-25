@@ -326,6 +326,24 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
       rgba(11,11,12,0.10) 74%,
       rgba(11,11,12,0) 100%);
   }
+  /* Same idea, held darker further across. The home hero's body copy runs to
+     ~47% of the viewport, and the line ends land on her arm and leggings — the
+     brightest part of the frame. Its own modifier rather than a retune of
+     --scrim-left, which is tuned for the training hero. */
+  /* Poster only. Once the video is actually playing this comes off — the
+     footage carries its own contrast and the scrim buried it. Before this
+     modifier existed the desktop hero had no ::before at all, so dropping it
+     restores exactly the old look. */
+  .hero__media--scrim-wide.is-playing::before { content: none; }
+  .hero__media--scrim-wide::before {
+    content: ""; position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(to right,
+      rgba(11,11,12,0.70) 0%,
+      rgba(11,11,12,0.63) 34%,
+      rgba(11,11,12,0.45) 55%,
+      rgba(11,11,12,0.18) 78%,
+      rgba(11,11,12,0) 100%);
+  }
 }
 /* Every hero on a phone: the copy runs the full width with nowhere quiet to
    sit, so a busy or brightly lit frame swallows it. Flat scrim under the
