@@ -1069,9 +1069,8 @@ home_body = view_chooser + hero(
     "Two unique Bay Area clubs built around one idea: making movement a part of your day - "
     "every day. Featuring world-class trainers &amp; instructors, resort-style amenities &amp; an "
     "authentic community atmosphere, Forma offers a dynamic, holistic approach to fitness.",
-    poster=f"{IMG}/forma-hero-poster.jpg",
+    poster=f"{IMG}/hero_poster_cable_trainer.jpg",
     walkthrough=True,
-    focal="73% 50%",
     actions=[
         ("Visit Us", "join.html", True, "only-guest"),
         ("Explore the Clubs", "locations.html", False, "only-guest"),
