@@ -1104,9 +1104,9 @@ home_body = view_chooser + hero(
     </div>
     <div class="card-grid" data-stagger>
       <a class="card" href="group-fitness.html"><div class="card__media"><img src="{IMG}/group_fit_jess.jpg" alt="Group fitness class" loading="lazy"><div class="card__label"><h3>Group Fitness</h3><span class="go">Explore →</span></div></div></a>
-      <a class="card" href="training.html"><div class="card__media"><img src="{IMG}/pt_liz.jpg" alt="Personal training" loading="lazy"><div class="card__label"><h3>Personal Training</h3><span class="go">Explore →</span></div></div></a>
+      <a class="card" href="training.html"><div class="card__media"><img src="{IMG}/pt_liz.jpg" alt="Personal training" loading="lazy"><div class="card__label"><h3>Training</h3><span class="go">Explore →</span></div></div></a>
       <a class="card" href="cycle.html"><div class="card__media"><img src="{IMG}/cycle_sj.jpg" alt="Cycle studio" loading="lazy"><div class="card__label"><h3>Cycle</h3><span class="go">Explore →</span></div></div></a>
-      <a class="card" href="recovery.html"><div class="card__media"><img src="{IMG}/cryo_recovery.jpg" alt="Forma cryotherapy chamber" loading="lazy"><div class="card__label"><h3>Recovery &amp; Cryo</h3><span class="go">Explore →</span></div></div></a>
+      <a class="card" href="recovery.html"><div class="card__media"><img src="{IMG}/cryo_recovery.jpg" alt="Forma cryotherapy chamber" loading="lazy"><div class="card__label"><h3>Recovery</h3><span class="go">Explore →</span></div></div></a>
       <a class="card" href="aqua.html"><div class="card__media"><img src="{IMG}/pool_wc.jpg" alt="Aqua studio" loading="lazy"><div class="card__label"><h3>Aqua</h3><span class="go">Explore →</span></div></div></a>
       <a class="card" href="spa.html"><div class="card__media"><img src="{IMG}/spa_wc.jpg" alt="The spa" loading="lazy"><div class="card__label"><h3>The Spa</h3><span class="go">Explore →</span></div></div></a>
     </div>
