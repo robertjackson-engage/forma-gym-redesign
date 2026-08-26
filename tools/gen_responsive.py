@@ -24,6 +24,7 @@ BUSY = {
     "MB_LAB_1_1000px.jpg": "45",   # striped blanket + printed dress + wood floor
     "chillyGOAT_phelps_card.jpg": "52",  # tree canopy + grass + paver texture
     "trainer_lift_band.jpg": "40",   # heavy film grain; sits under the band's 0.78 scrim
+    "turf_trx_hero.jpg": "46",       # heavy film grain, and a hero is the LCP image
 }
 FORCE = "--force" in sys.argv
 

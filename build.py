@@ -1422,7 +1422,13 @@ locations_body = hero(
     "Locations &amp; Hours",
     ["Two unique", 'Bay Area <span class="serif">clubs</span>.'],
     "Walnut Creek and San Jose – both premium, both all-inclusive. Find your home club below.",
-    img=f"{IMG}/Forma_WalnutCreek_locations_pool_birdeye-2.jpg",
+    img=f"{IMG}/turf_trx_hero.jpg",
+    # Each axis matters on one breakpoint only. Desktop shows the full width and
+    # crops 15% of the height, so x is inert there; the phone crops to 33% of the
+    # width and shows the full height, so y is inert there. She stands 66% across,
+    # which a centred phone crop puts at 98% — hard against the edge; 64% brings
+    # it to 70%.
+    focal="64% 50%",
     crumb="Locations",
     actions=[("Visit Us", "join.html", True)],
     page=True,
