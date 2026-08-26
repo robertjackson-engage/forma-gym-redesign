@@ -1221,7 +1221,7 @@ home_body = view_chooser + hero(
     # centred crop would put his face at -40%, clean out of frame; 18% lands it
     # at 38%. On a phone the crop takes the width instead and the height is
     # exact, so the vertical value is inert there.
-    focal="50% 18%",
+    focal="50% 20%",
 )
 
 # ============================================================ ABOUT
