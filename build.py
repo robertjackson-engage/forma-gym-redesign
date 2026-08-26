@@ -898,13 +898,22 @@ SIZES_BY_CONTEXT = {
 
 
 def _variants(filename):
-    """[(width, filename), …] for whatever this image has on disk, ascending."""
+    """[(width, filename), …] for whatever this image has on disk, ascending.
+
+    The width is MEASURED, not taken from the filename. gen_responsive resizes
+    with `sips -Z`, which constrains the longer side — so for a portrait source
+    the "-700" file is 700 tall and only ~471 wide. srcset descriptors are
+    widths, so trusting the number in the name tells the browser a 471px image
+    is 700px and it renders soft.
+    """
     stem, ext = os.path.splitext(filename)
     out = []
     for w in (400, 700, 1000, 1400):
         cand = f"{stem}-{w}{ext}"
-        if os.path.exists(os.path.join(_VARIANT_DIR, cand)):
-            out.append((w, cand))
+        path = os.path.join(_VARIANT_DIR, cand)
+        if os.path.exists(path):
+            out.append((_pixel_width(path) or w, cand))
+    out.sort()
     return out
 
 
@@ -926,9 +935,13 @@ _WIDTH_CACHE = {}
 
 def _natural_width(filename):
     """Pixel width of the full-size image, read once per build."""
-    if filename in _WIDTH_CACHE:
-        return _WIDTH_CACHE[filename]
-    path = os.path.join(OUT, "assets", "img", filename)
+    return _pixel_width(os.path.join(OUT, "assets", "img", filename))
+
+
+def _pixel_width(path):
+    """Pixel width of any image on disk, read once per build."""
+    if path in _WIDTH_CACHE:
+        return _WIDTH_CACHE[path]
     w = None
     try:
         with open(path, "rb") as fh:
@@ -939,7 +952,7 @@ def _natural_width(filename):
             w = int.from_bytes(head[16:20], "big")
     except OSError:
         w = None
-    _WIDTH_CACHE[filename] = w
+    _WIDTH_CACHE[path] = w
     return w
 
 
@@ -1176,7 +1189,7 @@ home_body = view_chooser + hero(
       </div>
     </div>
     <div class="card-grid card-grid--2" data-stagger>
-      <a class="card card--stack" href="cryo.html"><div class="card__media card__media--wide"><img src="{IMG}/cold_plunge_woman.jpg" alt="Cold plunge at Forma" loading="lazy" style="object-position:35% 42%"></div><div class="card__below"><h3 class="card__title">Cryo + Cold Plunge</h3><p>Burn 500–800 calories in a single 3-minute session, reduce inflammation and pain, heal injuries faster, and sleep better. A natural, non-invasive reset trusted by Olympic and pro athletes – and now part of your club.</p><span class="go">Explore &rarr;</span></div></a>
+      <a class="card card--stack" href="cryo.html"><div class="card__media card__media--wide"><img src="{IMG}/chillyGOAT_phelps_card.jpg" alt="ChillyGOAT cold plunge at Forma" loading="lazy"></div><div class="card__below"><h3 class="card__title">Cryo + Cold Plunge</h3><p>Burn 500–800 calories in a single 3-minute session, reduce inflammation and pain, heal injuries faster, and sleep better. A natural, non-invasive reset trusted by Olympic and pro athletes – and now part of your club.</p><span class="go">Explore &rarr;</span></div></a>
       <a class="card card--stack" href="spa.html"><div class="card__media card__media--wide"><img src="{IMG}/spa_massage.jpg" alt="Massage at the Forma spa" loading="lazy" style="object-position:45% 45%"></div><div class="card__below"><h3 class="card__title">The Spa at Forma</h3><p>Massage, facials, Reiki and clinical skin care from skilled therapists – steps from the sauna, steam and hot tub. Restore, rejuvenate and walk out feeling like a brand new person.</p><span class="go">Explore &rarr;</span></div></a>
     </div>
   </div>
@@ -1201,7 +1214,14 @@ home_body = view_chooser + hero(
 """ + cta_band(
     'Your <span class="serif">club</span> is waiting',
     "Tour a club, take a class, hit the spa. Come see why Forma members never want to leave.",
-    f"{IMG}/SJ_cycle_studio_2500px.jpg",
+    f"{IMG}/trainer_lift_band.jpg",
+    # Mirrored so he faces into the layout instead of out of it, which also puts
+    # his face at 76% across rather than 24% — clear of the left-aligned copy.
+    # A band crops a portrait source to 29% of its height on desktop, so a
+    # centred crop would put his face at -40%, clean out of frame; 18% lands it
+    # at 38%. On a phone the crop takes the width instead and the height is
+    # exact, so the vertical value is inert there.
+    focal="50% 18%",
 )
 
 # ============================================================ ABOUT
