@@ -525,7 +525,8 @@ DARK_BAND_PHOTOS = {
 
 
 def cta_band(title_html, text, img, primary=("Join Now", "join.html"),
-             secondary=("Book a Tour", "contact.html#tour"), focal=None, soft=False, raise_=False, raise_m=False):
+             secondary=("Book a Tour", "contact.html#tour"), focal=None, soft=False, mid=False,
+             raise_=False, raise_m=False):
     sec = f'<a class="btn" href="{secondary[1]}">{secondary[0]} <span class="arr">→</span></a>' if secondary else ""
     # A band is wide and short, so on a phone it crops the width hard — a
     # subject sitting off-centre needs pulling back into frame.
@@ -535,6 +536,9 @@ def cta_band(title_html, text, img, primary=("Join Now", "join.html"),
     # (the cycle studio measures 29/255 against 116 and 142 for the others), or
     # a frame bright enough to be worth showing through more.
     soft_cls = " cta-band--soft" if (soft or img.rsplit("/", 1)[-1] in DARK_BAND_PHOTOS) else ""
+    # A third level between the two: 0.78 buried this photo, 0.62 left it lighter
+    # than wanted. Wins over --soft by sitting later in the stylesheet.
+    soft_cls += " cta-band--mid" if mid else ""
     # The band image is 118% tall and top-anchored, so its bottom 18% is clipped.
     # raise_ shifts it up to bring that lower band of the photo into view.
     soft_cls += " cta-band--raise" if raise_ else ""
@@ -1753,7 +1757,7 @@ spa_body = hero(
     focal="18% 85%",
     # Measured on device: the phone shows 42% of the width here, not the 36% the
     # aspect maths predicted, so 26% left her at 68%. 18% puts her at 79%.
-    soft=True,
+    mid=True,
     primary=("Call to Book", "tel:9259326400"), secondary=("San Jose Spa", "tel:4083631010"),
 )
 

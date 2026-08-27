@@ -1074,6 +1074,8 @@ a.pillar:hover h3 { color: var(--accent); }
    luminance where the other band photos sit at 116-142, so 0.78 crushed it
    to near black. Text stays well clear of AA at this level. */
 .cta-band--soft .cta-band__media::after { background: rgba(11,11,12,0.62); }
+/* Between the two. Must sit after --soft: same specificity, later wins. */
+.cta-band--mid .cta-band__media::after { background: rgba(11,11,12,0.70); }
 /* The band image is 118% tall and top-anchored, so its bottom 18% is clipped.
    Shifting up by half that brings the lower part of the frame into view —
    used where a subject sits right against the photo's bottom edge. `top`
