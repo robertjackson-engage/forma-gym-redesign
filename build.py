@@ -1090,7 +1090,7 @@ view_chooser = f"""
 home_body = view_chooser + hero(
     "Walnut Creek &amp; San Jose · Est. 2009",
     ["Play", '<span class="serif">every</span> day'],
-    "Two unique Bay Area clubs built around one idea: making movement a part of your day - "
+    "Two unique Bay Area clubs built around one idea: making movement a part of your day – "
     "every day. Featuring world-class trainers &amp; instructors, resort-style amenities &amp; an "
     "authentic community atmosphere, Forma offers a dynamic, holistic approach to fitness.",
     poster=f"{IMG}/hero_poster_trainer_desktop.jpg",
@@ -1113,7 +1113,7 @@ home_body = view_chooser + hero(
         <h2 class="h-display reveal">Making exercise a part of your daily life. <span class="serif">For the rest of your life.</span></h2>
       </div>
       <div class="intro-grid__right">
-        <p class="lede reveal">Our goal at Forma has always been to create a community where fitness and health is available to EVERYONE on the spectrum of movement - from those individuals that are struggling just to stand, to world-class athletes. We are very proud of what we’ve created and we love our Members, our Team, our Community and we LOVE being here for you!</p>
+        <p class="lede reveal">Our goal at Forma has always been to create a community where fitness and health is available to EVERYONE on the spectrum of movement – from those individuals that are struggling just to stand, to world-class athletes. We are very proud of what we’ve created and we love our Members, our Team, our Community and we LOVE being here for you!</p>
         <div class="reveal"><a class="inline-link" href="about.html">The Forma story →</a></div>
       </div>
     </div>
@@ -1494,7 +1494,7 @@ locations_body = hero(
     (time.localtime().tm_year - FOUNDED, "", "Years in the Bay Area"),
 ]) + cta_band(
     'Find your <span class="serif">home club</span>',
-    "Both locations are all-inclusive: every class, the pool, the recovery suites - the works.",
+    "Both locations are all-inclusive: every class, the pool, the recovery suites – the works.",
     # was pool_sunset_SJ_500px.jpg — a 500px square stretched across a 100vw band
     f"{IMG}/sj_pool_sunset.jpg",
 )
@@ -2209,7 +2209,11 @@ outdoor_body = hero(
     "Outdoor Fitness",
     ["Train under", '<span class="serif">California skies</span>'],
     "Our members LOVE to exercise outdoors – and we LOVE giving them the environment and tools to show up and move every day. We've expanded our outdoor footprint so you have everything you need, all year-round.",
-    img=f"{IMG}/slider-locations_turf_alysse_torey.jpg",
+    img=f"{IMG}/outdoor_curl_hero.jpg",
+    # Desktop crops only 5% off the height, so y is near-inert there and his face
+    # lands at 19% on its own. The phone crops to 30% of the width and he stands
+    # 59% across, which centred puts at 80% — hard right; 59% centres him.
+    focal="59% 50%",
     crumb="Outdoor",
     actions=[("Visit Us", "join.html", True)],
     meta=["Covered outdoor turf", "Rain or shine", "Both clubs"],
@@ -2222,10 +2226,10 @@ outdoor_body = hero(
         <p class="eyebrow">Your outdoor playground</p>
         <h2 class="h-display reveal">Everything you need<br>&amp; more – <span class="serif">outside.</span></h2>
       </div>
-      <p class="body-copy reveal" style="max-width:34ch">Walnut Creek's outdoor turf sits under towering redwoods with a redwood deck and cabanas by the pool. San Jose's 8,000 sq. ft. covered outdoor area is enclosed in palm trees, creating a year-round fitness oasis.</p>
+      <p class="body-copy reveal" style="max-width:34ch">Walnut Creek's outdoor turf sits under towering redwoods, complete with deck and cabanas by the pool. San Jose's 8,000 sq. ft. covered outdoor area is enclosed in palm trees, creating a year-round fitness oasis.</p>
     </div>
     <div class="pillars" data-stagger style="grid-template-columns:repeat(2,1fr)">
-      <div class="pillar"><span class="pillar__num">01</span><h3>Strength Training</h3><p>Full outdoor strength setups so you never have to choose between iron and fresh air.</p></div>
+      <div class="pillar"><span class="pillar__num">01</span><h3>Strength Training</h3><p>Racks, benches, machines and free weights – with room to breathe between sets.</p></div>
       <div class="pillar"><span class="pillar__num">02</span><h3>Cardio Equipment</h3><p>Treadmills, rowers and more, set up under cover for year-round outdoor sessions.</p></div>
       <div class="pillar"><span class="pillar__num">03</span><h3>Group Exercise</h3><p>Take your favorite classes into the open air – group energy hits different outside.</p></div>
       <div class="pillar"><span class="pillar__num">04</span><h3>Turf Training</h3><p>Sleds, ropes and agility work on real turf – push, pull, sprint and sweat with plenty of fresh air to spare.</p></div>
@@ -2235,7 +2239,10 @@ outdoor_body = hero(
 """ + cta_band(
     '<span class="serif">Move</span> every day. <br>In or outside.',
     "It's all included with your membership. Come find your favorite spot under the iconic Bay Area sky.",
-    f"{IMG}/SJ_gym_floor_HERO_gradient-scaled.jpg",
+    f"{IMG}/slider-locations_turf_alysse_torey.jpg",
+    # The phone crops a band to 25% of the width and these two subjects sit 48%
+    # and 85% across — too far apart to hold both, so this frames the nearer one.
+    focal="42% 50%",
 )
 
 # ============================================================ DRBRAINRX
