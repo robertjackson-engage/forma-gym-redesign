@@ -1748,7 +1748,9 @@ spa_body = hero(
 </section>
 """ + cta_band(
     'Your <span class="serif">body</span> has earned this',
-    "Treatments can be enjoyed before or after the sauna, steam or hot tub. Call your club to book.",
+    "World-class treatments can be enjoyed before or after the sauna, steam or hot tub."
+    '<span class="only-member"> Call to schedule: '
+    '<a href="tel:9259326400" style="color:var(--accent)">(925) 932-6400</a>.</span>',
     f"{IMG}/spa_massage_band.jpg",
     # Desktop crops 37% off the height and the client lies along the bottom edge,
     # so a centred crop cut her out. 85% drops the window to the lower frame.
