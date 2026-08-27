@@ -1758,7 +1758,6 @@ spa_body = hero(
     # Measured on device: the phone shows 42% of the width here, not the 36% the
     # aspect maths predicted, so 26% left her at 68%. 18% puts her at 79%.
     mid=True,
-    primary=("Call to Book", "tel:9259326400"), secondary=("San Jose Spa", "tel:4083631010"),
 )
 
 # ============================================================ KIDZVILLE
