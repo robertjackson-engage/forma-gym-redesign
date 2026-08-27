@@ -2207,7 +2207,7 @@ trial_body = hero(
 # ============================================================ OUTDOOR
 outdoor_body = hero(
     "Outdoor Fitness",
-    ["Train under the", '<span class="serif">California sky</span>'],
+    ["Train under", '<span class="serif">California skies</span>'],
     "Our members LOVE to exercise outdoors – and we LOVE giving them the environment and tools to show up and move every day. We've expanded our outdoor footprint so you have everything you need, all year-round.",
     img=f"{IMG}/slider-locations_turf_alysse_torey.jpg",
     crumb="Outdoor",
@@ -2219,22 +2219,22 @@ outdoor_body = hero(
   <div class="wrap">
     <div class="cards-head">
       <div>
-        <p class="eyebrow">The outdoor playground</p>
-        <h2 class="h-display reveal">Everything you need, <span class="serif">outside</span></h2>
+        <p class="eyebrow">Your outdoor playground</p>
+        <h2 class="h-display reveal">Everything you need<br>&amp; more – <span class="serif">outside.</span></h2>
       </div>
-      <p class="body-copy reveal" style="max-width:34ch">Walnut Creek's turf sits under towering redwoods. San Jose's 8,000 sq. ft. covered outdoor area runs year-round beneath the palms.</p>
+      <p class="body-copy reveal" style="max-width:34ch">Walnut Creek's outdoor turf sits under towering redwoods with a redwood deck and cabanas by the pool. San Jose's 8,000 sq. ft. covered outdoor area is enclosed in palm trees, creating a year-round fitness oasis.</p>
     </div>
     <div class="pillars" data-stagger style="grid-template-columns:repeat(2,1fr)">
       <div class="pillar"><span class="pillar__num">01</span><h3>Strength Training</h3><p>Full outdoor strength setups so you never have to choose between iron and fresh air.</p></div>
-      <div class="pillar"><span class="pillar__num">02</span><h3>Cardio Equipment</h3><p>Treadmills, bikes and more, set up under cover for year-round outdoor sessions.</p></div>
-      <div class="pillar"><span class="pillar__num">03</span><h3>Group Exercise</h3><p>Take your favorite classes into the open air – energy hits different outside.</p></div>
-      <div class="pillar"><span class="pillar__num">04</span><h3>Outdoor Cycle</h3><p>Beat-driven rides with a view – the best seat in the house is outdoors.</p></div>
+      <div class="pillar"><span class="pillar__num">02</span><h3>Cardio Equipment</h3><p>Treadmills, rowers and more, set up under cover for year-round outdoor sessions.</p></div>
+      <div class="pillar"><span class="pillar__num">03</span><h3>Group Exercise</h3><p>Take your favorite classes into the open air – group energy hits different outside.</p></div>
+      <div class="pillar"><span class="pillar__num">04</span><h3>Turf Training</h3><p>Sleds, ropes and agility work on real turf – push, pull, sprint and sweat with plenty of fresh air to spare.</p></div>
     </div>
   </div>
 </section>
 """ + cta_band(
-    'Move <span class="serif">every day</span> – indoors or out',
-    "It's all included with your membership. Come find your favorite spot under the sky.",
+    '<span class="serif">Move</span> every day. <br>In or outside.',
+    "It's all included with your membership. Come find your favorite spot under the iconic Bay Area sky.",
     f"{IMG}/SJ_gym_floor_HERO_gradient-scaled.jpg",
 )
 
