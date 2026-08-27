@@ -377,7 +377,7 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
      mobile scrim on top of that buries the photo. Must be re-declared here:
      same specificity as the rule above, and later source order is what makes
      it win. */
-  .hero__media--tinted::before { background: rgba(11,11,12,0.30); }
+  .hero__media--tinted::before { background: rgba(11,11,12,0.42); }
   /* Subject sits centre in a wide frame: fine on desktop, which shows the
      full width, but the phone crops to ~28% and the left-aligned copy lands
      on her face. Shift the crop right. No inline focal on this hero, so a
