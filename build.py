@@ -1767,7 +1767,11 @@ kidz_body = hero(
     "Kidzville",
     ["A guilt-free", '<span class="serif">workout</span>'],
     "We created a unique indoor and outdoor environment where you can enjoy your workout while your kids (ages 6 weeks–12 years) are free to play in a safe, active, and educational space. Walnut Creek location.",
-    img=f"{IMG}/forma-kids-header-background-tug_WIDE.jpg",
+    img=f"{IMG}/kidzville_hero.jpg",
+    # Desktop shows 97% of the width, so x is inert there. The phone shows 27%,
+    # and the play structure sits 62-92% across — a centred crop lands on 36-64%
+    # and misses it entirely, showing turf and half a slide. 78% frames the fort.
+    focal="78% 50%",
     crumb="Kidzville",
     actions=[("Reserve a Spot", "tel:9259326400", True)],
     meta=["Ages 6 weeks–12 years", "Walnut Creek location", "Reservations recommended"],

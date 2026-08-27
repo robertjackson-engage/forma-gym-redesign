@@ -296,12 +296,12 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   background: linear-gradient(to top, rgba(11,11,12,0.92) 0%, rgba(11,11,12,0.35) 45%, rgba(11,11,12,0.42) 100%);
 }
 /* For bright or busy photos: a flat scrim under the standard gradient so the
-   headline and body copy stay legible. Dialled back once the mobile scrim below
-   started carrying part of this load — the spa shot is dim to begin with, and
-   the old values buried the towels. */
+   headline and body copy stay legible. Only the two spa pages use this, so the
+   values are tuned to that photo. Raised 0.12 on both breakpoints — the earlier
+   pass had dialled it far enough back that the copy sat thinly on the towels. */
 .hero__media--tinted::before {
   content: ""; position: absolute; inset: 0; z-index: 1;
-  background: rgba(11,11,12,0.26);
+  background: rgba(11,11,12,0.38);
 }
 .hero__media--tinted::after { background: linear-gradient(to top, rgba(11,11,12,0.92) 0%, rgba(11,11,12,0.42) 50%, rgba(11,11,12,0.46) 100%); }
 /* Frames whose subject sits high (San Jose sunset, Ana on contact): the copy
@@ -984,7 +984,8 @@ a.pillar:hover h3 { color: var(--accent); }
   position: sticky; top: 67px; z-index: 900; background: var(--ink);
 }
 .subnav .wrap {
-  display: flex; flex-wrap: wrap; gap: clamp(8px, 1.6vw, 14px);
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: clamp(8px, 1.6vw, 14px);
   padding-top: clamp(14px, 1.8vw, 22px); padding-bottom: clamp(14px, 1.8vw, 22px);
 }
 .subnav a {
@@ -996,12 +997,10 @@ a.pillar:hover h3 { color: var(--accent); }
 .subnav a:hover, .subnav a:focus-visible {
   background: var(--accent); color: var(--on-accent); border-color: var(--accent);
 }
-/* Phone: the bar is the whole width with nothing beside it, so centred reads
-   better than left-aligned, and the pair needs more air between them than the
-   clamp gives at this size. Must sit after the base rules above — same
-   specificity, later wins. */
+/* Phone only: the pair needs more air between them than the clamp gives at this
+   size. Must sit after the base rule above — same specificity, later wins. */
 @media (max-width: 820px) {
-  .subnav .wrap { justify-content: center; gap: 18px; }
+  .subnav .wrap { gap: 18px; }
 }
 
 /* ---------- location cards ---------- */
