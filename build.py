@@ -135,10 +135,12 @@ def socials(handle, club):
 
 
 NAV = [
+    ("Locations", "locations.html"),
     ("Classes", "group-fitness.html"),
     ("Training", "training.html"),
     ("Recovery", "recovery.html"),
-    ("Locations", "locations.html"),
+    ("Spa", "spa.html"),
+    ("Kidzville", "kidzville.html"),
     ("About", "about.html"),
 ]
 

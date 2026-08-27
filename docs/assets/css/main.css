@@ -1215,7 +1215,13 @@ br.br-m { display: none; }
 .section--light .step p { color: var(--muted-dark); }
 
 /* ---------- responsive ---------- */
-@media (max-width: 1100px) {
+/* The header hands over to the hamburger earlier than the rest of the layout
+   reflows. Seven nav items plus the CTA cluster need 1249px against 1202px of
+   header at a 1217px viewport, so they overflowed through the whole 1100-1300
+   band — and even where they fit they were cramped. The overlay already carries
+   the full list. Kept separate from the 1100px block below, which is about
+   cards and grids, not the header. */
+@media (max-width: 1320px) {
   .nav-desktop { display: none; }
   /* Once the hamburger is the nav, the header is logo + hamburger only. The
      CTAs and the guest/member toggle move into the overlay, where there is
@@ -1225,6 +1231,9 @@ br.br-m { display: none; }
   .menu-side__controls { display: flex; }
   .menu-overlay__grid { grid-template-columns: 1fr; padding-top: 120px; gap: 44px; }
   .menu-side { justify-content: flex-start; }
+}
+
+@media (max-width: 1100px) {
   .hero__meta { display: none; }
   .split__body .checklist { grid-template-columns: 1fr; }
   .card-grid, .card-grid--4 { grid-template-columns: repeat(2, 1fr); }
