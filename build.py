@@ -1743,7 +1743,10 @@ spa_body = hero(
     # so a centred crop cut her out. 85% drops the window to the lower frame.
     # The phone crops the width instead and shows the full height, so this is
     # desktop-only by construction.
-    focal="26% 85%",
+    focal="18% 85%",
+    # Measured on device: the phone shows 42% of the width here, not the 36% the
+    # aspect maths predicted, so 26% left her at 68%. 18% puts her at 79%.
+    soft=True,
     primary=("Call to Book", "tel:9259326400"), secondary=("San Jose Spa", "tel:4083631010"),
 )
 
