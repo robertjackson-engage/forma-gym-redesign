@@ -144,21 +144,24 @@ NAV = [
     ("About", "about.html"),
 ]
 
+# The first seven mirror NAV exactly — same order, same labels — so the overlay
+# and the header do not name the same destination two different ways. Everything
+# the header has no room for follows.
 MENU = [
     ("Home", "index.html"),
-    ("Group Fitness", "group-fitness.html"),
-    ("Personal Training", "training.html"),
-    ("Outdoor Fitness", "outdoor-training.html"),
-    ("Recovery &amp; Cryo", "recovery.html"),
-    ("The Spa", "spa.html"),
-    ("DrBrainRX", "drbrainrx.html"),
+    ("Locations", "locations.html"),
+    ("Classes", "group-fitness.html"),
+    ("Training", "training.html"),
+    ("Recovery", "recovery.html"),
+    ("Spa", "spa.html"),
     ("Kidzville", "kidzville.html"),
+    ("About", "about.html"),
+    ("Outdoor Fitness", "outdoor-training.html"),
+    ("DrBrainRX", "drbrainrx.html"),
     ("RISE Program", "rise.html"),
     ("Forma Gives Back", "givesback.html"),
     ("Walnut Creek", "walnut-creek.html"),
     ("San Jose", "san-jose.html"),
-    ("Locations &amp; Hours", "locations.html"),
-    ("About Forma", "about.html"),
     ("The Forma App", "app.html"),
     ("Join Now", "join.html"),
     ("Book a Tour", "contact.html#tour"),
@@ -258,7 +261,10 @@ def header_html(active=""):
         links += f'<a href="{href}"{cls}>{label}</a>'
     menu_links = ""
     for i, (label, href) in enumerate(MENU, 1):
-        menu_links += f'<a href="{href}">{label}</a>'
+        # The overlay carried no current-page marker, so :hover was the only
+        # thing that ever went accent — easy to mistake for one.
+        mcls = ' class="is-active"' if href == active else ""
+        menu_links += f'<a href="{href}"{mcls}>{label}</a>'
     return f"""
 <header class="site-header">
   <div class="site-header__inner">
@@ -2463,8 +2469,8 @@ PAGES = [
     ("training.html", "Personal Training | Forma Gym", "1-on-1 and small group personal training with the best coaches in the Bay Area. Nutrition guidance, accountability, and a plan built around you.", "training.html", training_body),
     ("recovery.html", "Recovery, Cryotherapy &amp; Cold Plunge | Forma Gym", "Recover like an athlete – cryotherapy, cold plunge, full-service spa, sauna, steam and hot tubs at Forma Gym.", "recovery.html", recovery_body),
     ("cryo.html", "Cryotherapy + Cold Plunge | Forma Gym", "Whole-body cryotherapy and cold plunge at Forma Gym. Burn 500–800 calories per session, reduce pain and inflammation, recover faster.", "", cryo_body),
-    ("spa.html", "The Spa at Forma | Massage, Facials, Reiki &amp; Skin Care", "A full-service day spa at Forma Gym – therapeutic massage, facials, Reiki and clinical skin care in Walnut Creek &amp; San Jose.", "", spa_body),
-    ("kidzville.html", "Kidzville Childcare | Forma Gym Walnut Creek", "Free, safe, active childcare for ages 6 weeks–12 years while you work out. Forma Kidzville at Walnut Creek.", "", kidz_body),
+    ("spa.html", "The Spa at Forma | Massage, Facials, Reiki &amp; Skin Care", "A full-service day spa at Forma Gym – therapeutic massage, facials, Reiki and clinical skin care in Walnut Creek &amp; San Jose.", "spa.html", spa_body),
+    ("kidzville.html", "Kidzville Childcare | Forma Gym Walnut Creek", "Free, safe, active childcare for ages 6 weeks–12 years while you work out. Forma Kidzville at Walnut Creek.", "kidzville.html", kidz_body),
     ("rise.html", "RISE Program | Exercise-Based Therapy for Paralysis | Forma", "RISE is an exercise-based therapy program for individuals living with paralysis. Movement is medicine. Scholarships available.", "", rise_body),
     ("givesback.html", "Forma Gives Back | Fitness for Everyone", "Forma believes fitness should be available to everyone on the spectrum of movement. Learn how Forma Gives Back to the Bay Area.", "", givesback_body),
     ("walnut-creek.html", "Forma Gym Walnut Creek | 1908 Olympic Blvd", "Forma Gym Walnut Creek – 35,000 sq ft of indoor &amp; outdoor fitness, heated pool, Kidzville, cryotherapy, day spa and Café.", "locations.html", walnutcreek_body),
