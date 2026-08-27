@@ -1679,9 +1679,9 @@ cryo_body = hero(
 # ============================================================ SPA
 spa_body = hero(
     "The Spa",
-    ["Pause.", '<span class="serif">Restore.</span>'],
+    ["Your optimum", '<span class="serif">wellness</span> experience'],
     "A comprehensive menu of therapeutic treatments – massage, facials, Reiki and clinical skin care – in a cozy, luxurious setting steps from the sauna, steam and Jacuzzi. Skilled therapists dedicated to easing pain and rejuvenating face and body.",
-    img=f"{IMG}/Forma_San-Jose-spa_Header_2018.jpg",
+    img=f"{IMG}/spa_header_flipped.jpg",
     focal="50% 68%", tinted=True,
     crumb="The Spa",
     actions=[("Book a Treatment", "tel:9259326400", True)],
@@ -1736,9 +1736,14 @@ spa_body = hero(
   </div>
 </section>
 """ + cta_band(
-    'Your body has earned <span class="serif">this</span>',
+    'Your <span class="serif">body</span> has earned this',
     "Treatments can be enjoyed before or after the sauna, steam or hot tub. Call your club to book.",
-    f"{IMG}/Forma_San-Jose-spa_Header_2018.jpg",
+    f"{IMG}/spa_massage_band.jpg",
+    # Desktop crops 37% off the height and the client lies along the bottom edge,
+    # so a centred crop cut her out. 85% drops the window to the lower frame.
+    # The phone crops the width instead and shows the full height, so this is
+    # desktop-only by construction.
+    focal="26% 85%",
     primary=("Call to Book", "tel:9259326400"), secondary=("San Jose Spa", "tel:4083631010"),
 )
 
@@ -2213,7 +2218,8 @@ outdoor_body = hero(
     # Desktop crops only 5% off the height, so y is near-inert there and his face
     # lands at 19% on its own. The phone crops to 30% of the width and he stands
     # 59% across, which centred puts at 80% — hard right; 59% centres him.
-    focal="59% 50%",
+    focal="50% 50%",
+    media_mod="hero__media--clear-top",
     crumb="Outdoor",
     actions=[("Visit Us", "join.html", True)],
     meta=["Covered outdoor turf", "Rain or shine", "Both clubs"],
@@ -2239,10 +2245,9 @@ outdoor_body = hero(
 """ + cta_band(
     '<span class="serif">Move</span> every day. <br>In or outside.',
     "It's all included with your membership. Come find your favorite spot under the iconic Bay Area sky.",
-    f"{IMG}/slider-locations_turf_alysse_torey.jpg",
-    # The phone crops a band to 25% of the width and these two subjects sit 48%
-    # and 85% across — too far apart to hold both, so this frames the nearer one.
-    focal="42% 50%",
+    f"{IMG}/pool_wc_birdseye_band.jpg",
+    # A scene rather than a single subject, so a centred crop works at both
+    # breakpoints — the phone lands on the sails and the lanes under them.
 )
 
 # ============================================================ DRBRAINRX
