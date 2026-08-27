@@ -494,7 +494,7 @@ def split(eyebrow, num, title, paras, img, alt, rev=False, cta=None, light=False
       </div>
       <div class="split__body">
         <p class="eyebrow">{f'' if num else ''}{eyebrow}</p>
-        <h2 class="h-display" style="font-size:clamp(30px,3.8vw,58px)">{title}</h2>
+        <h2 class="h-display">{title}</h2>
         <div class="reveal">{body_paras}{cta_html}</div>
       </div>
     </div>
@@ -582,7 +582,7 @@ def form_section(sec_id, num, eyebrow, title_html, text, btn, light=True, extra=
     <div class="intro-grid">
       <div>
         <p class="eyebrow">{eyebrow}</p>
-        <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">{title_html}</h2>
+        <h2 class="h-display reveal">{title_html}</h2>
         <p class="lede reveal" style="margin-top:28px">{text}</p>
         {extra}
       </div>
@@ -1130,7 +1130,7 @@ home_body = view_chooser + hero(
     <div class="cards-head">
       <div>
         <p class="eyebrow">Find your movement</p>
-        <h2 class="h-display reveal break-accent" style="font-size:clamp(34px,4.6vw,72px)">Play every day. <span class="serif">In every way.</span></h2>
+        <h2 class="h-display reveal break-accent">Play every day. <span class="serif">In every way.</span></h2>
       </div>
     </div>
     <div class="card-grid" data-stagger>
@@ -1185,7 +1185,7 @@ home_body = view_chooser + hero(
     <div class="cards-head">
       <div>
         <p class="eyebrow">Recover like an athlete</p>
-        <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Wellness, <span class="serif">elevated</span></h2>
+        <h2 class="h-display reveal">Wellness, <span class="serif">elevated</span></h2>
       </div>
     </div>
     <div class="card-grid card-grid--2" data-stagger>
@@ -1200,7 +1200,7 @@ home_body = view_chooser + hero(
     <div class="cards-head">
       <div>
         <p class="eyebrow">More than a gym</p>
-        <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Built for your whole <span class="serif">life</span></h2>
+        <h2 class="h-display reveal">Built for your whole <span class="serif">life</span></h2>
       </div>
     </div>
     <div class="rows rows--plain reveal">
@@ -1264,7 +1264,7 @@ about_body = hero(
     <div class="cards-head">
       <div>
         <p class="eyebrow">Our core values</p>
-        <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">What we <span class="serif">live</span> by</h2>
+        <h2 class="h-display reveal">What we <span class="serif">live</span> by</h2>
       </div>
     </div>
     <div class="pillars" data-stagger>
@@ -1279,7 +1279,7 @@ about_body = hero(
 </section>
 """ + split(
     "The community", "03",
-    'Everyone on the spectrum of <span class="serif">movement</span>',
+    'Everyone on the <br class="br-m">spectrum of <span class="serif">movement</span>',
     ["From first-timers nervous to walk in, to parents reclaiming an hour, to athletes chasing a PR – Forma was built for all of it. Our instructors meet you where you are and help you go further than you thought you could.",
      "It's why people don't just join Forma. They belong to it."],
     f"{IMG}/pilates_duet.jpg",
@@ -1295,7 +1295,7 @@ about_body = hero(
     "Join the Forma Family and experience the best trainers, programs and classes in the Bay Area. Tell us a little about you and we'll set up your visit.",
     "Book My Tour", ac_id=33,
 ) + cta_band(
-    'Come <span class="serif">play</span> with us',
+    'Come <span class="serif">play</span> <br class="br-m">with us',
     "Two clubs, one community that can't wait to meet you.",
     f"{IMG}/dance_class_jess.jpg",
     # Both axes are load-bearing here, on opposite breakpoints. Desktop crops to
@@ -1304,6 +1304,7 @@ about_body = hero(
     # the instructor stands 68.5% across, which centred puts at 103% — off frame;
     # 70% brings her to 66%.
     focal="70% 12%",
+    soft=True,
 )
 
 # ============================================================ GROUP FITNESS
@@ -1336,7 +1337,7 @@ groupfit_body = hero(
     <div class="cards-head cards-head--stack">
       <div>
         <p class="eyebrow">The full lineup</p>
-        <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Infinite ways to <span class="serif">move</span></h2>
+        <h2 class="h-display reveal">Infinite ways to <span class="serif">move</span></h2>
       </div>
       <p class="body-copy reveal">Whether you're kickstarting your journey or chasing your next level, there's a class with your name on it – included with every membership. Get ready to join a vibrant community of health and fitness enthusiasts and embark on an exhilarating journey towards achieving your health and wellness goals.</p>
     </div>
@@ -1386,7 +1387,7 @@ training_body = hero(
     <div class="split split--solo">
       <div class="split__body split__body--wide">
         <p class="eyebrow">One-on-one personal training</p>
-        <h2 class="h-display" style="font-size:clamp(30px,3.8vw,58px)">A plan built around <span class="serif">you</span></h2>
+        <h2 class="h-display">A plan built around <span class="serif">you</span></h2>
         <div class="pillars pillars--3 reveal" data-stagger style="margin-top:34px">
           <div class="pillar"><span class="pillar__num">01</span><h3>Assess</h3><p>Assess where you are now and where to start.</p></div>
           <div class="pillar"><span class="pillar__num">02</span><h3>Nutrition</h3><p>Nutritional consultation and guidance &ndash; understand the power of food.</p></div>
@@ -1414,7 +1415,7 @@ training_body = hero(
     <div class="cards-head">
       <div>
         <p class="eyebrow">Meet our training team</p>
-        <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Coaches who <span class="serif">care</span></h2>
+        <h2 class="h-display reveal">Coaches who <span class="serif">care</span></h2>
       </div>
       <p class="body-copy reveal" style="max-width:34ch">Years of experience, a range of specialties, and a genuine passion for helping you feel strong, confident and excited about fitness.</p>
     </div>
@@ -1628,7 +1629,7 @@ cryo_body = hero(
     <div class="cards-head">
       <div>
         <p class="eyebrow">The benefits</p>
-        <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">What three minutes <span class="serif">does</span></h2>
+        <h2 class="h-display reveal">What three minutes <span class="serif">does</span></h2>
       </div>
     </div>
     <div class="pillars" data-stagger>
@@ -1653,7 +1654,7 @@ cryo_body = hero(
     <div class="cards-head">
       <div>
         <p class="eyebrow">Real members, real results</p>
-        <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Feel the <span class="serif">difference</span></h2>
+        <h2 class="h-display reveal">Feel the <span class="serif">difference</span></h2>
       </div>
     </div>
     <div class="card-grid" data-stagger>
@@ -1699,7 +1700,7 @@ spa_body = hero(
     <div class="cards-head">
       <div>
         <p class="eyebrow">Massage</p>
-        <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Therapeutic <span class="serif">touch</span></h2>
+        <h2 class="h-display reveal">Therapeutic <span class="serif">touch</span></h2>
       </div>
       <!-- Guests cannot book a treatment, so the phone number is a dead end for
            them. Members get it; guests get the step that comes first. -->
@@ -1723,7 +1724,7 @@ spa_body = hero(
     <div class="cards-head">
       <div>
         <p class="eyebrow">Skincare</p>
-        <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Glow, <span class="serif">restored</span></h2>
+        <h2 class="h-display reveal">Glow, <span class="serif">restored</span></h2>
       </div>
     </div>
     <div class="sched" data-stagger>
@@ -1772,7 +1773,7 @@ kidz_body = hero(
     <div class="cards-head">
       <div>
         <p class="eyebrow">Kidzville hours</p>
-        <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">When we're <span class="serif">open</span></h2>
+        <h2 class="h-display reveal">When we're <span class="serif">open</span></h2>
       </div>
       <p class="body-copy reveal" style="max-width:34ch">Questions or sign-ups: <a href="mailto:WCReps@formagym.com" style="color:var(--accent-ink)">WCReps@formagym.com</a> or call the front desk at (925) 932-6400. Reservations recommended.</p>
     </div>
@@ -1815,7 +1816,7 @@ rise_body = hero(
     <div class="cards-head">
       <div>
         <p class="eyebrow">What RISE delivers</p>
-        <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Get moving <span class="serif">again</span></h2>
+        <h2 class="h-display reveal">Get moving <span class="serif">again</span></h2>
       </div>
     </div>
     <div class="pillars" data-stagger style="grid-template-columns:repeat(3,1fr)">
@@ -1831,7 +1832,7 @@ rise_body = hero(
     <div class="cards-head">
       <div>
         <p class="eyebrow">Our methodology</p>
-        <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">A step-by-step <span class="serif">method</span></h2>
+        <h2 class="h-display reveal">A step-by-step <span class="serif">method</span></h2>
       </div>
       <p class="body-copy reveal" style="max-width:34ch">Each client's needs are carefully addressed to support our mission of achieving your recovery goals.</p>
     </div>
@@ -1907,7 +1908,7 @@ def class_page(slug, title, img, lead, others):
     <div class="cards-head">
       <div>
         <p class="eyebrow">More ways to move</p>
-        <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Mix it <span class="serif">up</span></h2>
+        <h2 class="h-display reveal">Mix it <span class="serif">up</span></h2>
       </div>
     </div>
     <div class="rows reveal">{other_cards}</div>
@@ -2152,7 +2153,7 @@ contact_body = hero(
     <div class="cards-head">
       <div>
         <p class="eyebrow">Two locations</p>
-        <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Reach a <span class="serif">club</span></h2>
+        <h2 class="h-display reveal">Reach a <span class="serif">club</span></h2>
       </div>
     </div>
     <div class="card-grid card-grid--2" data-stagger>
@@ -2219,7 +2220,7 @@ outdoor_body = hero(
     <div class="cards-head">
       <div>
         <p class="eyebrow">The outdoor playground</p>
-        <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Everything you need, <span class="serif">outside</span></h2>
+        <h2 class="h-display reveal">Everything you need, <span class="serif">outside</span></h2>
       </div>
       <p class="body-copy reveal" style="max-width:34ch">Walnut Creek's turf sits under towering redwoods. San Jose's 8,000 sq. ft. covered outdoor area runs year-round beneath the palms.</p>
     </div>
@@ -2253,7 +2254,7 @@ drbrain_body = hero(
     <div class="cards-head">
       <div>
         <p class="eyebrow">What DrBrainRX offers</p>
-        <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Modern wellness <span class="serif">medicine</span></h2>
+        <h2 class="h-display reveal">Modern wellness <span class="serif">medicine</span></h2>
       </div>
     </div>
     <div class="pillars" data-stagger style="grid-template-columns:repeat(3,1fr)">
@@ -2295,7 +2296,7 @@ app_body = hero(
     <div class="cards-head">
       <div>
         <p class="eyebrow">Everything in one place</p>
-        <h2 class="h-display reveal" style="font-size:clamp(34px,4.6vw,72px)">Plan your day to <span class="serif">play</span></h2>
+        <h2 class="h-display reveal">Plan your day to <span class="serif">play</span></h2>
       </div>
     </div>
     <div class="pillars" data-stagger style="grid-template-columns:repeat(3,1fr)">
@@ -2386,7 +2387,7 @@ freeze_body = hero(
 <section class="section section--tight only-guest">
   <div class="wrap" style="max-width:820px">
     <p class="eyebrow">Members only</p>
-    <h2 class="h-display reveal" style="font-size:clamp(30px,4vw,58px)">This page is for <span class="serif">members</span></h2>
+    <h2 class="h-display reveal">This page is for <span class="serif">members</span></h2>
     <p class="lede reveal" style="margin-top:24px">Freeze and cancellation requests are handled for active Forma members. If you're already a member, switch to the Member view using the toggle at the top of the page.</p>
     <p class="body-copy reveal" style="margin-top:18px">Not a member yet? <a class="inline-link" href="join.html">Join Forma</a> or <a class="inline-link" href="contact.html#tour">book a tour</a>.</p>
   </div>
