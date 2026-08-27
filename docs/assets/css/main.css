@@ -370,6 +370,14 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
      and hang it above the container instead, lifting his head clear of the
      headline. Desktop is untouched. */
   .hero__media--lift img { height: 116%; top: -14%; }
+  /* Phone-only softening for a hero whose backdrop competes with the copy
+     rather than merely being bright. The About sign already gives 8.6:1, so
+     contrast was never the problem — it is the logo's hard edges running
+     through the letterforms. Blur kills the edges and keeps the impression;
+     the scale stops the blur pulling the frame in from the sides. Desktop
+     shows the sign clear of the copy and stays sharp. */
+  .hero__media--soften img { filter: blur(4px); transform: scale(1.06); }
+  .hero__media--soften::before { background: rgba(11,11,12,0.56); }
   /* Same story for the flat mobile scrim: full strength where the copy sits,
      fading out over the top third so the sunset survives. Re-declared after the
      generic rule above because they have identical specificity. */
@@ -766,7 +774,9 @@ a.pillar { display: block; }
 @media (min-width: 821px) { .pillars--3 .pillar--filler { display: block; } }
 a.pillar h3 { transition: color .3s; }
 a.pillar:hover h3 { color: var(--accent); }
-.pillar__num { font-size: 11px; letter-spacing: 0.3em; color: var(--accent); display: block; margin-bottom: 26px; }
+/* Matches the numbered class grid (.pillars--3): the 26px this used to carry
+   read as a gap rather than as spacing between a number and its title. */
+.pillar__num { font-size: 11px; letter-spacing: 0.3em; color: var(--accent); display: block; margin-bottom: 16px; }
 .pillar h3 { font-family: var(--font-display); text-transform: uppercase; font-weight: 400; font-size: clamp(22px, 2.2vw, 34px); margin-bottom: 16px; line-height: 1.06; }
 .pillar p { color: var(--copy); font-size: 15px; }
 .section--light .pillar p { color: var(--muted-dark); }
@@ -1210,7 +1220,7 @@ a.pillar:hover h3 { color: var(--accent); }
      .pillars 1fr rule in that block — same specificity, later wins. */
   .pillars--3 { grid-template-columns: repeat(2, 1fr); }
   .pillars--3 .pillar { padding: clamp(16px, 4.2vw, 24px); }
-  .pillars--3 .pillar__num { margin-bottom: 9px; }
+  .pillar__num { margin-bottom: 9px; }
   .pillars--3 .pillar h3 { font-size: clamp(18px, 4.9vw, 22px); margin-bottom: 9px; }
   /* 15px on a phone: 16px in a 2-up panel pushed several descriptions to four
      lines and every panel in the row stretched to match. Desktop stays 16px. */

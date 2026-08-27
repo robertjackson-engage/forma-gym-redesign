@@ -1232,7 +1232,14 @@ about_body = hero(
     "our member's daily lives, for the rest of their lives. The goal at Forma has always been to create "
     "a community where fitness and health is available to EVERYONE on the spectrum of movement – from "
     "those struggling just to stand, to Olympic athletes.",
-    img=f"{IMG}/slider-locations_turf_alysse_torey.jpg",
+    img=f"{IMG}/forma_family_sign_hero.jpg",
+    # 2.13 wide against a portrait phone hero: the phone sees 23.6% of the width
+    # and the sign is 23% of it, so there is about half a percent of slack. 84%
+    # is the value that lands the window on the sign — a centred crop cuts it in
+    # half. Every current phone has the same aspect, so that 23.6% holds across
+    # them. Desktop shows 84% of the width, where the sign clears either way.
+    focal="84% 50%",
+    media_mod="hero__media--soften",
     crumb="About",
     actions=[("Book a Tour", "contact.html#tour", True)],
     page=True,
