@@ -610,6 +610,8 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 .marquee--photo span { padding: 0; display: block; }
 .marquee--photo img {
   display: block;
+  /* Belt and braces with the JS: stops the browser's own image-drag ghost. */
+  -webkit-user-drag: none; user-drag: none;
   width: clamp(230px, 29vw, 420px);
   /* Taller so the strip carries its own band rather than leaving a gap under
      it — near square at the top of the range. */

@@ -431,17 +431,22 @@
     el.addEventListener("pointerdown", function (e) {
       hold();
       if (e.pointerType === "mouse") {   // touch keeps native scrolling; only mouse needs a drag
+        // The strip is all <img>, so without this the browser starts its own
+        // image drag on mousedown+move and eats the gesture — which is why it
+        // used to take a click before a drag would take.
+        e.preventDefault();
         dragging = true; startX = e.clientX; startLeft = el.scrollLeft;
         el.classList.add("is-dragging");
         try { el.setPointerCapture(e.pointerId); } catch (err) {}
       }
     });
+    el.addEventListener("dragstart", function (e) { e.preventDefault(); });
     el.addEventListener("pointermove", function (e) {
       if (!dragging) return;
       el.scrollLeft = startLeft - (e.clientX - startX);
       wrap();
     });
-    ["pointerup", "pointercancel", "pointerleave"].forEach(function (evt) {
+    ["pointerup", "pointercancel"].forEach(function (evt) {
       el.addEventListener(evt, function () {
         dragging = false; el.classList.remove("is-dragging"); release();
       });

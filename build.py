@@ -444,7 +444,7 @@ def photo_marquee(images):
     Decorative, so the images carry empty alt text. tabindex=-1 keeps the
     scroll container out of the tab order: browsers make scrollers keyboard
     focusable, and a focusable element inside aria-hidden is an a11y fault."""
-    seg = "".join(f'<span><img src="{IMG}/{im}" alt="" loading="lazy"></span>' for im in images)
+    seg = "".join(f'<span><img src="{IMG}/{im}" alt="" loading="lazy" draggable="false"></span>' for im in images)
     return f"""
 <div class="marquee marquee--photo" aria-hidden="true" tabindex="-1">
   <div class="marquee__track">{seg}</div>
@@ -1250,7 +1250,7 @@ about_body = hero(
     <div class="intro-grid intro-grid--copy">
       <div>
         <p class="eyebrow">Our mission</p>
-        <h2 class="h-display reveal">Play + move<br><span class="serif">every day</span></h2>
+        <h2 class="h-display reveal">Play &amp; move<br><span class="serif">every day</span></h2>
       </div>
       <div class="intro-grid__right">
         <p class="lede reveal">We're very proud of what we've created, and we love our Members, our Team, our Community – and we LOVE being here for you. That's not a slogan. It's how the clubs feel the moment you walk in.</p>
