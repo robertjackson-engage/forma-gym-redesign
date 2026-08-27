@@ -1282,13 +1282,13 @@ about_body = hero(
     'Everyone on the spectrum of <span class="serif">movement</span>',
     ["From first-timers nervous to walk in, to parents reclaiming an hour, to athletes chasing a PR – Forma was built for all of it. Our instructors meet you where you are and help you go further than you thought you could.",
      "It's why people don't just join Forma. They belong to it."],
-    f"{IMG}/slider-hero_ladies_v1.jpg",
-    "Forma community members in class",
+    f"{IMG}/pilates_duet.jpg",
+    "Instructor coaching a member on a reformer at Forma",
     cta=("Visit a club", "locations.html"),
-    # 2000x954 in the default portrait box shows only the middle 41.5% — the three
-    # figures span 54.5%, so the right-hand one was always cut. Wide box + a shift
-    # right onto the group's true centre (60% of the frame, not 50%).
-    wide=True, focal="78% 50%",
+    # The wide box crops only 11% off this source, so both faces sit comfortably
+    # at 63% with no focal. The 78% here before was compensating for the previous
+    # photo, which the box cut to 41.5% with three figures spanning 54.5%.
+    wide=True,
 ) + form_section(
     "tour", "04", "Book a tour",
     'Come see it for <span class="serif">yourself</span>',
@@ -1297,7 +1297,13 @@ about_body = hero(
 ) + cta_band(
     'Come <span class="serif">play</span> with us',
     "Two clubs, one community that can't wait to meet you.",
-    f"{IMG}/slider-locations_group_dance.jpg",
+    f"{IMG}/dance_class_jess.jpg",
+    # Both axes are load-bearing here, on opposite breakpoints. Desktop crops to
+    # 65% of the height and the faces sit 15% down, so a centred crop takes their
+    # heads off; 12% drops them to 17%. The phone crops to 35% of the width and
+    # the instructor stands 68.5% across, which centred puts at 103% — off frame;
+    # 70% brings her to 66%.
+    focal="70% 12%",
 )
 
 # ============================================================ GROUP FITNESS
