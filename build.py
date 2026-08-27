@@ -164,7 +164,6 @@ MENU = [
     ("San Jose", "san-jose.html"),
     ("The Forma App", "app.html"),
     ("Join Now", "join.html"),
-    ("Book a Tour", "contact.html#tour"),
 ]
 
 # Every group-fitness format gets its own detail page.
