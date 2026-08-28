@@ -1778,8 +1778,8 @@ kidz_body = hero(
     'Where kids actually want to <span class="serif">be</span>',
     ["We offer you the time and space to break free from family responsibilities for a little while – to socialize and work out – while our reliable, capable staff helps your kids enjoy plenty of play and learning.",
      "Forma Kidzville was created to provide a safe, stimulating and playful environment where children and preteens are free to learn, explore, experiment, and be active, imaginative and creative."],
-    f"{IMG}/kidzville_header_v3.jpg",
-    "Kids playing in Forma Kidzville",
+    f"{IMG}/kidz_storytime.jpg",
+    "Kidzville staff reading with two children",
     rev=True, cta=("See the hours", "#hours"),
 ) + f"""
 
@@ -1790,7 +1790,7 @@ kidz_body = hero(
         <p class="eyebrow">Kidzville hours</p>
         <h2 class="h-display reveal">When we're <span class="serif">open</span></h2>
       </div>
-      <p class="body-copy reveal" style="max-width:34ch">Questions or sign-ups: <a href="mailto:WCReps@formagym.com" style="color:var(--accent-ink)">WCReps@formagym.com</a> or call the front desk at (925) 932-6400. Reservations recommended.</p>
+      <p class="body-copy reveal only-member" style="max-width:34ch">Questions or sign-ups: <a href="mailto:WCReps@formagym.com" style="color:var(--accent-ink)">WCReps@formagym.com</a> or call the front desk at (925) 932-6400. Reservations recommended.</p>
     </div>
     <div class="sched" data-stagger>
       <div class="sched__col"><h4>Mon–Thu</h4><span class="where">Morning &amp; evening</span><dl><div><dt>AM</dt><dd>8:00am – 1:00pm</dd></div><div><dt>PM</dt><dd>4:00pm – 7:30pm</dd></div></dl></div>
