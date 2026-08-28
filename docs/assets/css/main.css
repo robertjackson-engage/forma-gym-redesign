@@ -362,6 +362,13 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
       rgba(11,11,12,0.18) 78%,
       rgba(11,11,12,0) 100%);
   }
+  /* A flat desktop-only lift for a hero that is just a shade too bright under
+     the standard gradient. The phone already gets its own 0.45 scrim, so this
+     sits inside the desktop query rather than being a --tinted-style pair. */
+  .hero__media--tint-d::before {
+    content: ""; position: absolute; inset: 0; z-index: 1;
+    background: rgba(11,11,12,0.24);
+  }
 }
 /* Every hero on a phone: the copy runs the full width with nowhere quiet to
    sit, so a busy or brightly lit frame swallows it. Flat scrim under the
@@ -635,10 +642,13 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   display: block;
   /* Belt and braces with the JS: stops the browser's own image-drag ghost. */
   -webkit-user-drag: none; user-drag: none;
-  width: clamp(230px, 29vw, 420px);
-  /* Taller so the strip carries its own band rather than leaving a gap under
-     it — near square at the top of the range. */
+  /* Height is uniform so the strip keeps a clean top and bottom edge; width
+     follows each photo's own ratio, so nothing is cropped to fit a tile. The
+     max-width is only a backstop against a panorama running away with the
+     strip — cover applies solely in that case. */
   height: clamp(190px, 22vw, 330px);
+  width: auto;
+  max-width: clamp(300px, 42vw, 620px);
   object-fit: cover;
   filter: saturate(1.02);
 }

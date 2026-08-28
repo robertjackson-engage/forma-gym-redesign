@@ -7,6 +7,28 @@ IMG = "assets/img"
 # The club photo strip from formagym.com, in the order the live site runs it.
 # These are Forma's own carousel images — pulled from the live site so the
 # redesign's strips show the real thing rather than stand-ins.
+_CURATED_OUTDOOR_STRIP = [
+    "turf_trx_hero.jpg",
+    "WC_pool_class_662x501_v1.jpg",
+]
+
+
+# Per-photo crops for strip images whose subject the centred crop clips.
+STRIP_FOCAL = {
+    "ropes_WC_photo_strip.jpg": "50% 20%",   # 900x885 into a wide tile — centred cut her head
+}
+
+
+def _wc_strip_photos():
+    """Every *WC_photo_strip.jpg sitting in assets/img, newest-named last."""
+    import glob as _g
+    d = os.path.join(OUT, "assets", "img")
+    names = sorted(os.path.basename(f) for f in _g.glob(os.path.join(d, "*WC_photo_strip.jpg")))
+    return [(n, STRIP_FOCAL[n]) if n in STRIP_FOCAL else n for n in names]
+
+
+OUTDOOR_STRIP_PHOTOS = _wc_strip_photos() + _CURATED_OUTDOOR_STRIP
+
 STRIP_PHOTOS = [
     "SJ_pool_662x501_v1.jpg",
     "gym_floor2_WC_500px.jpg",
@@ -451,7 +473,15 @@ def photo_marquee(images):
     Decorative, so the images carry empty alt text. tabindex=-1 keeps the
     scroll container out of the tab order: browsers make scrollers keyboard
     focusable, and a focusable element inside aria-hidden is an a11y fault."""
-    seg = "".join(f'<span><img src="{IMG}/{im}" alt="" loading="lazy" draggable="false"></span>' for im in images)
+    def _cell(entry):
+        # An entry is a filename, or (filename, object-position) when the strip's
+        # centred crop cuts the subject — the tiles are near-square, so a tall
+        # source loses the top of a head.
+        im, focal = entry if isinstance(entry, tuple) else (entry, None)
+        style = f' style="object-position:{focal}"' if focal else ""
+        return f'<span><img src="{IMG}/{im}" alt="" loading="lazy" draggable="false"{style}></span>'
+
+    seg = "".join(_cell(e) for e in images)
     return f"""
 <div class="marquee marquee--photo" aria-hidden="true" tabindex="-1">
   <div class="marquee__track">{seg}</div>
@@ -2225,22 +2255,23 @@ outdoor_body = hero(
     ["Train under", '<span class="serif">California skies</span>'],
     "Our members LOVE to exercise outdoors – and we LOVE giving them the environment and tools to show up and move every day. We've expanded our outdoor footprint so you have everything you need, all year-round.",
     img=f"{IMG}/outdoor_curl_hero.jpg",
-    # Desktop crops only 5% off the height, so y is near-inert there and his face
-    # lands at 19% on its own. The phone crops to 30% of the width and he stands
-    # 59% across, which centred puts at 80% — hard right; 59% centres him.
-    focal="50% 50%",
-    media_mod="hero__media--clear-top",
+    # Each axis bites on one breakpoint only: the phone crops the width and shows
+    # the full height, desktop crops 5% of the height and shows the full width.
+    # So y here is a desktop-only nudge — and 5% is the entire travel, about 44px.
+    # 15% drops his face from 19.4% to 21.3%.
+    focal="50% 15%",
+    media_mod="hero__media--clear-top hero__media--tint-d",
     crumb="Outdoor",
     actions=[("Visit Us", "join.html", True)],
     meta=["Covered outdoor turf", "Rain or shine", "Both clubs"],
     page=True,
-) + f"""
+) + photo_marquee(OUTDOOR_STRIP_PHOTOS) + f"""
 <section class="section">
   <div class="wrap">
     <div class="cards-head">
       <div>
         <p class="eyebrow">Your outdoor playground</p>
-        <h2 class="h-display reveal">Everything you need<br>&amp; more – <span class="serif">outside.</span></h2>
+        <h2 class="h-display reveal">Everything you need<br>&amp; more. <span class="serif">outside.</span></h2>
       </div>
       <p class="body-copy reveal" style="max-width:34ch">Walnut Creek's outdoor turf sits under towering redwoods, complete with deck and cabanas by the pool. San Jose's 8,000 sq. ft. covered outdoor area is enclosed in palm trees, creating a year-round fitness oasis.</p>
     </div>
