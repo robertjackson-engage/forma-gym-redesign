@@ -1831,10 +1831,10 @@ rise_body = hero(
     <div class="cards-head">
       <div>
         <p class="eyebrow">What RISE delivers</p>
-        <h2 class="h-display reveal">Get moving <span class="serif">again</span></h2>
+        <h2 class="h-display reveal">Get <span class="serif">moving</span> again</h2>
       </div>
     </div>
-    <div class="pillars" data-stagger style="grid-template-columns:repeat(3,1fr)">
+    <div class="pillars pillars--3col" data-stagger>
       <div class="pillar"><span class="pillar__num">01</span><h3>Wheelchair free</h3><p>Your body was designed to MOVE. Recovery sessions are conducted out of your chair to get you moving again.</p></div>
       <div class="pillar"><span class="pillar__num">02</span><h3>Less medication</h3><p>Many clients find a reduced dependency on medication – or rid their use of it entirely.</p></div>
       <div class="pillar"><span class="pillar__num">03</span><h3>Better quality of life</h3><p>We stimulate your central nervous system to promote neuroplasticity – rebuilding the pathways your brain needs.</p></div>
@@ -2244,7 +2244,7 @@ outdoor_body = hero(
       </div>
       <p class="body-copy reveal" style="max-width:34ch">Walnut Creek's outdoor turf sits under towering redwoods, complete with deck and cabanas by the pool. San Jose's 8,000 sq. ft. covered outdoor area is enclosed in palm trees, creating a year-round fitness oasis.</p>
     </div>
-    <div class="pillars" data-stagger style="grid-template-columns:repeat(2,1fr)">
+    <div class="pillars pillars--2col" data-stagger>
       <div class="pillar"><span class="pillar__num">01</span><h3>Strength Training</h3><p>Racks, benches, machines and free weights – with room to breathe between sets.</p></div>
       <div class="pillar"><span class="pillar__num">02</span><h3>Cardio Equipment</h3><p>Treadmills, rowers and more, set up under cover for year-round outdoor sessions.</p></div>
       <div class="pillar"><span class="pillar__num">03</span><h3>Group Exercise</h3><p>Take your favorite classes into the open air – group energy hits different outside.</p></div>
@@ -2279,7 +2279,7 @@ drbrain_body = hero(
         <h2 class="h-display reveal">Modern wellness <span class="serif">medicine</span></h2>
       </div>
     </div>
-    <div class="pillars" data-stagger style="grid-template-columns:repeat(3,1fr)">
+    <div class="pillars pillars--3col" data-stagger>
       <div class="pillar"><span class="pillar__num">01</span><h3>GLP-1 Weight Loss Care</h3><p>Physician-guided, modern weight-management care tailored to your body and your goals.</p></div>
       <div class="pillar"><span class="pillar__num">02</span><h3>Peptide Therapy</h3><p>Targeted peptide protocols to support recovery, performance and healthy aging.</p></div>
       <div class="pillar"><span class="pillar__num">03</span><h3>Longevity Medicine</h3><p>A proactive, science-led approach to living stronger and sharper for longer.</p></div>
@@ -2321,7 +2321,7 @@ app_body = hero(
         <h2 class="h-display reveal">Plan your day to <span class="serif">play</span></h2>
       </div>
     </div>
-    <div class="pillars" data-stagger style="grid-template-columns:repeat(3,1fr)">
+    <div class="pillars pillars--3col" data-stagger>
       <div class="pillar"><span class="pillar__num">01</span><h3>Reserve classes &amp; lanes</h3><p>Grab your spot in any group fitness class or book a swim lane in seconds.</p></div>
       <div class="pillar"><span class="pillar__num">02</span><h3>Live schedules</h3><p>See what's on today across both clubs – and never miss your favorite instructor.</p></div>
       <div class="pillar"><span class="pillar__num">03</span><h3>Manage membership</h3><p>Your account, check-ins and member perks, all in the palm of your hand.</p></div>
