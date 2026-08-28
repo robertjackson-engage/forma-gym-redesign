@@ -1775,7 +1775,7 @@ kidz_body = hero(
 ) + f"""
 """ + split(
     "Safe · active · educational", "01",
-    'Where kids actually want to <span class="serif">be</span>',
+    'Where <span class="serif">kids</span> actually want to be',
     ["We offer you the time and space to break free from family responsibilities for a little while – to socialize and work out – while our reliable, capable staff helps your kids enjoy plenty of play and learning.",
      "Forma Kidzville was created to provide a safe, stimulating and playful environment where children and preteens are free to learn, explore, experiment, and be active, imaginative and creative."],
     f"{IMG}/kidz_storytime.jpg",
