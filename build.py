@@ -8,7 +8,6 @@ IMG = "assets/img"
 # These are Forma's own carousel images — pulled from the live site so the
 # redesign's strips show the real thing rather than stand-ins.
 _CURATED_OUTDOOR_STRIP = [
-    "turf_trx_hero.jpg",
     "WC_pool_class_662x501_v1.jpg",
 ]
 
@@ -19,11 +18,22 @@ STRIP_FOCAL = {
 }
 
 
+# Files that match the strip naming but are not strip photos — a hero staged
+# under the same convention, or a shot that was tried and dropped. Without this
+# the glob quietly puts them back every time the optimise step runs.
+STRIP_EXCLUDE = {
+    "turf_hanna_hero_WC_photo_strip.jpg",   # staged as the WC Outdoor hero
+    "strong_turf_WC_photo_strip.jpg",       # tried, replaced by show_up_turf
+    "ropes_WC_photo_strip.jpg",             # same shot as the hero now
+}
+
+
 def _wc_strip_photos():
-    """Every *WC_photo_strip.jpg sitting in assets/img, newest-named last."""
+    """Every *WC_photo_strip.jpg sitting in assets/img, minus STRIP_EXCLUDE."""
     import glob as _g
     d = os.path.join(OUT, "assets", "img")
     names = sorted(os.path.basename(f) for f in _g.glob(os.path.join(d, "*WC_photo_strip.jpg")))
+    names = [n for n in names if n not in STRIP_EXCLUDE]
     return [(n, STRIP_FOCAL[n]) if n in STRIP_FOCAL else n for n in names]
 
 
@@ -2254,12 +2264,13 @@ outdoor_body = hero(
     "Outdoor Fitness",
     ["Train under", '<span class="serif">California skies</span>'],
     "Our members LOVE to exercise outdoors – and we LOVE giving them the environment and tools to show up and move every day. We've expanded our outdoor footprint so you have everything you need, all year-round.",
-    img=f"{IMG}/outdoor_curl_hero.jpg",
-    # Each axis bites on one breakpoint only: the phone crops the width and shows
-    # the full height, desktop crops 5% of the height and shows the full width.
-    # So y here is a desktop-only nudge — and 5% is the entire travel, about 44px.
-    # 15% drops his face from 19.4% to 21.3%.
-    focal="50% 15%",
+    img=f"{IMG}/turf_hanna_hero.jpg",
+    # Each axis bites on one breakpoint only. The phone crops to 33% of the width
+    # and she stands 64.5% across, which centred puts at 94% — hard against the
+    # edge; 62% brings her to 70%. Desktop crops 15% of the height and she sits
+    # high in the frame, so a centred crop puts her face at 5.7%, under the nav;
+    # 5% drops it to 13.9%.
+    focal="62% 5%",
     media_mod="hero__media--clear-top hero__media--tint-d",
     crumb="Outdoor",
     actions=[("Visit Us", "join.html", True)],
