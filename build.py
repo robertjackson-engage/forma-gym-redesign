@@ -422,7 +422,7 @@ def footer_html():
 """
 
 
-def hero(kicker, lines, sub="", img=None, video=None, poster=None, poster_mobile=None, crumb=None,
+def hero(kicker, lines, sub="", sub2="", img=None, img_mobile=None, video=None, poster=None, poster_mobile=None, crumb=None,
          actions=None, meta=None, page=False, title_mod="", focal=None,
          walkthrough=False, tinted=False, media_mod=""):
     lns = ""
@@ -450,7 +450,15 @@ def hero(kicker, lines, sub="", img=None, video=None, poster=None, poster_mobile
                  f'data-poster-desktop="{post}" data-poster-mobile="{pm}" '
                  f'data-src-desktop="{HERO_VIDEO_DESKTOP}" data-src-mobile="{HERO_VIDEO_MOBILE}"></video>')
     else:
-        media = f'<img src="{post}" alt="" fetchpriority="high"{fstyle}>'
+        tag = f'<img src="{post}" alt="" fetchpriority="high"{fstyle}>'
+        if img_mobile:
+            # A wide frame with the subject far right cannot serve a phone: the
+            # portrait box shows ~28% of the width. This is a separately cropped
+            # and gradiented file, picked by the browser, so the phone never
+            # downloads the desktop one.
+            tag = (f'<picture><source media="(max-width:820px)" '
+                   f'srcset="{img_mobile}">{tag}</picture>')
+        media = tag
     acts = ""
     if actions:
         acts = '<div class="hero__actions">'
@@ -466,6 +474,10 @@ def hero(kicker, lines, sub="", img=None, video=None, poster=None, poster_mobile
     if meta:
         meta_html = '<div class="hero__meta">' + "".join(f"<span>{m}</span>" for m in meta) + "</div>"
     sub_html = f'<p class="hero__sub">{sub}</p>' if sub else ""
+    # A second, emphasised paragraph — used where the hero carries an offer as
+    # well as a description. Its own <p>, not nested inside hero__sub.
+    if sub2:
+        sub_html += f'<p class="hero__sub hero__sub--offer">{sub2}</p>'
     return f"""
 <section class="hero{' hero--page' if page else ''}">
   <div class="hero__media{' hero__media--tinted' if tinted else ''}{f' {media_mod}' if media_mod else ''}">{media}</div>
@@ -1078,6 +1090,7 @@ def rewrite_urls(html):
     # data-src-*, data-poster-* and poster carry asset paths too, and are not
     # href/src. Miss one and it ships a relative URL that 404s from any page in
     # a subdirectory.
+    html = _re.sub(r'srcset="assets/', f'srcset="{SITE_BASE}/assets/', html)
     html = _re.sub(r'(data-src-desktop|data-src-mobile'
                    r'|data-poster-desktop|data-poster-mobile|poster)="assets/',
                    rf'\1="{SITE_BASE}/assets/', html)
@@ -2310,13 +2323,16 @@ outdoor_body = hero(
 
 # ============================================================ DRBRAINRX
 drbrain_body = hero(
-    "DrBrainRX",
-    ["Longevity,", '<span class="serif">optimized</span>'],
-    "GLP-1 weight loss care, peptide therapy and longevity medicine – available to Forma members through our DrBrainRX partnership. Because feeling your best is about more than the workout.",
-    img=f"{IMG}/circle_connect_BLUR_2000x1333px.jpg",
+    "GLP-1 weight loss care + Peptide therapy + Longevity",
+    ['DrBrain<span class="serif">RX</span>', "&amp; Forma"],
+    "DrBrainRX’s Dr. Sara Siavoshi is a neurologist and weight loss medicine physician who focuses on the brain side of metabolism, appetite, and weight regulation.",
+    sub2="Forma members get 1 month FREE DrBrainRX membership, $70 OFF your 1st month of any compounded product, fully online medical intake and provider review and ongoing support AND access to the DrBrainRX team.",
+    img=f"{IMG}/drbrain_sara_hero.jpg",
+    img_mobile=f"{IMG}/drbrain_sara_hero_m.jpg",
+    media_mod="hero__media--baked",
     crumb="DrBrainRX",
-    actions=[("Member Offer", "#offer", True)],
-    meta=["GLP-1 weight loss care", "Peptide therapy", "Longevity medicine"],
+    actions=[("Join Now", "join.html", True)],
+    meta=["Long-term metabolic support", "Cognitive clarity", "Weight stability"],
     page=True,
 ) + f"""
 <section class="section">
@@ -2347,8 +2363,8 @@ drbrain_body = hero(
 """ + cta_band(
     'Feel as good as you <span class="serif">look</span>',
     "Ask the front desk about DrBrainRX, or mention it on your tour. Your strongest, sharpest self is the goal.",
-    f"{IMG}/slider-locations_group_dance.jpg",
-    primary=("Book a Tour", "contact.html#tour"),
+    f"{IMG}/drbrain_band.jpg",
+    mid=True,
 )
 
 # ============================================================ APP
