@@ -1447,17 +1447,10 @@ locations_body = hero(
     "Locations &amp; Hours",
     ["Two unique", 'Bay Area <span class="serif">clubs</span>.'],
     "Walnut Creek and San Jose – both premium, both all-inclusive. Find your home club below.",
-    img=f"{IMG}/turf_trx_hero.jpg",
-    # Each axis matters on one breakpoint only. Desktop shows the full width and
-    # crops 15% of the height, so x is inert there; the phone crops to 33% of the
-    # width and shows the full height, so y is inert there. She stands 66% across,
-    # which a centred phone crop puts at 98% — hard against the edge; 64% brings
-    # it to 70%.
-    focal="64% 50%",
-    # The phone crop has no vertical overflow — full height already shows — so
-    # object-position cannot raise her. --lift gives the image a taller box and
-    # hangs it above the container instead. Mobile-only; desktop is untouched.
-    media_mod="hero__media--lift",
+    img=f"{IMG}/pool_wc_birdseye_hero.jpg",
+    # Bright overhead water across the whole frame — the standard gradient alone
+    # left the copy sitting on it.
+    tinted=True,
     crumb="Locations",
     actions=[("Visit Us", "join.html", True)],
     page=True,
@@ -1508,10 +1501,9 @@ locations_body = hero(
     (14, "", "Group fitness formats"),
     (time.localtime().tm_year - FOUNDED, "", "Years in the Bay Area"),
 ]) + cta_band(
-    'Find your <span class="serif">home club</span>',
+    'Find your <br class="br-m"><span class="serif">home club</span>',
     "Both locations are all-inclusive: every class, the pool, the recovery suites – the works.",
-    # was pool_sunset_SJ_500px.jpg — a 500px square stretched across a 100vw band
-    f"{IMG}/sj_pool_sunset.jpg",
+    f"{IMG}/wc_gym_floor_led.jpg",
 )
 
 

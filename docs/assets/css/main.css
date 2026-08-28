@@ -584,8 +584,10 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   color: var(--bone);
 }
 .section--light .stat__num { color: var(--ink); }
-.stat__num .sfx { color: var(--accent); }
-.stat__label { margin-top: 14px; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--muted); }
+/* The suffix reads as part of the number, so it takes the number's colour; the
+   label below carries the accent instead. */
+.stat__num .sfx { color: inherit; }
+.stat__label { margin-top: 14px; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--accent); }
 .section--light .stat__label { color: var(--muted-dark); }
 
 /* ---------- marquee ---------- */
@@ -1010,6 +1012,9 @@ a.pillar:hover h3 { color: var(--accent); }
   gap: clamp(36px, 5vw, 90px); padding: clamp(48px, 6vw, 90px) 0;
   border-bottom: 1px solid var(--line); align-items: center;
 }
+/* The last club's rule sits just above the stats block, which draws its own top
+   edge — two lines with a gap between them. The list needs no closing rule. */
+.loc-item:last-child { border-bottom: 0; }
 .loc-item__media { overflow: hidden; aspect-ratio: 16/10; position: relative; }
 .loc-item__media img { width: 100%; height: 100%; object-fit: cover; }
 .loc-item h3 { font-family: var(--font-display); text-transform: uppercase; font-weight: 400; font-size: clamp(30px, 3.6vw, 56px); line-height: 1; margin-bottom: 8px; }
@@ -1835,7 +1840,6 @@ body.chat-open .chat-panel { opacity: 1; transform: none; pointer-events: auto; 
 /* on light sections, accent text/borders deepen for AA contrast */
 .section--light .eyebrow,
 .section--light .inline-link,
-.section--light .stat__num .sfx,
 .section--light .quote-band__mark,
 .section--light .loc-badge,
 .section--light .row-item__idx,
