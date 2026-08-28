@@ -1792,18 +1792,23 @@ kidz_body = hero(
       </div>
       <p class="body-copy reveal only-member" style="max-width:34ch">Questions or sign-ups: <a href="mailto:WCReps@formagym.com" style="color:var(--accent-ink)">WCReps@formagym.com</a> or call the front desk at (925) 932-6400. Reservations recommended.</p>
     </div>
-    <div class="sched" data-stagger>
-      <div class="sched__col"><h4>Mon–Thu</h4><span class="where">Morning &amp; evening</span><dl><div><dt>AM</dt><dd>8:00am – 1:00pm</dd></div><div><dt>PM</dt><dd>4:00pm – 7:30pm</dd></div></dl></div>
-      <div class="sched__col"><h4>Friday</h4><span class="where">Mornings</span><dl><div><dt>AM</dt><dd>8:00am – 1:00pm</dd></div></dl></div>
-      <div class="sched__col"><h4>Sat–Sun</h4><span class="where">Mornings</span><dl><div><dt>AM</dt><dd>8:00am – 12:00pm</dd></div></dl></div>
+    <div class="loc-hours" style="max-width:34rem">
+      <div><dt>Mon–Thu AM</dt><dd>8:00am – 1:00pm</dd></div>
+      <div><dt>Mon–Thu PM</dt><dd>4:00pm – 7:30pm</dd></div>
+      <div><dt>Friday</dt><dd>8:00am – 1:00pm</dd></div>
+      <div><dt>Sat–Sun</dt><dd>8:00am – 12:00pm</dd></div>
     </div>
   </div>
 </section>
 """ + cta_band(
-    'Bring the <span class="serif">whole family</span>',
-    "Your kids will look forward to it as much as you look forward to your workout. Reserve a spot and Play Every Day.",
-    f"{IMG}/kidzville_header_v3.jpg",
-    primary=("Reserve a Spot", "tel:9259326400"),
+    'Made for families.<br><span class="serif">Forma families.</span>',
+    "Your kids will look forward to it as much as you look forward to your workout.",
+    f"{IMG}/forma_family_sign_hero.jpg",
+    focal="85% 50%",
+    # The band crops only 8% of this frame's height, so a vertical focal has
+    # almost no travel. raise_ shifts the whole image box up 9% instead, and
+    # unlike the focal it works on the phone too, where the height is exact.
+    raise_=True,
 )
 
 # ============================================================ RISE
