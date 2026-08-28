@@ -794,7 +794,6 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
    columns INLINE, which beats every media query and left three 110px columns
    on a 375px phone. */
 @media (min-width: 1101px) {
-  .pillars--3col { grid-template-columns: repeat(3, 1fr); }
   .pillars--2col { grid-template-columns: repeat(2, 1fr); }
 }
 .section--light .pillars { background: var(--line-dark); border-color: var(--line-dark); }
