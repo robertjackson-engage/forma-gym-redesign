@@ -271,7 +271,7 @@ def head(title, desc):
 <meta name="description" content="{desc}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="{LOGO}">
 <link rel="stylesheet" href="assets/css/main.css?v={V}">
 <script>(function(){{try{{
@@ -2326,7 +2326,7 @@ drbrain_body = hero(
     "GLP-1 weight loss care + Peptide therapy + Longevity",
     ['DrBrain<span class="serif">RX</span>', "&amp; Forma"],
     "DrBrainRX’s Dr. Sara Siavoshi is a neurologist and weight loss medicine physician who focuses on the brain side of metabolism, appetite, and weight regulation.",
-    sub2="Forma members get 1 month FREE DrBrainRX membership, $70 OFF your 1st month of any compounded product, fully online medical intake and provider review and ongoing support AND access to the DrBrainRX team.",
+    sub2="Members get <strong>1 month FREE</strong> DrBrainRX membership, <strong>$70 OFF</strong> your 1st month of any compounded product, fully online medical intake and provider review and ongoing support AND access to the DrBrainRX team.",
     img=f"{IMG}/drbrain_sara_hero.jpg",
     img_mobile=f"{IMG}/drbrain_sara_hero_m.jpg",
     media_mod="hero__media--baked",
