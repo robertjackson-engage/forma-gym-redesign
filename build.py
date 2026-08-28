@@ -487,13 +487,13 @@ def stats_band(items, light=False):
 
 
 def split(eyebrow, num, title, paras, img, alt, rev=False, cta=None, light=False, wide=False, focal=None, ratio=None,
-          body_html=None):
+          body_html=None, sec_id=None):
     # body_html replaces the paragraphs outright — the homepage club blocks use
     # it to carry the locations-page phone / hours / address treatment.
     body_paras = body_html or "".join(f'<p class="body-copy">{p}</p>' for p in paras)
     cta_html = f'<div class="split__cta"><a class="inline-link" href="{cta[1]}">{cta[0]} →</a></div>' if cta else ""
     return f"""
-<section class="section{' section--panel' if light else ''}">
+<section class="section{' section--panel' if light else ''}"{f' id="{sec_id}"' if sec_id else ''}>
   <div class="wrap">
     <div class="split{' split--rev' if rev else ''}">
       <div class="split__media{' split__media--wide' if wide else ''} reveal-img"{f' style="aspect-ratio:{ratio}"' if ratio else ''}>
@@ -1761,7 +1761,7 @@ spa_body = hero(
 # ============================================================ KIDZVILLE
 kidz_body = hero(
     "Kidzville",
-    ["A guilt-free", '<span class="serif">workout</span>'],
+    ["Get a guilt-free", '<span class="serif">workout</span>'],
     "We created a unique indoor and outdoor environment where you can enjoy your workout while your kids (ages 6 weeks–12 years) are free to play in a safe, active, and educational space.",
     img=f"{IMG}/kidzville_hero.jpg",
     # Desktop shows 97% of the width, so x is inert there. The phone shows 27%,
@@ -1769,32 +1769,32 @@ kidz_body = hero(
     # and misses it entirely, showing turf and half a slide. 78% frames the fort.
     focal="78% 50%",
     crumb="Kidzville",
-    actions=[("Join Now", "join.html", True)],
+    actions=[("Join Now", "join.html", True), ("Hours", "#hours", False)],
     meta=["Ages 6 weeks–12 years", "Reservations recommended"],
     page=True,
-) + split(
+) + f"""
+<section class="section section--panel">
+  <div class="wrap">
+    <div class="intro-grid intro-grid--copy">
+      <div>
+        <p class="eyebrow">Member childcare</p>
+        <h2 class="h-display reveal">Safe. Active.<br><span class="serif">Educational.</span></h2>
+      </div>
+      <div class="intro-grid__right">
+        <p class="lede reveal">We offer you the time and space to focus wholly on you and your time here at Forma. Work out, socialize and reconnect – while our reliable, capable team helps your kids enjoy plenty of play and learning. Kidzville incorporates innovative games and activities, giving your child the opportunity to participate with groups, pursue individual interests, or just play with friends.</p>
+      </div>
+    </div>
+  </div>
+</section>
+""" + split(
     "Kidzville hours", "01",
     "When we\'re <span class=\"serif\">open</span>",
     [],
     f"{IMG}/kidz_storytime.jpg",
     "Kidzville staff reading with two children",
-    rev=True, ratio="1080/976",
+    rev=True, ratio="1080/976", sec_id="hours",
     body_html='<div class="loc-hours"><div><dt>Mon–Thu AM</dt><dd>8:00am – 1:00pm</dd></div><div><dt>Mon–Thu PM</dt><dd>4:00pm – 7:30pm</dd></div><div><dt>Friday</dt><dd>8:00am – 1:00pm</dd></div><div><dt>Sat–Sun</dt><dd>8:00am – 12:00pm</dd></div></div><p class="body-copy reveal only-member">Questions or sign-ups: <a href="mailto:WCReps@formagym.com" style="color:var(--accent-ink)">WCReps@formagym.com</a> or call the front desk at (925) 932-6400. Reservations recommended.</p>',
 ) + f"""
-<section class="section">
-  <div class="wrap">
-    <div class="intro-grid">
-      <div>
-        <p class="eyebrow">Safe &middot; active &middot; educational</p>
-        <h2 class="h-display reveal">Where <span class="serif">kids</span> actually want to be</h2>
-      </div>
-      <div class="intro-grid__right">
-        <p class="lede reveal">We offer you the time and space to break free from family responsibilities for a little while &ndash; to socialize and work out &ndash; while our reliable, capable staff helps your kids enjoy plenty of play and learning.</p>
-        <p class="body-copy reveal">Forma Kidzville was created to provide a safe, stimulating and playful environment where children and preteens are free to learn, explore, experiment, and be active, imaginative and creative.</p>
-      </div>
-    </div>
-  </div>
-</section>
 """ + cta_band(
     'Made for families.<br><span class="serif">Forma families.</span>',
     "Your kids will look forward to it as much as you look forward to your workout.",
