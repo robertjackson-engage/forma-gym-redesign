@@ -1772,31 +1772,26 @@ kidz_body = hero(
     actions=[("Join Now", "join.html", True)],
     meta=["Ages 6 weeks–12 years", "Reservations recommended"],
     page=True,
-) + f"""
-""" + split(
-    "Safe · active · educational", "01",
-    'Where <span class="serif">kids</span> actually want to be',
-    ["We offer you the time and space to break free from family responsibilities for a little while – to socialize and work out – while our reliable, capable staff helps your kids enjoy plenty of play and learning.",
-     "Forma Kidzville was created to provide a safe, stimulating and playful environment where children and preteens are free to learn, explore, experiment, and be active, imaginative and creative."],
+) + split(
+    "Kidzville hours", "01",
+    "When we\'re <span class=\"serif\">open</span>",
+    [],
     f"{IMG}/kidz_storytime.jpg",
     "Kidzville staff reading with two children",
-    rev=True, cta=("See the hours", "#hours"),
+    rev=True, ratio="1080/976",
+    body_html='<div class="loc-hours"><div><dt>Mon–Thu AM</dt><dd>8:00am – 1:00pm</dd></div><div><dt>Mon–Thu PM</dt><dd>4:00pm – 7:30pm</dd></div><div><dt>Friday</dt><dd>8:00am – 1:00pm</dd></div><div><dt>Sat–Sun</dt><dd>8:00am – 12:00pm</dd></div></div><p class="body-copy reveal only-member">Questions or sign-ups: <a href="mailto:WCReps@formagym.com" style="color:var(--accent-ink)">WCReps@formagym.com</a> or call the front desk at (925) 932-6400. Reservations recommended.</p>',
 ) + f"""
-
-<section class="section section--panel" id="hours">
+<section class="section">
   <div class="wrap">
-    <div class="cards-head">
+    <div class="intro-grid">
       <div>
-        <p class="eyebrow">Kidzville hours</p>
-        <h2 class="h-display reveal">When we're <span class="serif">open</span></h2>
+        <p class="eyebrow">Safe &middot; active &middot; educational</p>
+        <h2 class="h-display reveal">Where <span class="serif">kids</span> actually want to be</h2>
       </div>
-      <p class="body-copy reveal only-member" style="max-width:34ch">Questions or sign-ups: <a href="mailto:WCReps@formagym.com" style="color:var(--accent-ink)">WCReps@formagym.com</a> or call the front desk at (925) 932-6400. Reservations recommended.</p>
-    </div>
-    <div class="loc-hours" style="max-width:34rem">
-      <div><dt>Mon–Thu AM</dt><dd>8:00am – 1:00pm</dd></div>
-      <div><dt>Mon–Thu PM</dt><dd>4:00pm – 7:30pm</dd></div>
-      <div><dt>Friday</dt><dd>8:00am – 1:00pm</dd></div>
-      <div><dt>Sat–Sun</dt><dd>8:00am – 12:00pm</dd></div>
+      <div class="intro-grid__right">
+        <p class="lede reveal">We offer you the time and space to break free from family responsibilities for a little while &ndash; to socialize and work out &ndash; while our reliable, capable staff helps your kids enjoy plenty of play and learning.</p>
+        <p class="body-copy reveal">Forma Kidzville was created to provide a safe, stimulating and playful environment where children and preteens are free to learn, explore, experiment, and be active, imaginative and creative.</p>
+      </div>
     </div>
   </div>
 </section>
