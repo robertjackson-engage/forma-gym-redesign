@@ -169,8 +169,8 @@ body.menu-open .nav-desktop, body.menu-open .header-cta .btn { opacity: 0; point
 /* real Gainesville logo — white in dark header/menu/footer (monochrome art) */
 /* No brightness/invert filter here: the supplied SVG is already white with the
    brand-cyan divider, and forcing it white would flatten the divider out. */
-.brand__logo { height: 24px; width: auto; flex-shrink: 0; transition: height .45s var(--ease-out); }
-.site-header.is-scrolled .brand__logo { height: 28px; }
+.brand__logo { height: 21px; width: auto; flex-shrink: 0; transition: height .45s var(--ease-out); }
+.site-header.is-scrolled .brand__logo { height: 21px; }
 .brand--footer .brand__logo { height: 46px; }
 @media (max-width: 820px) {
   /* Reading text inherits 1.65 from body. On a phone that generosity costs real
