@@ -2269,7 +2269,7 @@ outdoor_body = hero(
     # and she stands 64.5% across, which centred puts at 94% — hard against the
     # edge; 62% brings her to 70%. Desktop crops 15% of the height and she sits
     # high in the frame, so a centred crop puts her face at 5.7%, under the nav;
-    # 5% drops it to 13.9%.
+    # 5% drops it to 16.8% — v2 carries extra headroom for exactly this.
     focal="62% 5%",
     media_mod="hero__media--clear-top hero__media--tint-d",
     crumb="Outdoor",
