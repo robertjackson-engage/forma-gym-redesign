@@ -468,15 +468,6 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   opacity: 0; transform: translateY(24px); transition: opacity .9s ease .55s, transform .9s var(--ease-out) .55s;
 }
 .is-loaded .hero__sub { opacity: 1; transform: none; }
-.hero__sub--offer {
-  margin-top: 18px; font-style: italic; font-weight: 300;
-  font-size: clamp(15px, 1.1vw, 17px); line-height: 1.34;
-  color: var(--accent);
-  transition-delay: .68s;
-}
-/* Colour is uniform across the paragraph; the numbers carry a weight bump only.
-   400 is the heaviest real italic in this Montserrat subset. */
-.hero__sub--offer strong { font-weight: 400; }
 .hero__actions {
   display: flex; gap: 16px; flex-wrap: wrap; margin-top: clamp(26px, 4vh, 44px);
   opacity: 0; transform: translateY(24px); transition: opacity .9s ease .75s, transform .9s var(--ease-out) .75s;
@@ -854,6 +845,17 @@ a.pillar:hover h3 { color: var(--accent); }
   font-family: var(--font-body); font-style: normal;
   font-size: clamp(26px, 3.6vw, 54px); line-height: 1.25; max-width: 22ch; margin: 0 auto;
 }
+.quote-band--sm blockquote {
+  font-size: clamp(20px, 2.2vw, 32px); line-height: 1.42; max-width: 46ch;
+}
+.quote-band .eyebrow { justify-content: center; margin-bottom: clamp(18px, 2.4vw, 30px); }
+.quote-band .eyebrow::after { content: none; }
+.quote-band__rule {
+  display: block; width: min(320px, 58%); height: 1px; background: var(--accent);
+  margin: clamp(26px, 3vw, 40px) auto clamp(18px, 2.2vw, 28px);
+}
+.quote-band--sm figcaption { margin-top: 0; }
+.quote-band__lockup { display: block; height: clamp(17px, 1.8vw, 24px); width: auto; margin: 0 auto; }
 .quote-band figcaption { margin-top: 30px; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); }
 .section--light .quote-band figcaption { color: var(--muted-dark); }
 
@@ -1112,6 +1114,7 @@ a.pillar:hover h3 { color: var(--accent); }
 .cta-band--soft .cta-band__media::after { background: rgba(11,11,12,0.62); }
 /* Between the two. Must sit after --soft: same specificity, later wins. */
 .cta-band--mid .cta-band__media::after { background: rgba(11,11,12,0.70); }
+.cta-band--deep .cta-band__media::after { background: rgba(11,11,12,0.82); }
 /* The band image is 118% tall and top-anchored, so its bottom 18% is clipped.
    Shifting up by half that brings the lower part of the frame into view —
    used where a subject sits right against the photo's bottom edge. `top`
@@ -1333,8 +1336,7 @@ html:has(.subnav) { scroll-padding-top: 150px; }
   /* Match the "Our mission" lede on a phone — 18px at 1.55 reads noticeably
      better over a photo than the smaller desktop size. */
   .hero__sub { font-size: 18px; line-height: 1.55; font-weight: 400; }
-  .hero__sub--offer { font-size: 15.5px; line-height: 1.34; font-weight: 300; margin-top: 14px; }
-  .hero__meta { display: none; }
+    .hero__meta { display: none; }
   .hero__title { font-size: clamp(46px, 13.5vw, 80px); }
   /* Longer headlines need a step down on a phone or the first line wraps —
      "More than a gym." needs 363px at the base size but only has 335px. Must sit

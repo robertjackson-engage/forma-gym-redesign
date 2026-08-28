@@ -271,7 +271,7 @@ def head(title, desc):
 <meta name="description" content="{desc}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="{LOGO}">
 <link rel="stylesheet" href="assets/css/main.css?v={V}">
 <script>(function(){{try{{
@@ -584,7 +584,7 @@ DARK_BAND_PHOTOS = {
 
 def cta_band(title_html, text, img, primary=("Join Now", "join.html"),
              secondary=("Book a Tour", "contact.html#tour"), focal=None, soft=False, mid=False,
-             raise_=False, raise_m=False):
+             deep=False, raise_=False, raise_m=False):
     sec = f'<a class="btn" href="{secondary[1]}">{secondary[0]} <span class="arr">→</span></a>' if secondary else ""
     # A band is wide and short, so on a phone it crops the width hard — a
     # subject sitting off-centre needs pulling back into frame.
@@ -597,6 +597,9 @@ def cta_band(title_html, text, img, primary=("Join Now", "join.html"),
     # A third level between the two: 0.78 buried this photo, 0.62 left it lighter
     # than wanted. Wins over --soft by sitting later in the stylesheet.
     soft_cls += " cta-band--mid" if mid else ""
+    # Above the standard 0.78, for a frame that is bright edge to edge — the
+    # DrBrainRX band is a near-white studio backdrop under the copy.
+    soft_cls += " cta-band--deep" if deep else ""
     # The band image is 118% tall and top-anchored, so its bottom 18% is clipped.
     # raise_ shifts it up to bring that lower band of the photo into view.
     soft_cls += " cta-band--raise" if raise_ else ""
@@ -2326,12 +2329,11 @@ drbrain_body = hero(
     "GLP-1 weight loss care + Peptide therapy + Longevity",
     ['DrBrain<span class="serif">RX</span>', "&amp; Forma"],
     "DrBrainRX’s Dr. Sara Siavoshi is a neurologist and weight loss medicine physician who focuses on the brain side of metabolism, appetite, and weight regulation.",
-    sub2="Members get <strong>1 month FREE</strong> DrBrainRX membership, <strong>$70 OFF</strong> your 1st month of any compounded product, fully online medical intake and provider review and ongoing support AND access to the DrBrainRX team.",
     img=f"{IMG}/drbrain_sara_hero.jpg",
     img_mobile=f"{IMG}/drbrain_sara_hero_m.jpg",
     media_mod="hero__media--baked",
     crumb="DrBrainRX",
-    actions=[("Join Now", "join.html", True)],
+    actions=[("Join Now", "join.html", True), ("Member Special", "#offer", False)],
     meta=["Long-term metabolic support", "Cognitive clarity", "Weight stability"],
     page=True,
 ) + f"""
@@ -2340,7 +2342,7 @@ drbrain_body = hero(
     <div class="cards-head">
       <div>
         <p class="eyebrow">What DrBrainRX offers</p>
-        <h2 class="h-display reveal">Modern wellness <span class="serif">medicine</span></h2>
+        <h2 class="h-display reveal">The brain side of <span class="serif">metabolism</span></h2>
       </div>
     </div>
     <div class="pillars pillars--3" data-stagger>
@@ -2353,10 +2355,10 @@ drbrain_body = hero(
 
 <section class="section section--panel" id="offer">
   <div class="wrap">
-    <figure class="quote-band reveal">
-      <span class="quote-band__mark">“</span>
-      <blockquote>Exclusive offer for Forma members: 1 month free + $70 off products. Use code FORMAGYM.</blockquote>
-      <figcaption>DrBrainRX × Forma Gym</figcaption>
+    <figure class="quote-band quote-band--sm reveal">
+      <p class="eyebrow">Exclusive offer for Forma members</p>
+      <blockquote>Forma members get 1 month FREE DrBrainRX membership, $70 OFF your 1st month of any compounded product, fully online medical intake and provider review and ongoing support AND access to the DrBrainRX team.<span class="only-member"> Use code FORMAGYM.</span></blockquote>
+      <figcaption><span class="quote-band__rule"></span><img class="quote-band__lockup" src="assets/img/drbrainRX_forma_logo_lockup.svg" alt="Forma Gym and DrBrainRx"></figcaption>
     </figure>
   </div>
 </section>
@@ -2364,7 +2366,7 @@ drbrain_body = hero(
     'Feel as good as you <span class="serif">look</span>',
     "Ask the front desk about DrBrainRX, or mention it on your tour. Your strongest, sharpest self is the goal.",
     f"{IMG}/drbrain_band.jpg",
-    mid=True,
+    deep=True,
 )
 
 # ============================================================ APP
