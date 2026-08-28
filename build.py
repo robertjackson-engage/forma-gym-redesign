@@ -2357,7 +2357,7 @@ drbrain_body = hero(
   <div class="wrap">
     <figure class="quote-band quote-band--sm reveal">
       <p class="eyebrow">Exclusive offer for Forma members</p>
-      <blockquote>Forma members get 1 month FREE DrBrainRX membership, $70 OFF your 1st month of any compounded product, fully online medical intake and provider review and ongoing support AND access to the DrBrainRX team.<span class="only-member"> Use code FORMAGYM.</span></blockquote>
+      <blockquote>1 month FREE DrBrainRX membership, $70 OFF your 1st month of any compounded product *PLUS* fully online medical intake and provider review and ongoing support AND access to the DrBrainRX team.<span class="only-member"> Use code FORMAGYM.</span></blockquote>
       <figcaption><span class="quote-band__rule"></span><img class="quote-band__lockup" src="assets/img/drbrainRX_forma_logo_lockup.svg" alt="Forma Gym and DrBrainRx"></figcaption>
     </figure>
   </div>
