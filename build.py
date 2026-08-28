@@ -12,6 +12,12 @@ _CURATED_OUTDOOR_STRIP = [
 ]
 
 
+# Photos to leave out of any colour-match pass. The pool shot's cyan is the
+# subject, not a cast, and matching it to the warm turf reference pulled the blue
+# out of the water — which also reached the homepage strip, since both strips
+# use this file.
+COLOR_MATCH_EXCLUDE = {"WC_pool_class_662x501_v1.jpg"}
+
 # Per-photo crops for strip images whose subject the centred crop clips.
 STRIP_FOCAL = {
     "ropes_WC_photo_strip.jpg": "50% 20%",   # 900x885 into a wide tile — centred cut her head
