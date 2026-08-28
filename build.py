@@ -1454,6 +1454,10 @@ locations_body = hero(
     # which a centred phone crop puts at 98% — hard against the edge; 64% brings
     # it to 70%.
     focal="64% 50%",
+    # The phone crop has no vertical overflow — full height already shows — so
+    # object-position cannot raise her. --lift gives the image a taller box and
+    # hangs it above the container instead. Mobile-only; desktop is untouched.
+    media_mod="hero__media--lift",
     crumb="Locations",
     actions=[("Visit Us", "join.html", True)],
     page=True,
@@ -1766,31 +1770,26 @@ spa_body = hero(
 kidz_body = hero(
     "Kidzville",
     ["A guilt-free", '<span class="serif">workout</span>'],
-    "We created a unique indoor and outdoor environment where you can enjoy your workout while your kids (ages 6 weeks–12 years) are free to play in a safe, active, and educational space. Walnut Creek location.",
+    "We created a unique indoor and outdoor environment where you can enjoy your workout while your kids (ages 6 weeks–12 years) are free to play in a safe, active, and educational space.",
     img=f"{IMG}/kidzville_hero.jpg",
     # Desktop shows 97% of the width, so x is inert there. The phone shows 27%,
     # and the play structure sits 62-92% across — a centred crop lands on 36-64%
     # and misses it entirely, showing turf and half a slide. 78% frames the fort.
     focal="78% 50%",
     crumb="Kidzville",
-    actions=[("Reserve a Spot", "tel:9259326400", True)],
-    meta=["Ages 6 weeks–12 years", "Walnut Creek location", "Reservations recommended"],
+    actions=[("Join Now", "join.html", True)],
+    meta=["Ages 6 weeks–12 years", "Reservations recommended"],
     page=True,
 ) + f"""
-<section class="section">
-  <div class="wrap">
-    <div class="intro-grid">
-      <div>
-        <p class="eyebrow">Safe · active · educational</p>
-        <h2 class="h-display reveal">Where kids actually want to <span class="serif">be</span></h2>
-      </div>
-      <div class="intro-grid__right">
-        <p class="lede reveal">We offer you the time and space to break free from family responsibilities for a little while – to socialize and work out – while our reliable, capable staff helps your kids enjoy plenty of play and learning.</p>
-        <p class="body-copy reveal">Forma Kidzville was created to provide a safe, stimulating and playful environment where children and preteens are free to learn, explore, experiment, and be active, imaginative and creative. We incorporate innovative games and activities – giving your child the chance to participate with groups, pursue individual interests, or just play with old and new friends.</p>
-      </div>
-    </div>
-  </div>
-</section>
+""" + split(
+    "Safe · active · educational", "01",
+    'Where kids actually want to <span class="serif">be</span>',
+    ["We offer you the time and space to break free from family responsibilities for a little while – to socialize and work out – while our reliable, capable staff helps your kids enjoy plenty of play and learning.",
+     "Forma Kidzville was created to provide a safe, stimulating and playful environment where children and preteens are free to learn, explore, experiment, and be active, imaginative and creative."],
+    f"{IMG}/kidzville_header_v3.jpg",
+    "Kids playing in Forma Kidzville",
+    rev=True, cta=("See the hours", "#hours"),
+) + f"""
 
 <section class="section section--panel" id="hours">
   <div class="wrap">
