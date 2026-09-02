@@ -258,8 +258,8 @@ body.choice-open { position: fixed; left: 0; right: 0; width: 100%; overflow: hi
 }
 .menu-list { display: flex; flex-direction: column; }
 .menu-list a {
-  font-family: var(--font-display); text-transform: uppercase;
-  font-size: clamp(18px, 2.7vh, 30px); line-height: 1.2; letter-spacing: 0.012em;
+  font-family: var(--font-body); text-transform: uppercase; font-weight: 500;
+  font-size: clamp(16px, 2.2vh, 23px); line-height: 1.26; letter-spacing: 0.045em;
   color: var(--bone); display: flex; align-items: baseline;
   padding: 2px 0;
   transition: color .35s, transform .45s var(--ease-out);
@@ -267,7 +267,7 @@ body.choice-open { position: fixed; left: 0; right: 0; width: 100%; overflow: hi
 .menu-list a:hover { color: var(--accent); transform: translateX(14px); }
 /* Current page. Sits after :hover so hovering a different link still reads
    as the hovered one. */
-.menu-list a.is-active { color: var(--accent); }
+.menu-list a.is-active { color: var(--accent); font-weight: 700; }
 .menu-list a { opacity: 0; transform: translateY(30px); }
 body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: opacity .6s var(--ease-out), transform .7s var(--ease-out), color .3s; }
 
@@ -1290,7 +1290,7 @@ html:has(.subnav) { scroll-padding-top: 150px; }
   .header-cta .btn { display: none; }
   .header-cta .view-toggle { display: none; }
   .menu-side__controls { display: flex; }
-  .menu-overlay__grid { grid-template-columns: 1fr; padding-top: 120px; gap: 44px; }
+  .menu-overlay__grid { grid-template-columns: 1fr; padding-top: 88px; gap: 44px; }
   .menu-side { justify-content: flex-start; }
 }
 
@@ -1384,7 +1384,7 @@ html:has(.subnav) { scroll-padding-top: 150px; }
   .site-footer__brand, .site-footer__contact { grid-column: 1 / -1; }
   .site-footer__links a { padding: 3px 0; font-size: 14px; }
   .site-footer__bottom { flex-direction: column; align-items: flex-start; }
-  .menu-list a { font-size: clamp(17px, 4.8vw, 24px); }
+  .menu-list a { font-size: clamp(17px, 4.8vw, 21px); }
   /* Narrow enough to wrap the stats two-up; dividers follow the new grid. */
   .stats__grid { grid-auto-flow: row; grid-template-columns: repeat(2, 1fr); }
   .stat:nth-child(odd) { border-left: none; }
