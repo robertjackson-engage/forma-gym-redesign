@@ -45,6 +45,19 @@ def _wc_strip_photos():
 
 OUTDOOR_STRIP_PHOTOS = _wc_strip_photos() + _CURATED_OUTDOOR_STRIP
 
+# Pulled from the client carousel on the live formagym.com/rise/ page — the
+# redesign had no people on RISE at all, only a blurred empty room used twice.
+RISE_STRIP_PHOTOS = [
+    "rise_annie_rachel_strip.jpg",
+    "rise_client_workout_strip.jpg",
+    "rise_bruce_flex_strip.jpg",
+    "rise_trot_strip.jpg",
+    "rise_rachel_lift_strip.jpg",
+    "rise_client_work_strip.jpg",
+    "rise_alyse_strip.jpg",
+    "rise_rachel_client_strip.jpg",
+]
+
 STRIP_PHOTOS = [
     "SJ_pool_662x501_v1.jpg",
     "gym_floor2_WC_500px.jpg",
@@ -1877,7 +1890,7 @@ rise_body = hero(
     crumb="RISE",
     actions=[("Get Started", "contact.html#tour", True), ("Learn More", "#method", False)],
     page=True,
-) + f"""
+) + photo_marquee(RISE_STRIP_PHOTOS) + f"""
 <section class="section section--tight">
   <div class="wrap">
     <figure class="quote-band reveal">
