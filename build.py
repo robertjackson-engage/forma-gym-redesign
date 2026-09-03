@@ -1378,7 +1378,7 @@ about_body = hero(
         <h2 class="h-display reveal">What we <span class="serif">live</span> by</h2>
       </div>
     </div>
-    <div class="pillars" data-stagger>
+    <div class="pillars pillars--3" data-stagger>
       <div class="pillar"><span class="pillar__num">01</span><h3>Legendary service</h3><p>Deliver an unimaginable experience through legendary customer service.</p></div>
       <div class="pillar"><span class="pillar__num">02</span><h3>Life is good</h3><p>Be optimistic and energetic. Bring that energy every single day.</p></div>
       <div class="pillar"><span class="pillar__num">03</span><h3>Always growing</h3><p>Continuously pursue personal and professional growth and improvement.</p></div>
@@ -1907,18 +1907,95 @@ kidz_body = hero(
 )
 
 # ============================================================ RISE
+RISE_TEAM = [
+    ("Rachel", "Program Director", "rise_team_rachel.jpg"),
+    ("Montana", "Neuro Exercise Trainer", "rise_team_montana.jpg"),
+    ("Jesus J.", "Neuro Exercise Trainer", "rise_team_jesus.jpg"),
+    ("Paul", "Neuro Exercise Trainer", "rise_team_paul.jpg"),
+    ("Jacki", "Neuro Exercise Trainer &amp; Aide", "rise_team_jacki.jpg"),
+]
+
+RISE_BOARD = [
+    ("Dr. Sanjeev Sharma, MD", "rise_dr_sharma.jpg"),
+    ("Dr. Sean Parsa, MD", "rise_dr_parsa.jpg"),
+    ("Christine Brighton, MS OTR/L", "rise_dr_brighton.jpg"),
+    ("Dr. Landrus Pfeffinger, MD", "rise_dr_pfeffinger.jpg"),
+]
+
+RISE_CONDITIONS = [
+    "Spinal Cord Injury (SCI)", "Stroke", "Traumatic Brain Injury (TBI)",
+    "Cerebral Palsy (CP)", "Guillain-Barr&eacute; Syndrome (GBS)",
+    "Multiple Sclerosis (MS)", "Parkinson&rsquo;s Disease",
+    "Transverse Myelitis", "Pediatrics", "and many more",
+]
+
+# Scholarship recipients from the live site. Three of the four carry
+# NEED_PHOTO placeholders there, so these run as text rather than half a row
+# of portraits and half a row of grey.
+RISE_RECIPIENTS = [
+    ("Tyler Lindemann", "C5&ndash;C7 SCI"),
+    ("Michael Scott Harvey", "T12 SCI"),
+    ("Myjon Fuller", "Cerebral Palsy"),
+    ("Eugene Urenda", "Stroke"),
+]
+
+RISE_QUOTES = [
+    ("Being able to go to RISE allows Annie to continue to gain strength physically &ndash; which is so important for her independence. The team are so creative at keeping Annie, who is seven, engaged during sessions and making the workouts fun. Everything she learns at RISE helps her gain confidence, when she sees improvement, or learns she is stronger than she thinks.", "Cathy B., mother of Annie"),
+    ("In August 2019 I suffered a spinal cord injury. Once COVID-19 hit, my physical therapy became limited and it hindered my progress. My wife found RISE and they were able to remain open. In six weeks I progressed so much that I stood on my own two legs for the first time in 18 months.", "Laz T."),
+    ("Two years ago I was hit by a drunk driver, which left me in a coma for two months and hospitalised for five. Severe brain trauma left me with no balance and poor coordination. Since working with the team I have become much stronger and no longer require assistive walking devices. They have given me freedom I did not think was possible.", "Rachael P."),
+    ("This has been a great outlet for a structured and accountable road back to recovery. There are so many steps in the process and they know exactly what paces to put me through at each stage. But the most important thing is that each one of them is passionate and takes a real interest in me and my recovery.", "Greg H."),
+    ("When you have a team that love what they do, it shows. We are truly amazed by the staff&rsquo;s commitment to Bruce&rsquo;s therapy. Each activity was creatively customised to his size and ability. We have seen results that defy his medical prognosis.", "Parents of Bruce M."),
+    ("I feel like I&rsquo;m working out and not just doing therapy. I find the program inspiring, being around other people working really hard to reach their goals. Being part of it makes me feel like I&rsquo;m not alone with my disability.", "Ava M."),
+    ("Every workout leaves me feeling tired, but invigorated. My biggest accomplishment isn&rsquo;t as concrete as muscle growth or taking my first steps. It&rsquo;s the return of the self-confidence I had before my accident.", "Jonathan O."),
+    ("My&rsquo;Jon came in for just ten sessions and honestly I thought it would be a waste of time. When he came here he couldn&rsquo;t control his upper body or lift his head on his own. Being in this program made me see a future for him moving forward, to be independent.", "Mary C., aunt of My&rsquo;Jon"),
+    ("RISE has shaped me into a recovery state of mind, and has physically and mentally given me the will to move on. I suffered a massive stroke a year and a half ago and with their constant help I get better and better.", "Kris Leffle"),
+]
+
+
+def _rise_people(people):
+    """Portrait grid for the RISE team and the advisory board. An empty role
+    just omits the second line, which is what the board entries want."""
+    out = ""
+    for name, role, img in people:
+        role_html = f'<span class="person__role">{role}</span>' if role else ""
+        out += (f'<figure class="person">'
+                f'<span class="person__media"><img src="{IMG}/{img}" alt="{name}" loading="lazy"></span>'
+                f'<figcaption><span class="person__name">{name}</span>{role_html}</figcaption></figure>')
+    return out
+
+
+_rise_conditions = "".join(f"<li>{c}</li>" for c in RISE_CONDITIONS)
+_rise_recipients = "".join(
+    f"<li><strong>{n}</strong><span>{c}</span></li>" for n, c in RISE_RECIPIENTS)
+_rise_quotes = "".join(
+    f'<figure class="quote-card"><blockquote>{q}</blockquote>'
+    f"<figcaption>{who}</figcaption></figure>" for q, who in RISE_QUOTES)
+
 rise_body = hero(
     "RISE Program",
     ['<span class="serif">Movement</span>', "is medicine"],
-    "RISE is an exercise-based therapy program for individuals living with paralysis – focused on function, strength, and improving the physiological and neurological function of the body. Your life is an opportunity. RISE to it.",
+    "RISE is an exercise-based therapy program for individuals living with paralysis &ndash; focused on function, strength, and improving the physiological and neurological function of the body. Your life is an opportunity. RISE to it.",
     img=f"{IMG}/rise_hero_annie.jpg",
     img_mobile=f"{IMG}/rise_hero_annie_m.jpg",
     focal="100% 50%",
     media_mod="hero__media--dark-src",
     crumb="RISE",
-    actions=[("Get Started", "contact.html#tour", True), ("Learn More", "#method", False)],
+    actions=[("Get Started", "#start", True), ("Learn More", "#about", False)],
     page=True,
-) + photo_marquee(RISE_STRIP_PHOTOS) + f"""
+) + photo_marquee(RISE_STRIP_PHOTOS) + """
+<nav class="subnav" aria-label="RISE sections">
+  <div class="wrap">
+    <a href="#about">About</a>
+    <a href="#treatment">Treatment</a>
+    <a href="#programs">Programs</a>
+    <a href="#facility">Facility</a>
+    <a href="#start">Get Started</a>
+    <a href="#scholarship">Scholarship</a>
+    <a href="#team">Team</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+""" + f"""
 <section class="section section--tight">
   <div class="wrap">
     <figure class="quote-band quote-band--sm reveal">
@@ -1927,19 +2004,20 @@ rise_body = hero(
     </figure>
   </div>
 </section>
-""" + f"""
-<section class="section">
+
+<section class="section" id="about">
   <div class="wrap">
     <div class="cards-head">
       <div>
-        <p class="eyebrow">What RISE delivers</p>
-        <h2 class="h-display reveal">Get <span class="serif">moving</span> again</h2>
+        <p class="eyebrow">About RISE</p>
+        <h2 class="h-display reveal">What is <span class="serif">RISE</span></h2>
       </div>
+      <p class="body-copy reveal" style="max-width:46ch">RISE is an exercise-based therapy program for individuals living with paralysis, focused on function, strength and improving the physiological and neurological function of the body. Our trainers are expansive in neurological conditions, and every session is built around healing how your body and nervous system work together.</p>
     </div>
     <div class="pillars pillars--3" data-stagger>
       <div class="pillar"><span class="pillar__num">01</span><h3>Wheelchair free</h3><p>Your body was designed to MOVE. Recovery sessions are conducted out of your chair to get you moving again.</p></div>
-      <div class="pillar"><span class="pillar__num">02</span><h3>Less medication</h3><p>Many clients find a reduced dependency on medication – or rid their use of it entirely.</p></div>
-      <div class="pillar"><span class="pillar__num">03</span><h3>Better quality of life</h3><p>We stimulate your central nervous system to promote neuroplasticity – rebuilding the pathways your brain needs.</p></div>
+      <div class="pillar"><span class="pillar__num">02</span><h3>Less medication</h3><p>Many clients find a reduced dependency on medication &ndash; or rid their use of it entirely.</p></div>
+      <div class="pillar"><span class="pillar__num">03</span><h3>Better quality of life</h3><p>We stimulate your central nervous system to promote neuroplasticity &ndash; rebuilding the pathways your brain needs.</p></div>
     </div>
   </div>
 </section>
@@ -1957,7 +2035,137 @@ rise_body = hero(
       <div class="pillar"><span class="pillar__num">01</span><h3>Assess</h3><p>The most important first step is the client's body, mindset and willingness to overcome obstacles.</p></div>
       <div class="pillar"><span class="pillar__num">02</span><h3>Diagnose</h3><p>Identifying and understanding the injury or condition is crucial to educate ourselves and the client and build a plan.</p></div>
       <div class="pillar"><span class="pillar__num">03</span><h3>Educate</h3><p>We review the assessment, recovery goals, and the mental and physical fortitude the journey will require.</p></div>
-      <div class="pillar"><span class="pillar__num">04</span><h3>Program</h3><p>We design a program according to the client – built entirely around their recovery needs and goals.</p></div>
+      <div class="pillar"><span class="pillar__num">04</span><h3>Program</h3><p>We design a program according to the client &ndash; built entirely around their recovery needs and goals.</p></div>
+      <div class="pillar"><span class="pillar__num">05</span><h3>Guide</h3><p>We make sure every client has the support of their RISE community and family as they follow their plan.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="treatment">
+  <div class="wrap">
+    <div class="cards-head">
+      <div>
+        <p class="eyebrow">Areas of treatment</p>
+        <h2 class="h-display reveal">Built around <span class="serif">you</span></h2>
+      </div>
+      <p class="body-copy reveal" style="max-width:44ch">Program design is based on the individual's needs and a full body assessment &ndash; not solely on your paralysis-related injury or condition.</p>
+    </div>
+    <ul class="tag-list reveal">{_rise_conditions}</ul>
+  </div>
+</section>
+
+<section class="section section--panel" id="programs">
+  <div class="wrap">
+    <div class="cards-head">
+      <div>
+        <p class="eyebrow">Types of programs</p>
+        <h2 class="h-display reveal">However you <span class="serif">get here</span></h2>
+      </div>
+    </div>
+    <div class="pillars pillars--3" data-stagger>
+      <div class="pillar"><span class="pillar__num">01</span><h3>Local recovery</h3><p>For individuals local to the area, who typically schedule on a recurring basis.</p></div>
+      <div class="pillar"><span class="pillar__num">02</span><h3>Visiting recovery</h3><p>For those not near the facility &ndash; typically once a week, or an intensive two-week program.</p></div>
+      <div class="pillar"><span class="pillar__num">03</span><h3>Train your trainer</h3><p>For friends or family who want to carry out recovery programs at home or in their own setting.</p></div>
+    </div>
+  </div>
+</section>
+""" + split(
+    "Our facility", "", 'Inside Forma <span class="serif">Walnut Creek</span>',
+    ["RISE Paralysis Recovery Center &ndash; a Forma Gym Wellness Studio &ndash; is a dedicated paralysis recovery facility inside our Walnut Creek club, right off the 680/24 corridor. RISE has two private studios plus full use of our 35,000 sq ft gym.",
+     "While RISE clients train with our neuro exercise trainers, family and friends have access to the full-service gym and its amenities (conditions apply). Our facility is powered by some of the top industry leaders in equipment and accessories."],
+    f"{IMG}/rise_facility.jpg", "Inside the RISE Paralysis Recovery Center studio",
+    sec_id="facility",
+) + f"""
+<section class="section section--panel" id="start">
+  <div class="wrap">
+    <div class="cards-head">
+      <div>
+        <p class="eyebrow">Get started</p>
+        <h2 class="h-display reveal">RISE up and <span class="serif">begin</span></h2>
+      </div>
+      <p class="body-copy reveal" style="max-width:38ch">Have a question first? Email <a href="mailto:rise@formagym.com">rise@formagym.com</a> and our team will walk you through it.</p>
+    </div>
+    <div class="pillars" data-stagger>
+      <div class="pillar"><span class="pillar__num">01</span><h3>Schedule a tour</h3><p>Come and see the studios, meet the team and talk through where you are starting from.</p></div>
+      <div class="pillar"><span class="pillar__num">02</span><h3>Apply and evaluate</h3><p>Complete an online application, then book your initial evaluation with our team.</p></div>
+    </div>
+    <div class="hero__actions reveal" style="margin-top:36px">
+      <a class="btn btn--solid" href="contact.html#tour">Schedule Now <span class="arr">&rarr;</span></a>
+      <a class="btn" href="contact.html">Request Info <span class="arr">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="scholarship">
+  <div class="wrap">
+    <div class="cards-head">
+      <div>
+        <p class="eyebrow">Scholarship program</p>
+        <h2 class="h-display reveal">Cost is never the <span class="serif">reason</span></h2>
+      </div>
+      <p class="body-copy reveal" style="max-width:46ch">Recovery sessions are mostly paid out of pocket, because insurance does not cover our out-of-the-box approach. Not everyone who needs therapy can afford it.</p>
+    </div>
+    <div class="body-copy reveal" style="max-width:70ch">
+      <p>The RISE scholarship program was launched with Forma Gym's Forma Kids Foundation 501(c)(3) to give financial assistance to clients supporting their recovery. Scholarships are awarded primarily on financial need and reviewed quarterly. There are typically more applicants than scholarships, so not everyone will be funded, and applicants not selected may be considered in the next cycle.</p>
+      <p>If you would like to sponsor a RISE client, you can make a tax-deductible donation to the Forma Kids Foundation. 100% of the proceeds go towards scholarships for RISE clients.</p>
+    </div>
+    <div class="hero__actions reveal" style="margin-top:32px">
+      <a class="btn btn--solid" href="givesback.html">Learn More <span class="arr">&rarr;</span></a>
+      <a class="btn" href="contact.html">Apply Now <span class="arr">&rarr;</span></a>
+      <a class="btn" href="givesback.html">Donate Now <span class="arr">&rarr;</span></a>
+    </div>
+    <p class="eyebrow reveal" style="margin-top:54px">Scholarship recipients</p>
+    <ul class="tag-list tag-list--people reveal">{_rise_recipients}</ul>
+  </div>
+</section>
+
+<section class="section section--panel" id="team">
+  <div class="wrap">
+    <div class="cards-head">
+      <div>
+        <p class="eyebrow">Meet team RISE</p>
+        <h2 class="h-display reveal">The people beside <span class="serif">you</span></h2>
+      </div>
+      <p class="body-copy reveal" style="max-width:44ch">Highly trained across neurological conditions, and creative in encouraging you to play daily, embrace change and build an open-minded environment.</p>
+    </div>
+    <div class="people reveal" data-stagger>{_rise_people(RISE_TEAM)}</div>
+
+    <p class="eyebrow reveal" style="margin-top:64px">Medical advisory board</p>
+    <p class="body-copy reveal" style="max-width:60ch;margin-bottom:28px">As Forma Gym and RISE expanded their special populations programs, we formed a Medical Advisory Board of community allied healthcare providers, to keep our programs as safe and effective as possible.</p>
+    <div class="people people--board reveal" data-stagger>{_rise_people([(n, "", i) for n, i in RISE_BOARD])}</div>
+
+    <p class="eyebrow reveal" style="margin-top:64px">RISE affiliates</p>
+    <div class="affiliates reveal">
+      <img src="assets/img/rise_affiliate_naboso.png" alt="Naboso" loading="lazy">
+      <img src="assets/img/rise_affiliate_medfit.png" alt="MedFit Network" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="section" id="stories">
+  <div class="wrap">
+    <div class="cards-head">
+      <div>
+        <p class="eyebrow">Client testimonials</p>
+        <h2 class="h-display reveal">In their own <span class="serif">words</span></h2>
+      </div>
+    </div>
+    <div class="quotes reveal" data-stagger>{_rise_quotes}</div>
+  </div>
+</section>
+
+<section class="section section--panel" id="contact">
+  <div class="wrap">
+    <div class="cards-head">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h2 class="h-display reveal">Talk to <span class="serif">RISE</span></h2>
+      </div>
+    </div>
+    <div class="pillars pillars--3" data-stagger>
+      <div class="pillar"><h3>Location</h3><p>Inside Forma Gym Walnut Creek only.<br>1908 Olympic Blvd, Walnut Creek, CA 94596</p></div>
+      <div class="pillar"><h3>Email</h3><p><a href="mailto:rise@formagym.com">rise@formagym.com</a></p></div>
+      <div class="pillar"><h3>Phone</h3><p><a href="tel:9259326400">(925) 932-6400</a> &ndash; ask for RISE</p></div>
     </div>
   </div>
 </section>
@@ -1965,10 +2173,9 @@ rise_body = hero(
     'Your life is an <span class="serif">opportunity</span>',
     "RISE includes a scholarship program so cost is never the reason you can't start. Reach out and let's begin.",
     f"{IMG}/rise_room_blur.jpg",
-    primary=("Get Started", "contact.html#tour"), secondary=("Scholarship Program", "contact.html#tour"),
+    primary=("Get Started", "contact.html#tour"), secondary=("Scholarship Program", "#scholarship"),
 )
 
-# ============================================================ GIVES BACK
 givesback_body = hero(
     "Forma Gives Back",
     ["Fitness for", '<span class="serif">everyone</span>'],
@@ -2568,7 +2775,7 @@ freeze_body = hero(
 
 # ============================================================ BUILD ALL
 PAGES = [
-    ("index.html", "Forma Gym | Walnut Creek &amp; San Jose | Play Every Day", "Two luxury Bay Area fitness clubs – Walnut Creek &amp; San Jose. All group fitness, personal training, pools, cryotherapy, spa and Kidzville.", "", home_body),
+    ("index.html", "Forma Gym | Walnut Creek &amp; San Jose | Play Every Day", "Two luxury Bay Area fitness clubs – Walnut Creek &amp; San Jose. All group fitness, personal training, pools, cryotherapy, spa and Kidzville.", "index.html", home_body),
     ("about.html", "About Forma Gym | Our Mission &amp; Story", "To make exercise a part of our member's daily lives, for the rest of their lives. Meet Forma Gym – two Bay Area clubs and one community.", "about.html", about_body),
     ("group-fitness.html", "Group Fitness Classes | Forma Gym", "14 group fitness formats included with membership – Cycle, Yoga, Barre, HIIT, Pilates, Dance, TRX, Aqua and more, across Walnut Creek &amp; San Jose.", "group-fitness.html", groupfit_body),
     ("training.html", "Personal Training | Forma Gym", "1-on-1 and small group personal training with the best coaches in the Bay Area. Nutrition guidance, accountability, and a plan built around you.", "training.html", training_body),
@@ -2576,16 +2783,16 @@ PAGES = [
     ("cryo.html", "Cryotherapy + Cold Plunge | Forma Gym", "Whole-body cryotherapy and cold plunge at Forma Gym. Burn 500–800 calories per session, reduce pain and inflammation, recover faster.", "", cryo_body),
     ("spa.html", "The Spa at Forma | Massage, Facials, Reiki &amp; Skin Care", "A full-service day spa at Forma Gym – therapeutic massage, facials, Reiki and clinical skin care in Walnut Creek &amp; San Jose.", "spa.html", spa_body),
     ("kidzville.html", "Kidzville Childcare | Forma Gym Walnut Creek", "Free, safe, active childcare for ages 6 weeks–12 years while you work out. Forma Kidzville at Walnut Creek.", "kidzville.html", kidz_body),
-    ("rise.html", "RISE Program | Exercise-Based Therapy for Paralysis | Forma", "RISE is an exercise-based therapy program for individuals living with paralysis. Movement is medicine. Scholarships available.", "", rise_body),
-    ("givesback.html", "Forma Gives Back | Fitness for Everyone", "Forma believes fitness should be available to everyone on the spectrum of movement. Learn how Forma Gives Back to the Bay Area.", "", givesback_body),
+    ("rise.html", "RISE Program | Exercise-Based Therapy for Paralysis | Forma", "RISE is an exercise-based therapy program for individuals living with paralysis. Movement is medicine. Scholarships available.", "rise.html", rise_body),
+    ("givesback.html", "Forma Gives Back | Fitness for Everyone", "Forma believes fitness should be available to everyone on the spectrum of movement. Learn how Forma Gives Back to the Bay Area.", "givesback.html", givesback_body),
     ("walnut-creek.html", "Forma Gym Walnut Creek | 1908 Olympic Blvd", "Forma Gym Walnut Creek – 35,000 sq ft of indoor &amp; outdoor fitness, heated pool, Kidzville, cryotherapy, day spa and Café.", "locations.html", walnutcreek_body),
     ("san-jose.html", "Forma Gym San Jose | 5434 Thornwood Dr", "Forma Gym San Jose – 40,000 sq ft luxury facility with covered outdoor turf, heated 6-lane pool, cold plunge and massage services.", "locations.html", sanjose_body),
     ("locations.html", "Locations &amp; Hours | Forma Gym Walnut Creek &amp; San Jose", "Two premium Bay Area clubs. Hours, addresses and amenities for Forma Gym Walnut Creek &amp; San Jose.", "locations.html", locations_body),
-    ("join.html", "Join Now | Forma Gym", "Join Forma Gym – all-inclusive access to both Bay Area clubs, every class and recovery amenity.", "", join_body),
+    ("join.html", "Join Now | Forma Gym", "Join Forma Gym – all-inclusive access to both Bay Area clubs, every class and recovery amenity.", "join.html", join_body),
     ("trial-pass.html", "Schedule a Visit | Forma Gym", "Schedule a visit, tour or guest workout at Forma Gym, plus a complimentary coaching session.", "", trial_body),
-    ("outdoor-training.html", "Outdoor Fitness | Forma Gym", "Strength, cardio, group exercise and cycle – outdoors, year-round, at both Forma Gym clubs.", "", outdoor_body),
-    ("drbrainrx.html", "DrBrainRX – GLP-1, Peptides &amp; Longevity | Forma Gym", "GLP-1 weight loss care, peptide therapy and longevity medicine for Forma members through DrBrainRX. 1 month free + $70 off, code FORMAGYM.", "", drbrain_body),
-    ("app.html", "The Forma App | Forma Gym", "Book classes, reserve lanes, check schedules and manage your membership with the Forma app.", "", app_body),
+    ("outdoor-training.html", "Outdoor Fitness | Forma Gym", "Strength, cardio, group exercise and cycle – outdoors, year-round, at both Forma Gym clubs.", "outdoor-training.html", outdoor_body),
+    ("drbrainrx.html", "DrBrainRX – GLP-1, Peptides &amp; Longevity | Forma Gym", "GLP-1 weight loss care, peptide therapy and longevity medicine for Forma members through DrBrainRX. 1 month free + $70 off, code FORMAGYM.", "drbrainrx.html", drbrain_body),
+    ("app.html", "The Forma App | Forma Gym", "Book classes, reserve lanes, check schedules and manage your membership with the Forma app.", "app.html", app_body),
     ("merchant.html", "Preferred Merchant Program | Forma Gym", "Forma members get preferred pricing at locally owned Bay Area businesses through our Preferred Merchant Program.", "", merchant_body),
     ("contact.html", "Contact &amp; Book a Tour | Forma Gym", "Book a tour or reach a Forma Gym club – Walnut Creek (925) 932-6400 or San Jose (408) 363-1010.", "", contact_body),
     ("freeze-cancel.html", "Freeze or Cancel Your Membership | Forma Gym", "Active Forma Gym members can request a membership freeze or cancellation. Submit your written request and the membership team will confirm by email.", "", freeze_body),
