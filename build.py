@@ -16,7 +16,13 @@ _CURATED_OUTDOOR_STRIP = [
 # subject, not a cast, and matching it to the warm turf reference pulled the blue
 # out of the water — which also reached the homepage strip, since both strips
 # use this file.
-COLOR_MATCH_EXCLUDE = {"WC_pool_class_662x501_v1.jpg"}
+COLOR_MATCH_EXCLUDE = {
+    "WC_pool_class_662x501_v1.jpg",
+    # Outdoor Wheel & Walk shot. Its blue is daylight and event shirts, not a
+    # cast — matched against the indoor RISE reference it hit the +/-14% cap
+    # (R +14%, B -11%) and read artificially warm.
+    "rise_trot_strip.jpg",
+}
 
 # Per-photo crops for strip images whose subject the centred crop clips.
 STRIP_FOCAL = {
@@ -153,8 +159,26 @@ V = str(int(time.time()))  # cache-bust CSS/JS on every build
 LOGO = "assets/img/forma-logo.svg"   # white vector wordmark
 
 
+def _inline_logo():
+    """The wordmark inlined rather than linked. An <img> is opaque to the page's
+    CSS, so the divider bar could not follow --accent — and RISE runs yellow.
+    The .svg file stays the source of truth; this reads it at build time."""
+    import re as _r
+    src = open(os.path.join(OUT, "assets", "img", "forma-logo.svg"), encoding="utf-8").read()
+    for pat in (r"<\?xml.*?\?>", r"<!--.*?-->", r"<defs>.*?</defs>"):
+        src = _r.sub(pat, "", src, flags=_r.S)
+    # The two fills the stripped <style> block carried.
+    src = src.replace('class="st0"', 'fill="var(--accent)"').replace('class="st1"', 'fill="#fff"')
+    src = _r.sub(r'\s*(id|version)="[^"]*"', "", src, count=2)
+    return _r.sub(r"\s+", " ", src).strip()
+
+
+LOGO_SVG = _inline_logo()
+
+
 def brand_logo(cls=""):
-    return f'<img class="brand__logo {cls}" src="{LOGO}" alt="Forma Gym" width="385" height="34" />'
+    return LOGO_SVG.replace(
+        "<svg ", f'<svg class="brand__logo {cls}" role="img" aria-label="Forma Gym" ', 1)
 
 
 # Brand glyphs, inline so they inherit currentColor and cost no extra request.
@@ -274,7 +298,7 @@ def sup_reg(text):
 ALL_CLASSES = [(t, f"{slug}.html", short, img) for slug, t, img, lead, short in CLASS_PAGES]
 
 
-def head(title, desc):
+def head(title, desc, body_class=""):
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -294,7 +318,7 @@ def head(title, desc):
   if(v)document.documentElement.classList.add("has-view");
 }}catch(e){{}}}})();</script>
 </head>
-<body>
+<body{' class="' + body_class + '"' if body_class else ''}>
 <div class="preloader" aria-hidden="true">
   <img class="preloader__logo" src="{LOGO}" alt="Forma Gym" width="422" height="37" />
   <div class="preloader__sub">Play Every Day</div>
@@ -1127,7 +1151,8 @@ def _write(path_rel, html):
 
 
 def page(filename, title, desc, active, body):
-    html = rewrite_urls(head(title, desc) + header_html(active) + body + footer_html())
+    slug = filename.replace(".html", "")
+    html = rewrite_urls(head(title, desc, f"page-{slug}") + header_html(active) + body + footer_html())
     targets = [URL_MAP.get(filename, filename.replace(".html", ""))]
     targets += ALIAS_PATHS.get(filename, [])
     for t in targets:
@@ -1884,19 +1909,21 @@ kidz_body = hero(
 # ============================================================ RISE
 rise_body = hero(
     "RISE Program",
-    ["Movement is", '<span class="serif">medicine</span>'],
+    ['<span class="serif">Movement</span>', "is medicine"],
     "RISE is an exercise-based therapy program for individuals living with paralysis – focused on function, strength, and improving the physiological and neurological function of the body. Your life is an opportunity. RISE to it.",
-    img=f"{IMG}/rise_room_blur.jpg",
+    img=f"{IMG}/rise_hero_annie.jpg",
+    img_mobile=f"{IMG}/rise_hero_annie_m.jpg",
+    focal="100% 50%",
+    media_mod="hero__media--dark-src",
     crumb="RISE",
     actions=[("Get Started", "contact.html#tour", True), ("Learn More", "#method", False)],
     page=True,
 ) + photo_marquee(RISE_STRIP_PHOTOS) + f"""
 <section class="section section--tight">
   <div class="wrap">
-    <figure class="quote-band reveal">
-      <span class="quote-band__mark">“</span>
-      <blockquote>We believe MOVEMENT IS MEDICINE – and we encourage you to play every day, embrace change, and build an open-minded environment to improve function and your quality of life.</blockquote>
-      <figcaption>The RISE Program</figcaption>
+    <figure class="quote-band quote-band--sm reveal">
+      <blockquote>At RISE there are no barriers &ndash; only individuals dedicated to helping you defy the odds.</blockquote>
+      <figcaption><span class="quote-band__rule"></span><img class="quote-band__lockup quote-band__lockup--rise" src="assets/img/rise_logo_horiz.svg" alt="Forma Gym and RISE"></figcaption>
     </figure>
   </div>
 </section>
@@ -1926,11 +1953,11 @@ rise_body = hero(
       </div>
       <p class="body-copy reveal" style="max-width:34ch">Each client's needs are carefully addressed to support our mission of achieving your recovery goals.</p>
     </div>
-    <div class="steps reveal">
-      <div class="step"><span class="step__num">01</span><h3>Assess</h3><p>The most important first step is the client's body, mindset and willingness to overcome obstacles.</p></div>
-      <div class="step"><span class="step__num">02</span><h3>Diagnose</h3><p>Identifying and understanding the injury or condition is crucial to educate ourselves and the client and build a plan.</p></div>
-      <div class="step"><span class="step__num">03</span><h3>Educate</h3><p>We review the assessment, recovery goals, and the mental and physical fortitude the journey will require.</p></div>
-      <div class="step"><span class="step__num">04</span><h3>Program</h3><p>We design a program according to the client – built entirely around their recovery needs and goals.</p></div>
+    <div class="pillars pillars--3 pillars--method reveal" data-stagger>
+      <div class="pillar"><span class="pillar__num">01</span><h3>Assess</h3><p>The most important first step is the client's body, mindset and willingness to overcome obstacles.</p></div>
+      <div class="pillar"><span class="pillar__num">02</span><h3>Diagnose</h3><p>Identifying and understanding the injury or condition is crucial to educate ourselves and the client and build a plan.</p></div>
+      <div class="pillar"><span class="pillar__num">03</span><h3>Educate</h3><p>We review the assessment, recovery goals, and the mental and physical fortitude the journey will require.</p></div>
+      <div class="pillar"><span class="pillar__num">04</span><h3>Program</h3><p>We design a program according to the client – built entirely around their recovery needs and goals.</p></div>
     </div>
   </div>
 </section>
