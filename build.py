@@ -51,17 +51,21 @@ def _wc_strip_photos():
 
 OUTDOOR_STRIP_PHOTOS = _wc_strip_photos() + _CURATED_OUTDOOR_STRIP
 
-# Pulled from the client carousel on the live formagym.com/rise/ page — the
-# redesign had no people on RISE at all, only a blurred empty room used twice.
+# The facility carousel from the live formagym.com/rise/ page, in its own
+# order. Better photographed and more of them than the client set that was
+# here before.
 RISE_STRIP_PHOTOS = [
-    "rise_annie_rachel_strip.jpg",
-    "rise_client_workout_strip.jpg",
-    "rise_bruce_flex_strip.jpg",
-    "rise_trot_strip.jpg",
-    "rise_rachel_lift_strip.jpg",
-    "rise_client_work_strip.jpg",
-    "rise_alyse_strip.jpg",
-    "rise_rachel_client_strip.jpg",
+    "rise_fac_01_strip.jpg",
+    "rise_fac_02_strip.jpg",
+    "rise_fac_03_strip.jpg",
+    "rise_fac_04_strip.jpg",
+    "rise_fac_05_strip.jpg",
+    "rise_fac_06_strip.jpg",
+    "rise_fac_07_strip.jpg",
+    "rise_fac_08_strip.jpg",
+    "rise_fac_09_strip.jpg",
+    "rise_fac_10_strip.jpg",
+    "rise_fac_11_strip.jpg",
 ]
 
 STRIP_PHOTOS = [
