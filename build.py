@@ -582,12 +582,18 @@ def stats_band(items, light=False):
 """
 
 
-def split(eyebrow, num, title, paras, img, alt, rev=False, cta=None, light=False, wide=False, focal=None, ratio=None,
+def split(eyebrow, num, title, paras, img, alt, rev=False, cta=None, cta_btn=False, light=False, wide=False, focal=None, ratio=None,
           body_html=None, sec_id=None):
     # body_html replaces the paragraphs outright — the homepage club blocks use
     # it to carry the locations-page phone / hours / address treatment.
     body_paras = body_html or "".join(f'<p class="body-copy">{p}</p>' for p in paras)
-    cta_html = f'<div class="split__cta"><a class="inline-link" href="{cta[1]}">{cta[0]} →</a></div>' if cta else ""
+    if cta:
+        inner = (f'<a class="btn btn--solid" href="{cta[1]}">{cta[0]} <span class="arr">→</span></a>'
+                 if cta_btn else
+                 f'<a class="inline-link" href="{cta[1]}">{cta[0]} →</a>')
+        cta_html = f'<div class="split__cta">{inner}</div>'
+    else:
+        cta_html = ""
     return f"""
 <section class="section{' section--panel' if light else ''}"{f' id="{sec_id}"' if sec_id else ''}>
   <div class="wrap">
@@ -1498,9 +1504,14 @@ training_body = hero(
   <div class="wrap">
     <div class="split split--solo">
       <div class="split__body split__body--wide">
-        <p class="eyebrow">One-on-one personal training</p>
-        <h2 class="h-display">A plan built around <span class="serif">you</span></h2>
-        <div class="pillars pillars--3 reveal" data-stagger style="margin-top:34px">
+        <div class="cards-head cards-head--stack">
+          <div>
+            <p class="eyebrow">One-on-one personal training</p>
+            <h2 class="h-display">A plan built around <span class="serif">you</span></h2>
+          </div>
+          <p class="body-copy reveal">Years of experience, a range of specialties, and a genuine passion for helping you feel strong, confident and excited about fitness.</p>
+        </div>
+        <div class="pillars pillars--3 reveal" data-stagger>
           <div class="pillar"><span class="pillar__num">01</span><h3>Assess</h3><p>Assess where you are now and where to start.</p></div>
           <div class="pillar"><span class="pillar__num">02</span><h3>Nutrition</h3><p>Nutritional consultation and guidance &ndash; understand the power of food.</p></div>
           <div class="pillar"><span class="pillar__num">03</span><h3>Technique</h3><p>Technique and equipment &ndash; master your exercise.</p></div>
@@ -1512,15 +1523,7 @@ training_body = hero(
     </div>
   </div>
 </section>
-""" + split(
-    "Small group training", "",
-    'The best of both <span class="serif">worlds</span>',
-    ["Small Group Training brings 4–8 people together with one trainer – the energy and accountability of community, with the attention and programming of personal training.",
-     "It's affordable, it's motivating, and the workouts change constantly so you never plateau or get bored."],
-    f"{IMG}/small_group_class.jpg",
-    "Small group training at Forma",
-    rev=True, cta=("Ask about small group", "contact.html#tour"),
-) + f"""
+""" + f"""
 <section class="section section--panel" id="team">
   <div class="wrap">
     <div class="cards-head">
@@ -1528,7 +1531,6 @@ training_body = hero(
         <p class="eyebrow">Meet our training team</p>
         <h2 class="h-display reveal">Coaches who <span class="serif">care</span></h2>
       </div>
-      <p class="body-copy reveal" style="max-width:34ch">Years of experience, a range of specialties, and a genuine passion for helping you feel strong, confident and excited about fitness.</p>
     </div>
     <h3 class="team-club">Walnut Creek</h3>
     {trainer_accordion(WC_TRAINERS)}
@@ -1536,7 +1538,15 @@ training_body = hero(
     {trainer_accordion(SJ_TRAINERS)}
   </div>
 </section>
-""" + cta_band(
+""" + split(
+    "Small group training", "",
+    'The best of both <span class="serif">worlds</span>',
+    ["Small Group Training brings 4–8 people together with one trainer – the energy and accountability of community, with the attention and programming of personal training.",
+     "It's affordable, it's motivating, and the workouts change constantly so you never plateau or get bored."],
+    f"{IMG}/small_group_class.jpg",
+    "Small group training at Forma",
+    rev=True, cta=("Join Now", "join.html"), cta_btn=True,
+) + cta_band(
     'Train with the <span class="serif">best</span> in the Bay',
     "Join Forma, tell us your goal, and we'll pair you with the coach who's right for you.",
     f"{IMG}/trainers_sled.jpg",
