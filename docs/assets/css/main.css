@@ -868,16 +868,6 @@ a.pillar { display: block; }
   content: ""; position: absolute; left: 0; top: 0.6em;
   width: 5px; height: 5px; border-radius: 50%; background: var(--accent);
 }
-/* The recipient list keeps its cards — it is names and conditions, not a run
-   of short labels, so it did not want the same treatment. */
-.tag-list--people { display: flex; flex-wrap: wrap; gap: 10px; }
-.tag-list--people li {
-  display: flex; flex-direction: column; gap: 3px;
-  border: 1px solid var(--line); padding: 14px 20px; font-size: 14px;
-}
-.tag-list--people li::before { content: none; }
-.tag-list--people strong { font-weight: 600; color: var(--bone); }
-.tag-list--people span { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
 
 /* Staff and advisory portraits. */
 .people { display: grid; grid-template-columns: repeat(5, 1fr); gap: 22px; }
@@ -904,7 +894,6 @@ a.pillar { display: block; }
   .quotes { grid-template-columns: 1fr; }
   .tag-list { grid-template-rows: repeat(6, auto); gap: 12px 20px; }
   .tag-list li { font-size: 15px; line-height: 1.45; }
-  .tag-list--people li { font-size: 13px; padding: 12px 16px; }
   .affiliates img { height: 34px; }
 }
 a.pillar h3 { transition: color .3s; }

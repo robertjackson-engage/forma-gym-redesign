@@ -1801,16 +1801,10 @@ spa_body = hero(
     img=f"{IMG}/spa_header_flipped.jpg",
     focal="50% 68%", tinted=True,
     crumb="The Spa",
-    actions=[("Book a Treatment", "tel:9259326400", True)],
+    actions=[("Massage", "#massage", True), ("Skincare", "#skincare", False)],
     meta=["Massage · facials · Reiki · skin care", "Walnut Creek &amp; San Jose"],
     page=True,
 ) + f"""
-<nav class="subnav" aria-label="Spa treatments">
-  <div class="wrap">
-    <a href="#massage">Massage</a>
-    <a href="#skincare">Skincare</a>
-  </div>
-</nav>
 
 <section class="section" id="massage">
   <div class="wrap">
@@ -1939,16 +1933,6 @@ RISE_CONDITIONS = [
     "Transverse Myelitis", "Pediatrics &amp; many more",
 ]
 
-# Scholarship recipients from the live site. Three of the four carry
-# NEED_PHOTO placeholders there, so these run as text rather than half a row
-# of portraits and half a row of grey.
-RISE_RECIPIENTS = [
-    ("Tyler Lindemann", "C5&ndash;C7 SCI"),
-    ("Michael Scott Harvey", "T12 SCI"),
-    ("Myjon Fuller", "Cerebral Palsy"),
-    ("Eugene Urenda", "Stroke"),
-]
-
 RISE_QUOTES = [
     ("Being able to go to RISE allows Annie to continue to gain strength physically &ndash; which is so important for her independence. The team are so creative at keeping Annie, who is seven, engaged during sessions and making the workouts fun. Everything she learns at RISE helps her gain confidence, when she sees improvement, or learns she is stronger than she thinks.", "Cathy B., mother of Annie"),
     ("In August 2019 I suffered a spinal cord injury. Once COVID-19 hit, my physical therapy became limited and it hindered my progress. My wife found RISE and they were able to remain open. In six weeks I progressed so much that I stood on my own two legs for the first time in 18 months.", "Laz T."),
@@ -1975,8 +1959,6 @@ def _rise_people(people):
 
 
 _rise_conditions = "".join(f"<li>{c}</li>" for c in RISE_CONDITIONS)
-_rise_recipients = "".join(
-    f"<li><strong>{n}</strong><span>{c}</span></li>" for n, c in RISE_RECIPIENTS)
 _rise_quotes = "".join(
     f'<figure class="quote-card"><blockquote>{q}</blockquote>'
     f"<figcaption>{who}</figcaption></figure>" for q, who in RISE_QUOTES)
@@ -2063,9 +2045,9 @@ rise_body = hero(
       </div>
     </div>
     <div class="pillars pillars--3" data-stagger>
-      <div class="pillar"><span class="pillar__num">01</span><h3>Local recovery</h3><p>For individuals local to the area, who typically schedule on a recurring basis.</p></div>
-      <div class="pillar"><span class="pillar__num">02</span><h3>Visiting recovery</h3><p>For those not near the facility &ndash; typically once a week, or an intensive two-week program.</p></div>
-      <div class="pillar"><span class="pillar__num">03</span><h3>Train your trainer</h3><p>For friends or family who want to carry out recovery programs at home or in their own setting.</p></div>
+      <div class="pillar"><h3>Local recovery</h3><p>For individuals local to the area, who typically schedule on a recurring basis.</p></div>
+      <div class="pillar"><h3>Visiting recovery</h3><p>For those not near the facility &ndash; typically once a week, or an intensive two-week program.</p></div>
+      <div class="pillar"><h3>Train your trainer</h3><p>For friends or family who want to carry out recovery programs at home or in their own setting.</p></div>
     </div>
   </div>
 </section>
@@ -2114,8 +2096,6 @@ rise_body = hero(
       <a class="btn" href="contact.html">Apply Now <span class="arr">&rarr;</span></a>
       <a class="btn" href="givesback.html">Donate Now <span class="arr">&rarr;</span></a>
     </div>
-    <p class="eyebrow reveal" style="margin-top:54px">Scholarship recipients</p>
-    <ul class="tag-list tag-list--people reveal">{_rise_recipients}</ul>
   </div>
 </section>
 
