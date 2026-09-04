@@ -1508,7 +1508,6 @@ training_body = hero(
           <div class="pillar"><span class="pillar__num">05</span><h3>Accountability</h3><p>Someone in your corner for the whole fitness journey.</p></div>
           <div class="pillar"><span class="pillar__num">06</span><h3>Recover</h3><p>Learn to repair and recover, and keep your work/life balance.</p></div>
         </div>
-        <div class="split__cta"><a class="inline-link" href="#team">Meet the team →</a></div>
       </div>
     </div>
   </div>
