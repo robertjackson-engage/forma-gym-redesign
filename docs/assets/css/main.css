@@ -853,12 +853,29 @@ a.pillar { display: block; }
 @media (min-width: 821px) { .pillars--method .pillar:nth-child(5) { grid-column: 1 / -1; } }
 
 /* Condition and recipient lists: short items that would be wasteful as cards. */
-.tag-list { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
-.tag-list li {
-  border: 1px solid var(--line); padding: 11px 18px;
-  font-size: 14px; letter-spacing: 0.02em; color: var(--copy);
+/* Ten conditions read as a list, not as ten buttons — so bullets rather than
+   boxes, on a five-wide grid that fills two even rows. */
+.tag-list {
+  list-style: none; display: grid;
+  grid-auto-flow: column; grid-template-rows: repeat(3, auto);
+  grid-auto-columns: 1fr; gap: 16px 34px; margin-top: 10px;
 }
-.tag-list--people li { display: flex; flex-direction: column; gap: 3px; padding: 14px 20px; }
+.tag-list li {
+  position: relative; padding-left: 18px;
+  font-size: 16px; line-height: 1.65; letter-spacing: 0.01em; color: var(--copy);
+}
+.tag-list li::before {
+  content: ""; position: absolute; left: 0; top: 0.6em;
+  width: 5px; height: 5px; border-radius: 50%; background: var(--accent);
+}
+/* The recipient list keeps its cards — it is names and conditions, not a run
+   of short labels, so it did not want the same treatment. */
+.tag-list--people { display: flex; flex-wrap: wrap; gap: 10px; }
+.tag-list--people li {
+  display: flex; flex-direction: column; gap: 3px;
+  border: 1px solid var(--line); padding: 14px 20px; font-size: 14px;
+}
+.tag-list--people li::before { content: none; }
 .tag-list--people strong { font-weight: 600; color: var(--bone); }
 .tag-list--people span { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
 
@@ -885,7 +902,9 @@ a.pillar { display: block; }
 @media (max-width: 820px) {
   .people, .people--board { grid-template-columns: repeat(2, 1fr); gap: 16px; }
   .quotes { grid-template-columns: 1fr; }
-  .tag-list li { font-size: 13px; padding: 9px 14px; }
+  .tag-list { grid-template-rows: repeat(6, auto); gap: 12px 20px; }
+  .tag-list li { font-size: 15px; line-height: 1.45; }
+  .tag-list--people li { font-size: 13px; padding: 12px 16px; }
   .affiliates img { height: 34px; }
 }
 a.pillar h3 { transition: color .3s; }

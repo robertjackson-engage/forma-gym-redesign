@@ -1936,7 +1936,7 @@ RISE_CONDITIONS = [
     "Spinal Cord Injury (SCI)", "Stroke", "Traumatic Brain Injury (TBI)",
     "Cerebral Palsy (CP)", "Guillain-Barr&eacute; Syndrome (GBS)",
     "Multiple Sclerosis (MS)", "Parkinson&rsquo;s Disease",
-    "Transverse Myelitis", "Pediatrics", "and many more",
+    "Transverse Myelitis", "Pediatrics &amp; many more",
 ]
 
 # Scholarship recipients from the live site. Three of the four carry
@@ -2030,7 +2030,6 @@ rise_body = hero(
         <p class="eyebrow">Our methodology</p>
         <h2 class="h-display reveal">A step-by-step <span class="serif">method</span></h2>
       </div>
-      <p class="body-copy reveal" style="max-width:34ch">Each client's needs are carefully addressed to support our mission of achieving your recovery goals.</p>
     </div>
     <div class="pillars pillars--3 pillars--method reveal" data-stagger>
       <div class="pillar"><span class="pillar__num">01</span><h3>Assess</h3><p>The most important first step is the client's body, mindset and willingness to overcome obstacles.</p></div>
@@ -2074,15 +2073,15 @@ rise_body = hero(
     "Our facility", "", 'Inside Forma <span class="serif">Walnut Creek</span>',
     ["RISE Paralysis Recovery Center &ndash; a Forma Gym Wellness Studio &ndash; is a dedicated paralysis recovery facility inside our Walnut Creek club, right off the 680/24 corridor. RISE has two private studios plus full use of our 35,000 sq ft gym.",
      "While RISE clients train with our neuro exercise trainers, family and friends have access to the full-service gym and its amenities (conditions apply). Our facility is powered by some of the top industry leaders in equipment and accessories."],
-    f"{IMG}/rise_facility.jpg", "Inside the RISE Paralysis Recovery Center studio",
-    sec_id="facility",
+    f"{IMG}/wc_facade.jpg", "Forma Gym Walnut Creek, home of the RISE Paralysis Recovery Center",
+    ratio="1200/789", sec_id="facility",
 ) + f"""
 <section class="section section--panel" id="start">
   <div class="wrap">
     <div class="cards-head">
       <div>
         <p class="eyebrow">Get started</p>
-        <h2 class="h-display reveal">RISE up and <span class="serif">begin</span></h2>
+        <h2 class="h-display reveal"><span class="serif">RISE up</span> &amp; begin</h2>
       </div>
       <p class="body-copy reveal" style="max-width:38ch">Have a question first? Email <a href="mailto:rise@formagym.com">rise@formagym.com</a> and our team will walk you through it.</p>
     </div>
