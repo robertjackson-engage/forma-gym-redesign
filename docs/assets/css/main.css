@@ -30,17 +30,26 @@
      Shared by .site-header and the gate's bar so the two cannot drift. */
   --nav-scrim: linear-gradient(to bottom,
     rgba(11,11,12,0.95) 0%,
-    rgba(11,11,12,0.90) 22%,
-    rgba(11,11,12,0.78) 42%,
-    rgba(11,11,12,0.58) 58%,
-    rgba(11,11,12,0.38) 71%,
-    rgba(11,11,12,0.22) 82%,
-    rgba(11,11,12,0.11) 90%,
-    rgba(11,11,12,0.04) 96%,
+    rgba(11,11,12,0.90) 19.1%,
+    rgba(11,11,12,0.78) 36.5%,
+    rgba(11,11,12,0.58) 50.4%,
+    rgba(11,11,12,0.38) 61.7%,
+    rgba(11,11,12,0.22) 71.3%,
+    rgba(11,11,12,0.145) 78%,
+    rgba(11,11,12,0.09) 84%,
+    rgba(11,11,12,0.052) 89%,
+    rgba(11,11,12,0.027) 93.5%,
+    rgba(11,11,12,0.011) 97%,
     rgba(11,11,12,0) 100%);
   --nav-scrim-soft: linear-gradient(to bottom,
-    rgba(11,11,12,0.8) 0%,
+    rgba(11,11,12,0.80) 0%,
+    rgba(11,11,12,0.62) 22%,
     rgba(11,11,12,0.42) 45%,
+    rgba(11,11,12,0.26) 60%,
+    rgba(11,11,12,0.145) 72%,
+    rgba(11,11,12,0.075) 82%,
+    rgba(11,11,12,0.035) 89.5%,
+    rgba(11,11,12,0.013) 95%,
     rgba(11,11,12,0) 100%);
 
   --pad: clamp(20px, 4.5vw, 72px);
@@ -146,7 +155,7 @@ body.page-exit { opacity: 0; }
   border-bottom: 1px solid transparent;
 }
 .site-header::before {
-  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 146px;
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 168px;
   z-index: -1; pointer-events: none; background: var(--nav-scrim);
   transition: opacity .45s;
 }
@@ -309,6 +318,12 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   background: linear-gradient(to top, rgba(11,11,12,0.92) 0%, rgba(11,11,12,0.35) 45%, rgba(11,11,12,0.42) 100%);
 }
 .hero__media--dark-src::after { content: none; }
+@media (min-width: 821px) {
+  .hero__media--baked::after {
+    -webkit-mask-image: linear-gradient(to right, #000 0%, #000 58%, transparent 92%);
+    mask-image: linear-gradient(to right, #000 0%, #000 58%, transparent 92%);
+  }
+}
 /* For bright or busy photos: a flat scrim under the standard gradient so the
    headline and body copy stay legible. Only the two spa pages use this, so the
    values are tuned to that photo. Raised 0.12 on both breakpoints — the earlier
