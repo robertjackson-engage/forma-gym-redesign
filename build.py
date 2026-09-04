@@ -210,11 +210,12 @@ def socials(handle, club):
 
 
 NAV = [
-    ("Locations", "locations.html"),
+    ("Clubs", "locations.html"),
     ("Classes", "group-fitness.html"),
-    ("Training", "training.html"),
+    ("Train", "training.html"),
     ("Recovery", "recovery.html"),
     ("Spa", "spa.html"),
+    ("RISE", "rise.html"),
     ("Kidzville", "kidzville.html"),
     ("About", "about.html"),
 ]
@@ -224,9 +225,9 @@ NAV = [
 # the header has no room for follows.
 MENU = [
     ("Home", "index.html"),
-    ("Locations", "locations.html"),
+    ("Clubs", "locations.html"),
     ("Classes", "group-fitness.html"),
-    ("Training", "training.html"),
+    ("Train", "training.html"),
     ("Recovery", "recovery.html"),
     ("Spa", "spa.html"),
     ("Kidzville", "kidzville.html"),
@@ -1996,23 +1997,14 @@ rise_body = hero(
   </div>
 </nav>
 """ + f"""
-<section class="section section--tight">
-  <div class="wrap">
-    <figure class="quote-band quote-band--sm reveal">
-      <blockquote>At RISE there are no barriers &ndash; only individuals dedicated to helping you defy the odds.</blockquote>
-      <figcaption><span class="quote-band__rule"></span><img class="quote-band__lockup quote-band__lockup--rise" src="assets/img/rise_logo_horiz.svg" alt="Forma Gym and RISE"></figcaption>
-    </figure>
-  </div>
-</section>
-
 <section class="section" id="about">
   <div class="wrap">
-    <div class="cards-head">
+    <div class="cards-head cards-head--stack">
       <div>
         <p class="eyebrow">About RISE</p>
         <h2 class="h-display reveal">What is <span class="serif">RISE</span></h2>
       </div>
-      <p class="body-copy reveal" style="max-width:46ch">RISE is an exercise-based therapy program for individuals living with paralysis, focused on function, strength and improving the physiological and neurological function of the body. Our trainers are expansive in neurological conditions, and every session is built around healing how your body and nervous system work together.</p>
+      <p class="body-copy reveal">RISE is an exercise-based therapy program for individuals living with paralysis, focused on function, strength and improving the physiological and neurological function of the body. Our trainers are expansive in neurological conditions, and every session is built around healing how your body and nervous system work together.</p>
     </div>
     <div class="pillars pillars--3" data-stagger>
       <div class="pillar"><span class="pillar__num">01</span><h3>Wheelchair free</h3><p>Your body was designed to MOVE. Recovery sessions are conducted out of your chair to get you moving again.</p></div>
