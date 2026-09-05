@@ -18,10 +18,6 @@ _CURATED_OUTDOOR_STRIP = [
 # use this file.
 COLOR_MATCH_EXCLUDE = {
     "WC_pool_class_662x501_v1.jpg",
-    # Outdoor Wheel & Walk shot. Its blue is daylight and event shirts, not a
-    # cast — matched against the indoor RISE reference it hit the +/-14% cap
-    # (R +14%, B -11%) and read artificially warm.
-    "rise_trot_strip.jpg",
 }
 
 # Per-photo crops for strip images whose subject the centred crop clips.
@@ -532,6 +528,20 @@ def hero(kicker, lines, sub="", sub2="", img=None, img_mobile=None, video=None, 
   {meta_html}
   <div class="hero__scroll" aria-hidden="true"></div>
 </section>
+"""
+
+
+def logo_marquee(images):
+    """Equipment-brand logos on the same scroller as photo_marquee — it keeps
+    the class so main.js drives it, and --logos swaps the tile sizing."""
+    seg = "".join(
+        f'<span><img src="{IMG}/{im}" alt="" loading="lazy" draggable="false"></span>'
+        for im in images)
+    return f"""
+<div class="marquee marquee--photo marquee--logos" aria-hidden="true" tabindex="-1">
+  <div class="marquee__track">{seg}</div>
+  <div class="marquee__track">{seg}</div>
+</div>
 """
 
 
@@ -1946,7 +1956,6 @@ RISE_QUOTES = [
     ("I feel like I&rsquo;m working out and not just doing therapy. I find the program inspiring, being around other people working really hard to reach their goals. Being part of it makes me feel like I&rsquo;m not alone with my disability.", "Ava M."),
     ("Every workout leaves me feeling tired, but invigorated. My biggest accomplishment isn&rsquo;t as concrete as muscle growth or taking my first steps. It&rsquo;s the return of the self-confidence I had before my accident.", "Jonathan O."),
     ("My&rsquo;Jon came in for just ten sessions and honestly I thought it would be a waste of time. When he came here he couldn&rsquo;t control his upper body or lift his head on his own. Being in this program made me see a future for him moving forward, to be independent.", "Mary C., aunt of My&rsquo;Jon"),
-    ("RISE has shaped me into a recovery state of mind, and has physically and mentally given me the will to move on. I suffered a massive stroke a year and a half ago and with their constant help I get better and better.", "Kris Leffle"),
 ]
 
 
@@ -2061,7 +2070,7 @@ rise_body = hero(
      "While RISE clients train with our neuro exercise trainers, family and friends have access to the full-service gym and its amenities (conditions apply). Our facility is powered by some of the top industry leaders in equipment and accessories."],
     f"{IMG}/wc_facade.jpg", "Forma Gym Walnut Creek, home of the RISE Paralysis Recovery Center",
     ratio="1200/789", sec_id="facility",
-) + f"""
+) + logo_marquee([f"rise_brand_{i:02d}.png" for i in range(1, 10)]) + f"""
 <section class="section section--panel" id="start">
   <div class="wrap">
     <div class="cards-head">
@@ -2117,12 +2126,6 @@ rise_body = hero(
     <p class="eyebrow reveal" style="margin-top:64px">Medical advisory board</p>
     <p class="body-copy reveal" style="max-width:60ch;margin-bottom:28px">As Forma Gym and RISE expanded their special populations programs, we formed a Medical Advisory Board of community allied healthcare providers, to keep our programs as safe and effective as possible.</p>
     <div class="people people--board reveal" data-stagger>{_rise_people([(n, "", i) for n, i in RISE_BOARD])}</div>
-
-    <p class="eyebrow reveal" style="margin-top:64px">RISE affiliates</p>
-    <div class="affiliates reveal">
-      <img src="assets/img/rise_affiliate_naboso.png" alt="Naboso" loading="lazy">
-      <img src="assets/img/rise_affiliate_medfit.png" alt="MedFit Network" loading="lazy">
-    </div>
   </div>
 </section>
 
@@ -2143,18 +2146,23 @@ rise_body = hero(
     <div class="cards-head">
       <div>
         <p class="eyebrow">Contact</p>
-        <h2 class="h-display reveal">Talk to <span class="serif">RISE</span></h2>
+        <h2 class="h-display reveal">Let&rsquo;s <span class="serif">RISE</span> up</h2>
       </div>
     </div>
-    <div class="pillars pillars--3" data-stagger>
-      <div class="pillar"><h3>Location</h3><p>Inside Forma Gym Walnut Creek only.<br>1908 Olympic Blvd, Walnut Creek, CA 94596</p></div>
-      <div class="pillar"><h3>Email</h3><p><a href="mailto:rise@formagym.com">rise@formagym.com</a></p></div>
-      <div class="pillar"><h3>Phone</h3><p><a href="tel:9259326400">(925) 932-6400</a> &ndash; ask for RISE</p></div>
+    <div class="reveal" style="max-width:620px">
+      <div class="contact-rows">
+        <div><a href="tel:9259326400">(925) 932-6400</a></div>
+        <div><a href="mailto:rise@formagym.com">rise@formagym.com</a></div>
+      </div>
+      <address class="club-address contact-address">1908 Olympic Blvd, Walnut Creek, CA 94596 (inside Forma Gym Walnut Creek)</address>
+      <div class="hero__actions" style="opacity:1;transform:none;margin-top:26px">
+        <a class="btn btn--solid btn--sm" href="contact.html#tour">Schedule a Tour <span class="arr">&rarr;</span></a>
+      </div>
     </div>
   </div>
 </section>
 """ + cta_band(
-    'Your life is an <span class="serif">opportunity</span>',
+    'Your life is an opportunity.<br><span class="serif">RISE to it!</span>',
     "RISE includes a scholarship program so cost is never the reason you can't start. Reach out and let's begin.",
     f"{IMG}/rise_room_blur.jpg",
     primary=("Get Started", "contact.html#tour"), secondary=("Scholarship Program", "#scholarship"),
