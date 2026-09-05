@@ -1985,7 +1985,7 @@ rise_body = hero(
     focal="100% 50%",
     media_mod="hero__media--dark-src",
     crumb="RISE",
-    actions=[("Get Started", "#start", True), ("Learn More", "#about", False)],
+    actions=[("Get Started", "#start", True), ("Contact Us", "#contact", False)],
     page=True,
 ) + photo_marquee(RISE_STRIP_PHOTOS) + """
 <nav class="subnav" aria-label="RISE sections">
@@ -2081,28 +2081,28 @@ rise_body = hero(
       <p class="body-copy reveal" style="max-width:38ch">Have a question first? Email <a href="mailto:rise@formagym.com">rise@formagym.com</a> and our team will walk you through it.</p>
     </div>
     <div class="pillars" data-stagger>
-      <div class="pillar"><span class="pillar__num">01</span><h3>Schedule a tour</h3><p>Come and see the studios, meet the team and talk through where you are starting from.</p></div>
-      <div class="pillar"><span class="pillar__num">02</span><h3>Apply and evaluate</h3><p>Complete an online application, then book your initial evaluation with our team.</p></div>
+      <div class="pillar"><span class="pillar__num">01</span><h3>Apply and evaluate</h3><p>Complete an online application, then book your initial evaluation with our team.</p></div>
+      <div class="pillar"><span class="pillar__num">02</span><h3>Schedule a tour</h3><p>Come and see the studios, meet the team and talk through where you are starting from.</p></div>
     </div>
     <div class="hero__actions reveal" style="margin-top:36px">
-      <a class="btn btn--solid" href="contact.html#tour">Schedule Now <span class="arr">&rarr;</span></a>
-      <a class="btn" href="contact.html">Request Info <span class="arr">&rarr;</span></a>
+      <a class="btn btn--solid" href="https://riseparalysisrecovery.knack.com/rise-paralysis-recovery#home/" target="_blank" rel="noopener">Fill Out Application <span class="arr">&rarr;</span></a>
+      <a class="btn" href="https://riseparalysisrecovery.knack.com/rise-paralysis-recovery#request-more-information/" target="_blank" rel="noopener">Request More Info <span class="arr">&rarr;</span></a>
     </div>
   </div>
 </section>
 
 <section class="section" id="scholarship">
   <div class="wrap">
-    <div class="cards-head">
+    <div class="cards-head cards-head--stack">
       <div>
         <p class="eyebrow">Scholarship program</p>
         <h2 class="h-display reveal">Cost is never the <span class="serif">reason</span></h2>
       </div>
-      <p class="body-copy reveal" style="max-width:46ch">Recovery sessions are mostly paid out of pocket, because insurance does not cover our out-of-the-box approach. Not everyone who needs therapy can afford it.</p>
     </div>
-    <div class="body-copy reveal" style="max-width:70ch">
-      <p>The RISE scholarship program was launched with Forma Gym's Forma Kids Foundation 501(c)(3) to give financial assistance to clients supporting their recovery. Scholarships are awarded primarily on financial need and reviewed quarterly. There are typically more applicants than scholarships, so not everyone will be funded, and applicants not selected may be considered in the next cycle.</p>
-      <p>If you would like to sponsor a RISE client, you can make a tax-deductible donation to the Forma Kids Foundation. 100% of the proceeds go towards scholarships for RISE clients.</p>
+    <div class="body-copy reveal" style="max-width:95ch">
+      <p>Recovery sessions are mostly paid out of pocket by clients, since insurance coverage does not cover our services due to our &ldquo;out of the box&rdquo; approach towards recovery. Unfortunately, not everyone who needs therapy can afford it.</p>
+      <p>Our RISE scholarship program was launched to assist with financial assistance for clients looking to support their recovery journey, in association with Forma Gym&rsquo;s &ldquo;Forma Kids Foundation 501(c)3.&rdquo; Scholarships are given based primarily on financial need, and are reviewed and awarded on a quarterly basis. There are typically more applicants than we have scholarships to give, so not all applicants will be funded and the same individual will not receive more than one scholarship. Applicants who have not been selected may be considered in the next funding cycle.</p>
+      <p class="body-copy__note">If you are interested in helping sponsor a RISE client or want to support our RISE scholarship program, we invite you to make a tax-deductible donation to the Forma Gym [Forma Kids Foundation 501(c)3]. 100% of the proceeds from this campaign will go towards scholarships for RISE clients.</p>
     </div>
     <div class="hero__actions reveal" style="margin-top:32px">
       <a class="btn btn--solid" href="https://riseparalysisrecovery.knack.com/rise-paralysis-recovery#request-more-information/" target="_blank" rel="noopener">Request More Info <span class="arr">&rarr;</span></a>
@@ -2155,9 +2155,6 @@ rise_body = hero(
         <div><a href="mailto:rise@formagym.com">rise@formagym.com</a></div>
       </div>
       <address class="club-address contact-address">1908 Olympic Blvd, Walnut Creek, CA 94596 (inside Forma Gym Walnut Creek)</address>
-      <div class="hero__actions" style="opacity:1;transform:none;margin-top:26px">
-        <a class="btn btn--solid btn--sm" href="contact.html#tour">Schedule a Tour <span class="arr">&rarr;</span></a>
-      </div>
     </div>
   </div>
 </section>

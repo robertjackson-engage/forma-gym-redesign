@@ -557,6 +557,8 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 .body-copy { color: var(--copy); max-width: 62ch; font-size: 16px; }
 .section--light .body-copy { color: var(--muted-dark); }
 .body-copy + .body-copy { margin-top: 1.2em; }
+.body-copy p + p { margin-top: 1.2em; }
+.body-copy__note { font-style: italic; }
 .body-copy strong { color: inherit; font-weight: 600; }
 
 /* ---------- intro block ---------- */
@@ -859,6 +861,9 @@ a.pillar { display: block; }
 /* Five steps in a two-column grid leaves one over, so the last cell takes the
    full row rather than sitting beside an empty one. */
 @media (min-width: 821px) { .pillars--method .pillar:nth-child(5) { grid-column: 1 / -1; } }
+.pillars--terms .pillar { display: flex; align-items: center; min-height: 104px; }
+.pillars--terms h3 { font-size: clamp(17px, 1.5vw, 21px); line-height: 1.2; margin: 0; }
+@media (max-width: 820px) { .pillars--terms .pillar { min-height: 0; } }
 
 /* Condition and recipient lists: short items that would be wasteful as cards. */
 /* Ten conditions read as a list, not as ten buttons — so bullets rather than
@@ -866,15 +871,16 @@ a.pillar { display: block; }
 .tag-list {
   list-style: none; display: grid;
   grid-auto-flow: column; grid-template-rows: repeat(3, auto);
-  grid-auto-columns: 1fr; gap: 16px 34px; margin-top: 10px;
+  grid-auto-columns: 1fr; gap: 17px 40px; margin-top: 26px;
 }
 .tag-list li {
-  position: relative; padding-left: 18px;
-  font-size: 16px; line-height: 1.65; letter-spacing: 0.01em; color: var(--copy);
+  position: relative; padding-left: 26px;
+  font-size: 19px; line-height: 1.45; font-weight: 500;
+  letter-spacing: 0.005em; color: var(--copy);
 }
 .tag-list li::before {
-  content: ""; position: absolute; left: 0; top: 0.6em;
-  width: 5px; height: 5px; border-radius: 50%; background: var(--accent);
+  content: ""; position: absolute; left: 0; top: 0.52em;
+  width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
 }
 
 /* Staff and advisory portraits. */
@@ -904,7 +910,8 @@ a.pillar { display: block; }
   .people, .people--board { grid-template-columns: repeat(2, 1fr); gap: 16px; }
   .quotes { grid-template-columns: 1fr; }
   .tag-list { grid-template-rows: repeat(6, auto); gap: 12px 20px; }
-  .tag-list li { font-size: 15px; line-height: 1.45; }
+  .tag-list { gap: 18px 22px; margin-top: 18px; }
+  .tag-list li { font-size: 16px; padding-left: 22px; }
 }
 a.pillar h3 { transition: color .3s; }
 a.pillar:hover h3 { color: var(--accent); }
