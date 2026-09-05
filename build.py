@@ -2105,9 +2105,9 @@ rise_body = hero(
       <p>If you would like to sponsor a RISE client, you can make a tax-deductible donation to the Forma Kids Foundation. 100% of the proceeds go towards scholarships for RISE clients.</p>
     </div>
     <div class="hero__actions reveal" style="margin-top:32px">
-      <a class="btn btn--solid" href="givesback.html">Learn More <span class="arr">&rarr;</span></a>
-      <a class="btn" href="contact.html">Apply Now <span class="arr">&rarr;</span></a>
-      <a class="btn" href="givesback.html">Donate Now <span class="arr">&rarr;</span></a>
+      <a class="btn btn--solid" href="https://riseparalysisrecovery.knack.com/rise-paralysis-recovery#request-more-information/" target="_blank" rel="noopener">Request More Info <span class="arr">&rarr;</span></a>
+      <a class="btn" href="https://riseparalysisrecovery.knack.com/rise-paralysis-recovery#rise-scholarship-program-application-form/" target="_blank" rel="noopener">Apply Now <span class="arr">&rarr;</span></a>
+      <a class="btn" href="https://checkout.square.site/merchant/MLNHMJSTTD3MV/checkout/WJTQOKFZUFMOXMMZQYEUEFGS" target="_blank" rel="noopener">Donate Now <span class="arr">&rarr;</span></a>
     </div>
   </div>
 </section>
