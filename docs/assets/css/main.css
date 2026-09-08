@@ -1746,6 +1746,24 @@ html:has(.subnav) { scroll-padding-top: 150px; }
 .site-footer .brand__icon { width: 26px; height: 26px; }
 
 /* view toggle (header) */
+/* Club switch: the same pill as the guest/member toggle, but its parts are
+   links — a club is a URL here, not a stored preference. */
+.club-switch { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
+.club-switch > * {
+  padding: 6px 12px; border-radius: 999px; white-space: nowrap;
+  font-size: 8.5px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600;
+  color: var(--muted); text-decoration: none; transition: background .35s, color .35s;
+}
+.club-switch a:hover, .club-switch a:focus-visible { color: var(--bone); }
+.club-switch [aria-current] { background: var(--bone); color: var(--ink); }
+/* Inside the overlay the switch sits among .menu-side__group links, whose
+   own rule is a class deeper and would otherwise set the type. */
+.menu-side__group .club-switch > * {
+  font-size: 8.5px; letter-spacing: 0.14em; text-transform: uppercase;
+  font-weight: 600; padding: 7px 13px; margin: 0; display: block;
+}
+.menu-side__group .club-switch { margin-top: 4px; }
+
 .view-toggle { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
 .view-toggle button {
   padding: 6px 12px; border-radius: 999px;
@@ -1817,8 +1835,8 @@ body.choice-done .view-chooser {
 }
 .vc-panel:hover img { opacity: 0.9; transform: scale(1.04); }
 /* Bias each photo to its subject. */
-.vc-panel[data-choose="guest"] img { object-position: 56% 34%; }
-.vc-panel[data-choose="member"] img { object-position: 50% 58%; }
+.vc-panel[data-choose-panel="guest"] img { object-position: 56% 34%; }
+.vc-panel[data-choose-panel="member"] img { object-position: 50% 58%; }
 .vc-panel::after {
   content: ""; position: absolute; inset: 0;
   /* Dark at the base, fully clear by 67% so the top third carries no scrim. */
@@ -1836,6 +1854,9 @@ body.choice-done .view-chooser {
 }
 .vc-panel h3 .serif { font-family: inherit; font-style: inherit; text-transform: inherit; color: var(--accent-soft); }
 .vc-panel p { color: var(--copy); margin-top: 10px; font-size: 14.5px; max-width: 40ch; }
+/* Both clubs on each side, so the gate settles club and view in one click.
+   Real links rather than buttons — each is a URL into that club's tree. */
+.vc-clubs { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
 .vc-panel .go {
   display: inline-flex; align-items: center; gap: 10px; margin-top: 18px;
   font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--bone);

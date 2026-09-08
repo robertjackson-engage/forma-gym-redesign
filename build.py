@@ -90,6 +90,60 @@ STRIP_PHOTOS = [
 #   production: SITE_BASE="" python3 build.py
 SITE_BASE = os.environ.get("SITE_BASE", "/forma-gym-redesign").rstrip("/")
 
+
+# ============================================================ CLUBS
+# Two clubs, two page trees. Walnut Creek keeps the site's existing URLs: it is
+# the default club and what the live site already serves, so nothing that ranks
+# today has to move and the cutover redirect map is unaffected. San Jose is
+# emitted alongside it under /san-jose/.
+CLUBS = [
+    {"key": "wc", "name": "Walnut Creek", "prefix": "",
+     "phone": "(925) 932-6400", "tel": "9259326400",
+     "address": "1908 Olympic Blvd, Walnut Creek, CA 94596"},
+    {"key": "sj", "name": "San Jose", "prefix": "san-jose",
+     "phone": "(408) 363-1010", "tel": "4083631010",
+     "address": "5434 Thornwood Dr, San Jose, CA 95123"},
+]
+CLUB_BY_KEY = {c["key"]: c for c in CLUBS}
+
+# Amenities San Jose does not have, so these pages exist only in the Walnut
+# Creek tree. Any nav, menu or footer link to them is dropped from San Jose's
+# pages by the only-wc markers, so nothing in that tree points at a 404.
+# Reformer pilates needs the machines and the studio, both Walnut Creek only.
+# San Jose runs mat pilates, which is a different class and stays in its tree.
+WC_ONLY_PAGES = {"kidzville.html", "cryo.html", "rise.html", "pilates-reformer.html"}
+
+# Pages that belong to the company rather than to a club: the club directory and
+# the two club profiles (which describe a club each, whichever tree you came
+# from), plus the legal and partner pages. Emitted once at the root and linked
+# unprefixed from both trees — duplicating them would put the same text at two
+# URLs and, in the case of /san-jose/locations/walnut-creek/, at a nonsense one.
+SHARED_PAGES = {
+    "locations.html", "walnut-creek.html", "san-jose.html",
+    "privacy.html", "accessibility.html", "freeze-cancel.html",
+    "merchant.html", "app.html",
+}
+
+# Where a page sits inside a club tree, when the shared URL_MAP entry carries a
+# club of its own. The spa's canonical path is the Walnut Creek club's.
+CLUB_URL_MAP = {"sj": {"spa.html": "spa"}}
+
+
+def club_filter(html, club):
+    """Resolve the two club markers in a page body.
+
+    <!--wc-->…<!--/wc--> and <!--sj-->…<!--/sj--> keep a block for one club and
+    delete it for the other; {{club_name}} and friends substitute a fact. Doing
+    it on the finished string means the ~40 page bodies stay plain strings built
+    once, instead of every one becoming a function of the club.
+    """
+    keep, drop = club["key"], "sj" if club["key"] == "wc" else "wc"
+    html = _re.sub(rf"<!--{drop}-->.*?<!--/{drop}-->", "", html, flags=_re.S)
+    html = _re.sub(rf"<!--{keep}-->|<!--/{keep}-->", "", html)
+    for field in ("name", "phone", "tel", "address"):
+        html = html.replace("{{club_" + field + "}}", club[field])
+    return html
+
 FOUNDED = 2009            # Walnut Creek opened; drives the "years in the Bay Area" stat
 
 HERO_VIDEO_DESKTOP = "assets/video/SJ_WC_walkthru_combo_desktop_hero_18sec.m4v"  # landscape 1280x720, 18s
@@ -299,9 +353,10 @@ def sup_reg(text):
 ALL_CLASSES = [(t, f"{slug}.html", short, img) for slug, t, img, lead, short in CLASS_PAGES]
 
 
-def head(title, desc, body_class=""):
+def head(title, desc, body_class="", club=None):
+    club = club or CLUBS[0]
     return f"""<!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-club="{club['key']}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -329,17 +384,38 @@ def head(title, desc, body_class=""):
 """
 
 
-def header_html(active=""):
+def club_switch_html(club, filename):
+    """Walnut Creek / San Jose, as links rather than buttons: each club is a real
+    URL, so switching is a navigation, not a stored preference. Lands on the same
+    page in the other tree — or that tree's home, for a page it does not have."""
+    out = ""
+    for c in CLUBS:
+        if c["key"] == club["key"]:
+            out += f'<span aria-current="true">{c["name"]}</span>'
+        else:
+            target = ("index.html" if filename in WC_ONLY_PAGES or filename in SHARED_PAGES
+                      else filename)
+            out += f'<a href="{url_for(target, c)}">{c["name"]}</a>'
+    return f'<div class="club-switch" role="group" aria-label="Choose your club">{out}</div>'
+
+
+def header_html(active="", club=None, filename="index.html"):
+    club = club or CLUBS[0]
     links = ""
     for label, href in NAV:
+        if href in WC_ONLY_PAGES and club["key"] != "wc":
+            continue
         cls = ' class="is-active"' if href == active else ""
         links += f'<a href="{href}"{cls}>{label}</a>'
     menu_links = ""
     for i, (label, href) in enumerate(MENU, 1):
+        if href in WC_ONLY_PAGES and club["key"] != "wc":
+            continue
         # The overlay carried no current-page marker, so :hover was the only
         # thing that ever went accent — easy to mistake for one.
         mcls = ' class="is-active"' if href == active else ""
         menu_links += f'<a href="{href}"{mcls}>{label}</a>'
+    club_switch = club_switch_html(club, filename)
     return f"""
 <header class="site-header">
   <div class="site-header__inner">
@@ -379,6 +455,10 @@ def header_html(active=""):
         <a class="btn btn--solid btn--sm" href="join.html">Join Now <span class="arr">→</span></a>
       </div>
       <div class="menu-side__group">
+        <h6>Your club</h6>
+        {club_switch}
+      </div>
+      <div class="menu-side__group">
         <h6>Visit</h6>
         <a href="walnut-creek.html">Walnut Creek – 1908 Olympic Blvd</a>
         <a href="san-jose.html">San Jose – 5434 Thornwood Dr</a>
@@ -396,7 +476,8 @@ def header_html(active=""):
 """
 
 
-def footer_html():
+def footer_html(club=None):
+    club = club or CLUBS[0]
     cls_links = "".join(f'<a href="{href}">{label}</a>' for label, href, _, _ in ALL_CLASSES[:8])
     return f"""
 </main>
@@ -413,7 +494,8 @@ def footer_html():
           <a href="training.html">Personal Training</a>
           <a href="cycle.html">Cycle</a>
           <a href="yoga.html">Yoga + Mind Body</a>
-          <a href="pilates-reformer.html">Pilates Reformer</a>
+          <!--wc--><a href="pilates-reformer.html">Pilates Reformer</a><!--/wc-->
+          <!--sj--><a href="mat-pilates.html">Mat Pilates</a><!--/sj-->
           <a href="trx.html">TRX&reg;</a>
           <a href="aqua.html">Aqua</a>
         </div>
@@ -422,9 +504,9 @@ def footer_html():
         <div class="site-footer__links">
           <a href="recovery.html">Recovery &amp; Cryo</a>
           <a href="spa.html">The Spa</a>
-          <a href="kidzville.html">Kidzville</a>
+          <!--wc--><a href="kidzville.html">Kidzville</a><!--/wc-->
           <a href="outdoor-training.html">Outdoor Fitness</a>
-          <a href="rise.html">RISE Program</a>
+          <!--wc--><a href="rise.html">RISE Program</a><!--/wc-->
           <a href="merchant.html">Member Savings</a>
           <a href="about.html">About Forma</a>
         </div>
@@ -504,7 +586,13 @@ def hero(kicker, lines, sub="", sub2="", img=None, img_mobile=None, video=None, 
             label, href, solid = a[0], a[1], a[2]
             extra = (" " + a[3]) if len(a) > 3 else ""
             cls = ("btn btn--solid" if solid else "btn") + extra
-            acts += f'<a class="{cls}" href="{href}">{label} <span class="arr">→</span></a>'
+            btn = f'<a class="{cls}" href="{href}">{label} <span class="arr">→</span></a>'
+            # A 5th field names the only club this action belongs to, so a button
+            # pointing at a page one tree does not have is dropped from that tree
+            # rather than hidden with CSS — a hidden link still 404s for a crawler.
+            if len(a) > 4 and a[4]:
+                btn = f"<!--{a[4]}-->{btn}<!--/{a[4]}-->"
+            acts += btn
         acts += "</div>"
     # Breadcrumbs removed site-wide. The `crumb` arg is still accepted (many
     # call sites pass it) but no longer rendered.
@@ -596,7 +684,7 @@ def stats_band(items, light=False):
 """
 
 
-def split(eyebrow, num, title, paras, img, alt, rev=False, cta=None, cta_btn=False, light=False, wide=False, focal=None, ratio=None,
+def _split(eyebrow, num, title, paras, img, alt, rev=False, cta=None, cta_btn=False, light=False, wide=False, focal=None, ratio=None,
           body_html=None, sec_id=None):
     # body_html replaces the paragraphs outright — the homepage club blocks use
     # it to carry the locations-page phone / hours / address treatment.
@@ -624,6 +712,14 @@ def split(eyebrow, num, title, paras, img, alt, rev=False, cta=None, cta_btn=Fal
   </div>
 </section>
 """
+
+
+def split(*a, **kw):
+    """Wrapper: `club` wraps the whole section in that club's marker, so a block
+    describing an amenity only one club has never reaches the other's tree."""
+    club = kw.pop("club", None)
+    html = _split(*a, **kw)
+    return f"<!--{club}-->{html}<!--/{club}-->" if club else html
 
 
 # Band photos dark enough that the standard 0.78 scrim crushes them to near
@@ -994,8 +1090,15 @@ ALIAS_PATHS = {
 }
 
 
-def url_for(filename):
-    """Flat internal filename -> live site URL."""
+def url_for(filename, club=None):
+    """Flat internal filename -> live site URL, inside a club's tree."""
+    club = club or CLUBS[0]
+    prefix = "" if filename in SHARED_PAGES else club["prefix"]
+    if prefix:
+        base = CLUB_URL_MAP.get(club["key"], {}).get(
+            filename, URL_MAP.get(filename, filename.replace(".html", "")))
+        base = f"{prefix}/{base}" if base else prefix
+        return f"{SITE_BASE}/{base}/"
     if filename in URL_MAP:
         p = URL_MAP[filename]
         return f"{SITE_BASE}/" if p == "" else f"{SITE_BASE}/{p}/"
@@ -1141,7 +1244,7 @@ def add_srcset(html):
     return "".join(out)
 
 
-def rewrite_urls(html):
+def rewrite_urls(html, club=None):
     """Make every asset + internal link absolute-from-root and extensionless.
     Required because pages now live in subdirectories, so relative paths break.
     SITE_BASE prefixes them when the site is not served from a domain root –
@@ -1160,7 +1263,7 @@ def rewrite_urls(html):
 
     def _link(m):
         attr, fn, frag = m.group(1), m.group(2), m.group(3) or ""
-        return f'{attr}="{url_for(fn)}{frag}"'
+        return f'{attr}="{url_for(fn, club)}{frag}"'
 
     return _re.sub(r'(href)="((?:blog/)?[A-Za-z0-9._-]+\.html)(#[^"]*)?"', _link, html)
 
@@ -1175,15 +1278,30 @@ def _write(path_rel, html):
 
 def page(filename, title, desc, active, body):
     slug = filename.replace(".html", "")
-    html = rewrite_urls(head(title, desc, f"page-{slug}") + header_html(active) + body + footer_html())
-    targets = [URL_MAP.get(filename, filename.replace(".html", ""))]
-    targets += ALIAS_PATHS.get(filename, [])
-    for t in targets:
-        _write(t, html)
-    print("built", "/" + (targets[0] + "/" if targets[0] else ""))
+    for club in CLUBS:
+        if club["key"] != "wc" and (filename in WC_ONLY_PAGES or filename in SHARED_PAGES):
+            continue
+        # Distinct titles per tree, or the two clubs compete for the same query
+        # with the same string.
+        club_title = title if club["key"] == "wc" else f"{title} &ndash; {club['name']}"
+        html = rewrite_urls(
+            club_filter(head(club_title, desc, f"page-{slug}", club)
+                        + header_html(active, club, filename) + body + footer_html(club), club),
+            club)
+        base = CLUB_URL_MAP.get(club["key"], {}).get(
+            filename, URL_MAP.get(filename, filename.replace(".html", "")))
+        targets = [base] + (ALIAS_PATHS.get(filename, []) if club["key"] == "wc" else [])
+        for t in targets:
+            _write(f"{club['prefix']}/{t}".strip("/") if club["prefix"] else t, html)
+    print("built", "/" + (URL_MAP.get(filename, slug) + "/" if URL_MAP.get(filename, slug) else ""))
 
 
 # ============================================================ shared blocks
+# The gate now settles club and view in one action: each side offers both clubs,
+# and the button is a real link into that club's tree rather than a stored flag.
+_vc_wc = url_for("index.html", CLUB_BY_KEY["wc"])
+_vc_sj = url_for("index.html", CLUB_BY_KEY["sj"])
+
 view_chooser = f"""
 <div class="view-chooser" role="dialog" aria-label="Choose your experience">
   <div class="view-chooser__bar">
@@ -1194,24 +1312,30 @@ view_chooser = f"""
     </button>
   </div>
   <div class="view-chooser__panels">
-    <button class="vc-panel" type="button" data-choose="guest">
+    <div class="vc-panel" data-choose-panel="guest">
       <img src="{IMG}/guest_kettle.jpg" alt="">
       <div class="vc-panel__body">
         <span class="vc-panel__kicker">Welcome to Forma Gym</span>
         <h3>I'm a <span class="serif">guest</span></h3>
-        <p>Tour a club and explore classes.</p>
-        <span class="go">Show me around →</span>
+        <p>Choose your home club and explore classes.</p>
+        <div class="vc-clubs">
+          <a class="btn btn--sm" data-choose="guest" href="{_vc_wc}">Visit Walnut Creek <span class="arr">→</span></a>
+          <a class="btn btn--sm" data-choose="guest" href="{_vc_sj}">Visit San Jose <span class="arr">→</span></a>
+        </div>
       </div>
-    </button>
-    <button class="vc-panel" type="button" data-choose="member">
+    </div>
+    <div class="vc-panel" data-choose-panel="member">
       <img src="{IMG}/SJ_pool_birdseye.jpg" alt="">
       <div class="vc-panel__body">
         <span class="vc-panel__kicker">Welcome back Forma family</span>
         <h3>I'm a <span class="serif">member</span></h3>
         <p>Class schedules, club hours, Kidzville, Member benefits &amp; more.</p>
-        <span class="go">Take me in →</span>
+        <div class="vc-clubs">
+          <a class="btn btn--sm" data-choose="member" href="{_vc_wc}">Walnut Creek <span class="arr">→</span></a>
+          <a class="btn btn--sm" data-choose="member" href="{_vc_sj}">San Jose <span class="arr">→</span></a>
+        </div>
       </div>
-    </button>
+    </div>
   </div>
   <div class="view-chooser__foot">
     <span>I&rsquo;m ready to join now &ndash; let&rsquo;s go!</span>
@@ -1323,7 +1447,7 @@ home_body = view_chooser + hero(
       </div>
     </div>
     <div class="card-grid card-grid--2" data-stagger>
-      <a class="card card--stack" href="cryo.html"><div class="card__media card__media--wide"><img src="{IMG}/chillyGOAT_phelps_card.jpg" alt="ChillyGOAT cold plunge at Forma" loading="lazy"></div><div class="card__below"><h3 class="card__title">Cryo + Cold Plunge</h3><p>Burn 500–800 calories in a single 3-minute session, reduce inflammation and pain, heal injuries faster, and sleep better. A natural, non-invasive reset trusted by Olympic and pro athletes – and now part of your club.</p><span class="go">Explore &rarr;</span></div></a>
+      <!--wc--><a class="card card--stack" href="cryo.html"><div class="card__media card__media--wide"><img src="{IMG}/chillyGOAT_phelps_card.jpg" alt="ChillyGOAT cold plunge at Forma" loading="lazy"></div><div class="card__below"><h3 class="card__title">Cryo + Cold Plunge</h3><p>Burn 500–800 calories in a single 3-minute session, reduce inflammation and pain, heal injuries faster, and sleep better. A natural, non-invasive reset trusted by Olympic and pro athletes – and now part of your club.</p><span class="go">Explore &rarr;</span></div></a><!--/wc-->
       <a class="card card--stack" href="spa.html"><div class="card__media card__media--wide"><img src="{IMG}/spa_massage.jpg" alt="Massage at the Forma spa" loading="lazy" style="object-position:45% 45%"></div><div class="card__below"><h3 class="card__title">The Spa at Forma</h3><p>Massage, facials, Reiki and clinical skin care from skilled therapists – steps from the sauna, steam and hot tub. Restore, rejuvenate and walk out feeling like a brand new person.</p><span class="go">Explore &rarr;</span></div></a>
     </div>
   </div>
@@ -1338,8 +1462,8 @@ home_body = view_chooser + hero(
       </div>
     </div>
     <div class="rows rows--plain reveal">
-      <a class="row-item" href="kidzville.html"><span class="row-item__title">Kidzville</span><span class="row-item__desc">Enjoy your workout while your kids (ages 6 weeks–12 years) are free to play in a safe, active and educational indoor/outdoor space.</span><span class="row-item__arrow">→</span></a>
-      <a class="row-item" href="rise.html"><span class="row-item__title">RISE Program</span><span class="row-item__desc">Exercise-based therapy for individuals living with paralysis. Focused on function, strength and improving the physiology and neurological function of the body.</span><span class="row-item__arrow">→</span></a>
+      <!--wc--><a class="row-item" href="kidzville.html"><span class="row-item__title">Kidzville</span><span class="row-item__desc">Enjoy your workout while your kids (ages 6 weeks–12 years) are free to play in a safe, active and educational indoor/outdoor space.</span><span class="row-item__arrow">→</span></a><!--/wc-->
+      <!--wc--><a class="row-item" href="rise.html"><span class="row-item__title">RISE Program</span><span class="row-item__desc">Exercise-based therapy for individuals living with paralysis. Focused on function, strength and improving the physiology and neurological function of the body.</span><span class="row-item__arrow">→</span></a><!--/wc-->
       <a class="row-item" href="training.html"><span class="row-item__title">Training</span><span class="row-item__desc">Representing years of experience in the industry with a passion for your health and wellness.</span><span class="row-item__arrow">→</span></a>
         <a class="row-item" href="recovery.html"><span class="row-item__title">Recovery</span><span class="row-item__desc">Cryotherapy, cold plunge, a full-service spa, sports stretching, sauna, steam and hot tubs &ndash; recovery built into your routine.</span><span class="row-item__arrow">→</span></a>
     </div>
@@ -1445,16 +1569,25 @@ about_body = hero(
 # 14 formats as full-width rows ran 1,690px on desktop and 1,510px on a phone —
 # a quarter of the page. Same content in a dense grid instead: it packs 4-6 across
 # on desktop and 2 across on a phone.
-class_rows = ""
-for i, (label, href, desc, img) in enumerate(ALL_CLASSES, 1):
-    class_rows += (f'<a class="pillar" href="{href}">'
-                   f'<span class="pillar__num">{i:02d}</span>'
-                   f'<h3>{sup_reg(label)}</h3><p>{desc}</p></a>')
-# 14 panels divide evenly into the 2-up phone layout but leave one cell short at
-# 3-up, where the grid's 1px background showed through as a grey block. One
-# filler panel, present only at 3-up.
-if len(ALL_CLASSES) % 3:
-    class_rows += '<span class="pillar pillar--filler" aria-hidden="true"></span>'
+def _class_rows(classes):
+    rows = ""
+    for i, (label, href, desc, img) in enumerate(classes, 1):
+        rows += (f'<a class="pillar" href="{href}">'
+                 f'<span class="pillar__num">{i:02d}</span>'
+                 f'<h3>{sup_reg(label)}</h3><p>{desc}</p></a>')
+    # 14 panels divide evenly into the 2-up phone layout but leave one cell short
+    # at 3-up, where the grid's 1px background showed through as a grey block.
+    # One filler panel, present only at 3-up.
+    if len(classes) % 3:
+        rows += '<span class="pillar pillar--filler" aria-hidden="true"></span>'
+    return rows
+
+
+# Built once per club rather than filtered afterwards: dropping a row from a
+# numbered list would leave San Jose counting 08, 10, 11.
+class_rows = ("<!--wc-->" + _class_rows(ALL_CLASSES) + "<!--/wc-->"
+              + "<!--sj-->" + _class_rows([c for c in ALL_CLASSES
+                                           if c[1] not in WC_ONLY_PAGES]) + "<!--/sj-->")
 
 groupfit_body = hero(
     "Group Fitness",
@@ -1709,7 +1842,8 @@ recovery_body = hero(
     # crop. 80% lands his face dead centre.
     focal="76% 50%",
     media_mod="hero__media--lift hero__media--diag",
-    actions=[("Book Recovery", "contact.html#tour", True), ("Explore Cryo", "cryo.html", False)],
+    actions=[("Book Recovery", "contact.html#tour", True),
+             ("Explore Cryo", "cryo.html", False, "", "wc")],
     meta=["Cryo + cold plunge", "Full-service spa", "Sports stretching", "Sauna · steam · hot tub"],
     page=True,
 ) + split(
@@ -1720,7 +1854,7 @@ recovery_body = hero(
     f"{IMG}/cryo_1000px.jpg",
     "Cryotherapy chamber at Forma",
     cta=("All about cryo", "cryo.html"),
-) + split(
+    club="wc") + split(
     "The spa", "02",
     'The optimum wellness <span class="serif">experience</span>',
     ["A comprehensive menu of therapeutic treatments – massage, facials, Reiki and clinical skin care – performed by skilled, professional therapists dedicated to easing pain, restoring function and rejuvenating face and body.",
@@ -2194,7 +2328,7 @@ givesback_body = hero(
     f"{IMG}/slider-locations_turf_alysse_torey.jpg",
     "Forma community giving back",
     cta=("Learn about RISE", "rise.html"),
-) + cta_band(
+    club="wc") + cta_band(
     'Play it <span class="serif">forward</span>',
     "Want to get involved, donate, or nominate someone for a scholarship? We'd love to hear from you.",
     f"{IMG}/slider-locations_group_dance.jpg",
@@ -2214,10 +2348,19 @@ CLASS_FOCAL = {
 }
 
 
-def class_page(slug, title, img, lead, others):
-    other_cards = ""
-    for ol, oh, od in others:
-        other_cards += f'<a class="row-item" href="{oh}"><span class="row-item__idx">→</span><span class="row-item__title">{sup_reg(ol)}</span><span class="row-item__desc">{od}</span><span class="row-item__arrow">→</span></a>'
+def class_page(slug, title, img, lead, others, others_sj=None):
+    def cards(items):
+        out = ""
+        for ol, oh, od in items:
+            out += (f'<a class="row-item" href="{oh}"><span class="row-item__idx">→</span>'
+                    f'<span class="row-item__title">{sup_reg(ol)}</span>'
+                    f'<span class="row-item__desc">{od}</span>'
+                    f'<span class="row-item__arrow">→</span></a>')
+        return out
+    # Two sets rather than one filtered set, so San Jose still gets six cards
+    # instead of five on the pages where reformer would have been one of them.
+    other_cards = ("<!--wc-->" + cards(others) + "<!--/wc-->"
+                   + "<!--sj-->" + cards(others_sj if others_sj is not None else others) + "<!--/sj-->")
     return hero(
         "Group Fitness", [sup_reg(title.split()[0]), f'<span class="serif">{" ".join(title.split()[1:]) or "Studio"}</span>'] if len(title.split()) > 1 else [f'<span class="serif">{title}</span>'],
         lead, img=f"{IMG}/{img}", crumb=f'<a href="group-fitness.html">Group Fitness</a> &nbsp;/&nbsp; {sup_reg(title)}',
@@ -2800,11 +2943,13 @@ PAGES = [
 
 # class detail pages — all 14 formats
 _others_pool = [(l, h, d) for l, h, d, _ in ALL_CLASSES]
+_others_sj = [o for o in _others_pool if o[1] not in WC_ONLY_PAGES]
 for slug, title, img, lead, short in CLASS_PAGES:
     others = [o for o in _others_pool if o[1] != f"{slug}.html"][:6]
+    others_sj = [o for o in _others_sj if o[1] != f"{slug}.html"][:6]
     PAGES.append((f"{slug}.html", f"{title} | Group Fitness | Forma Gym",
                   f"{title} at Forma Gym – included with membership, all levels welcome.",
-                  "group-fitness.html", class_page(slug, title, img, lead, others)))
+                  "group-fitness.html", class_page(slug, title, img, lead, others, others_sj)))
 
 
 
@@ -2814,6 +2959,38 @@ for fn, title, desc, active, body in PAGES:
     page(fn, title, desc, active, body)
 
 print("\nDone:", len(PAGES), "pages")
+
+
+def check_links():
+    """Every internal link must resolve to a page that was actually written.
+
+    A club tree omits the pages its club has no amenity for, so a link that was
+    fine in one tree is a 404 in the other. That is invisible in a diff and
+    invisible in a screenshot, so the build checks it.
+    """
+    written = set()
+    for root, _dirs, files in os.walk(OUT):
+        if "index.html" in files:
+            rel = os.path.relpath(root, OUT).replace(os.sep, "/")
+            written.add("" if rel == "." else rel)
+    bad = []
+    for root, _dirs, files in os.walk(OUT):
+        if "index.html" not in files:
+            continue
+        src = os.path.relpath(root, OUT).replace(os.sep, "/")
+        html = open(os.path.join(root, "index.html"), encoding="utf-8").read()
+        for href in set(_re.findall(r'href="([^"#?]*)', html)):
+            if not href.startswith(SITE_BASE + "/") or "/assets/" in href:
+                continue
+            target = href[len(SITE_BASE) + 1:].strip("/")
+            if target not in written:
+                bad.append(f"  {src or '/'} -> /{target}/")
+    if bad:
+        raise SystemExit("BROKEN INTERNAL LINKS:\n" + "\n".join(sorted(set(bad))))
+    print(f"links ok: {len(written)} pages, no internal 404s")
+
+
+check_links()
 
 
 # ============================================================ DEPLOY ARTIFACTS
@@ -2852,7 +3029,9 @@ def build_404():
 
 def build_sitemap():
     # Only real, indexable pages — one entry per canonical URL.
-    paths = sorted({url_for(fn) for fn, *_ in PAGES})
+    paths = sorted({url_for(fn, club) for fn, *_ in PAGES for club in CLUBS
+                    if not (club["key"] != "wc"
+                            and (fn in WC_ONLY_PAGES or fn in SHARED_PAGES))})
     urls = "".join(f"  <url><loc>{SITE_ORIGIN}{p}</loc></url>\n" for p in paths)
     xml = ('<?xml version="1.0" encoding="UTF-8"?>\n'
            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
