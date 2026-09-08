@@ -128,6 +128,29 @@ SHARED_PAGES = {
 # club of its own. The spa's canonical path is the Walnut Creek club's.
 CLUB_URL_MAP = {"sj": {"spa.html": "spa"}}
 
+# Titles and meta descriptions naming an amenity the other club does not have.
+# The generic per-club title suffix is not enough when the shared string itself
+# says "Cryotherapy" or "full-service spa".
+CLUB_META = {
+    "sj": {
+        "recovery.html": (
+            "Recovery, Cold Plunge &amp; Massage | Forma Gym San Jose",
+            "Recover like an athlete – cold plunge, onsite massage, sports stretching, sauna, steam and hot tub at Forma Gym San Jose."),
+        "spa.html": (
+            "Massage at Forma Gym San Jose | Sports &amp; Therapeutic",
+            "Onsite sports and therapeutic massage at Forma Gym San Jose, steps from the sauna, steam and hot tub."),
+        "index.html": (
+            "Forma Gym San Jose | 5434 Thornwood Dr | Play Every Day",
+            "A 40,000 sq ft luxury club in South San Jose – 8,000 sq ft of covered outdoor turf, a heated 6-lane pool, cold plunge, every group fitness class and onsite massage."),
+        "group-fitness.html": (
+            "Group Fitness Classes | Forma Gym San Jose",
+            "13 group fitness formats included with membership – Cycle, Yoga, Barre, HIIT, Mat Pilates, Dance, TRX and Aqua, indoors and on the turf at Forma Gym San Jose."),
+        "outdoor-training.html": (
+            "Outdoor Fitness | Forma Gym San Jose",
+            "Strength, cardio, group exercise and cycle across 8,000 sq ft of covered outdoor turf at Forma Gym San Jose – year round."),
+    }
+}
+
 
 def club_filter(html, club):
     """Resolve the two club markers in a page body.
@@ -818,8 +841,10 @@ def form_section(sec_id, num, eyebrow, title_html, text, btn, light=True, extra=
           <div class="field field--full">
             <select name="location" id="{sec_id}-loc" aria-label="Preferred location">
               <option value="">&nbsp;</option>
-              <option>Walnut Creek</option>
-              <option>San Jose</option>
+              <!--wc--><option>Walnut Creek</option>
+              <option>San Jose</option><!--/wc-->
+              <!--sj--><option>San Jose</option>
+              <option>Walnut Creek</option><!--/sj-->
             </select>
             <label for="{sec_id}-loc">Preferred location</label>
           </div>
@@ -1283,9 +1308,11 @@ def page(filename, title, desc, active, body):
             continue
         # Distinct titles per tree, or the two clubs compete for the same query
         # with the same string.
-        club_title = title if club["key"] == "wc" else f"{title} &ndash; {club['name']}"
+        meta = CLUB_META.get(club["key"], {}).get(filename)
+        club_title, club_desc = meta if meta else (
+            title if club["key"] == "wc" else f"{title} &ndash; {club['name']}", desc)
         html = rewrite_urls(
-            club_filter(head(club_title, desc, f"page-{slug}", club)
+            club_filter(head(club_title, club_desc, f"page-{slug}", club)
                         + header_html(active, club, filename) + body + footer_html(club), club),
             club)
         base = CLUB_URL_MAP.get(club["key"], {}).get(
@@ -1324,18 +1351,15 @@ view_chooser = f"""
         </div>
       </div>
     </div>
-    <div class="vc-panel" data-choose-panel="member">
+    <button class="vc-panel" type="button" data-choose="member" data-choose-panel="member">
       <img src="{IMG}/SJ_pool_birdseye.jpg" alt="">
       <div class="vc-panel__body">
         <span class="vc-panel__kicker">Welcome back Forma family</span>
         <h3>I'm a <span class="serif">member</span></h3>
         <p>Class schedules, club hours, Kidzville, Member benefits &amp; more.</p>
-        <div class="vc-clubs">
-          <a class="btn btn--sm" data-choose="member" href="{_vc_wc}">Walnut Creek <span class="arr">→</span></a>
-          <a class="btn btn--sm" data-choose="member" href="{_vc_sj}">San Jose <span class="arr">→</span></a>
-        </div>
+        <span class="go">Take me in →</span>
       </div>
-    </div>
+    </button>
   </div>
   <div class="view-chooser__foot">
     <span>I&rsquo;m ready to join now &ndash; let&rsquo;s go!</span>
@@ -1408,6 +1432,7 @@ home_body = view_chooser + hero(
     f"{IMG}/wc_facade.jpg",
     "Forma Gym Walnut Creek facade",
     cta=("Explore Walnut Creek", "walnut-creek.html"),
+    club="wc",
     # The default portrait 4/4.6 crops the facades down to the sign. 4/3.4 is what
     # the phone already used, and the extra width is what shows the building.
     ratio="4/3.4",
@@ -1427,6 +1452,7 @@ home_body = view_chooser + hero(
     f"{IMG}/sj_facade.jpg",
     "Forma Gym San Jose facade",
     rev=True, cta=("Explore San Jose", "san-jose.html"),
+    club="sj",
     ratio="4/3.4",
     body_html=(
         '<p class="body-copy">Serving South San Jose since 2015. A 40,000 sq. ft. luxury facility with an 8,000 sq. ft. covered outdoor fitness area – cardio, strength, group fitness, a heated 6-lane junior olympic pool with hot tub, and full-service locker rooms with sauna, steam and a Chilly Goat® cold plunge.</p>'
@@ -1448,7 +1474,7 @@ home_body = view_chooser + hero(
     </div>
     <div class="card-grid card-grid--2" data-stagger>
       <!--wc--><a class="card card--stack" href="cryo.html"><div class="card__media card__media--wide"><img src="{IMG}/chillyGOAT_phelps_card.jpg" alt="ChillyGOAT cold plunge at Forma" loading="lazy"></div><div class="card__below"><h3 class="card__title">Cryo + Cold Plunge</h3><p>Burn 500–800 calories in a single 3-minute session, reduce inflammation and pain, heal injuries faster, and sleep better. A natural, non-invasive reset trusted by Olympic and pro athletes – and now part of your club.</p><span class="go">Explore &rarr;</span></div></a><!--/wc-->
-      <a class="card card--stack" href="spa.html"><div class="card__media card__media--wide"><img src="{IMG}/spa_massage.jpg" alt="Massage at the Forma spa" loading="lazy" style="object-position:45% 45%"></div><div class="card__below"><h3 class="card__title">The Spa at Forma</h3><p>Massage, facials, Reiki and clinical skin care from skilled therapists – steps from the sauna, steam and hot tub. Restore, rejuvenate and walk out feeling like a brand new person.</p><span class="go">Explore &rarr;</span></div></a>
+      <a class="card card--stack" href="spa.html"><div class="card__media card__media--wide"><img src="{IMG}/spa_massage.jpg" alt="Massage at the Forma spa" loading="lazy" style="object-position:45% 45%"></div><div class="card__below"><h3 class="card__title"><!--wc-->The Spa at Forma<!--/wc--><!--sj-->Massage at Forma<!--/sj--></h3><p><!--wc-->Massage, facials, Reiki and clinical skin care from skilled therapists<!--/wc--><!--sj-->Sports and therapeutic massage from skilled therapists<!--/sj--> – steps from the sauna, steam and hot tub. Restore, rejuvenate and walk out feeling like a brand new person.</p><span class="go">Explore &rarr;</span></div></a>
     </div>
   </div>
 </section>
@@ -1465,7 +1491,7 @@ home_body = view_chooser + hero(
       <!--wc--><a class="row-item" href="kidzville.html"><span class="row-item__title">Kidzville</span><span class="row-item__desc">Enjoy your workout while your kids (ages 6 weeks–12 years) are free to play in a safe, active and educational indoor/outdoor space.</span><span class="row-item__arrow">→</span></a><!--/wc-->
       <!--wc--><a class="row-item" href="rise.html"><span class="row-item__title">RISE Program</span><span class="row-item__desc">Exercise-based therapy for individuals living with paralysis. Focused on function, strength and improving the physiology and neurological function of the body.</span><span class="row-item__arrow">→</span></a><!--/wc-->
       <a class="row-item" href="training.html"><span class="row-item__title">Training</span><span class="row-item__desc">Representing years of experience in the industry with a passion for your health and wellness.</span><span class="row-item__arrow">→</span></a>
-        <a class="row-item" href="recovery.html"><span class="row-item__title">Recovery</span><span class="row-item__desc">Cryotherapy, cold plunge, a full-service spa, sports stretching, sauna, steam and hot tubs &ndash; recovery built into your routine.</span><span class="row-item__arrow">→</span></a>
+        <a class="row-item" href="recovery.html"><span class="row-item__title">Recovery</span><span class="row-item__desc"><!--wc-->Cryotherapy, cold plunge, a full-service spa, sports stretching, sauna, steam and hot tubs<!--/wc--><!--sj-->Cold plunge, onsite massage, sports stretching, sauna, steam and hot tubs<!--/sj--> &ndash; recovery built into your routine.</span><span class="row-item__arrow">→</span></a>
     </div>
   </div>
 </section>
@@ -1592,7 +1618,7 @@ class_rows = ("<!--wc-->" + _class_rows(ALL_CLASSES) + "<!--/wc-->"
 groupfit_body = hero(
     "Group Fitness",
     ["Stronger", '<span class="serif">together</span>'],
-    "Forma Gym is your destination for group fitness that takes your workout to the next level. A vibrant community, expertly crafted classes, and 14 formats that energize, motivate and challenge – for every level, beginner to advanced.",
+    "Forma Gym is your destination for group fitness that takes your workout to the next level. A vibrant community, expertly crafted classes, and <!--wc-->14<!--/wc--><!--sj-->13<!--/sj--> formats that energize, motivate and challenge – for every level, beginner to advanced.",
     img=f"{IMG}/slider-locations_group_dance.jpg",
     crumb="Group Fitness",
     actions=[("Visit Us", "join.html", True), ("Book a Tour", "contact.html#tour", False)],
@@ -1615,8 +1641,10 @@ groupfit_body = hero(
 """ + split(
     "Where you'll sweat", "02",
     'Studios built for <span class="serif">energy</span>',
-    ["Across both clubs you'll find dedicated studios – Cycle, Reformer Pilates, Mind Body, and wide-open group fitness rooms – plus covered outdoor turf and heated pools for classes under beautiful California skies.",
-     "Walnut Creek features 4 studios plus a Pilates Reformer studio. San Jose brings indoor and outdoor classes across 40,000 square feet."],
+    ["<!--wc-->Dedicated studios – Cycle, Reformer Pilates, Mind Body, and wide-open group fitness rooms – plus covered outdoor turf and a heated pool for classes under beautiful California skies.<!--/wc-->"
+     "<!--sj-->Dedicated studios – Cycle, Mind Body, and wide-open group fitness rooms – plus 8,000 sq. ft. of covered outdoor turf and a heated 6-lane pool for classes under beautiful California skies.<!--/sj-->",
+     "<!--wc-->Walnut Creek features 4 studios plus a Pilates Reformer studio, in 35,000 square feet right off the 680/24 corridor.<!--/wc-->"
+     "<!--sj-->San Jose brings indoor and outdoor classes across 40,000 square feet, including mat pilates in the studios and group fitness on the turf.<!--/sj-->"],
     f"{IMG}/SJ_cycle_studio_2500px.jpg",
     "Cycle studio at Forma San Jose",
     rev=True, cta=("See the locations", "locations.html"),
@@ -1711,7 +1739,7 @@ locations_body = hero(
     # left the copy sitting on it.
     tinted=True,
     crumb="Locations",
-    actions=[("Visit Us", "join.html", True)],
+    actions=[("Join Now", "join.html", True)],
     page=True,
 ) + f"""
 <section class="section">
@@ -1834,7 +1862,7 @@ sanjose_body = location_page(
 recovery_body = hero(
     "Recovery",
     ["Recover like an", '<span class="serif">athlete</span>'],
-    "At Forma, recovery isn't an afterthought – it's part of the plan. Cryo, ChillyGOAT<sup>&reg;</sup> cold plunge by Michael Phelps, a full-service spa, sports stretching, sauna, steam and hot tubs. An integrated wellness solution, all under one roof.",
+    "At Forma, recovery isn't an afterthought – it's part of the plan. <!--wc-->Cryo, ChillyGOAT<sup>&reg;</sup> cold plunge by Michael Phelps, a full-service spa, sports stretching, sauna, steam and hot tubs.<!--/wc--><!--sj-->ChillyGOAT<sup>&reg;</sup> cold plunge by Michael Phelps, onsite massage, sports stretching, sauna, steam and hot tubs.<!--/sj--> An integrated wellness solution, all under one roof.",
     img=f"{IMG}/cold_plunge_hero.jpg",
     crumb="Recovery",
     # Desktop shows the full width, so this is a phone-only crop: the frame
@@ -1844,7 +1872,7 @@ recovery_body = hero(
     media_mod="hero__media--lift hero__media--diag",
     actions=[("Book Recovery", "contact.html#tour", True),
              ("Explore Cryo", "cryo.html", False, "", "wc")],
-    meta=["Cryo + cold plunge", "Full-service spa", "Sports stretching", "Sauna · steam · hot tub"],
+meta=["<!--wc-->Cryo + cold plunge<!--/wc--><!--sj-->Cold plunge<!--/sj-->", "<!--wc-->Full-service spa<!--/wc--><!--sj-->Onsite massage<!--/sj-->", "Sports stretching", "Sauna · steam · hot tub"],
     page=True,
 ) + split(
     "Cryotherapy + cold plunge", "01",
@@ -1855,13 +1883,14 @@ recovery_body = hero(
     "Cryotherapy chamber at Forma",
     cta=("All about cryo", "cryo.html"),
     club="wc") + split(
-    "The spa", "02",
+    "<!--wc-->The spa<!--/wc--><!--sj-->Massage<!--/sj-->", "02",
     'The optimum wellness <span class="serif">experience</span>',
-    ["A comprehensive menu of therapeutic treatments – massage, facials, Reiki and clinical skin care – performed by skilled, professional therapists dedicated to easing pain, restoring function and rejuvenating face and body.",
+    ["<!--wc-->A comprehensive menu of therapeutic treatments – massage, facials, Reiki and clinical skin care – performed by skilled, professional therapists dedicated to easing pain, restoring function and rejuvenating face and body.<!--/wc-->"
+     "<!--sj-->Onsite sports and therapeutic massage, performed by skilled, professional therapists dedicated to easing pain, restoring function and keeping you training.<!--/sj-->",
      "Conveniently located adjacent to the locker rooms, so sauna, steam or Jacuzzi can be enjoyed before or after your treatment."],
     f"{IMG}/spa_WC_1000px.jpg",
-    "The Spa at Forma",
-    rev=True, cta=("See spa menu &amp; pricing", "spa.html"),
+    "<!--wc-->The Spa at Forma<!--/wc--><!--sj-->Massage at Forma San Jose<!--/sj-->",
+    rev=True, cta=("<!--wc-->See spa menu &amp; pricing<!--/wc--><!--sj-->See massage menu &amp; pricing<!--/sj-->", "spa.html"),
 ) + cta_band(
     # Hard break so "Repeat." drops to its own line and stops running across her
     # head on desktop. The phone already wrapped at this exact point, so its
@@ -1945,14 +1974,16 @@ cryo_body = hero(
 
 # ============================================================ SPA
 spa_body = hero(
-    "The Spa",
+    "<!--wc-->The Spa<!--/wc--><!--sj-->Massage<!--/sj-->",
     ["Your optimum", '<span class="serif">wellness</span> experience'],
-    "A comprehensive menu of therapeutic treatments – massage, facials, Reiki and clinical skin care – in a cozy, luxurious setting steps from the sauna, steam and Jacuzzi. Skilled therapists dedicated to easing pain and rejuvenating face and body.",
+    "<!--wc-->A comprehensive menu of therapeutic treatments – massage, facials, Reiki and clinical skin care – in a cozy, luxurious setting steps from the sauna, steam and Jacuzzi. Skilled therapists dedicated to easing pain and rejuvenating face and body.<!--/wc--><!--sj-->Onsite sports and therapeutic massage, in a cozy, luxurious setting steps from the sauna, steam and Jacuzzi. Skilled therapists dedicated to easing pain, restoring function and keeping you training.<!--/sj-->",
     img=f"{IMG}/spa_header_flipped.jpg",
     focal="50% 68%", tinted=True,
     crumb="The Spa",
-    actions=[("Massage", "#massage", True), ("Skincare", "#skincare", False)],
-    meta=["Massage · facials · Reiki · skin care", "Walnut Creek &amp; San Jose"],
+    actions=[("Massage", "#massage", True),
+             ("Skincare", "#skincare", False, "", "wc")],
+    meta=["<!--wc-->Massage · facials · Reiki · skin care<!--/wc-->"
+          "<!--sj-->Sports &amp; therapeutic massage<!--/sj-->", "{{club_name}}"],
     page=True,
 ) + f"""
 
@@ -1965,7 +1996,7 @@ spa_body = hero(
       </div>
       <!-- Guests cannot book a treatment, so the phone number is a dead end for
            them. Members get it; guests get the step that comes first. -->
-      <p class="body-copy reveal only-member" style="max-width:32ch">Call to schedule: <a href="tel:9259326400" style="color:var(--accent)">(925) 932-6400</a></p>
+      <p class="body-copy reveal only-member" style="max-width:32ch">Call to schedule: <a href="tel:{{club_tel}}" style="color:var(--accent)">{{club_phone}}</a></p>
       <a class="btn btn--solid reveal only-guest" href="join.html">Join Now <span class="arr">&rarr;</span></a>
     </div>
     <div class="sched" data-stagger>
@@ -1974,13 +2005,13 @@ spa_body = hero(
       <div class="sched__col"><h4>Sports Massage</h4><span class="where">Recover faster</span><dl><div><dt>25 min</dt><dd>$65</dd></div><div><dt>50 min</dt><dd>$115</dd></div><div><dt>80 min</dt><dd>$160</dd></div></dl></div>
       <div class="sched__col"><h4>Prenatal</h4><span class="where">Gentle care</span><dl><div><dt>25 min</dt><dd>$65</dd></div><div><dt>50 min</dt><dd>$115</dd></div><div><dt>80 min</dt><dd>$160</dd></div></dl></div>
       <div class="sched__col"><h4>Reflexology</h4><span class="where">Pressure points</span><dl><div><dt>25 min</dt><dd>$65</dd></div><div><dt>50 min</dt><dd>$115</dd></div><div><dt>80 min</dt><dd>$160</dd></div></dl></div>
-      <div class="sched__col"><h4>Reiki</h4><span class="where">Energy work</span><dl><div><dt>25 min</dt><dd>$65</dd></div><div><dt>50 min</dt><dd>$115</dd></div><div><dt>80 min</dt><dd>$160</dd></div></dl></div>
+      <!--wc--><div class="sched__col"><h4>Reiki</h4><span class="where">Energy work</span><dl><div><dt>25 min</dt><dd>$65</dd></div><div><dt>50 min</dt><dd>$115</dd></div><div><dt>80 min</dt><dd>$160</dd></div></dl></div><!--/wc-->
     </div>
     <p class="body-copy reveal" style="margin-top:22px">Add-ons: Aroma-Free CBD $10 · Hot Stone $20</p>
   </div>
 </section>
 
-<section class="section section--panel" id="skincare">
+<!--wc--><section class="section section--panel" id="skincare">
   <div class="wrap">
     <div class="cards-head">
       <div>
@@ -1995,12 +2026,12 @@ spa_body = hero(
       <div class="sched__col"><h4>Customized Pro Peels</h4><dl><div><dt>Range</dt><dd>$115–$195</dd></div></dl></div>
     </div>
   </div>
-</section>
+</section><!--/wc-->
 """ + cta_band(
     'Your <span class="serif">body</span> has earned this',
     "World-class treatments can be enjoyed before or after the sauna, steam or hot tub."
     '<span class="only-member"> Call to schedule: '
-    '<a href="tel:9259326400" style="color:var(--accent)">(925) 932-6400</a>.</span>',
+    '<a href="tel:{{club_tel}}" style="color:var(--accent)">{{club_phone}}</a>.</span>',
     f"{IMG}/spa_massage_band.jpg",
     # Desktop crops 37% off the height and the client lies along the bottom edge,
     # so a centred crop cut her out. 85% drops the window to the lower frame.
@@ -2694,7 +2725,7 @@ outdoor_body = hero(
         <p class="eyebrow">Your outdoor playground</p>
         <h2 class="h-display reveal">Everything you need<br>&amp; more. <span class="serif">outside.</span></h2>
       </div>
-      <p class="body-copy reveal" style="max-width:34ch">Walnut Creek's outdoor turf sits under towering redwoods, complete with deck and cabanas by the pool. San Jose's 8,000 sq. ft. covered outdoor area is enclosed in palm trees, creating a year-round fitness oasis.</p>
+      <p class="body-copy reveal" style="max-width:34ch"><!--wc-->Walnut Creek's outdoor turf sits under towering redwoods, complete with deck and cabanas by the pool &ndash; a year-round fitness oasis.<!--/wc--><!--sj-->San Jose's 8,000 sq. ft. covered outdoor area is enclosed in palm trees, with cardio, strength and group fitness under cover all year round.<!--/sj--></p>
     </div>
     <div class="pillars pillars--2col" data-stagger>
       <div class="pillar"><span class="pillar__num">01</span><h3>Strength Training</h3><p>Racks, benches, machines and free weights – with room to breathe between sets.</p></div>
