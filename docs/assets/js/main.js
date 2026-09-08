@@ -535,3 +535,16 @@
   addEventListener("resize", onScroll, { passive: true });
   mark();
 })();
+
+/* A list that shows a few of its items until MORE is pressed. */
+(function () {
+  document.querySelectorAll(".more-toggle").forEach(function (btn) {
+    var list = document.getElementById(btn.getAttribute("aria-controls"));
+    if (!list) return;
+    btn.addEventListener("click", function () {
+      var open = !list.classList.toggle("is-clipped");
+      btn.setAttribute("aria-expanded", String(open));
+      btn.textContent = open ? btn.dataset.less : btn.dataset.more;
+    });
+  });
+})();

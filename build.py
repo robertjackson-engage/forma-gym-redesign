@@ -1024,6 +1024,8 @@ SIZES_BY_CONTEXT = {
     # the strip is a fixed-height scroller
     "marquee__track":   "320px",
     "trainer-bio":      "150px",
+    # a photo filling a whole section
+    "section__media":   "100vw",
 }
 
 
@@ -1972,9 +1974,11 @@ def _rise_people(people):
 
 
 _rise_conditions = "".join(f"<li>{c}</li>" for c in RISE_CONDITIONS)
+# Only the first four stand on the page; the rest wait behind the MORE toggle.
 _rise_quotes = "".join(
-    f'<figure class="quote-card"><blockquote>{q}</blockquote>'
-    f"<figcaption>{who}</figcaption></figure>" for q, who in RISE_QUOTES)
+    f'<figure class="quote-card{" quote-card--extra" if i >= 4 else ""}">'
+    f"<blockquote>{q}</blockquote>"
+    f"<figcaption>{who}</figcaption></figure>" for i, (q, who) in enumerate(RISE_QUOTES))
 
 rise_body = hero(
     "RISE Program",
@@ -2011,9 +2015,9 @@ rise_body = hero(
       <p class="body-copy reveal">RISE is an exercise-based therapy program for individuals living with paralysis, focused on function, strength and improving the physiological and neurological function of the body. Our trainers are expansive in neurological conditions, and every session is built around healing how your body and nervous system work together.</p>
     </div>
     <div class="pillars pillars--3" data-stagger>
-      <div class="pillar"><span class="pillar__num">01</span><h3>Wheelchair free</h3><p>Your body was designed to MOVE. Recovery sessions are conducted out of your chair to get you moving again.</p></div>
-      <div class="pillar"><span class="pillar__num">02</span><h3>Less medication</h3><p>Many clients find a reduced dependency on medication &ndash; or rid their use of it entirely.</p></div>
-      <div class="pillar"><span class="pillar__num">03</span><h3>Better quality of life</h3><p>We stimulate your central nervous system to promote neuroplasticity &ndash; rebuilding the pathways your brain needs.</p></div>
+      <div class="pillar"><h3>Wheelchair free</h3><p>Your body was designed to MOVE. Recovery sessions are conducted out of your chair to get you moving again.</p></div>
+      <div class="pillar"><h3>Less medication</h3><p>Many clients find a reduced dependency on medication &ndash; or rid their use of it entirely.</p></div>
+      <div class="pillar"><h3>Better quality of life</h3><p>We stimulate your central nervous system to promote neuroplasticity &ndash; rebuilding the pathways your brain needs.</p></div>
     </div>
   </div>
 </section>
@@ -2036,7 +2040,8 @@ rise_body = hero(
   </div>
 </section>
 
-<section class="section" id="treatment">
+<section class="section section--photo" id="treatment">
+  <div class="section__media"><img src="{IMG}/rise_treatment_bg.jpg" alt="" loading="lazy"></div>
   <div class="wrap">
     <div class="cards-head">
       <div>
@@ -2123,8 +2128,10 @@ rise_body = hero(
     </div>
     <div class="people reveal" data-stagger>{_rise_people(RISE_TEAM)}</div>
 
-    <p class="eyebrow reveal" style="margin-top:64px">Medical advisory board</p>
-    <p class="body-copy reveal" style="max-width:60ch;margin-bottom:28px">As Forma Gym and RISE expanded their special populations programs, we formed a Medical Advisory Board of community allied healthcare providers, to keep our programs as safe and effective as possible.</p>
+    <div class="cards-head cards-head--top">
+      <p class="eyebrow reveal" style="margin-bottom:0">Medical advisory board</p>
+      <p class="body-copy reveal" style="max-width:64ch">As Forma Gym and RISE expanded their special populations programs, we formed a Medical Advisory Board of community allied healthcare providers, to keep our programs as safe and effective as possible.</p>
+    </div>
     <div class="people people--board reveal" data-stagger>{_rise_people([(n, "", i) for n, i in RISE_BOARD])}</div>
   </div>
 </section>
@@ -2137,7 +2144,9 @@ rise_body = hero(
         <h2 class="h-display reveal">In their own <span class="serif">words</span></h2>
       </div>
     </div>
-    <div class="quotes reveal" data-stagger>{_rise_quotes}</div>
+    <div class="quotes reveal is-clipped" id="rise-quotes" data-stagger>{_rise_quotes}</div>
+    <button class="more-toggle" type="button" id="rise-quotes-more" aria-controls="rise-quotes"
+            aria-expanded="false" data-more="More" data-less="Less">More</button>
   </div>
 </section>
 
@@ -2159,7 +2168,7 @@ rise_body = hero(
   </div>
 </section>
 """ + cta_band(
-    'Your life is an opportunity.<br><span class="serif">RISE to it!</span>',
+    'Your life is an opportunity.<br><span class="serif">RISE to it.</span>',
     "RISE includes a scholarship program so cost is never the reason you can't start. Reach out and let's begin.",
     f"{IMG}/rise_room_blur.jpg",
     primary=("Get Started", "contact.html#tour"), secondary=("Scholarship Program", "#scholarship"),
