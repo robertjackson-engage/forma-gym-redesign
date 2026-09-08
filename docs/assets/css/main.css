@@ -875,7 +875,7 @@ a.pillar { display: block; }
 }
 .tag-list li {
   position: relative; padding-left: 26px;
-  font-size: 19px; line-height: 1.45; font-weight: 500;
+  font-size: 19px; line-height: 1.25; font-weight: 500;
   letter-spacing: 0.005em; color: var(--copy);
 }
 .tag-list li::before {
@@ -909,9 +909,12 @@ a.pillar { display: block; }
 @media (max-width: 820px) {
   .people, .people--board { grid-template-columns: repeat(2, 1fr); gap: 16px; }
   .quotes { grid-template-columns: 1fr; }
-  .tag-list { grid-template-rows: repeat(6, auto); gap: 12px 20px; }
-  .tag-list { gap: 18px 22px; margin-top: 18px; }
-  .tag-list li { font-size: 16px; padding-left: 22px; }
+  #treatment .cards-head { margin-bottom: 18px; }
+  .tag-list {
+    grid-template-rows: repeat(9, auto); gap: 5px; margin-top: 16px;
+  }
+  .tag-list li { font-size: 16px; line-height: 1.2; padding-left: 21px; white-space: nowrap; }
+  .tag-list li::before { width: 6px; height: 6px; }
 }
 a.pillar h3 { transition: color .3s; }
 a.pillar:hover h3 { color: var(--accent); }
