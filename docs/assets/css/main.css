@@ -733,7 +733,7 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 /* About and the methodology share one black ground, so the seam no longer
    marks a change of section — only the two sections' own padding, 206px of
    it. Pull the lower one up so the pair reads as a single block. */
-.page-rise #method { padding-top: clamp(14px, 2.9vw, 46px); }
+.page-rise #method { padding-top: 0; }
 .cards-head--stack { display: block; }
 /* Capped so the line does not run the full 1295px container — uncapped it hit
    ~150 characters a line at 1440. 70ch stopped so far short of the headline and
