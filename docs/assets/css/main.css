@@ -1199,6 +1199,9 @@ a.pillar:hover h3 { color: var(--accent); }
 /* Phone only: the pair needs more air between them than the clamp gives at this
    size. Must sit after the base rule above — same specificity, later wins. */
 @media (max-width: 820px) {
+  /* A rule across the bar's top edge, with the links butted straight up under it
+     so the divider reads as the strip's own closing line. */
+  .subnav { border-top: 1px solid var(--line); }
   .subnav .wrap { display: flex; flex-wrap: wrap; gap: 0; padding: 0; }
   .subnav a {
     white-space: nowrap;
