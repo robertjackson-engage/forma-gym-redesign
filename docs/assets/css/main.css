@@ -905,13 +905,16 @@ a.pillar { display: block; }
   justify-content: start;
 }
 .tag-list li {
-  position: relative; padding-left: 26px;
-  font-size: 19px; line-height: 1.25; font-weight: 500;
+  position: relative; padding-left: 2.05em;
+  font-size: 19px; line-height: 1.45; font-weight: 500;
   letter-spacing: 0.005em; color: var(--copy);
 }
+/* The marker is a rule rather than a dot — a shade longer than an em dash, and
+   sized in em so it tracks the type at every breakpoint. 0.72em centres it on
+   the 1.45 line box. */
 .tag-list li::before {
-  content: ""; position: absolute; left: 0; top: 0.52em;
-  width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
+  content: ""; position: absolute; left: 0; top: 0.72em;
+  width: 1.35em; height: 1px; background: var(--accent);
 }
 
 /* Staff and advisory portraits. */
@@ -967,10 +970,10 @@ a.pillar { display: block; }
   .quotes { grid-template-columns: 1fr; }
   #treatment .cards-head { margin-bottom: 18px; }
   .tag-list {
-    grid-template-rows: repeat(9, auto); gap: 5px; margin-top: 16px;
+    grid-template-rows: repeat(9, auto); gap: 8px; margin-top: 16px;
   }
-  .tag-list li { font-size: 16px; line-height: 1.2; padding-left: 21px; white-space: nowrap; }
-  .tag-list li::before { width: 6px; height: 6px; }
+  .tag-list li { font-size: 15px; line-height: 1.5; padding-left: 2.05em; white-space: nowrap; }
+  .tag-list li::before { top: 0.75em; }
 }
 a.pillar h3 { transition: color .3s; }
 a.pillar:hover h3 { color: var(--accent); }
