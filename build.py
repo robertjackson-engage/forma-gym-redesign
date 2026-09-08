@@ -2022,7 +2022,7 @@ rise_body = hero(
   </div>
 </section>
 
-<section class="section section--panel" id="method">
+<section class="section" id="method">
   <div class="wrap">
     <div class="cards-head">
       <div>
