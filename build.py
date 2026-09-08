@@ -1351,15 +1351,19 @@ view_chooser = f"""
         </div>
       </div>
     </div>
-    <button class="vc-panel" type="button" data-choose="member" data-choose-panel="member">
+    <div class="vc-panel" data-choose-panel="member">
       <img src="{IMG}/SJ_pool_birdseye.jpg" alt="">
       <div class="vc-panel__body">
         <span class="vc-panel__kicker">Welcome back Forma family</span>
         <h3>I'm a <span class="serif">member</span></h3>
         <p>Class schedules, club hours, Kidzville, Member benefits &amp; more.</p>
-        <span class="go">Take me in →</span>
+        <div class="vc-clubs">
+          <button class="btn btn--sm" type="button" data-choose="member">Take me in <span class="arr">→</span></button>
+          <a class="btn btn--sm" data-choose="member" href="https://www.myiclubonline.com/iclub/members/signin"
+             target="_blank" rel="noopener">Member Login <span class="arr">→</span></a>
+        </div>
       </div>
-    </button>
+    </div>
   </div>
   <div class="view-chooser__foot">
     <span>I&rsquo;m ready to join now &ndash; let&rsquo;s go!</span>
