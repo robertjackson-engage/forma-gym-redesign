@@ -1990,14 +1990,14 @@ rise_body = hero(
 ) + photo_marquee(RISE_STRIP_PHOTOS) + """
 <nav class="subnav" aria-label="RISE sections">
   <div class="wrap">
-    <a href="#about">About</a>
-    <a href="#treatment">Treatment</a>
-    <a href="#programs">Programs</a>
-    <a href="#facility">Facility</a>
-    <a href="#start">Get Started</a>
-    <a href="#scholarship">Scholarship</a>
-    <a href="#team">Team</a>
-    <a href="#contact">Contact</a>
+    <a href="#about"><span>About</span></a>
+    <a href="#treatment"><span>Treatment</span></a>
+    <a href="#programs"><span>Programs</span></a>
+    <a href="#facility"><span>Facility</span></a>
+    <a href="#start"><span>Start</span></a>
+    <a href="#scholarship"><span>Scholarship</span></a>
+    <a href="#team"><span>Team</span></a>
+    <a href="#contact"><span>Contact</span></a>
   </div>
 </nav>
 """ + f"""

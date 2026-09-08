@@ -498,3 +498,40 @@
     else if (mqMobile.addListener) mqMobile.addListener(applyHeroSrc);
   }
 })();
+
+/* ---------- jump-nav current section ----------
+   The subnav marks which section you are in. Sections are tall, so an
+   IntersectionObserver on visibility alone would light two at once — this
+   tracks a band just under the sticky header and takes the last section whose
+   top has passed it, which is the one actually being read. */
+(function () {
+  var nav = document.querySelector(".subnav");
+  if (!nav) return;
+  var links = [].slice.call(nav.querySelectorAll("a[href^='#']"));
+  var targets = links
+    .map(function (a) {
+      return { link: a, el: document.getElementById(a.getAttribute("href").slice(1)) };
+    })
+    .filter(function (t) { return t.el; });
+  if (!targets.length) return;
+
+  var ticking = false;
+  function mark() {
+    ticking = false;
+    var line = nav.getBoundingClientRect().bottom + 90;
+    var current = null;
+    targets.forEach(function (t) {
+      if (t.el.getBoundingClientRect().top <= line) current = t;
+    });
+    links.forEach(function (a) { a.classList.remove("is-here"); });
+    if (current) current.link.classList.add("is-here");
+  }
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(mark);
+  }
+  addEventListener("scroll", onScroll, { passive: true });
+  addEventListener("resize", onScroll, { passive: true });
+  mark();
+})();

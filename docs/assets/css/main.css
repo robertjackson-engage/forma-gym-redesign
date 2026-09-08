@@ -1112,24 +1112,54 @@ a.pillar:hover h3 { color: var(--accent); }
   border-bottom: 1px solid var(--line);
   position: sticky; top: 67px; z-index: 900; background: var(--ink);
 }
-.subnav .wrap {
-  display: flex; flex-wrap: wrap; justify-content: center;
-  gap: clamp(8px, 1.6vw, 14px);
-  padding-top: clamp(14px, 1.8vw, 22px); padding-bottom: clamp(14px, 1.8vw, 22px);
-}
+.subnav .wrap { display: flex; padding-top: 0; padding-bottom: 0; }
 .subnav a {
-  font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--copy); text-decoration: none; border: 1px solid var(--accent);
-  padding: 11px clamp(15px, 2.2vw, 24px);
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  position: relative; flex: 1 1 0; text-align: center;
+  font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--bone); text-decoration: none;
+  padding: clamp(14px, 1.8vw, 22px) 6px;
+  transition: color 0.25s;
 }
-.subnav a:hover, .subnav a:focus-visible {
-  background: var(--accent); color: var(--on-accent); border-color: var(--accent);
+/* Half-height rule, centred — a border would run the full cell. */
+.subnav a + a::before {
+  content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  width: 1px; height: 50%; background: var(--accent);
 }
+/* Same underline as .nav-desktop > a: 1px, the label's own width, wiping in
+   from the left. The span gives it a box to measure against. */
+.subnav a span { position: relative; display: inline-block; padding-bottom: 6px; }
+.subnav a span::after {
+  content: ""; position: absolute; left: 0; bottom: 0; height: 1px; width: 100%;
+  background: var(--accent); transform: scaleX(0); transform-origin: right;
+  transition: transform .45s var(--ease-out);
+}
+.subnav a:hover, .subnav a:focus-visible { color: var(--accent); }
+.subnav a.is-here { color: var(--accent); font-weight: 700; }
+.subnav a:hover span::after, .subnav a:focus-visible span::after,
+.subnav a.is-here span::after { transform: scaleX(1); transform-origin: left; }
 /* Phone only: the pair needs more air between them than the clamp gives at this
    size. Must sit after the base rule above — same specificity, later wins. */
 @media (max-width: 820px) {
-  .subnav .wrap { gap: 18px; }
+  .subnav .wrap { display: flex; flex-wrap: wrap; gap: 0; padding: 0; }
+  .subnav a {
+    white-space: nowrap;
+    text-align: center; display: flex; align-items: center; justify-content: center;
+    padding: 13px 4px; font-size: 12px; letter-spacing: 0.07em;
+    border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  }
+  .subnav a:nth-child(1) { flex: 0 0 19.6%; }
+  .subnav a:nth-child(2) { flex: 0 0 29.3%; }
+  .subnav a:nth-child(3) { flex: 0 0 28.3%; }
+  .subnav a:nth-child(4) { flex: 0 0 22.8%; }
+  .subnav a:nth-child(5) { flex: 0 0 19.2%; }
+  .subnav a:nth-child(6) { flex: 0 0 36.6%; }
+  .subnav a:nth-child(7) { flex: 0 0 18.1%; }
+  .subnav a:nth-child(8) { flex: 0 0 26.1%; }
+  .subnav a:nth-child(4n) { border-right: 0; }
+  .subnav a:nth-child(n+5) { border-bottom: 0; }
+  .subnav a + a::before { content: none; }
+  .subnav a span { padding-bottom: 0; }
+  .subnav a span::after { content: none; }
 }
 
 /* ---------- location cards ---------- */
