@@ -1409,9 +1409,44 @@ view_chooser = f"""
 """
 
 # ============================================================ HOME
+
+# "Built for your whole life" — the same numbered panels as the class grids, at
+# 2-up rather than 3, because Walnut Creek shows four of these and San Jose two.
+# Both divide evenly, so neither club needs a filler cell.
+HOME_MORE = [
+    ("Kidzville", "kidzville.html",
+     "Enjoy your workout while your kids (ages 6 weeks–12 years) are free to play in a safe, active and educational indoor/outdoor space.", "wc"),
+    ("RISE Program", "rise.html",
+     "Exercise-based therapy for individuals living with paralysis. Focused on function, strength and improving the physiology and neurological function of the body.", "wc"),
+    ("Training", "training.html",
+     "Representing years of experience in the industry with a passion for your health and wellness."),
+    ("Recovery", "recovery.html",
+     {"wc": "Cryotherapy, cold plunge, a full-service spa, sports stretching, sauna, steam and hot tubs &ndash; recovery built into your routine.",
+      "sj": "Cold plunge, onsite massage, sports stretching, sauna, steam and hot tubs &ndash; recovery built into your routine."}),
+]
+
+
+# Built once per club rather than filtered afterwards, for the same reason the
+# class grid is: dropping Kidzville and RISE from a numbered list would leave
+# San Jose counting 03, 04. The club-specific copy is resolved here rather than
+# with markers because a marker pair nested inside the same pair truncates.
+def _home_more(key):
+    out = ""
+    for i, item in enumerate([r for r in HOME_MORE if len(r) < 4 or r[3] == key], 1):
+        desc = item[2][key] if isinstance(item[2], dict) else item[2]
+        out += (f'<a class="pillar" href="{item[1]}"><span class="pillar__num">{i:02d}</span>'
+                f'<h3>{item[0]}</h3><p>{desc}</p></a>')
+    return out
+
+
+home_more = ("<!--wc-->" + _home_more("wc") + "<!--/wc-->"
+             + "<!--sj-->" + _home_more("sj") + "<!--/sj-->")
+
+# The guest pair is the same on every club-facing hero: Join Now, then Visit Us.
+# A schedule link belongs to the member view — a guest has nothing to book with.
 _HOME_ACTIONS = [
-    ("Visit Us", "join.html", True, "only-guest"),
-    ("Explore the Clubs", "locations.html", False, "only-guest"),
+    ("Join Now", "join.html", True, "only-guest"),
+    ("Visit Us", "contact.html#tour", False, "only-guest"),
     ("Class Schedule", "group-fitness.html#schedule", True, "only-member"),
     ("Book Recovery", "recovery.html", False, "only-member"),
 ]
@@ -1546,12 +1581,7 @@ home_body = view_chooser + "<!--wc-->" + hero(
         <h2 class="h-display reveal">Built for your whole <span class="serif">life</span></h2>
       </div>
     </div>
-    <div class="rows rows--plain reveal">
-      <!--wc--><a class="row-item" href="kidzville.html"><span class="row-item__title">Kidzville</span><span class="row-item__desc">Enjoy your workout while your kids (ages 6 weeks–12 years) are free to play in a safe, active and educational indoor/outdoor space.</span><span class="row-item__arrow">→</span></a><!--/wc-->
-      <!--wc--><a class="row-item" href="rise.html"><span class="row-item__title">RISE Program</span><span class="row-item__desc">Exercise-based therapy for individuals living with paralysis. Focused on function, strength and improving the physiology and neurological function of the body.</span><span class="row-item__arrow">→</span></a><!--/wc-->
-      <a class="row-item" href="training.html"><span class="row-item__title">Training</span><span class="row-item__desc">Representing years of experience in the industry with a passion for your health and wellness.</span><span class="row-item__arrow">→</span></a>
-        <a class="row-item" href="recovery.html"><span class="row-item__title">Recovery</span><span class="row-item__desc"><!--wc-->Cryotherapy, cold plunge, a full-service spa, sports stretching, sauna, steam and hot tubs<!--/wc--><!--sj-->Cold plunge, onsite massage, sports stretching, sauna, steam and hot tubs<!--/sj--> &ndash; recovery built into your routine.</span><span class="row-item__arrow">→</span></a>
-    </div>
+    <div class="pillars reveal" data-stagger>{home_more}</div>
   </div>
 </section>
 """ + cta_band(
@@ -1584,7 +1614,8 @@ about_body = hero(
     focal="84% 50%",
     media_mod="hero__media--soften",
     crumb="About",
-    actions=[("Book a Tour", "contact.html#tour", True, "only-guest"),
+    actions=[("Join Now", "join.html", True, "only-guest"),
+             ("Visit Us", "contact.html#tour", False, "only-guest"),
              ("Login to My Account", MEMBER_PORTAL, True, "only-member")],
     page=True,
     title_mod="hero__title--fit",
@@ -1684,8 +1715,8 @@ groupfit_body = hero(
     crumb="Group Fitness",
     # A member has already visited and already joined; the schedule is the only
     # one of these three they have any use for.
-    actions=[("Visit Us", "join.html", True, "only-guest"),
-             ("Book a Tour", "contact.html#tour", False, "only-guest"),
+    actions=[("Join Now", "join.html", True, "only-guest"),
+             ("Visit Us", "contact.html#tour", False, "only-guest"),
              ("View Class Schedule", "group-fitness.html#schedule", True, "only-member"),
              ("Login to My Account", MEMBER_PORTAL, False, "only-member")],
     meta=["<!--wc-->14 class formats<!--/wc--><!--sj-->13 class formats<!--/sj-->",
@@ -1867,7 +1898,8 @@ def location_page(name, badge, phone, tel, address, intro, amenities, hero_img, 
     return hero(
         f"Forma {name}", [f'{name.split()[0]} <span class="serif">{name.split()[-1] if len(name.split())>1 else "Club"}</span>'],
         intro, img=f"{IMG}/{hero_img}", crumb=f'<a href="locations.html">Locations</a> &nbsp;/&nbsp; {name}',
-        actions=[("Visit Us", "join.html", True, "only-guest"),
+        actions=[("Join Now", "join.html", True, "only-guest"),
+                 ("Visit Us", "contact.html#tour", False, "only-guest"),
                  (f"Call {phone}", f"tel:{tel}", False),
                  ("Login to My Account", MEMBER_PORTAL, True, "only-member")],
         meta=[badge], page=True, focal=hero_focal, media_mod=hero_media_mod,
@@ -2466,16 +2498,25 @@ givesback_body = hero(
 # which leaves single-word formats reading as one accent word. Overridden per
 # slug where the headline wants a lead-in instead.
 CLASS_HERO_LINES = {
-    "dance": ["Let&rsquo;s", '<span class="serif">Dance</span>'],
+    "dance": ['Let&rsquo;s <span class="serif">Dance</span>'],
+}
+
+# Likewise for the closing band, whose generic form is "Try <format>".
+CLASS_BAND_TITLE = {
+    "dance": '<span class="serif">Dance</span> with us',
 }
 
 CLASS_FOCAL = {
     # The taller crop of the same frame: 1.407 against a 1.81 desktop box, so it
-    # scales to width and 215px of a 963px frame goes. Centred leaves the back
-    # row's heads on the cut line at 11%; 25% takes only 54px off the top and
-    # opens ~6% of clear air above them. The phone box scales to height instead,
-    # where the lead dancer stands 68% across and 70% holds her.
-    "dance":            "70% 25%",
+    # scales to width and 215px of a 963px frame goes. 0% takes all of that off
+    # the bottom, which drops the picture as far down the hero as it will go and
+    # opens the most air above the back row.
+    #
+    # x only acts on the phone, where the box scales to height instead and 468px
+    # of an 845px frame overflows. The instructor stands 68% across, which 70%
+    # put at 66% of the viewport — directly behind the headline. 60% slides the
+    # window 47px left, carrying her out to 78% and clear of the type.
+    "dance":            "60% 0%",
     "low-impact":       "74% 50%",
     "kickboxing":       "76% 50%",
     "meditation":       "78% 50%",
@@ -2509,9 +2550,10 @@ def class_page(slug, title, img, lead, others, others_sj=None, img_sj=None, stri
                 [sup_reg(title.split()[0]), f'<span class="serif">{" ".join(title.split()[1:]) or "Studio"}</span>']
                 if len(title.split()) > 1 else [f'<span class="serif">{title}</span>']),
             lead, img=f"{IMG}/{image}", crumb=f'<a href="group-fitness.html">Group Fitness</a> &nbsp;/&nbsp; {sup_reg(title)}',
-            actions=[("Visit Us", "join.html", True, "only-guest"),
-                     ("Full Schedule", "group-fitness.html#schedule", False),
-                     ("Login to My Account", MEMBER_PORTAL, True, "only-member")],
+            actions=[("Join Now", "join.html", True, "only-guest"),
+                     ("Visit Us", "contact.html#tour", False, "only-guest"),
+                     ("View Class Schedule", "group-fitness.html#schedule", True, "only-member"),
+                     ("Login to My Account", MEMBER_PORTAL, False, "only-member")],
             meta=["Included with membership", "All levels welcome"], page=True,
             focal=CLASS_FOCAL.get(slug), media_mod=hero_mod,
         )
@@ -2533,7 +2575,7 @@ def class_page(slug, title, img, lead, others, others_sj=None, img_sj=None, stri
   </div>
 </section>
 """ + cta_band(
-        f'Try <span class="serif">{title.split()[0]}</span>',
+        CLASS_BAND_TITLE.get(slug) or f'Try <span class="serif">{title.split()[0]}</span>',
         "Every class is included with membership. Come find your format.",
         # The band repeats the hero photo unless a page wants its own frame.
         f"{IMG}/{band_img or img}",
@@ -2835,7 +2877,8 @@ def _outdoor_hero(img, focal, media_mod, meta):
         focal=focal,
         media_mod=media_mod,
         crumb="Outdoor",
-        actions=[("Visit Us", "join.html", True, "only-guest"),
+        actions=[("Join Now", "join.html", True, "only-guest"),
+                 ("Visit Us", "contact.html#tour", False, "only-guest"),
                  ("View Outdoor Class Schedule", "group-fitness.html#schedule", True, "only-member")],
         meta=meta,
         page=True,
@@ -3152,7 +3195,7 @@ for slug, title, img, lead, short in CLASS_PAGES:
                              band_focal="82% 50%" if slug == "dance" else None,
                              # The studio frame is lit brightly enough that the
                              # standard gradient left the headline sitting thin.
-                             hero_mod="hero__media--tinted" if slug == "dance" else "")))
+                             hero_mod="hero__media--tinted hero__media--tint-fade" if slug == "dance" else "")))
 
 
 
@@ -3214,11 +3257,11 @@ def build_404():
     ) + """
 <section class="section section--tight">
   <div class="wrap">
-    <div class="rows rows--plain reveal">
-      <a class="row-item" href="group-fitness.html"><span class="row-item__title">Group Fitness</span><span class="row-item__desc">Every class included with membership.</span><span class="row-item__arrow">&rarr;</span></a>
-      <a class="row-item" href="training.html"><span class="row-item__title">Personal Training</span><span class="row-item__desc">Coaching built around your goal.</span><span class="row-item__arrow">&rarr;</span></a>
-      <a class="row-item" href="join.html"><span class="row-item__title">Join Forma</span><span class="row-item__desc">Two unique Bay Area clubs.</span><span class="row-item__arrow">&rarr;</span></a>
-      <a class="row-item" href="contact.html"><span class="row-item__title">Contact a Club</span><span class="row-item__desc">Walnut Creek &amp; San Jose.</span><span class="row-item__arrow">&rarr;</span></a>
+    <div class="pillars reveal" data-stagger>
+      <a class="pillar" href="group-fitness.html"><span class="pillar__num">01</span><h3>Group Fitness</h3><p>Every class included with membership.</p></a>
+      <a class="pillar" href="training.html"><span class="pillar__num">02</span><h3>Personal Training</h3><p>Coaching built around your goal.</p></a>
+      <a class="pillar" href="join.html"><span class="pillar__num">03</span><h3>Join Forma</h3><p>Two unique Bay Area clubs.</p></a>
+      <a class="pillar" href="contact.html"><span class="pillar__num">04</span><h3>Contact a Club</h3><p>Walnut Creek &amp; San Jose.</p></a>
     </div>
   </div>
 </section>
