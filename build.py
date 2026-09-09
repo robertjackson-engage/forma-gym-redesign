@@ -82,18 +82,34 @@ GFIT_STRIP_PHOTOS = [
     "gfit_UJAM.jpg",
 ]
 
+# The club strip on the home and about pages. It was one shared list, which put
+# Walnut Creek's gym floor, its pool class and a MOTR class — a Walnut Creek
+# format — in front of San Jose visitors five frames out of ten. Massage is in
+# both because both clubs offer it, though the room shown is Walnut Creek's.
 STRIP_PHOTOS = [
-    "SJ_pool_662x501_v1.jpg",
+    "gym_floor_WC_500px.jpg",
     "gym_floor2_WC_500px.jpg",
     "gym_floor3_WC_500px.jpg",
-    "SJ_dumbells_662x501_v1.jpg",
-    "carousel_MOTR_v1.jpg",
-    "gym_floor_WC_500px.jpg",
-    "gym_floor3_SJ_500px.jpg",
     "WC_pool_class_662x501_v1.jpg",
+    "carousel_MOTR_v1.jpg",
     "massage_300px_high.jpg",
-    "cycle_studio_SJ_500px.jpg",
 ]
+
+SJ_STRIP_PHOTOS = [
+    "SJ_pool_662x501_v1.jpg",
+    "SJ_dumbells_662x501_v1.jpg",
+    "gym_floor3_SJ_500px.jpg",
+    "cycle_studio_SJ_500px.jpg",
+    "massage_300px_high.jpg",
+]
+
+
+# Two marquees behind club markers rather than one shared list, the same shape
+# the outdoor page already uses — a strip is a whole element, not a value the
+# marker filter can swap inside.
+def club_strip():
+    return ("<!--wc-->" + photo_marquee(STRIP_PHOTOS) + "<!--/wc-->"
+            + "<!--sj-->" + photo_marquee(SJ_STRIP_PHOTOS) + "<!--/sj-->")
 
 # Path prefix for when the site is NOT served from a domain root.
 #
@@ -732,19 +748,20 @@ def stats_band(items, light=False):
 
 
 def _split(eyebrow, num, title, paras, img, alt, rev=False, cta=None, cta_btn=False, light=False, wide=False, focal=None, ratio=None,
-          body_html=None, sec_id=None, img_sj=None, focal_sj=None):
+          body_html=None, sec_id=None, img_sj=None, focal_sj=None, alt_sj=None):
     # body_html replaces the paragraphs outright — the homepage club blocks use
     # it to carry the locations-page phone / hours / address treatment.
     body_paras = body_html or "".join(f'<p class="body-copy">{p}</p>' for p in paras)
 
-    def _img(src, f):
+    def _img(src, f, a=None):
         style = f' style="object-position:{f}"' if f else ""
-        return f'<img src="{src}" alt="{alt}" loading="lazy"{style}>'
+        return f'<img src="{src}" alt="{a or alt}" loading="lazy"{style}>'
     # Only the photograph differs between clubs on some splits, so the two <img>
     # tags sit in the same markup rather than the whole section being duplicated.
+    # A different photograph needs its own alt text, hence alt_sj alongside.
     media_html = (_img(img, focal) if not img_sj else
                   "<!--wc-->" + _img(img, focal) + "<!--/wc-->"
-                  + "<!--sj-->" + _img(img_sj, focal_sj if focal_sj else focal) + "<!--/sj-->")
+                  + "<!--sj-->" + _img(img_sj, focal_sj if focal_sj else focal, alt_sj) + "<!--/sj-->")
     if cta:
         inner = (f'<a class="btn btn--solid" href="{cta[1]}">{cta[0]} <span class="arr">→</span></a>'
                  if cta_btn else
@@ -1482,7 +1499,7 @@ home_body = view_chooser + "<!--wc-->" + hero(
     focal="62% 50%",
     actions=_HOME_ACTIONS,
     meta=["40,000 sq ft of fitness", "Heated 6-lane pool", "All classes included"],
-) + "<!--/sj-->" + photo_marquee(STRIP_PHOTOS) + f"""
+) + "<!--/sj-->" + club_strip() + f"""
 <section class="section">
   <div class="wrap">
     <div class="intro-grid">
@@ -1635,7 +1652,7 @@ about_body = hero(
     </div>
   </div>
 </section>
-""" + photo_marquee(STRIP_PHOTOS) + f"""
+""" + club_strip() + f"""
 <section class="section">
   <div class="wrap">
     <div class="cards-head">
@@ -1666,6 +1683,17 @@ about_body = hero(
     # at 63% with no focal. The 78% here before was compensating for the previous
     # photo, which the box cut to 41.5% with three figures spanning 54.5%.
     wide=True,
+    # Walnut Creek's frame is a reformer studio, which San Jose does not have —
+    # the section illustrating "everyone on the spectrum of movement" was showing
+    # that club equipment it does not own. This frame reads the same idea without
+    # naming a format: outdoor yoga, mixed ages, an older member in front.
+    img_sj=f"{IMG}/spectrum_of_fitness.jpg",
+    # Near-square, 1200x1206, so the 4:3 box takes 25.4% off it — far more than
+    # the 11% the reformer frame loses. 92% puts almost all of that cut at the
+    # top, which raises the picture until her head sits 5.5% down the box. The
+    # box keeps its 4:3 on a phone, so this holds at both breakpoints.
+    focal_sj="50% 92%",
+    alt_sj="Members of every age in an outdoor yoga class at Forma",
 ) + form_section(
     "tour", "04", "Book a tour",
     'Come see it for <span class="serif">yourself</span>',
