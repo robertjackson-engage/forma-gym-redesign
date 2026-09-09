@@ -139,6 +139,7 @@ CLUBS = [
      "address": "5434 Thornwood Dr, San Jose, CA 95123"},
 ]
 CLUB_BY_KEY = {c["key"]: c for c in CLUBS}
+CLUB_FACADE = {"wc": "wc_facade.jpg", "sj": "sj_facade.jpg"}
 
 # Amenities San Jose does not have, so these pages exist only in the Walnut
 # Creek tree. Any nav, menu or footer link to them is dropped from San Jose's
@@ -812,7 +813,7 @@ DARK_BAND_PHOTOS = {
 
 def cta_band(title_html, text, img, primary=("Join Now", "join.html"),
              secondary=("Book a Tour", "contact.html#tour"), focal=None, soft=False, mid=False,
-             deep=False, raise_=False, raise_m=False, zoom=False):
+             deep=False, raise_=False, raise_m=False, zoom=False, light_r=False):
     sec = f'<a class="btn" href="{secondary[1]}">{secondary[0]} <span class="arr">→</span></a>' if secondary else ""
     # A band is wide and short, so on a phone it crops the width hard — a
     # subject sitting off-centre needs pulling back into frame.
@@ -841,6 +842,9 @@ def cta_band(title_html, text, img, primary=("Join Now", "join.html"),
     # img, because main.js owns the img's transform for the parallax and would
     # overwrite anything set in CSS.
     soft_cls += " cta-band--zoom" if zoom else ""
+    # Desktop-only relief on the right, for a band whose subject stands clear of
+    # the copy rather than under it.
+    soft_cls += " cta-band--light-r" if light_r else ""
     return f"""
 <section class="cta-band{soft_cls}"{raise_var}>
   <div class="cta-band__media"><img src="{img}" alt="" loading="lazy"{focal_attr}></div>
@@ -2581,6 +2585,10 @@ CLASS_BAND = {
         # which clears the copy by 65px and still leaves 10px of air above her
         # head — 15% would cut it.
         band_raise_m="13%",
+        # Desktop shows nearly the whole frame and she stands at 75%, well clear
+        # of the copy, so the flat 0.78 was burying a face it did not need to
+        # cover. Held to 45%, where the copy ends, then eased to 0.52.
+        band_light_r=True,
     ),
 }
 
@@ -2610,7 +2618,7 @@ CLASS_FOCAL = {
 
 def class_page(slug, title, img, lead, others, others_sj=None, img_sj=None, strip_photos=None,
                band_img=None, band_focal=None, band_zoom=False, band_raise_m=False,
-               hero_mod=""):
+               band_light_r=False, hero_mod=""):
     # Same numbered panels as "the full lineup" on the group fitness page: six
     # full-width bands ran the section past 1,100px on desktop for six links.
     def cards(items):
@@ -2653,6 +2661,7 @@ def class_page(slug, title, img, lead, others, others_sj=None, img_sj=None, stri
             "Every class is included with membership. Come find your format.",
             f"{IMG}/{image}",
             focal=band_focal, zoom=band_zoom, raise_m=band_raise_m,
+            light_r=band_light_r,
         )
     # The band repeats the hero photo unless a page gives it one of its own. When
     # the hero itself differs by club, so must the band — otherwise San Jose gets
@@ -2678,6 +2687,34 @@ def class_page(slug, title, img, lead, others, others_sj=None, img_sj=None, stri
 
 
 # ============================================================ JOIN
+CLUB_JOIN_META = {
+    "wc": ("Since 2009", "1908 Olympic Blvd · 35,000 sq ft"),
+    "sj": ("Since 2015", "5434 Thornwood Dr · 40,000 sq ft"),
+}
+JOIN_PERKS = ("Complimentary Fitness Consultation", "Complimentary Nutrition Consultation",
+              "30-Day Money-Back Guarantee")
+
+
+def _club_choice(club):
+    chip, meta = CLUB_JOIN_META[club["key"]]
+    perks = "".join(f"<li>{p}</li>" for p in JOIN_PERKS)
+    img = f"{IMG}/{CLUB_FACADE[club['key']]}"
+    return (f'<button class="choice" type="button" data-club="{club["name"]}" data-img="{img}">'
+            f'<span class="choice__chip">{chip}</span><span class="choice__check">&#10003;</span>'
+            f'<div class="choice__img"><img src="{img}" alt="{club["name"]}" loading="lazy"></div>'
+            f'<h3>Forma {club["name"]}</h3><p class="meta">{meta}</p>'
+            f'<ul class="choice__perks">{perks}</ul></button>')
+
+
+# The wizard offers both clubs — it has to, it is where you pick one — but the
+# club you arrived on leads, as the contact cards do.
+club_choices = ""
+for c in CLUBS:
+    ordered = [c] + [o for o in CLUBS if o["key"] != c["key"]]
+    club_choices += (f'<!--{c["key"]}-->' + "".join(_club_choice(o) for o in ordered)
+                     + f'<!--/{c["key"]}-->')
+
+
 join_body = hero(
     "Join Forma Online",
     ["Join in", '<span class="serif">minutes</span>'],
@@ -2712,22 +2749,7 @@ join_body = hero(
           <div class="join-step is-active" data-step="1">
             <h2 class="join-step__title">Select your <span class="serif">club</span></h2>
             <p class="join-step__hint">Choose the Forma location most convenient for you. Premier members get both.</p>
-            <div class="choice-grid">
-              <button class="choice" type="button" data-club="Walnut Creek" data-img="{IMG}/wc_facade.jpg">
-                <span class="choice__chip">Since 2009</span><span class="choice__check">✓</span>
-                <div class="choice__img"><img src="{IMG}/wc_facade.jpg" alt="Walnut Creek" loading="lazy"></div>
-                <h3>Forma Walnut Creek</h3>
-                <p class="meta">1908 Olympic Blvd · 35,000 sq ft</p>
-                <ul class="choice__perks"><li>Complimentary Fitness Consultation</li><li>Complimentary Nutrition Consultation</li><li>30-Day Money-Back Guarantee</li></ul>
-              </button>
-              <button class="choice" type="button" data-club="San Jose" data-img="{IMG}/sj_facade.jpg">
-                <span class="choice__chip">Since 2015</span><span class="choice__check">✓</span>
-                <div class="choice__img"><img src="{IMG}/sj_facade.jpg" alt="San Jose" loading="lazy"></div>
-                <h3>Forma San Jose</h3>
-                <p class="meta">5434 Thornwood Dr · 40,000 sq ft</p>
-                <ul class="choice__perks"><li>Complimentary Fitness Consultation</li><li>Complimentary Nutrition Consultation</li><li>30-Day Money-Back Guarantee</li></ul>
-              </button>
-            </div>
+            <div class="choice-grid">{club_choices}</div>
           </div>
 
           <div class="join-step" data-step="2">
@@ -2885,7 +2907,6 @@ join_body = hero(
 )
 
 # ============================================================ CONTACT
-CLUB_FACADE = {"wc": "wc_facade.jpg", "sj": "sj_facade.jpg"}
 CLUB_HOURS_LINES = "Mon–Thu: 5am–11pm<br>Fri: 5am–10pm<br>Sat–Sun: 6am–8pm"
 
 
