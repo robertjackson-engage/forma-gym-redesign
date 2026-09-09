@@ -2611,7 +2611,9 @@ CLASS_BAND = {
 SHARED_CLASS_BAND = dict(band_img="forma_family_sign.jpg",
                          band_focal="62% 50%", band_raise_=True)
 
-# Likewise for the closing band, whose generic form is "Try <format>".
+# Every class band reads "Move with us" — the copy under it names no format
+# either — except where a page wants its own line.
+CLASS_BAND_DEFAULT_TITLE = '<span class="serif">Move</span> with us'
 CLASS_BAND_TITLE = {
     "dance": '<span class="serif">Dance</span> with us',
 }
@@ -2676,7 +2678,7 @@ def class_page(slug, title, img, lead, others, others_sj=None, img_sj=None, stri
 
     def _band(image):
         return cta_band(
-            CLASS_BAND_TITLE.get(slug) or f'Try <span class="serif">{title.split()[0]}</span>',
+            CLASS_BAND_TITLE.get(slug, CLASS_BAND_DEFAULT_TITLE),
             "Every class is included with membership. Come find your format.",
             f"{IMG}/{image}",
             focal=band_focal, zoom=band_zoom, raise_m=band_raise_m,
