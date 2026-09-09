@@ -404,6 +404,13 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
     rgba(11,11,12,0.30) 78%,
     rgba(11,11,12,0.16) 100%);
 }
+/* Mirror the frame. Safe on the img itself: heroes show their full frame with
+   no over-scan, so main.js keeps them out of the parallax and nothing else
+   writes transform here. The scrims live on .hero__media, not the img, so they
+   are unaffected — which is the point, since the mirror is what moves the
+   subject out from under the copy and lets --scrim-left work. object-position
+   still picks the same region of the source; only its handedness changes. */
+.hero__media--flip img { transform: scaleX(-1); }
 /* Horizontal scrim for a hero whose subject sits right and copy sits left —
    dark under the text, clearing before it reaches her. Desktop only: the phone
    uses ::before for its flat scrim and its copy spans the full width anyway. */
@@ -453,6 +460,11 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
     content: ""; position: absolute; inset: 0; z-index: 1;
     background: rgba(11,11,12,0.45);
   }
+  /* The phone counterpart to --tint-d: a heavier flat scrim for a frame the
+     standard 0.45 does not hold copy on. --scrim-left cannot help here, since
+     a phone hero's copy runs the full width and a gradient clearing to the
+     right would leave the end of every line unprotected. */
+  .hero__media--tint-m::before { background: rgba(11,11,12,0.62); }
   /* Tinted frames are already dim and carry a heavier gradient, so the full
      mobile scrim on top of that buries the photo. Must be re-declared here:
      same specificity as the rule above, and later source order is what makes
@@ -1590,6 +1602,12 @@ html:has(.subnav) { scroll-padding-top: 150px; }
   /* Two-card grids go one-up: at half width a 16/10 card is only ~99px tall,
      which is too small for the photo to carry. Full width doubles the area. */
   .card-grid--2 { grid-template-columns: 1fr; }
+  /* Stacked, the club cards read as one block: .card__below has no bottom
+     padding, so Walnut Creek's last hours line ends flush with the card and
+     only the 18px grid gap separates it from San Jose's facade. Scoped to the
+     contact page — the other --2 grid is two linked cards, where the tighter
+     rhythm is right. */
+  .page-contact .card-grid--2 { row-gap: 40px; }
   .card__media { aspect-ratio: 4 / 4.4; }
   /* --wide means landscape; restated here because the line above would
      otherwise override it at equal specificity and force these portrait. */

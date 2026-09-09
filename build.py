@@ -2822,20 +2822,63 @@ join_body = hero(
 )
 
 # ============================================================ CONTACT
-contact_body = hero(
-    "Contact &amp; Tours",
-    ["Come <span class=\"serif\">say hi</span>"],
-    "Book a tour, ask a question, or just tell us your goal – we'll point you to the right club, class or coach. No pressure, no scripts.",
-    img=f"{IMG}/ana_chalk.jpg",
-    crumb="Contact",
-    actions=[("Book a Tour", "#tour", True, "only-guest"),
-             ("Login to My Account", MEMBER_PORTAL, True, "only-member")],
-    page=True,
-    # Portrait 1132x1306 in a wide hero: desktop crops 53% of the height,
-    # a phone crops 42% of the width. 38% keeps her body centred with the
-    # chalk still in frame; 20% holds her face and hands on desktop.
-    focal="38% 20%",
-    media_mod="hero__media--open-top",   # her face sits in the band the top stop was darkening
+CLUB_FACADE = {"wc": "wc_facade.jpg", "sj": "sj_facade.jpg"}
+CLUB_HOURS_LINES = "Mon–Thu: 5am–11pm<br>Fri: 5am–10pm<br>Sat–Sun: 6am–8pm"
+
+
+def _club_card(club):
+    return (f'<div class="card card--stack"><div class="card__media card__media--wide">'
+            f'<img src="{IMG}/{CLUB_FACADE[club["key"]]}" alt="{club["name"]}" loading="lazy"></div>'
+            f'<div class="card__below"><h3 class="card__title">{club["name"]}</h3>'
+            f'<p>{club["address"]}<br>'
+            f'<a href="tel:{club["tel"]}" style="color:var(--accent)">{club["phone"]}</a><br>'
+            f'{CLUB_HOURS_LINES}</p></div></div>')
+
+
+# Both clubs on both pages — someone on the contact page may want either — but
+# the club they are already reading goes first rather than Walnut Creek always
+# taking the lead.
+club_cards = ""
+for c in CLUBS:
+    ordered = [c] + [o for o in CLUBS if o["key"] != c["key"]]
+    club_cards += (f'<!--{c["key"]}-->' + "".join(_club_card(o) for o in ordered)
+                   + f'<!--/{c["key"]}-->')
+
+
+# Both clubs run the photograph mirrored, which moves her from under the copy to
+# the right of it. San Jose adds the scrims on top: the horizontal one on
+# desktop, dark under the text and clearing before it reaches her, and a heavier
+# flat one on the phone, where a gradient cannot help.
+def _contact_hero(media_mod, focal):
+    return hero(
+        "Contact &amp; Tours",
+        ["Come <span class=\"serif\">say hi</span>"],
+        "Book a tour, ask a question, or just tell us your goal – we'll point you to the right club, class or coach. No pressure, no scripts.",
+        img=f"{IMG}/ana_chalk_wide.jpg",
+        crumb="Contact",
+        actions=[("Book a Tour", "#tour", True, "only-guest"),
+                 ("Login to My Account", MEMBER_PORTAL, True, "only-member")],
+        page=True,
+        # 1570x1306, the wider recut: the desktop crop drops from 53% of the
+        # height to 34%, so 12% now clears the top of her head instead of
+        # cutting it. x is inert there — the box is wider than the frame, so it
+        # scales to width.
+        #
+        # The phone scales to height instead and 329px of a 706px frame
+        # overflows, which is where x earns its keep. Her body centres on 41% of
+        # the source and both clubs read it mirrored, so 56% is what puts her at
+        # 72% across — off the left-aligned copy rather than under it.
+        focal=focal,
+        media_mod=media_mod,
+    )
+
+
+contact_body = (
+    # her face sits in the band the top stop was darkening
+    "<!--wc-->" + _contact_hero("hero__media--open-top hero__media--flip", "56% 12%") + "<!--/wc-->"
+    + "<!--sj-->" + _contact_hero(
+        "hero__media--open-top hero__media--flip hero__media--scrim-left"
+        " hero__media--tint-m", "56% 12%") + "<!--/sj-->"
 ) + form_section(
     "tour", "01", "Book a tour",
     'Let\'s find your <span class="serif">fit</span>',
@@ -2850,10 +2893,7 @@ contact_body = hero(
         <h2 class="h-display reveal">Reach a <span class="serif">club</span></h2>
       </div>
     </div>
-    <div class="card-grid card-grid--2" data-stagger>
-      <div class="card card--stack"><div class="card__media card__media--wide"><img src="{IMG}/wc_facade.jpg" alt="Walnut Creek" loading="lazy"></div><div class="card__below"><h3 class="card__title">Walnut Creek</h3><p>1908 Olympic Blvd, Walnut Creek, CA 94596<br><a href="tel:9259326400" style="color:var(--accent)">(925) 932-6400</a><br>Mon–Thu: 5am–11pm<br>Fri: 5am–10pm<br>Sat–Sun: 6am–8pm</p></div></div>
-      <div class="card card--stack"><div class="card__media card__media--wide"><img src="{IMG}/sj_facade.jpg" alt="San Jose" loading="lazy"></div><div class="card__below"><h3 class="card__title">San Jose</h3><p>5434 Thornwood Dr, San Jose, CA 95123<br><a href="tel:4083631010" style="color:var(--accent)">(408) 363-1010</a><br>Mon–Thu: 5am–11pm<br>Fri: 5am–10pm<br>Sat–Sun: 6am–8pm</p></div></div>
-    </div>
+    <div class="card-grid card-grid--2" data-stagger>{club_cards}</div>
   </div>
 </section>
 """ + cta_band(
