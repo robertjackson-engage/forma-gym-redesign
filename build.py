@@ -76,8 +76,6 @@ RISE_STRIP_PHOTOS = [
 # The dance and group-fitness carousel from the live site, for the strip under
 # the classes hero.
 GFIT_STRIP_PHOTOS = [
-    "gfit_zumba.jpg",
-    "gfit_hip_hop_1.jpg",
     "gfit_groove.jpg",
     "gfit_NIA.jpg",
     "gfit_hip_hop_2.jpg",
