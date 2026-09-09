@@ -47,6 +47,15 @@ def _wc_strip_photos():
 
 OUTDOOR_STRIP_PHOTOS = _wc_strip_photos() + _CURATED_OUTDOOR_STRIP
 
+# San Jose's outdoor set. Two real frames of its covered turf exist, so the pool
+# deck carries the rest — it is the same outdoor area, seen from the water.
+SJ_OUTDOOR_STRIP_PHOTOS = [
+    "jess_fan_SJ_photo_strip.jpg",
+    "pool_sj_day.jpg",
+    "sled_duet_SJ_photo_strip.jpg",
+    "SJ_pool_662x501_v1.jpg",
+]
+
 # The facility carousel from the live formagym.com/rise/ page, in its own
 # order. Better photographed and more of them than the client set that was
 # here before.
@@ -725,10 +734,19 @@ def stats_band(items, light=False):
 
 
 def _split(eyebrow, num, title, paras, img, alt, rev=False, cta=None, cta_btn=False, light=False, wide=False, focal=None, ratio=None,
-          body_html=None, sec_id=None):
+          body_html=None, sec_id=None, img_sj=None, focal_sj=None):
     # body_html replaces the paragraphs outright — the homepage club blocks use
     # it to carry the locations-page phone / hours / address treatment.
     body_paras = body_html or "".join(f'<p class="body-copy">{p}</p>' for p in paras)
+
+    def _img(src, f):
+        style = f' style="object-position:{f}"' if f else ""
+        return f'<img src="{src}" alt="{alt}" loading="lazy"{style}>'
+    # Only the photograph differs between clubs on some splits, so the two <img>
+    # tags sit in the same markup rather than the whole section being duplicated.
+    media_html = (_img(img, focal) if not img_sj else
+                  "<!--wc-->" + _img(img, focal) + "<!--/wc-->"
+                  + "<!--sj-->" + _img(img_sj, focal_sj if focal_sj else focal) + "<!--/sj-->")
     if cta:
         inner = (f'<a class="btn btn--solid" href="{cta[1]}">{cta[0]} <span class="arr">→</span></a>'
                  if cta_btn else
@@ -741,7 +759,7 @@ def _split(eyebrow, num, title, paras, img, alt, rev=False, cta=None, cta_btn=Fa
   <div class="wrap">
     <div class="split{' split--rev' if rev else ''}">
       <div class="split__media{' split__media--wide' if wide else ''} reveal-img"{f' style="aspect-ratio:{ratio}"' if ratio else ''}>
-        <img src="{img}" alt="{alt}" loading="lazy"{f' style="object-position:{focal}"' if focal else ''}>
+        {media_html}
       </div>
       <div class="split__body">
         <p class="eyebrow">{f'' if num else ''}{eyebrow}</p>
@@ -756,7 +774,8 @@ def _split(eyebrow, num, title, paras, img, alt, rev=False, cta=None, cta_btn=Fa
 
 def split(*a, **kw):
     """Wrapper: `club` wraps the whole section in that club's marker, so a block
-    describing an amenity only one club has never reaches the other's tree."""
+    describing an amenity only one club has never reaches the other's tree.
+    `img_sj` is the lighter case — same section, different photograph."""
     club = kw.pop("club", None)
     html = _split(*a, **kw)
     return f"<!--{club}-->{html}<!--/{club}-->" if club else html
@@ -1769,6 +1788,7 @@ training_body = hero(
     f"{IMG}/small_group_class.jpg",
     "Small group training at Forma",
     rev=True, cta=("Join Now", "join.html"), cta_btn=True,
+    img_sj=f"{IMG}/small_group_train_sj.jpg",
 ) + cta_band(
     'Train with the <span class="serif">best</span> in the Bay',
     "Join Forma, tell us your goal, and we'll pair you with the coach who's right for you.",
@@ -2783,24 +2803,52 @@ trial_body = hero(
 )
 
 # ============================================================ OUTDOOR
-outdoor_body = hero(
-    "Outdoor Fitness",
-    ["Train under", '<span class="serif">California skies</span>'],
-    "Our members LOVE to exercise outdoors – and we LOVE giving them the environment and tools to show up and move every day. We've expanded our outdoor footprint so you have everything you need, all year-round.",
-    img=f"{IMG}/turf_hanna_hero.jpg",
-    # Each axis bites on one breakpoint only. The phone crops to 33% of the width
-    # and she stands 64.5% across, which centred puts at 94% — hard against the
-    # edge; 62% brings her to 70%. Desktop crops 15% of the height and she sits
-    # high in the frame, so a centred crop puts her face at 5.7%, under the nav;
-    # 5% drops it to 16.8% — v2 carries extra headroom for exactly this.
-    focal="62% 5%",
-    media_mod="hero__media--clear-top hero__media--tint-d",
-    crumb="Outdoor",
-    actions=[("Visit Us", "join.html", True, "only-guest"),
-             ("Login to My Account", MEMBER_PORTAL, True, "only-member")],
-    meta=["Covered outdoor turf", "Rain or shine", "Both clubs"],
-    page=True,
-) + photo_marquee(OUTDOOR_STRIP_PHOTOS) + f"""
+def _outdoor_hero(img, focal, media_mod, meta):
+    return hero(
+        "Outdoor Fitness",
+        ["Train under", '<span class="serif">California skies</span>'],
+        "Our members LOVE to exercise outdoors – and we LOVE giving them the environment and tools to show up and move every day. We've expanded our outdoor spaces so you can train in the fresh air, year round.",
+        img=f"{IMG}/{img}",
+        focal=focal,
+        media_mod=media_mod,
+        crumb="Outdoor",
+        actions=[("Visit Us", "join.html", True, "only-guest"),
+                 ("View Outdoor Class Schedule", "group-fitness.html#schedule", True, "only-member")],
+        meta=meta,
+        page=True,
+    )
+
+
+# Walnut Creek's turf sits under redwoods against the lodge deck, San Jose's is
+# covered and enclosed in palms — the two are not interchangeable, and each
+# breakpoint's crop is tuned to its own frame.
+outdoor_body = (
+    "<!--wc-->" + _outdoor_hero(
+        "turf_hanna_hero.jpg",
+        # Each axis bites on one breakpoint only. The phone crops to 33% of the
+        # width and she stands 64.5% across, which centred puts at 94% — hard
+        # against the edge; 62% brings her to 70%. Desktop crops 15% of the
+        # height and she sits high in the frame, so a centred crop puts her face
+        # at 5.7%, under the nav; 5% drops it to 16.8%.
+        "62% 5%",
+        "hero__media--clear-top hero__media--tint-d",
+        ["Covered outdoor turf", "Rain or shine", "Under the redwoods"],
+    ) + "<!--/wc-->"
+    + "<!--sj-->" + _outdoor_hero(
+        "turf_sj_hero.jpg",
+        # Each axis bites on one breakpoint only. Desktop is a 1.56 box against a
+        # 1.22 frame, so it scales to width and overflows vertically: 239px of it,
+        # and her head starts 66px down, so 30% opened the window 72px in and cut
+        # it — 0% shows the top of the source. The phone box is 0.54, narrower
+        # than the frame, so it scales to height and overflows horizontally
+        # instead: 481px, with her centred at 565px, so 78% is what puts her in
+        # the middle of the window rather than halved at its edge.
+        "78% 0%",
+        "hero__media--clear-top hero__media--tinted",
+        ["8,000 sq ft, covered", "Rain or shine", "Enclosed in palms"],
+    ) + "<!--/sj-->"
+) + "<!--wc-->" + photo_marquee(OUTDOOR_STRIP_PHOTOS) + "<!--/wc-->" + \
+    "<!--sj-->" + photo_marquee(SJ_OUTDOOR_STRIP_PHOTOS) + "<!--/sj-->" + f"""
 <section class="section">
   <div class="wrap">
     <div class="cards-head">
@@ -2818,13 +2866,17 @@ outdoor_body = hero(
     </div>
   </div>
 </section>
-""" + cta_band(
+""" + "<!--wc-->" + cta_band(
     '<span class="serif">Move</span> every day. <br>In or outside.',
     "It's all included with your membership. Come find your favorite spot under the iconic Bay Area sky.",
     f"{IMG}/pool_wc_birdseye_band.jpg",
     # A scene rather than a single subject, so a centred crop works at both
     # breakpoints — the phone lands on the sails and the lanes under them.
-)
+) + "<!--/wc-->" + "<!--sj-->" + cta_band(
+    '<span class="serif">Move</span> every day. <br>In or outside.',
+    "It's all included with your membership. Come find your favorite spot under the iconic Bay Area sky.",
+    f"{IMG}/sj_pool_sunset_hero.jpg",
+) + "<!--/sj-->"
 
 # ============================================================ DRBRAINRX
 drbrain_body = hero(
