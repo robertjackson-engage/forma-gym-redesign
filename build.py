@@ -2535,10 +2535,43 @@ CLASS_HERO_LINES = {
 # copy on. Dance is lit brightly edge to edge, so it takes the flat wash and
 # then ramps it out to the right, off the instructor. Cycle is a wide room with
 # no subject to protect, so the horizontal scrim can simply be darkest under the
-# copy — desktop only, as ever, since a phone hero's copy runs the full width.
+# copy and gone entirely by the right of the frame — desktop only, as ever,
+# since a phone hero's copy runs the full width.
 CLASS_HERO_MOD = {
     "dance": "hero__media--tinted hero__media--tint-fade",
-    "cycle": "hero__media--scrim-left",
+    "cycle": "hero__media--scrim-left hero__media--scrim-clear-r",
+}
+
+# The closing band repeats the hero photo unless a page is given its own frame
+# here. Keyed by slug so the reasoning travels with the photograph.
+CLASS_BAND = {
+    "dance": dict(
+        band_img="dance_susan_kerry.jpg",
+        # Each axis bites on one breakpoint. Desktop is wider than the 1.5 frame,
+        # so it scales to width and 273px of a 933px frame overflows vertically;
+        # 85% takes all but 41px of that off the top, which lifts the right-hand
+        # dancer until her trailing hair clears the headline. It costs the left
+        # dancer's hair, which goes off the top edge. The phone box is 0.69,
+        # scales to height, and crops 441px of an 816px frame away — that
+        # dancer's body centres on 74%, so 92% lands the 375px window on her. y
+        # does nothing there: scaling to height leaves no vertical overflow.
+        band_focal="92% 85%",
+        band_zoom=True,
+        # y cannot lift her on a phone either, so the image's top is offset.
+        band_raise_m=True,
+    ),
+    "cycle": dict(
+        # One frame for both clubs. It is a class rather than a room, so nothing
+        # in it names a studio, and it stops each cycle page showing its hero
+        # twice.
+        band_img="cycle_action_band.jpg",
+        # Desktop scales the 1.515 frame to width and 221px of a 914px frame
+        # overflows; 35% takes 8% off the top and leaves air above the tallest
+        # head, which sits at 14%. The phone scales to height and shows 39% of
+        # the width — the foreground rider's face is at 75%, which 78% lands at
+        # 70% across, right of the copy.
+        band_focal="78% 35%",
+    ),
 }
 
 # Likewise for the closing band, whose generic form is "Try <format>".
@@ -3284,25 +3317,8 @@ for slug, title, img, lead, short in CLASS_PAGES:
                              # Creek's magenta studio and San Jose's blue one.
                              img_sj="SJ_cycle_studio_2500px.jpg" if slug == "cycle" else None,
                              strip_photos=GFIT_STRIP_PHOTOS if slug == "dance" else None,
-                             band_img="dance_susan_kerry.jpg" if slug == "dance" else None,
-                             # Each axis bites on one breakpoint. Desktop is wider
-                             # than the 1.5 frame, so it scales to width and 273px
-                             # of a 933px frame overflows vertically; 85% takes all
-                             # but 41px of that off the top, which lifts the
-                             # right-hand dancer until her trailing hair clears the
-                             # headline. It costs the left dancer's hair, which
-                             # goes off the top edge. The phone box is 0.69, scales
-                             # to height, and crops 441px of an 816px frame away —
-                             # that dancer's body centres on 74%, so 92% lands the
-                             # 375px window on her. y does nothing there: scaling
-                             # to height leaves no vertical overflow to act on.
-                             band_focal="92% 85%" if slug == "dance" else None,
-                             band_zoom=slug == "dance",
-                             # y cannot lift her on a phone — that box scales to
-                             # height, so there is no vertical overflow to move.
-                             # Offsetting the image's top is the only lever there.
-                             band_raise_m=slug == "dance",
-                             hero_mod=CLASS_HERO_MOD.get(slug, ""))))
+                             hero_mod=CLASS_HERO_MOD.get(slug, ""),
+                             **CLASS_BAND.get(slug, {}))))
 
 
 

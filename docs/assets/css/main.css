@@ -404,6 +404,18 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
     rgba(11,11,12,0.30) 78%,
     rgba(11,11,12,0.16) 100%);
 }
+/* --scrim-left clears its own wash by the right edge, but the shared vertical
+   gradient underneath still runs the full width, so the right of the frame is
+   never actually clean. Masking that gradient on the same axis pulls it back to
+   about a quarter strength there — enough to hold the meta line in the bottom
+   corner, light enough that the window and the LED strips read. Desktop only,
+   to match --scrim-left itself. */
+@media (min-width: 821px) {
+  .hero__media--scrim-clear-r::after {
+    -webkit-mask-image: linear-gradient(to right, #000 0%, #000 48%, rgba(0,0,0,0.34) 80%, rgba(0,0,0,0.26) 100%);
+    mask-image: linear-gradient(to right, #000 0%, #000 48%, rgba(0,0,0,0.34) 80%, rgba(0,0,0,0.26) 100%);
+  }
+}
 /* Mirror the frame. Safe on the img itself: heroes show their full frame with
    no over-scan, so main.js keeps them out of the parallax and nothing else
    writes transform here. The scrims live on .hero__media, not the img, so they
