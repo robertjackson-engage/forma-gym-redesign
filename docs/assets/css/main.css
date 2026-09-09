@@ -1550,7 +1550,9 @@ html:has(.subnav) { scroll-padding-top: 150px; }
      CTAs and the guest/member toggle move into the overlay, where there is
      room — otherwise they crowd the bar with no nav links to justify it. */
   .header-cta .btn { display: none; }
-  .header-cta .view-toggle { display: none; }
+  /* The header pill is the club switch now. It stays desktop-only, as the
+     guest/member toggle was — on a phone both controls live in the overlay. */
+  .header-cta .club-switch { display: none; }
   .menu-side__controls { display: flex; }
   .menu-overlay__grid { grid-template-columns: 1fr; padding-top: 88px; gap: 44px; }
   .menu-side { justify-content: flex-start; }
@@ -1836,6 +1838,10 @@ html:has(.subnav) { scroll-padding-top: 150px; }
   font-weight: 600; padding: 7px 13px; margin: 0; display: block;
 }
 .menu-side__group .club-switch { margin-top: 4px; }
+/* The guest/member toggle sits in a group of its own now rather than in the
+   mobile-only controls row, because the header no longer carries it at any
+   width. */
+.menu-side__group .view-toggle { margin-top: 4px; }
 
 .view-toggle { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
 .view-toggle button {

@@ -487,10 +487,7 @@ def header_html(active="", club=None, filename="index.html"):
     </a>
     <nav class="nav-desktop" aria-label="Primary">{links}</nav>
     <div class="header-cta">
-      <div class="view-toggle" role="group" aria-label="View site as">
-        <button type="button" data-view-set="guest">Guest</button>
-        <button type="button" data-view-set="member">Member</button>
-      </div>
+      {club_switch}
       <a class="btn btn--sm only-guest header-pricing" href="contact.html#tour">Book a Tour</a>
       <a class="btn btn--solid btn--sm only-guest" href="join.html">Join Now</a>
       <a class="btn btn--solid btn--sm only-member" href="group-fitness.html#schedule">Class Schedule</a>
@@ -506,10 +503,6 @@ def header_html(active="", club=None, filename="index.html"):
     <nav class="menu-list" aria-label="All pages">{menu_links}</nav>
     <aside class="menu-side">
       <div class="menu-side__controls">
-        <div class="view-toggle" role="group" aria-label="View site as">
-          <button type="button" data-view-set="guest">Guest</button>
-          <button type="button" data-view-set="member">Member</button>
-        </div>
         <a class="btn btn--sm only-guest" href="contact.html#tour">Book a Tour</a>
         <a class="btn btn--solid btn--sm only-member" href="group-fitness.html#schedule">Class Schedule</a>
       </div>
@@ -520,6 +513,13 @@ def header_html(active="", club=None, filename="index.html"):
       <div class="menu-side__group">
         <h6>Your club</h6>
         {club_switch}
+      </div>
+      <div class="menu-side__group">
+        <h6>Viewing as</h6>
+        <div class="view-toggle" role="group" aria-label="View site as">
+          <button type="button" data-view-set="guest">Guest</button>
+          <button type="button" data-view-set="member">Member</button>
+        </div>
       </div>
       <div class="menu-side__group">
         <h6>Visit</h6>
