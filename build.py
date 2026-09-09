@@ -797,7 +797,7 @@ DARK_BAND_PHOTOS = {
 
 def cta_band(title_html, text, img, primary=("Join Now", "join.html"),
              secondary=("Book a Tour", "contact.html#tour"), focal=None, soft=False, mid=False,
-             deep=False, raise_=False, raise_m=False):
+             deep=False, raise_=False, raise_m=False, zoom=False):
     sec = f'<a class="btn" href="{secondary[1]}">{secondary[0]} <span class="arr">→</span></a>' if secondary else ""
     # A band is wide and short, so on a phone it crops the width hard — a
     # subject sitting off-centre needs pulling back into frame.
@@ -819,6 +819,10 @@ def cta_band(title_html, text, img, primary=("Join Now", "join.html"),
     # raise_m is the phone-only version: desktop shows nearly the full width and
     # has room for the subject to clear the copy on its own.
     soft_cls += " cta-band--raise-m" if raise_m else ""
+    # zoom=True enlarges the frame. It scales the media wrapper rather than the
+    # img, because main.js owns the img's transform for the parallax and would
+    # overwrite anything set in CSS.
+    soft_cls += " cta-band--zoom" if zoom else ""
     return f"""
 <section class="cta-band{soft_cls}">
   <div class="cta-band__media"><img src="{img}" alt="" loading="lazy"{focal_attr}></div>
@@ -2526,7 +2530,8 @@ CLASS_FOCAL = {
 
 
 def class_page(slug, title, img, lead, others, others_sj=None, img_sj=None, strip_sj=None,
-               band_img=None, band_focal=None, hero_mod=""):
+               band_img=None, band_focal=None, band_zoom=False, band_raise_m=False,
+               hero_mod=""):
     # Same numbered panels as "the full lineup" on the group fitness page: six
     # full-width bands ran the section past 1,100px on desktop for six links.
     def cards(items):
@@ -2579,7 +2584,7 @@ def class_page(slug, title, img, lead, others, others_sj=None, img_sj=None, stri
         "Every class is included with membership. Come find your format.",
         # The band repeats the hero photo unless a page wants its own frame.
         f"{IMG}/{band_img or img}",
-        focal=band_focal,
+        focal=band_focal, zoom=band_zoom, raise_m=band_raise_m,
     )
 
 
@@ -3186,13 +3191,22 @@ for slug, title, img, lead, short in CLASS_PAGES:
                              strip_sj=GFIT_STRIP_PHOTOS if slug == "dance" else None,
                              band_img="dance_susan_kerry.jpg" if slug == "dance" else None,
                              # Each axis bites on one breakpoint. Desktop is wider
-                             # than the 1.5 frame, so it scales to width: 255px of
-                             # vertical overflow, and 50% keeps both dancers (they
-                             # span 22-85%) inside. The phone box is 0.69, scales
-                             # to height, and crops 54% of the width away — 82%
-                             # puts that window at 44-90%, holding the right-hand
-                             # dancer whole instead of halving both of them.
-                             band_focal="82% 50%" if slug == "dance" else None,
+                             # than the 1.5 frame, so it scales to width and 273px
+                             # of a 933px frame overflows vertically; 85% takes all
+                             # but 41px of that off the top, which lifts the
+                             # right-hand dancer until her trailing hair clears the
+                             # headline. It costs the left dancer's hair, which
+                             # goes off the top edge. The phone box is 0.69, scales
+                             # to height, and crops 441px of an 816px frame away —
+                             # that dancer's body centres on 74%, so 92% lands the
+                             # 375px window on her. y does nothing there: scaling
+                             # to height leaves no vertical overflow to act on.
+                             band_focal="92% 85%" if slug == "dance" else None,
+                             band_zoom=slug == "dance",
+                             # y cannot lift her on a phone — that box scales to
+                             # height, so there is no vertical overflow to move.
+                             # Offsetting the image's top is the only lever there.
+                             band_raise_m=slug == "dance",
                              # The studio frame is lit brightly enough that the
                              # standard gradient left the headline sitting thin.
                              hero_mod="hero__media--tinted hero__media--tint-fade" if slug == "dance" else "")))
