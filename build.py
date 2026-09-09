@@ -156,7 +156,7 @@ def club_filter(html, club):
     """Resolve the two club markers in a page body.
 
     <!--wc-->…<!--/wc--> and <!--sj-->…<!--/sj--> keep a block for one club and
-    delete it for the other; {{club_name}} and friends substitute a fact. Doing
+    delete it for the other; [[club_name]] and friends substitute a fact. Doing
     it on the finished string means the ~40 page bodies stay plain strings built
     once, instead of every one becoming a function of the club.
     """
@@ -164,7 +164,9 @@ def club_filter(html, club):
     html = _re.sub(rf"<!--{drop}-->.*?<!--/{drop}-->", "", html, flags=_re.S)
     html = _re.sub(rf"<!--{keep}-->|<!--/{keep}-->", "", html)
     for field in ("name", "phone", "tel", "address"):
-        html = html.replace("{{club_" + field + "}}", club[field])
+        # [[…]] not {{…}}: a brace token inside an f-string is consumed by the
+        # f-string and never reaches here, silently shipping "{club_phone}".
+        html = html.replace("[[club_" + field + "]]", club[field])
     return html
 
 FOUNDED = 2009            # Walnut Creek opened; drives the "years in the Bay Area" stat
@@ -1373,7 +1375,17 @@ view_chooser = f"""
 """
 
 # ============================================================ HOME
-home_body = view_chooser + hero(
+_HOME_ACTIONS = [
+    ("Visit Us", "join.html", True, "only-guest"),
+    ("Explore the Clubs", "locations.html", False, "only-guest"),
+    ("Class Schedule", "group-fitness.html#schedule", True, "only-member"),
+    ("Book Recovery", "recovery.html", False, "only-member"),
+]
+
+# One hero per club rather than one filtered hero: the media differs in kind —
+# Walnut Creek runs the walkthrough video, San Jose a still of its own pool — and
+# the kicker, sub and stats all change with it.
+home_body = view_chooser + "<!--wc-->" + hero(
     "Walnut Creek &amp; San Jose · Est. 2009",
     ["Play", '<span class="serif">every</span> day'],
     "Two unique Bay Area clubs built around one idea: making movement a part of your day – "
@@ -1383,14 +1395,23 @@ home_body = view_chooser + hero(
     poster_mobile=f"{IMG}/hero_poster_trainer_mobile.jpg",
     walkthrough=True,
     media_mod="hero__media--scrim-wide",
-    actions=[
-        ("Visit Us", "join.html", True, "only-guest"),
-        ("Explore the Clubs", "locations.html", False, "only-guest"),
-        ("Class Schedule", "group-fitness.html#schedule", True, "only-member"),
-        ("Book Recovery", "recovery.html", False, "only-member"),
-    ],
+    actions=_HOME_ACTIONS,
     meta=["2 Bay Area locations", "75,000+ sq ft of fitness", "All classes included"],
-) + photo_marquee(STRIP_PHOTOS) + f"""
+) + "<!--/wc--><!--sj-->" + hero(
+    "San Jose · Est. 2015",
+    ["Play", '<span class="serif">every</span> day'],
+    "A 40,000 sq. ft. luxury club in South San Jose built around one idea: making movement a "
+    "part of your day – every day. Covered outdoor turf, a heated 6-lane pool and every class "
+    "included, with world-class trainers and an authentic community atmosphere.",
+    img=f"{IMG}/sj_pool_sunset_hero.jpg",
+    media_mod="hero__media--scrim-wide hero__media--sky",
+    # 1.8:1 against a 1.56:1 box, so the overflow is horizontal only and the y
+    # value is inert here — the full height of the frame shows. 62% trims the
+    # foreground palm on the left rather than the lit deck on the right.
+    focal="62% 50%",
+    actions=_HOME_ACTIONS,
+    meta=["40,000 sq ft of fitness", "Heated 6-lane pool", "All classes included"],
+) + "<!--/sj-->" + photo_marquee(STRIP_PHOTOS) + f"""
 <section class="section">
   <div class="wrap">
     <div class="intro-grid">
@@ -1423,8 +1444,8 @@ home_body = view_chooser + hero(
       <a class="card" href="group-fitness.html"><div class="card__media"><img src="{IMG}/group_fit_jess.jpg" alt="Group fitness class" loading="lazy"><div class="card__label"><h3>Group Fitness</h3><span class="go">Explore →</span></div></div></a>
       <a class="card" href="training.html"><div class="card__media"><img src="{IMG}/pt_liz.jpg" alt="Personal training" loading="lazy"><div class="card__label"><h3>Training</h3><span class="go">Explore →</span></div></div></a>
       <a class="card" href="cycle.html"><div class="card__media"><img src="{IMG}/cycle_sj.jpg" alt="Cycle studio" loading="lazy"><div class="card__label"><h3>Cycle</h3><span class="go">Explore →</span></div></div></a>
-      <a class="card" href="recovery.html"><div class="card__media"><img src="{IMG}/chillyGOAT_1000px.jpg" alt="Cold plunge at Forma" loading="lazy"><div class="card__label"><h3>Recovery</h3><span class="go">Explore →</span></div></div></a>
-      <a class="card" href="aqua.html"><div class="card__media"><img src="{IMG}/pool_wc.jpg" alt="Aqua studio" loading="lazy"><div class="card__label"><h3>Aqua</h3><span class="go">Explore →</span></div></div></a>
+      <a class="card" href="recovery.html"><div class="card__media"><!--wc--><img src="{IMG}/chillyGOAT_1000px.jpg" alt="Cold plunge at Forma" loading="lazy"><!--/wc--><!--sj--><img src="{IMG}/chillyGOAT_SJ_500px.jpg" alt="Cold plunge at Forma" loading="lazy"><!--/sj--><div class="card__label"><h3>Recovery</h3><span class="go">Explore →</span></div></div></a>
+      <a class="card" href="aqua.html"><div class="card__media"><!--wc--><img src="{IMG}/pool_wc.jpg" alt="Aqua studio" loading="lazy"><!--/wc--><!--sj--><img src="{IMG}/pool_sj_day.jpg" alt="Aqua studio" loading="lazy"><!--/sj--><div class="card__label"><h3>Aqua</h3><span class="go">Explore →</span></div></div></a>
       <a class="card" href="spa.html"><div class="card__media"><img src="{IMG}/spa_wc.jpg" alt="The spa" loading="lazy"><div class="card__label"><h3>The Spa</h3><span class="go">Explore →</span></div></div></a>
     </div>
   </div>
@@ -1987,7 +2008,7 @@ spa_body = hero(
     actions=[("Massage", "#massage", True),
              ("Skincare", "#skincare", False, "", "wc")],
     meta=["<!--wc-->Massage · facials · Reiki · skin care<!--/wc-->"
-          "<!--sj-->Sports &amp; therapeutic massage<!--/sj-->", "{{club_name}}"],
+          "<!--sj-->Sports &amp; therapeutic massage<!--/sj-->", "[[club_name]]"],
     page=True,
 ) + f"""
 
@@ -2000,18 +2021,29 @@ spa_body = hero(
       </div>
       <!-- Guests cannot book a treatment, so the phone number is a dead end for
            them. Members get it; guests get the step that comes first. -->
-      <p class="body-copy reveal only-member" style="max-width:32ch">Call to schedule: <a href="tel:{{club_tel}}" style="color:var(--accent)">{{club_phone}}</a></p>
+      <p class="body-copy reveal only-member" style="max-width:32ch">Call to schedule: <a href="tel:[[club_tel]]" style="color:var(--accent)">[[club_phone]]</a></p>
       <a class="btn btn--solid reveal only-guest" href="join.html">Join Now <span class="arr">&rarr;</span></a>
     </div>
     <div class="sched" data-stagger>
+      <!--wc-->
       <div class="sched__col"><h4>Signature Swedish</h4><span class="where">Relax &amp; restore</span><dl><div><dt>25 min</dt><dd>$65</dd></div><div><dt>50 min</dt><dd>$115</dd></div><div><dt>80 min</dt><dd>$160</dd></div></dl></div>
       <div class="sched__col"><h4>Deep Tissue</h4><span class="where">Release tension</span><dl><div><dt>25 min</dt><dd>$65</dd></div><div><dt>50 min</dt><dd>$115</dd></div><div><dt>80 min</dt><dd>$160</dd></div></dl></div>
       <div class="sched__col"><h4>Sports Massage</h4><span class="where">Recover faster</span><dl><div><dt>25 min</dt><dd>$65</dd></div><div><dt>50 min</dt><dd>$115</dd></div><div><dt>80 min</dt><dd>$160</dd></div></dl></div>
       <div class="sched__col"><h4>Prenatal</h4><span class="where">Gentle care</span><dl><div><dt>25 min</dt><dd>$65</dd></div><div><dt>50 min</dt><dd>$115</dd></div><div><dt>80 min</dt><dd>$160</dd></div></dl></div>
       <div class="sched__col"><h4>Reflexology</h4><span class="where">Pressure points</span><dl><div><dt>25 min</dt><dd>$65</dd></div><div><dt>50 min</dt><dd>$115</dd></div><div><dt>80 min</dt><dd>$160</dd></div></dl></div>
-      <!--wc--><div class="sched__col"><h4>Reiki</h4><span class="where">Energy work</span><dl><div><dt>25 min</dt><dd>$65</dd></div><div><dt>50 min</dt><dd>$115</dd></div><div><dt>80 min</dt><dd>$160</dd></div></dl></div><!--/wc-->
+      <div class="sched__col"><h4>Reiki</h4><span class="where">Energy work</span><dl><div><dt>25 min</dt><dd>$65</dd></div><div><dt>50 min</dt><dd>$115</dd></div><div><dt>80 min</dt><dd>$160</dd></div></dl></div>
+      <!--/wc-->
+      <!--sj-->
+      <div class="sched__col"><h4>Signature Swedish</h4><p class="sched__desc">Long, flowing strokes to increase circulation, release tension and leave the whole body loose.</p></div>
+      <div class="sched__col"><h4>Aromatherapy</h4><p class="sched__desc">The signature massage with pure essential oils chosen for you – stress relief, muscle soother or mood enhancer.</p></div>
+      <div class="sched__col"><h4>LaStone Therapy</h4><p class="sched__desc">Therapeutic massage with hot and cold basalt stones, warming and cooling the muscles to de-stress body and mind.</p></div>
+      <div class="sched__col"><h4>Deep Tissue</h4><p class="sched__desc">A stronger form of massage that softens chronically tight muscles by working the deeper layers of tissue.</p></div>
+      <div class="sched__col"><h4>Sports Massage</h4><p class="sched__desc">Myofascial and trigger point release to build strength and agility and hold a consistent level of performance.</p></div>
+      <div class="sched__col"><h4>Prenatal</h4><p class="sched__desc">Relieves the aches and tension of pregnancy, given side-lying with careful attention to the comfort of the expecting mother.</p></div>
+      <!--/sj-->
     </div>
-    <p class="body-copy reveal" style="margin-top:22px">Add-ons: Aroma-Free CBD $10 · Hot Stone $20</p>
+    <!--wc--><p class="body-copy reveal" style="margin-top:22px">Add-ons: Aroma-Free CBD $10 · Hot Stone $20</p><!--/wc-->
+    <!--sj--><p class="body-copy reveal" style="margin-top:22px">Treatments are quoted by the club &ndash; call <a href="tel:[[club_tel]]" style="color:var(--accent)">[[club_phone]]</a> to book.</p><!--/sj-->
   </div>
 </section>
 
@@ -2035,7 +2067,7 @@ spa_body = hero(
     'Your <span class="serif">body</span> has earned this',
     "World-class treatments can be enjoyed before or after the sauna, steam or hot tub."
     '<span class="only-member"> Call to schedule: '
-    '<a href="tel:{{club_tel}}" style="color:var(--accent)">{{club_phone}}</a>.</span>',
+    '<a href="tel:[[club_tel]]" style="color:var(--accent)">[[club_phone]]</a>.</span>',
     f"{IMG}/spa_massage_band.jpg",
     # Desktop crops 37% off the height and the client lies along the bottom edge,
     # so a centred crop cut her out. 85% drops the window to the lower frame.

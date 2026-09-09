@@ -319,6 +319,14 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   background: linear-gradient(to top, rgba(11,11,12,0.92) 0%, rgba(11,11,12,0.35) 45%, rgba(11,11,12,0.42) 100%);
 }
 .hero__media--dark-src::after { content: none; }
+/* A frame whose sky is the point of it. The shared gradient sits at 42% black
+   across the top, which is invisible on a grey studio ceiling and fatal to a
+   sunset. Copy legibility comes from --scrim-wide on desktop and from the
+   bottom of this gradient, both untouched. */
+.hero__media--sky::after {
+  background: linear-gradient(to top, rgba(11,11,12,0.92) 0%,
+    rgba(11,11,12,0.38) 45%, rgba(11,11,12,0.10) 100%);
+}
 @media (min-width: 821px) {
   .hero__media--baked::after {
     -webkit-mask-image: linear-gradient(to right, #000 0%, #000 58%, transparent 92%);
@@ -1141,6 +1149,11 @@ a.pillar:hover h3 { color: var(--accent); }
 .section--light .sched__col { background: var(--bone); }
 .sched__col h4 { font-family: var(--font-display); text-transform: uppercase; font-weight: 400; font-size: 22px; margin-bottom: 6px; }
 .sched__col .where { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; display: block; }
+/* San Jose quotes treatments by phone, so its cells carry a description where
+   Walnut Creek's carry a price list. .where is a 10px tracked label — right
+   for "Relax & restore", wrong for a sentence. */
+.sched__col .sched__desc { font-size: 14.5px; line-height: 1.55; color: var(--copy); margin: 0; }
+.section--light .sched__col .sched__desc { color: var(--copy-dark, inherit); }
 .sched__col dl { display: flex; flex-direction: column; }
 .sched__col dl > div { display: flex; justify-content: space-between; gap: 16px; padding: 11px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
 .section--light .sched__col dl > div { border-color: var(--line-dark); }
