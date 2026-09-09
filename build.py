@@ -64,6 +64,17 @@ RISE_STRIP_PHOTOS = [
     "rise_fac_11_strip.jpg",
 ]
 
+# The dance and group-fitness carousel from the live site, for the strip under
+# the classes hero.
+GFIT_STRIP_PHOTOS = [
+    "gfit_zumba.jpg",
+    "gfit_hip_hop_1.jpg",
+    "gfit_groove.jpg",
+    "gfit_NIA.jpg",
+    "gfit_hip_hop_2.jpg",
+    "gfit_UJAM.jpg",
+]
+
 STRIP_PHOTOS = [
     "SJ_pool_662x501_v1.jpg",
     "gym_floor2_WC_500px.jpg",
@@ -1644,12 +1655,13 @@ groupfit_body = hero(
     "Group Fitness",
     ["Stronger", '<span class="serif">together</span>'],
     "Forma Gym is your destination for group fitness that takes your workout to the next level. A vibrant community, expertly crafted classes, and <!--wc-->14<!--/wc--><!--sj-->13<!--/sj--> formats that energize, motivate and challenge – for every level, beginner to advanced.",
-    img=f"{IMG}/slider-locations_group_dance.jpg",
+    img=f"{IMG}/dance_susan_kerry.jpg",
     crumb="Group Fitness",
     actions=[("Visit Us", "join.html", True), ("Book a Tour", "contact.html#tour", False)],
-    meta=["14 class formats", "All included in membership", "Indoor + outdoor studios"],
+    meta=["<!--wc-->14 class formats<!--/wc--><!--sj-->13 class formats<!--/sj-->",
+          "All included in membership", "Indoor + outdoor studios"],
     page=True,
-) + f"""
+) + photo_marquee(GFIT_STRIP_PHOTOS) + f"""
 <section class="section" id="classes">
   <div class="wrap">
     <div class="cards-head cards-head--stack">
