@@ -122,6 +122,9 @@ CLUB_BY_KEY = {c["key"]: c for c in CLUBS}
 # pages by the only-wc markers, so nothing in that tree points at a 404.
 # Reformer pilates needs the machines and the studio, both Walnut Creek only.
 # San Jose runs mat pilates, which is a different class and stays in its tree.
+# The member portal is a third-party system, not a page of this site.
+MEMBER_PORTAL = "https://www.myiclubonline.com/iclub/members/signin"
+
 WC_ONLY_PAGES = {"kidzville.html", "cryo.html", "rise.html", "pilates-reformer.html"}
 
 # Pages that belong to the company rather than to a club: the club directory and
@@ -622,7 +625,8 @@ def hero(kicker, lines, sub="", sub2="", img=None, img_mobile=None, video=None, 
             label, href, solid = a[0], a[1], a[2]
             extra = (" " + a[3]) if len(a) > 3 else ""
             cls = ("btn btn--solid" if solid else "btn") + extra
-            btn = f'<a class="{cls}" href="{href}">{label} <span class="arr">→</span></a>'
+            ext = ' target="_blank" rel="noopener"' if href.startswith("http") else ""
+            btn = f'<a class="{cls}" href="{href}"{ext}>{label} <span class="arr">→</span></a>'
             # A 5th field names the only club this action belongs to, so a button
             # pointing at a page one tree does not have is dropped from that tree
             # rather than hidden with CSS — a hidden link still 404s for a crawler.
@@ -1372,7 +1376,7 @@ view_chooser = f"""
         <p>Class schedules, club hours, Kidzville, Member benefits &amp; more.</p>
         <div class="vc-clubs">
           <button class="btn btn--sm" type="button" data-choose="member">Take me in <span class="arr">→</span></button>
-          <a class="btn btn--sm" data-choose="member" href="https://www.myiclubonline.com/iclub/members/signin"
+          <a class="btn btn--sm" data-choose="member" href="{MEMBER_PORTAL}"
              target="_blank" rel="noopener">Member Login <span class="arr">→</span></a>
         </div>
       </div>
@@ -1561,7 +1565,8 @@ about_body = hero(
     focal="84% 50%",
     media_mod="hero__media--soften",
     crumb="About",
-    actions=[("Book a Tour", "contact.html#tour", True)],
+    actions=[("Book a Tour", "contact.html#tour", True, "only-guest"),
+             ("Login to My Account", MEMBER_PORTAL, True, "only-member")],
     page=True,
     title_mod="hero__title--fit",
 ) + f"""
@@ -1637,11 +1642,12 @@ def _class_rows(classes):
         rows += (f'<a class="pillar" href="{href}">'
                  f'<span class="pillar__num">{i:02d}</span>'
                  f'<h3>{sup_reg(label)}</h3><p>{desc}</p></a>')
-    # 14 panels divide evenly into the 2-up phone layout but leave one cell short
-    # at 3-up, where the grid's 1px background showed through as a grey block.
-    # One filler panel, present only at 3-up.
-    if len(classes) % 3:
-        rows += '<span class="pillar pillar--filler" aria-hidden="true"></span>'
+    # The panels divide evenly into the 2-up phone layout but leave the last row
+    # short at 3-up, where the grid's own 1px background shows through an empty
+    # cell as a grey block. Fill to a whole row: 14 needs one filler, 13 needs
+    # two, and a single filler left San Jose with one grey cell and one black.
+    rows += ('<span class="pillar pillar--filler" aria-hidden="true"></span>'
+             * (-len(classes) % 3))
     return rows
 
 
@@ -1655,13 +1661,18 @@ groupfit_body = hero(
     "Group Fitness",
     ["Stronger", '<span class="serif">together</span>'],
     "Forma Gym is your destination for group fitness that takes your workout to the next level. A vibrant community, expertly crafted classes, and <!--wc-->14<!--/wc--><!--sj-->13<!--/sj--> formats that energize, motivate and challenge – for every level, beginner to advanced.",
-    img=f"{IMG}/dance_susan_kerry.jpg",
+    img=f"{IMG}/slider-locations_group_dance.jpg",
     crumb="Group Fitness",
-    actions=[("Visit Us", "join.html", True), ("Book a Tour", "contact.html#tour", False)],
+    # A member has already visited and already joined; the schedule is the only
+    # one of these three they have any use for.
+    actions=[("Visit Us", "join.html", True, "only-guest"),
+             ("Book a Tour", "contact.html#tour", False, "only-guest"),
+             ("View Class Schedule", "group-fitness.html#schedule", True, "only-member"),
+             ("Login to My Account", MEMBER_PORTAL, False, "only-member")],
     meta=["<!--wc-->14 class formats<!--/wc--><!--sj-->13 class formats<!--/sj-->",
           "All included in membership", "Indoor + outdoor studios"],
     page=True,
-) + photo_marquee(GFIT_STRIP_PHOTOS) + f"""
+) + f"""
 <section class="section" id="classes">
   <div class="wrap">
     <div class="cards-head cards-head--stack">
@@ -1838,7 +1849,9 @@ def location_page(name, badge, phone, tel, address, intro, amenities, hero_img, 
     return hero(
         f"Forma {name}", [f'{name.split()[0]} <span class="serif">{name.split()[-1] if len(name.split())>1 else "Club"}</span>'],
         intro, img=f"{IMG}/{hero_img}", crumb=f'<a href="locations.html">Locations</a> &nbsp;/&nbsp; {name}',
-        actions=[("Visit Us", "join.html", True), (f"Call {phone}", f"tel:{tel}", False)],
+        actions=[("Visit Us", "join.html", True, "only-guest"),
+                 (f"Call {phone}", f"tel:{tel}", False),
+                 ("Login to My Account", MEMBER_PORTAL, True, "only-member")],
         meta=[badge], page=True, focal=hero_focal, media_mod=hero_media_mod,
     ) + f"""
 <section class="section section--tight">
@@ -1875,6 +1888,9 @@ walnutcreek_body = location_page(
     "wc_facade.jpg",
     "Forma_WalnutCreek_locations_pool_birdeye-2.jpg",   # CTA band backdrop
     [("Mon–Thu", "5am – 11pm"), ("Friday", "5am – 10pm"), ("Sat–Sun", "6am – 8pm")],
+    # The facade is lit sky and pale stucco edge to edge, so the copy sat on it
+    # thinly. The flat tint plus the deeper gradient give it a ground.
+    hero_media_mod="hero__media--tinted",
 )
 
 sanjose_body = location_page(
@@ -2437,7 +2453,7 @@ CLASS_FOCAL = {
 }
 
 
-def class_page(slug, title, img, lead, others, others_sj=None):
+def class_page(slug, title, img, lead, others, others_sj=None, img_sj=None, strip_sj=None):
     def cards(items):
         out = ""
         for ol, oh, od in items:
@@ -2450,13 +2466,22 @@ def class_page(slug, title, img, lead, others, others_sj=None):
     # instead of five on the pages where reformer would have been one of them.
     other_cards = ("<!--wc-->" + cards(others) + "<!--/wc-->"
                    + "<!--sj-->" + cards(others_sj if others_sj is not None else others) + "<!--/sj-->")
-    return hero(
-        "Group Fitness", [sup_reg(title.split()[0]), f'<span class="serif">{" ".join(title.split()[1:]) or "Studio"}</span>'] if len(title.split()) > 1 else [f'<span class="serif">{title}</span>'],
-        lead, img=f"{IMG}/{img}", crumb=f'<a href="group-fitness.html">Group Fitness</a> &nbsp;/&nbsp; {sup_reg(title)}',
-        actions=[("Visit Us", "join.html", True), ("Full Schedule", "group-fitness.html#schedule", False)],
-        meta=["Included with membership", "All levels welcome"], page=True,
-        focal=CLASS_FOCAL.get(slug),
-    ) + f"""
+    def _hero(image):
+        return hero(
+            "Group Fitness", [sup_reg(title.split()[0]), f'<span class="serif">{" ".join(title.split()[1:]) or "Studio"}</span>'] if len(title.split()) > 1 else [f'<span class="serif">{title}</span>'],
+            lead, img=f"{IMG}/{image}", crumb=f'<a href="group-fitness.html">Group Fitness</a> &nbsp;/&nbsp; {sup_reg(title)}',
+            actions=[("Visit Us", "join.html", True, "only-guest"),
+                     ("Full Schedule", "group-fitness.html#schedule", False),
+                     ("Login to My Account", MEMBER_PORTAL, True, "only-member")],
+            meta=["Included with membership", "All levels welcome"], page=True,
+            focal=CLASS_FOCAL.get(slug),
+        )
+    # A club-specific hero has to be two heroes: the media is a whole element, not
+    # a value the marker filter can swap inside one.
+    head = (_hero(img) if not img_sj else
+            "<!--wc-->" + _hero(img) + "<!--/wc--><!--sj-->" + _hero(img_sj) + "<!--/sj-->")
+    strip = f"<!--sj-->{photo_marquee(strip_sj)}<!--/sj-->" if strip_sj else ""
+    return head + strip + f"""
 <section class="section">
   <div class="wrap">
     <div class="cards-head">
@@ -2689,7 +2714,8 @@ contact_body = hero(
     "Book a tour, ask a question, or just tell us your goal – we'll point you to the right club, class or coach. No pressure, no scripts.",
     img=f"{IMG}/ana_chalk.jpg",
     crumb="Contact",
-    actions=[("Book a Tour", "#tour", True)],
+    actions=[("Book a Tour", "#tour", True, "only-guest"),
+             ("Login to My Account", MEMBER_PORTAL, True, "only-member")],
     page=True,
     # Portrait 1132x1306 in a wide hero: desktop crops 53% of the height,
     # a phone crops 42% of the width. 38% keeps her body centred with the
@@ -2772,7 +2798,8 @@ outdoor_body = hero(
     focal="62% 5%",
     media_mod="hero__media--clear-top hero__media--tint-d",
     crumb="Outdoor",
-    actions=[("Visit Us", "join.html", True)],
+    actions=[("Visit Us", "join.html", True, "only-guest"),
+             ("Login to My Account", MEMBER_PORTAL, True, "only-member")],
     meta=["Covered outdoor turf", "Rain or shine", "Both clubs"],
     page=True,
 ) + photo_marquee(OUTDOOR_STRIP_PHOTOS) + f"""
@@ -3038,7 +3065,10 @@ for slug, title, img, lead, short in CLASS_PAGES:
     others_sj = [o for o in _others_sj if o[1] != f"{slug}.html"][:6]
     PAGES.append((f"{slug}.html", f"{title} | Group Fitness | Forma Gym",
                   f"{title} at Forma Gym – included with membership, all levels welcome.",
-                  "group-fitness.html", class_page(slug, title, img, lead, others, others_sj)))
+                  "group-fitness.html",
+                  class_page(slug, title, img, lead, others, others_sj,
+                             img_sj="dance_susan_kerry.jpg" if slug == "dance" else None,
+                             strip_sj=GFIT_STRIP_PHOTOS if slug == "dance" else None)))
 
 
 
