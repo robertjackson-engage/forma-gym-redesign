@@ -359,7 +359,7 @@ CLASS_PAGES = [
     ("cycle", "Cycle Studio", "SJ_cycle_studio_2500px.jpg",
      "An exhilarating, immersive cardio ride for every fitness level. Simulated terrain, climbs, sprints and endurance sets – all driven by the beat. The music keeps you engaged and pushes you to match its rhythm and intensity.",
      "Immersive, beat-driven indoor rides"),
-    ("dance", "Dance", "slider-locations_group_dance.jpg",
+    ("dance", "Dance", "dance_class_jess_tall.jpg",
      "Music, movement and pure joy. Our dance classes combine rhythm and technique into a workout that never feels like one – building coordination, cardio and confidence while you have an absolute blast.",
      "Cardio that feels like a celebration"),
     ("low-impact", "Low Impact + Balance", "slider-LIT_balance_v3.jpg",
@@ -2462,7 +2462,20 @@ givesback_body = hero(
 # A phone hero is portrait (~0.56:1) but these stills are 2:1, so cover shows
 # only ~27% of the frame — a narrow vertical strip. Where the subject sits well
 # off-centre, pin the crop to it. Slugs not listed here read fine centred.
+# The generic hero splits the format name into white first word + accent rest,
+# which leaves single-word formats reading as one accent word. Overridden per
+# slug where the headline wants a lead-in instead.
+CLASS_HERO_LINES = {
+    "dance": ["Let&rsquo;s", '<span class="serif">Dance</span>'],
+}
+
 CLASS_FOCAL = {
+    # The taller crop of the same frame: 1.407 against a 1.81 desktop box, so it
+    # scales to width and 215px of a 963px frame goes. Centred leaves the back
+    # row's heads on the cut line at 11%; 25% takes only 54px off the top and
+    # opens ~6% of clear air above them. The phone box scales to height instead,
+    # where the lead dancer stands 68% across and 70% holds her.
+    "dance":            "70% 25%",
     "low-impact":       "74% 50%",
     "kickboxing":       "76% 50%",
     "meditation":       "78% 50%",
@@ -2471,14 +2484,19 @@ CLASS_FOCAL = {
 }
 
 
-def class_page(slug, title, img, lead, others, others_sj=None, img_sj=None, strip_sj=None):
+def class_page(slug, title, img, lead, others, others_sj=None, img_sj=None, strip_sj=None,
+               band_img=None, band_focal=None, hero_mod=""):
+    # Same numbered panels as "the full lineup" on the group fitness page: six
+    # full-width bands ran the section past 1,100px on desktop for six links.
     def cards(items):
         out = ""
-        for ol, oh, od in items:
-            out += (f'<a class="row-item" href="{oh}"><span class="row-item__idx">→</span>'
-                    f'<span class="row-item__title">{sup_reg(ol)}</span>'
-                    f'<span class="row-item__desc">{od}</span>'
-                    f'<span class="row-item__arrow">→</span></a>')
+        for i, (ol, oh, od) in enumerate(items, 1):
+            out += (f'<a class="pillar" href="{oh}"><span class="pillar__num">{i:02d}</span>'
+                    f'<h3>{sup_reg(ol)}</h3><p>{od}</p></a>')
+        # Six divides evenly into three, but San Jose's list is built separately
+        # and an empty cell shows the grid's 1px background as a grey block.
+        out += ('<span class="pillar pillar--filler" aria-hidden="true"></span>'
+                * (-len(items) % 3))
         return out
     # Two sets rather than one filtered set, so San Jose still gets six cards
     # instead of five on the pages where reformer would have been one of them.
@@ -2486,13 +2504,16 @@ def class_page(slug, title, img, lead, others, others_sj=None, img_sj=None, stri
                    + "<!--sj-->" + cards(others_sj if others_sj is not None else others) + "<!--/sj-->")
     def _hero(image):
         return hero(
-            "Group Fitness", [sup_reg(title.split()[0]), f'<span class="serif">{" ".join(title.split()[1:]) or "Studio"}</span>'] if len(title.split()) > 1 else [f'<span class="serif">{title}</span>'],
+            "Group Fitness",
+            CLASS_HERO_LINES.get(slug) or (
+                [sup_reg(title.split()[0]), f'<span class="serif">{" ".join(title.split()[1:]) or "Studio"}</span>']
+                if len(title.split()) > 1 else [f'<span class="serif">{title}</span>']),
             lead, img=f"{IMG}/{image}", crumb=f'<a href="group-fitness.html">Group Fitness</a> &nbsp;/&nbsp; {sup_reg(title)}',
             actions=[("Visit Us", "join.html", True, "only-guest"),
                      ("Full Schedule", "group-fitness.html#schedule", False),
                      ("Login to My Account", MEMBER_PORTAL, True, "only-member")],
             meta=["Included with membership", "All levels welcome"], page=True,
-            focal=CLASS_FOCAL.get(slug),
+            focal=CLASS_FOCAL.get(slug), media_mod=hero_mod,
         )
     # A club-specific hero has to be two heroes: the media is a whole element, not
     # a value the marker filter can swap inside one.
@@ -2508,13 +2529,15 @@ def class_page(slug, title, img, lead, others, others_sj=None, img_sj=None, stri
         <h2 class="h-display reveal">Mix it <span class="serif">up</span></h2>
       </div>
     </div>
-    <div class="rows reveal">{other_cards}</div>
+    <div class="pillars pillars--3 reveal" data-stagger>{other_cards}</div>
   </div>
 </section>
 """ + cta_band(
         f'Try <span class="serif">{title.split()[0]}</span>',
         "Every class is included with membership. Come find your format.",
-        f"{IMG}/{img}",
+        # The band repeats the hero photo unless a page wants its own frame.
+        f"{IMG}/{band_img or img}",
+        focal=band_focal,
     )
 
 
@@ -3117,8 +3140,19 @@ for slug, title, img, lead, short in CLASS_PAGES:
                   f"{title} at Forma Gym – included with membership, all levels welcome.",
                   "group-fitness.html",
                   class_page(slug, title, img, lead, others, others_sj,
-                             img_sj="dance_susan_kerry.jpg" if slug == "dance" else None,
-                             strip_sj=GFIT_STRIP_PHOTOS if slug == "dance" else None)))
+                             strip_sj=GFIT_STRIP_PHOTOS if slug == "dance" else None,
+                             band_img="dance_susan_kerry.jpg" if slug == "dance" else None,
+                             # Each axis bites on one breakpoint. Desktop is wider
+                             # than the 1.5 frame, so it scales to width: 255px of
+                             # vertical overflow, and 50% keeps both dancers (they
+                             # span 22-85%) inside. The phone box is 0.69, scales
+                             # to height, and crops 54% of the width away — 82%
+                             # puts that window at 44-90%, holding the right-hand
+                             # dancer whole instead of halving both of them.
+                             band_focal="82% 50%" if slug == "dance" else None,
+                             # The studio frame is lit brightly enough that the
+                             # standard gradient left the headline sitting thin.
+                             hero_mod="hero__media--tinted" if slug == "dance" else "")))
 
 
 
