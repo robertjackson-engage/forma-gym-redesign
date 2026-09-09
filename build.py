@@ -1757,10 +1757,8 @@ training_body = hero(
         <h2 class="h-display reveal">Coaches who <span class="serif">care</span></h2>
       </div>
     </div>
-    <h3 class="team-club">Walnut Creek</h3>
-    {trainer_accordion(WC_TRAINERS)}
-    <h3 class="team-club">San Jose</h3>
-    {trainer_accordion(SJ_TRAINERS)}
+    <!--wc-->{trainer_accordion(WC_TRAINERS)}<!--/wc-->
+    <!--sj-->{trainer_accordion(SJ_TRAINERS)}<!--/sj-->
   </div>
 </section>
 """ + split(
