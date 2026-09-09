@@ -834,12 +834,15 @@ def cta_band(title_html, text, img, primary=("Join Now", "join.html"),
     # raise_m is the phone-only version: desktop shows nearly the full width and
     # has room for the subject to clear the copy on its own.
     soft_cls += " cta-band--raise-m" if raise_m else ""
+    # raise_m is True for the standard 15%, or a percentage string where that
+    # would carry the subject off the top edge.
+    raise_var = f' style="--raise-m:{raise_m}"' if isinstance(raise_m, str) else ""
     # zoom=True enlarges the frame. It scales the media wrapper rather than the
     # img, because main.js owns the img's transform for the parallax and would
     # overwrite anything set in CSS.
     soft_cls += " cta-band--zoom" if zoom else ""
     return f"""
-<section class="cta-band{soft_cls}">
+<section class="cta-band{soft_cls}"{raise_var}>
   <div class="cta-band__media"><img src="{img}" alt="" loading="lazy"{focal_attr}></div>
   <div class="wrap">
     <h2 class="reveal">{title_html}</h2>
@@ -2571,6 +2574,13 @@ CLASS_BAND = {
         # the width — the foreground rider's face is at 75%, which 78% lands at
         # 70% across, right of the copy.
         band_focal="78% 35%",
+        # Phone only, and it has to be the top offset rather than the focal: the
+        # box scales to height there, so nothing overflows vertically for y to
+        # move. Her head starts 12.5% into a 647px frame, or 81px down, and her
+        # chin at 274px sat level with the body copy at 268. 13% lifts her 71px,
+        # which clears the copy by 65px and still leaves 10px of air above her
+        # head — 15% would cut it.
+        band_raise_m="13%",
     ),
 }
 
