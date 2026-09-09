@@ -1908,6 +1908,16 @@ meta=["<!--wc-->Cryo + cold plunge<!--/wc--><!--sj-->Cold plunge<!--/sj-->", "<!
     "Cryotherapy chamber at Forma",
     cta=("All about cryo", "cryo.html"),
     club="wc") + split(
+    # San Jose has the plunge but not the chamber, so it gets a section of its
+    # own rather than a filtered version of Walnut Creek's — none of the cryo
+    # copy (the 3-minute chamber session, the 500-800 calories) is true of it.
+    "Cold plunge", "01",
+    'Perform better, recover <span class="serif">faster</span>',
+    ["The ChillyGOAT<sup>&reg;</sup> cold plunge by Michael Phelps sits steps from the sauna, steam room and hot tub, so contrast therapy is part of the same visit rather than another appointment.",
+     "A few minutes in the cold reduces inflammation and soreness, speeds recovery between sessions, sharpens focus and helps you sleep. Natural, non-invasive, and used by athletes at every level."],
+    f"{IMG}/chillyGOAT_1000px.jpg",
+    "ChillyGOAT cold plunge at Forma San Jose",
+    club="sj") + split(
     "<!--wc-->The spa<!--/wc--><!--sj-->Massage<!--/sj-->", "02",
     'The optimum wellness <span class="serif">experience</span>',
     ["<!--wc-->A comprehensive menu of therapeutic treatments – massage, facials, Reiki and clinical skin care – performed by skilled, professional therapists dedicated to easing pain, restoring function and rejuvenating face and body.<!--/wc-->"
