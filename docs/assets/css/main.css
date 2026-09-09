@@ -436,6 +436,20 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
       rgba(11,11,12,0.10) 74%,
       rgba(11,11,12,0) 100%);
   }
+  /* Deeper again, for a frame that is bright edge to edge under the copy — San
+     Jose's floor is white ceiling, pale wood and lit turf, where 0.72 left the
+     headline thin. Same shape, same clearing point, more weight at the left.
+     Its own modifier rather than a retune of --scrim-left, which is tuned for
+     the training hero. */
+  .hero__media--scrim-left-deep::before {
+    content: ""; position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(to right,
+      rgba(11,11,12,0.88) 0%,
+      rgba(11,11,12,0.80) 32%,
+      rgba(11,11,12,0.48) 56%,
+      rgba(11,11,12,0.14) 74%,
+      rgba(11,11,12,0) 100%);
+  }
   /* Same idea, held darker further across. The home hero's body copy runs to
      ~47% of the viewport, and the line ends land on her arm and leggings — the
      brightest part of the frame. Its own modifier rather than a retune of
@@ -651,6 +665,28 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
 .intro-grid__right { display: flex; flex-direction: column; gap: 26px; padding-top: var(--eyebrow-block); }
 /* The heading breaks to its own lines, so the copy column gets the room. */
 .intro-grid__right .lede { max-width: 64ch; }
+/* The second paragraph leaves the narrow column and runs under both, so the
+   lede sits beside the headline and the detail gets full measure beneath. Only
+   on desktop — the columns stack on a phone, where it is already full width. */
+@media (min-width: 821px) {
+  .intro-grid__wide { grid-column: 1 / -1; max-width: 92ch; }
+  /* Where a wide row exists the lede is the only thing beside the headline, so
+     the 7/5 split is wrong for it: at 1400 that left the lede a 490px column and
+     a four-line paragraph with "life." alone on the last. Even columns give it
+     ~587px and three lines, and the headline's longest line measures 494px, so
+     it still fits. :has() rather than a modifier class — the layout follows from
+     the content being there. */
+  .intro-grid:has(.intro-grid__wide) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    row-gap: clamp(18px, 2vw, 30px);
+  }
+}
+/* Below 1100 even columns leave the lede under 460px and it goes to four lines
+   again, so it takes the full width instead — the same breakpoint the desktop
+   nav collapses at. */
+@media (min-width: 821px) and (max-width: 1100px) {
+  .intro-grid:has(.intro-grid__wide) { grid-template-columns: minmax(0, 1fr); }
+}
 
 /* ---------- split feature ---------- */
 .split {

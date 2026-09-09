@@ -3014,36 +3014,60 @@ contact_body = (
 )
 
 # ============================================================ TRIAL PASS
-trial_body = hero(
-    "Schedule Your Visit",
-    ["Try Forma.", 'Book your <span class="serif">visit</span>.'],
-    "Fill out the form below to schedule a visit, a tour, and/or a guest workout – and a complimentary fitness coaching session.",
-    img=f"{IMG}/annabelle_kettle_HERO_2.jpg",
-    crumb="Trial Pass",
-    actions=[("Schedule My Visit", "#tour", True), ("Join Online", "join.html", False)],
-    meta=["Coaching session"],
-    page=True,
+def _trial_hero(image, meta, focal=None, media_mod=""):
+    return hero(
+        "Schedule Your Visit",
+        ["You are here", 'for a <span class="serif">reason</span>.'],
+        "Fill out the form below to schedule a visit, a tour, and/or a guest workout – and a complimentary fitness coaching session.",
+        img=f"{IMG}/{image}",
+        crumb="Trial Pass",
+        actions=[("Schedule My Visit", "#tour", True), ("Join Online", "join.html", False)],
+        meta=meta,
+        page=True, focal=focal, media_mod=media_mod,
+    )
+
+
+trial_body = (
+    # The meta line is what a visitor gets by turning up, so it names the club
+    # they are looking at rather than the coaching session both clubs offer.
+    # Both frames put their subject right of the copy, which is the shape
+    # --scrim-left exists for: dark under the text, clearing before it reaches
+    # them. Desktop only, as that modifier always is — the phone takes --tint-m
+    # instead, since its copy runs the full width and a gradient clearing to the
+    # right would leave the end of every line unprotected.
+    "<!--wc-->" + _trial_hero(
+        "wc_gym_floor_hero.jpg",
+        ["35,000 sq ft of fitness", "Heated pool + Kidzville", "Cryo, spa and caf&eacute;"],
+        media_mod="hero__media--scrim-left hero__media--tint-m",
+    ) + "<!--/wc-->"
+    + "<!--sj-->" + _trial_hero(
+        "sj_gym_floor_hero.jpg",
+        ["40,000 sq ft of fitness", "Covered outdoor turf", "Heated 6-lane pool"],
+        media_mod="hero__media--scrim-left-deep hero__media--tint-m",
+    ) + "<!--/sj-->"
+) + form_section(
+    # The form is what the page is for, so it comes straight after the hero
+    # rather than behind a section of prose.
+    "tour", "01", "Schedule your visit",
+    'Book your <span class="serif">visit</span>',
+    "We have a fitness solution for you – hundreds of monthly classes across every intensity and experience level, whether you've never had a gym membership or you've tried them all. Complete the form and we'll set up your visit and coaching session.",
+    "Visit Us", ac_id=33,
 ) + f"""
 <section class="section section--tight">
   <div class="wrap">
     <div class="intro-grid">
       <div>
         <p class="eyebrow">We're here for you</p>
-        <h2 class="h-display reveal">A lifestyle change, not a <span class="serif">quick fix</span></h2>
+        <h2 class="h-display reveal">A <span class="serif">lifestyle change.</span><br>Not a quick fix</h2>
       </div>
       <div class="intro-grid__right">
         <p class="lede reveal">Forma Gym is a family-run gym created not only to help you shape your body, but to help you take control of every aspect of your life.</p>
-        <p class="body-copy reveal">Our metric of wellness is your outlook on life – connection, gratitude, eating well, moving every day, and living a life of fulfillment. Whether you're recapturing your health, increasing your capacity, or changing your physique, we understand that everyone has obstacles to achieving their goals. Forma has the tools and support you need to feel comfortable, have fun, and enjoy the journey.</p>
       </div>
+      <p class="body-copy intro-grid__wide reveal">Our metric of wellness is your outlook on life – connection, gratitude, eating well, moving every day, and living a life of fulfillment. Whether you're recapturing your health, increasing your capacity, or changing your physique, we understand that everyone has obstacles to achieving their goals. Forma has the tools and support you need to feel comfortable, have fun, and enjoy the journey.</p>
     </div>
   </div>
 </section>
-""" + form_section(
-    "tour", "02", "Schedule your visit",
-    'Book your <span class="serif">visit</span>',
-    "We have a fitness solution for you – hundreds of monthly classes across every intensity and experience level, whether you've never had a gym membership or you've tried them all. Complete the form and we'll set up your visit and coaching session.",
-    "Visit Us", ac_id=33,
-) + cta_band(
+""" + cta_band(
     'Come <span class="serif">play</span> with us',
     "Two unique Bay Area clubs. The only thing left to do is show up.",
     f"{IMG}/slider-locations_turf_alysse_torey.jpg",
@@ -3226,8 +3250,8 @@ merchant_body = hero(
       </div>
       <div class="intro-grid__right">
         <p class="lede reveal">We're partnering with local businesses to give you preferred pricing – a discount to locally owned and operated shops, restaurants and services around the Bay.</p>
-        <p class="body-copy reveal">It's our way of supporting the community that supports us – and giving members one more reason to love being part of the Forma Family. Ask the front desk for the current list of preferred merchants.</p>
       </div>
+      <p class="body-copy intro-grid__wide reveal">It's our way of supporting the community that supports us – and giving members one more reason to love being part of the Forma Family. Ask the front desk for the current list of preferred merchants.</p>
     </div>
   </div>
 </section>
@@ -3294,8 +3318,8 @@ freeze_body = hero(
       </div>
       <div class="intro-grid__right">
         <p class="lede reveal">Most members who need a break choose a freeze – it holds your membership and your rate while you're away, so you can pick up where you left off.</p>
-        <p class="body-copy reveal">A cancellation closes your membership. Both require a written request, which is what the form below creates. Your club can confirm current terms, any applicable fees, and your minimum-term status before anything is finalized.</p>
       </div>
+      <p class="body-copy intro-grid__wide reveal">A cancellation closes your membership. Both require a written request, which is what the form below creates. Your club can confirm current terms, any applicable fees, and your minimum-term status before anything is finalized.</p>
     </div>
   </div>
 </section>
