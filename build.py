@@ -2527,7 +2527,7 @@ CLASS_FOCAL = {
 }
 
 
-def class_page(slug, title, img, lead, others, others_sj=None, img_sj=None, strip_sj=None,
+def class_page(slug, title, img, lead, others, others_sj=None, img_sj=None, strip_photos=None,
                band_img=None, band_focal=None, band_zoom=False, band_raise_m=False,
                hero_mod=""):
     # Same numbered panels as "the full lineup" on the group fitness page: six
@@ -2564,7 +2564,7 @@ def class_page(slug, title, img, lead, others, others_sj=None, img_sj=None, stri
     # a value the marker filter can swap inside one.
     head = (_hero(img) if not img_sj else
             "<!--wc-->" + _hero(img) + "<!--/wc--><!--sj-->" + _hero(img_sj) + "<!--/sj-->")
-    strip = f"<!--sj-->{photo_marquee(strip_sj)}<!--/sj-->" if strip_sj else ""
+    strip = photo_marquee(strip_photos) if strip_photos else ""
     return head + strip + f"""
 <section class="section">
   <div class="wrap">
@@ -3186,7 +3186,7 @@ for slug, title, img, lead, short in CLASS_PAGES:
                   f"{title} at Forma Gym – included with membership, all levels welcome.",
                   "group-fitness.html",
                   class_page(slug, title, img, lead, others, others_sj,
-                             strip_sj=GFIT_STRIP_PHOTOS if slug == "dance" else None,
+                             strip_photos=GFIT_STRIP_PHOTOS if slug == "dance" else None,
                              band_img="dance_susan_kerry.jpg" if slug == "dance" else None,
                              # Each axis bites on one breakpoint. Desktop is wider
                              # than the 1.5 frame, so it scales to width and 273px
