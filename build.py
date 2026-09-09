@@ -2590,7 +2590,26 @@ CLASS_BAND = {
         # cover. Held to 45%, where the copy ends, then eased to 0.52.
         band_light_r=True,
     ),
+    # A pool frame that is a band in all but name, and the one remaining class
+    # with photography of its own.
+    "aqua": dict(
+        band_img="swim_band.jpg",
+        # 1.696 against a 2.0 desktop box, so it scales to width and 15% goes
+        # vertically — the swimmer spans 13-89% and survives either way. The
+        # phone scales to height and shows 34% of the width, where he sits at
+        # 62%: 60% lands him at 65% across, right of the copy.
+        band_focal="60% 45%",
+    ),
 }
+
+# Everything else closes on the lobby sign, the same frame and treatment the
+# group fitness page uses. A class page is a child of that page, the band's copy
+# names no format — "every class is included with membership" — and the sign is
+# the one photograph on the site that belongs to no studio. It is also the only
+# candidate that survives a phone band, which crops a third of the width away:
+# the wide class frames become a fragment of somebody's legs at that size.
+SHARED_CLASS_BAND = dict(band_img="forma_family_sign.jpg",
+                         band_focal="62% 50%", band_raise_=True)
 
 # Likewise for the closing band, whose generic form is "Try <format>".
 CLASS_BAND_TITLE = {
@@ -2618,7 +2637,7 @@ CLASS_FOCAL = {
 
 def class_page(slug, title, img, lead, others, others_sj=None, img_sj=None, strip_photos=None,
                band_img=None, band_focal=None, band_zoom=False, band_raise_m=False,
-               band_light_r=False, hero_mod=""):
+               band_light_r=False, band_raise_=False, hero_mod=""):
     # Same numbered panels as "the full lineup" on the group fitness page: six
     # full-width bands ran the section past 1,100px on desktop for six links.
     def cards(items):
@@ -2661,7 +2680,7 @@ def class_page(slug, title, img, lead, others, others_sj=None, img_sj=None, stri
             "Every class is included with membership. Come find your format.",
             f"{IMG}/{image}",
             focal=band_focal, zoom=band_zoom, raise_m=band_raise_m,
-            light_r=band_light_r,
+            light_r=band_light_r, raise_=band_raise_,
         )
     # The band repeats the hero photo unless a page gives it one of its own. When
     # the hero itself differs by club, so must the band — otherwise San Jose gets
@@ -3349,7 +3368,7 @@ for slug, title, img, lead, short in CLASS_PAGES:
                              img_sj="SJ_cycle_studio_2500px.jpg" if slug == "cycle" else None,
                              strip_photos=GFIT_STRIP_PHOTOS if slug == "dance" else None,
                              hero_mod=CLASS_HERO_MOD.get(slug, ""),
-                             **CLASS_BAND.get(slug, {}))))
+                             **CLASS_BAND.get(slug, SHARED_CLASS_BAND))))
 
 
 
