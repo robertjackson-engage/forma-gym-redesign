@@ -2899,7 +2899,13 @@ contact_body = (
 """ + cta_band(
     'Two clubs. <span class="serif">One membership</span>',
     "Ready when you are. Join online in minutes, or book a tour and let us show you around.",
-    f"{IMG}/pool_sj_day.jpg",
+    f"{IMG}/forma_family_band.jpg",
+    # Same treatment as the group fitness band. y is inert at both breakpoints
+    # here: the frame is 2.135 against a 2.12 desktop box and a 0.69 phone box,
+    # so it scales to height either way and never overflows vertically. Desktop
+    # therefore shows almost the whole width; the phone shows 32% of it, and the
+    # sign centres on 76%, which 84% lands at 60% across — right of the copy.
+    focal="84% 50%", raise_=True,
 )
 
 # ============================================================ TRIAL PASS
