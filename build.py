@@ -370,7 +370,7 @@ CLASS_PAGES = [
     ("cardio-hiit", "Cardio + HIIT", "slider-cardio_HIIT_v1.jpg",
      "High-energy intervals that torch calories and build serious conditioning. Cardio and HIIT classes alternate bursts of intense effort with active recovery – an efficient, heart-pumping way to get stronger and faster, scaled to every level.",
      "High-intensity intervals that torch calories"),
-    ("cycle", "Cycle Studio", "SJ_cycle_studio_2500px.jpg",
+    ("cycle", "Cycle Studio", "cycle_WC.jpg",
      "An exhilarating, immersive cardio ride for every fitness level. Simulated terrain, climbs, sprints and endurance sets – all driven by the beat. The music keeps you engaged and pushes you to match its rhythm and intensity.",
      "Immersive, beat-driven indoor rides"),
     ("dance", "Dance", "dance_class_jess_tall.jpg",
@@ -2531,6 +2531,16 @@ CLASS_HERO_LINES = {
     "dance": ['Let&rsquo;s <span class="serif">Dance</span>'],
 }
 
+# Scrim modifiers for the few class heroes the standard gradient does not hold
+# copy on. Dance is lit brightly edge to edge, so it takes the flat wash and
+# then ramps it out to the right, off the instructor. Cycle is a wide room with
+# no subject to protect, so the horizontal scrim can simply be darkest under the
+# copy — desktop only, as ever, since a phone hero's copy runs the full width.
+CLASS_HERO_MOD = {
+    "dance": "hero__media--tinted hero__media--tint-fade",
+    "cycle": "hero__media--scrim-left",
+}
+
 # Likewise for the closing band, whose generic form is "Try <format>".
 CLASS_BAND_TITLE = {
     "dance": '<span class="serif">Dance</span> with us',
@@ -2593,6 +2603,22 @@ def class_page(slug, title, img, lead, others, others_sj=None, img_sj=None, stri
     head = (_hero(img) if not img_sj else
             "<!--wc-->" + _hero(img) + "<!--/wc--><!--sj-->" + _hero(img_sj) + "<!--/sj-->")
     strip = photo_marquee(strip_photos) if strip_photos else ""
+
+    def _band(image):
+        return cta_band(
+            CLASS_BAND_TITLE.get(slug) or f'Try <span class="serif">{title.split()[0]}</span>',
+            "Every class is included with membership. Come find your format.",
+            f"{IMG}/{image}",
+            focal=band_focal, zoom=band_zoom, raise_m=band_raise_m,
+        )
+    # The band repeats the hero photo unless a page gives it one of its own. When
+    # the hero itself differs by club, so must the band — otherwise San Jose gets
+    # its own studio at the top of the page and Walnut Creek's at the bottom.
+    band_wc = band_img or img
+    band_sj = band_img or img_sj or img
+    band = (_band(band_wc) if band_wc == band_sj else
+            "<!--wc-->" + _band(band_wc) + "<!--/wc-->"
+            + "<!--sj-->" + _band(band_sj) + "<!--/sj-->")
     return head + strip + f"""
 <section class="section">
   <div class="wrap">
@@ -2605,13 +2631,7 @@ def class_page(slug, title, img, lead, others, others_sj=None, img_sj=None, stri
     <div class="pillars pillars--3 reveal" data-stagger>{other_cards}</div>
   </div>
 </section>
-""" + cta_band(
-        CLASS_BAND_TITLE.get(slug) or f'Try <span class="serif">{title.split()[0]}</span>',
-        "Every class is included with membership. Come find your format.",
-        # The band repeats the hero photo unless a page wants its own frame.
-        f"{IMG}/{band_img or img}",
-        focal=band_focal, zoom=band_zoom, raise_m=band_raise_m,
-    )
+""" + band
 
 
 # ============================================================ JOIN
@@ -3260,6 +3280,9 @@ for slug, title, img, lead, short in CLASS_PAGES:
                   f"{title} at Forma Gym – included with membership, all levels welcome.",
                   "group-fitness.html",
                   class_page(slug, title, img, lead, others, others_sj,
+                             # Cycle is the one format shot at both clubs: Walnut
+                             # Creek's magenta studio and San Jose's blue one.
+                             img_sj="SJ_cycle_studio_2500px.jpg" if slug == "cycle" else None,
                              strip_photos=GFIT_STRIP_PHOTOS if slug == "dance" else None,
                              band_img="dance_susan_kerry.jpg" if slug == "dance" else None,
                              # Each axis bites on one breakpoint. Desktop is wider
@@ -3279,9 +3302,7 @@ for slug, title, img, lead, short in CLASS_PAGES:
                              # height, so there is no vertical overflow to move.
                              # Offsetting the image's top is the only lever there.
                              band_raise_m=slug == "dance",
-                             # The studio frame is lit brightly enough that the
-                             # standard gradient left the headline sitting thin.
-                             hero_mod="hero__media--tinted hero__media--tint-fade" if slug == "dance" else "")))
+                             hero_mod=CLASS_HERO_MOD.get(slug, ""))))
 
 
 
