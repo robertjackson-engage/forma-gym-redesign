@@ -1874,6 +1874,11 @@ html:has(.subnav) { scroll-padding-top: 150px; }
   font-weight: 600; padding: 7px 13px; margin: 0; display: block;
 }
 .menu-side__group .club-switch { margin-top: 4px; }
+/* On the gate neither club is current — the visitor is picking one — so both
+   halves are plain links, and the type sits a touch above the 8.5px the header
+   pill uses — enough to read as the panel's control, not so much that it
+   competes with the headline above it. */
+.club-switch--choose > * { font-size: 9.5px; letter-spacing: 0.16em; padding: 8px 15px; }
 /* The guest/member toggle sits in a group of its own now rather than in the
    mobile-only controls row, because the header no longer carries it at any
    width. */

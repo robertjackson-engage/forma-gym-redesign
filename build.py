@@ -1408,8 +1408,10 @@ view_chooser = f"""
         <h3>I'm a <span class="serif">guest</span></h3>
         <p>Choose your home club and explore classes.</p>
         <div class="vc-clubs">
-          <a class="btn btn--sm" data-choose="guest" href="{_vc_wc}">Visit Walnut Creek <span class="arr">→</span></a>
-          <a class="btn btn--sm" data-choose="guest" href="{_vc_sj}">Visit San Jose <span class="arr">→</span></a>
+          <div class="club-switch club-switch--choose" role="group" aria-label="Choose your club">
+            <a data-choose="guest" href="{_vc_wc}">Walnut Creek</a>
+            <a data-choose="guest" href="{_vc_sj}">San Jose</a>
+          </div>
         </div>
       </div>
     </div>
@@ -2739,7 +2741,7 @@ for c in CLUBS:
 join_body = hero(
     "Join Forma Online",
     ["Join in", '<span class="serif">minutes</span>'],
-    'Pick your club, choose your membership, join the Family.',
+    'Pick your club, choose your membership, join the Forma Family.',
     img=f"{IMG}/andres_press.jpg",
     crumb="Join Now",
     # The walkthrough video plays here; Andres is the poster behind it, which is
