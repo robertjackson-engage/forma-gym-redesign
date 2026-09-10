@@ -148,6 +148,10 @@ CLUB_FACADE = {"wc": "wc_facade.jpg", "sj": "sj_facade.jpg"}
 # San Jose runs mat pilates, which is a different class and stays in its tree.
 # The member portal is a third-party system, not a page of this site.
 MEMBER_PORTAL = "https://www.myiclubonline.com/iclub/members/signin"
+# Square checkouts for the two Gives Back causes, as the live site uses.
+FKF_DONATE = "https://forma-kids-foundation.square.site/?source=qr-code"
+RISE_DONATE = ("https://checkout.square.site/merchant/MLNHMJSTTD3MV/checkout/"
+               "WJTQOKFZUFMOXMMZQYEUEFGS")
 
 WC_ONLY_PAGES = {"kidzville.html", "cryo.html", "rise.html", "pilates-reformer.html"}
 
@@ -352,7 +356,7 @@ MENU = [
     ("Outdoor Fitness", "outdoor-training.html"),
     ("DrBrainRX", "drbrainrx.html"),
     ("RISE Program", "rise.html"),
-    ("Forma Gives Back", "givesback.html"),
+    ("Forma Gives Back", "about.html#givesback"),
     ("Walnut Creek", "walnut-creek.html"),
     ("San Jose", "san-jose.html"),
     ("The Forma App", "app.html"),
@@ -1140,7 +1144,6 @@ URL_MAP = {
     "spa.html": "locations/walnut-creek/spa",
     "kidzville.html": "kidzville",
     "rise.html": "rise",
-    "givesback.html": "givesback",
     "walnut-creek.html": "locations/walnut-creek",
     "san-jose.html": "locations/san-jose",
     "locations.html": "locations",
@@ -1703,7 +1706,39 @@ about_body = hero(
     # box keeps its 4:3 on a phone, so this holds at both breakpoints.
     focal_sj="50% 92%",
     alt_sj="Members of every age in an outdoor yoga class at Forma",
-) + form_section(
+) + f"""
+<section class="section" id="givesback">
+  <div class="wrap">
+    <div class="cards-head">
+      <div>
+        <p class="eyebrow">Forma gives back</p>
+        <h2 class="h-display reveal">Play it <span class="serif">forward</span></h2>
+      </div>
+    </div>
+    <p class="body-copy reveal" style="max-width:92ch">Our passion for giving back to our community is as strong as it is for the health and wellness of our members. It is rooted in what we show up and commit to every day.</p>
+    <div class="pillars pillars--3 reveal" data-stagger>
+      <div class="pillar">
+        <span class="pillar__num">01</span>
+        <h3>Forma Kids Foundation</h3>
+        <p>Launched in 2013 with a commitment to making sure ALL children have safe places to play and be active, receive a quality education, and to help end childhood hunger. Forma Kids Foundation 501(c)3 ID# 90-0992912.</p>
+        <a class="inline-link" href="{FKF_DONATE}" target="_blank" rel="noopener">Donate now &rarr;</a>
+      </div>
+      <div class="pillar">
+        <span class="pillar__num">02</span>
+        <h3>Walnut Creek Turkey Trot</h3>
+        <p>A 100% charity 5k, 10k and Kids Fun Run in downtown Walnut Creek that has raised over $1,200,000 for Walnut Creek public schools and the Food Banks of Contra Costa and Solano Counties. Proceeds also fund thousands of Thanksgiving meals for Bay Area families each year.</p>
+        <a class="inline-link" href="mailto:sponsorship@formagym.com">Become a sponsor &rarr;</a>
+      </div>
+      <div class="pillar">
+        <span class="pillar__num">03</span>
+        <h3>RISE Scholarship Program</h3>
+        <p>Exercise-based therapy has to be consistent to work, and not everyone who needs it can afford it. Each scholarship funds 24 recovery sessions &ndash; a three-month program &ndash; through the Forma Kids Foundation, and 100% of proceeds go to RISE clients.</p>
+        <a class="inline-link" href="{RISE_DONATE}" target="_blank" rel="noopener">Donate now &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+""" + form_section(
     "tour", "04", "Book a tour",
     'Come see it for <span class="serif">yourself</span>',
     "Join the Forma Family and experience the best trainers, programs and classes in the Bay Area. Tell us a little about you and we'll set up your visit.",
@@ -2500,33 +2535,6 @@ rise_body = hero(
     "RISE includes a scholarship program so cost is never the reason you can't start. Reach out and let's begin.",
     f"{IMG}/rise_room_blur.jpg",
     primary=("Get Started", "contact.html#tour"), secondary=("Scholarship Program", "#scholarship"),
-)
-
-givesback_body = hero(
-    "Forma Gives Back",
-    ["Fitness for", '<span class="serif">everyone</span>'],
-    "From those struggling just to stand to world-class athletes, we believe fitness and health should be available to EVERYONE on the spectrum of movement. Giving back isn't a campaign at Forma – it's who we are.",
-    img=f"{IMG}/slider-hero_ladies_v1.jpg",
-    crumb="Gives Back",
-    actions=[("Get Involved", "contact.html#tour", True)],
-    page=True,
-    # A 2.1:1 frame in a 0.6:1 phone hero shows only 29% of the width, so the
-    # default centre landed on mid-thigh. 64% puts two faces in shot instead, and
-    # still clears the whole group on desktop, where 88% of the width is visible.
-    focal="64% 50%",
-) + split(
-    "Our belief", "01",
-    'A community for <span class="serif">all</span>',
-    ["We're very proud of what we've created, and we love our Members, our Team, and our Community. That love shows up in how we give back – making space, programs and scholarships available to people who need them most.",
-     "The RISE Program's scholarship fund, accessible programming, and local partnerships are all part of how Forma shows up for the Bay Area."],
-    f"{IMG}/slider-locations_turf_alysse_torey.jpg",
-    "Forma community giving back",
-    cta=("Learn about RISE", "rise.html"),
-    club="wc") + cta_band(
-    'Play it <span class="serif">forward</span>',
-    "Want to get involved, donate, or nominate someone for a scholarship? We'd love to hear from you.",
-    f"{IMG}/slider-locations_group_dance.jpg",
-    primary=("Get Involved", "contact.html#tour"),
 )
 
 # ============================================================ CLASS DETAIL PAGES
@@ -3365,7 +3373,6 @@ PAGES = [
     ("spa.html", "The Spa at Forma | Massage, Facials, Reiki &amp; Skin Care", "A full-service day spa at Forma Gym – therapeutic massage, facials, Reiki and clinical skin care in Walnut Creek &amp; San Jose.", "spa.html", spa_body),
     ("kidzville.html", "Kidzville Childcare | Forma Gym Walnut Creek", "Free, safe, active childcare for ages 6 weeks–12 years while you work out. Forma Kidzville at Walnut Creek.", "kidzville.html", kidz_body),
     ("rise.html", "RISE Program | Exercise-Based Therapy for Paralysis | Forma", "RISE is an exercise-based therapy program for individuals living with paralysis. Movement is medicine. Scholarships available.", "rise.html", rise_body),
-    ("givesback.html", "Forma Gives Back | Fitness for Everyone", "Forma believes fitness should be available to everyone on the spectrum of movement. Learn how Forma Gives Back to the Bay Area.", "givesback.html", givesback_body),
     ("walnut-creek.html", "Forma Gym Walnut Creek | 1908 Olympic Blvd", "Forma Gym Walnut Creek – 35,000 sq ft of indoor &amp; outdoor fitness, heated pool, Kidzville, cryotherapy, day spa and Café.", "locations.html", walnutcreek_body),
     ("san-jose.html", "Forma Gym San Jose | 5434 Thornwood Dr", "Forma Gym San Jose – 40,000 sq ft luxury facility with covered outdoor turf, heated 6-lane pool, cold plunge and massage services.", "locations.html", sanjose_body),
     ("locations.html", "Locations &amp; Hours | Forma Gym Walnut Creek &amp; San Jose", "Two premium Bay Area clubs. Hours, addresses and amenities for Forma Gym Walnut Creek &amp; San Jose.", "locations.html", locations_body),
