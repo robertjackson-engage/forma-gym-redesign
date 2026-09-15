@@ -3159,7 +3159,13 @@ trial_body = (
 ) + "<!--/wc-->" + "<!--sj-->" + cta_band(
     'Come <span class="serif">play</span> <br class="br-m">with us.',
     "Two unique Bay Area clubs. The only thing left to do is show up.",
-    f"{IMG}/slider-locations_turf_alysse_torey.jpg",
+    f"{IMG}/turf_sj_band.jpg",
+    # 1.696 in a 2.0 desktop band: scales to width, 125px of an 818px frame
+    # overflows, and his head starts 7.6% down — exactly where a centred crop
+    # cuts. 30% leaves air above it. The phone scales to height and shows 40.7%
+    # of the width; he centres on 59%, and 53% carries him to 68% across, off
+    # the copy.
+    focal="53% 30%",
 ) + "<!--/sj-->"
 
 # ============================================================ OUTDOOR
