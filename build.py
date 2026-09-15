@@ -2576,6 +2576,11 @@ CLASS_FOCAL_SJ = {
 CLASS_HERO_MOD = {
     "dance": "hero__media--tinted hero__media--tint-fade",
     "cycle": "hero__media--scrim-left hero__media--scrim-clear-r",
+    # The phone crop has no vertical overflow — the frame is wider than the box,
+    # so it scales to height and the full height already shows. object-position
+    # cannot move him up; --lift gives the image a taller box and hangs it above
+    # the container instead. Phone only, as that modifier always is.
+    "yoga": "hero__media--lift",
 }
 
 CLASS_HERO_MOD_SJ = {
@@ -2657,11 +2662,13 @@ CLASS_BAND_TITLE = {
 }
 
 CLASS_FOCAL = {
-    # The matched Walnut Creek frame: 2.011, wider than both boxes, so it scales
-    # to height either way and y is inert. He sits 81% across — desktop keeps him
-    # at 82% with room to spare, but the phone shows only 27% of the width and 70%
-    # would cut his head off the right edge; 90% holds his torso and face.
-    "yoga":             "90% 50%",
+    # The tall Walnut Creek recut is 1.741 — narrower than the 1.787 desktop box,
+    # so unlike San Jose's it scales to width there and only 21px overflows: the
+    # whole frame is effectively on screen and neither axis does much. x is a
+    # phone-only control here, and --lift widens the overflow it works against;
+    # he sits 82.5% across, which 84% carries out to 78% of the viewport, off
+    # the headline.
+    "yoga":             "84% 50%",
     # The taller crop of the same frame: 1.407 against a 1.81 desktop box, so it
     # scales to width and 215px of a 963px frame goes. 0% takes all of that off
     # the bottom, which drops the picture as far down the hero as it will go and
