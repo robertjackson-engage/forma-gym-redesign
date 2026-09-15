@@ -820,7 +820,8 @@ DARK_BAND_PHOTOS = {
 
 def cta_band(title_html, text, img, primary=("Join Now", "join.html"),
              secondary=("Book a Tour", "contact.html#tour"), focal=None, soft=False, mid=False,
-             deep=False, raise_=False, raise_m=False, zoom=False, light_r=False):
+             deep=False, raise_=False, raise_m=False, zoom=False, light_r=False,
+             dark_l=False):
     sec = f'<a class="btn" href="{secondary[1]}">{secondary[0]} <span class="arr">→</span></a>' if secondary else ""
     # A band is wide and short, so on a phone it crops the width hard — a
     # subject sitting off-centre needs pulling back into frame.
@@ -852,6 +853,8 @@ def cta_band(title_html, text, img, primary=("Join Now", "join.html"),
     # Desktop-only relief on the right, for a band whose subject stands clear of
     # the copy rather than under it.
     soft_cls += " cta-band--light-r" if light_r else ""
+    # The mirror of it: more weight under the copy on the left.
+    soft_cls += " cta-band--dark-l" if dark_l else ""
     return f"""
 <section class="cta-band{soft_cls}"{raise_var}>
   <div class="cta-band__media"><img src="{img}" alt="" loading="lazy"{focal_attr}></div>
@@ -3104,8 +3107,15 @@ trial_body = (
     # instead, since its copy runs the full width and a gradient clearing to the
     # right would leave the end of every line unprotected.
     "<!--wc-->" + _trial_hero(
-        "wc_gym_floor_hero.jpg",
+        "wc_facade_hero.jpg",
         ["35,000 sq ft of fitness", "Heated pool + Kidzville", "Cryo, spa and caf&eacute;"],
+        # 1.49 against a 1.787 desktop box, so it scales to width and 155px of a
+        # 931px frame overflows. Lowering y shows more of the top, which drops the
+        # building and keeps the sunset: 25% takes 39px off a centred crop. x is
+        # inert on desktop — nothing overflows horizontally — and is the phone's
+        # control, where the window shows 36% of the width and the sign spans
+        # 51.5-95%; 70% lands it on the sign and the entrance below it.
+        focal="70% 25%",
         media_mod="hero__media--scrim-left hero__media--tint-m",
     ) + "<!--/wc-->"
     + "<!--sj-->" + _trial_hero(
@@ -3126,7 +3136,7 @@ trial_body = (
     <div class="intro-grid">
       <div>
         <p class="eyebrow">We're here for you</p>
-        <h2 class="h-display reveal">A <span class="serif">lifestyle change.</span><br>Not a quick fix</h2>
+        <h2 class="h-display reveal">A <span class="serif">lifestyle change.</span><br>Not a quick fix.</h2>
       </div>
       <div class="intro-grid__right">
         <p class="lede reveal">Forma Gym is a family-run gym created not only to help you shape your body, but to help you take control of every aspect of your life.</p>
@@ -3135,11 +3145,22 @@ trial_body = (
     </div>
   </div>
 </section>
-""" + cta_band(
-    'Come <span class="serif">play</span> with us',
+""" + "<!--wc-->" + cta_band(
+    'Come <span class="serif">play</span> <br class="br-m">with us.',
+    "Two unique Bay Area clubs. The only thing left to do is show up.",
+    f"{IMG}/show_up_turf_WC_photo_strip.jpg",
+    # 1.679 in a 2.0 desktop band, so it scales to width and 132px of an 825px
+    # frame overflows; the banner sits 7.5-22.4% down and 30% keeps air above it
+    # where a centred crop would clip it. x is the phone's control — it scales to
+    # height there and shows 41% of the width, where a centred crop landed the
+    # SHOW UP FOR YOU banner squarely behind the headline. 0% takes the window to
+    # the racks and shade sails on the left instead, which carry no wording.
+    focal="0% 30%", dark_l=True,
+) + "<!--/wc-->" + "<!--sj-->" + cta_band(
+    'Come <span class="serif">play</span> <br class="br-m">with us.',
     "Two unique Bay Area clubs. The only thing left to do is show up.",
     f"{IMG}/slider-locations_turf_alysse_torey.jpg",
-)
+) + "<!--/sj-->"
 
 # ============================================================ OUTDOOR
 def _outdoor_hero(img, focal, media_mod, meta):

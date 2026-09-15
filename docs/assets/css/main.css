@@ -1402,6 +1402,17 @@ a.pillar:hover h3 { color: var(--accent); }
    holding full strength under the left-aligned copy. Desktop only: a phone band
    shows a third of the width and runs its copy across all of it. Sits after
    --soft/--mid/--deep so it wins at equal specificity. */
+/* The mirror of --light-r: weight added under the left-aligned copy and eased
+   back to roughly the standard 0.78 by the right, for a band whose left side is
+   bright. Desktop only for the same reason — a phone band runs its copy across
+   the full width, where a gradient clearing to one side strands the line ends.
+   Sits after --soft/--mid/--deep so it wins at equal specificity. */
+@media (min-width: 821px) {
+  .cta-band--dark-l .cta-band__media::after {
+    background: linear-gradient(to right, rgba(11,11,12,0.90) 0%,
+      rgba(11,11,12,0.86) 38%, rgba(11,11,12,0.78) 68%, rgba(11,11,12,0.74) 100%);
+  }
+}
 @media (min-width: 821px) {
   .cta-band--light-r .cta-band__media::after {
     background: linear-gradient(to right, rgba(11,11,12,0.78) 0%,
