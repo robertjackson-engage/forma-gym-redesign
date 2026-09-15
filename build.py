@@ -405,7 +405,7 @@ CLASS_PAGES = [
     ("trx", "TRX&reg; Suspension", "slider-TRX_v4.jpg",
      "Leverage your own body weight as resistance on the TRX suspension system. Adjustable straps let you scale every move – building strength, stability and control from your first rep to your hardest.",
      "Suspension training that scales to you"),
-    ("yoga", "Yoga + Mind Body", "slider-mind_body_v1.jpg",
+    ("yoga", "Yoga + Mind Body", "yoga_mind_body_wc_hero.jpg",
      "Move, breathe, and reconnect. From gentle restorative flows to dynamic vinyasa, our yoga and mind-body classes build flexibility, strength and calm – guided by instructors who meet you exactly where you are.",
      "Flexibility, strength and stillness"),
 ]
@@ -1709,13 +1709,13 @@ about_body = hero(
 ) + f"""
 <section class="section" id="givesback">
   <div class="wrap">
-    <div class="cards-head">
+    <div class="cards-head cards-head--stack">
       <div>
         <p class="eyebrow">Forma gives back</p>
         <h2 class="h-display reveal">Play it <span class="serif">forward</span></h2>
       </div>
+      <p class="body-copy reveal">Our passion for giving back to our community is as strong as it is for the health and wellness of our members. It is rooted in what we show up and commit to every day.</p>
     </div>
-    <p class="body-copy reveal" style="max-width:92ch">Our passion for giving back to our community is as strong as it is for the health and wellness of our members. It is rooted in what we show up and commit to every day.</p>
     <div class="pillars pillars--3 reveal" data-stagger>
       <div class="pillar">
         <span class="pillar__num">01</span>
@@ -2546,6 +2546,25 @@ rise_body = hero(
 # slug where the headline wants a lead-in instead.
 CLASS_HERO_LINES = {
     "dance": ['Let&rsquo;s <span class="serif">Dance</span>'],
+    "yoga": ["Yoga &amp;", '<span class="serif">Mind Body</span>'],
+}
+
+# Class heroes San Jose has its own frame for. Cycle because the format is shot
+# at both clubs — Walnut Creek's magenta studio, San Jose's blue one — and yoga
+# because San Jose runs it out on the covered turf.
+CLASS_IMG_SJ = {
+    "cycle": "SJ_cycle_studio_2500px.jpg",
+    "yoga": "yoga_mind_body_hero.jpg",
+}
+
+# A club-specific hero needs its own focal: CLASS_FOCAL is keyed by slug and
+# would otherwise re-crop the other club's photograph too.
+CLASS_FOCAL_SJ = {
+    # 2.135 against a 1.81 desktop box and a 0.54 phone box — wider than both, so
+    # it scales to height either way and y never has anything to act on. The
+    # phone shows a quarter of the width and she sits 65% across, which 70%
+    # centres; desktop keeps her at 64%, clear of the copy.
+    "yoga": "70% 50%",
 }
 
 # Scrim modifiers for the few class heroes the standard gradient does not hold
@@ -2557,6 +2576,15 @@ CLASS_HERO_LINES = {
 CLASS_HERO_MOD = {
     "dance": "hero__media--tinted hero__media--tint-fade",
     "cycle": "hero__media--scrim-left hero__media--scrim-clear-r",
+}
+
+CLASS_HERO_MOD_SJ = {
+    # The frame is graded with its own dark left third, so the copy needs no help
+    # — what it needs is the standard scrim off her. --clear-top eases the top
+    # stop from 0.42 to 0.16 and --scrim-clear-r masks what is left back toward
+    # the right, which is where her face is. Both desktop only: a phone hero runs
+    # its copy across the whole frame and keeps the flat scrim.
+    "yoga": "hero__media--clear-top hero__media--scrim-clear-r",
 }
 
 # The closing band repeats the hero photo unless a page is given its own frame
@@ -2629,6 +2657,11 @@ CLASS_BAND_TITLE = {
 }
 
 CLASS_FOCAL = {
+    # The matched Walnut Creek frame: 2.011, wider than both boxes, so it scales
+    # to height either way and y is inert. He sits 81% across — desktop keeps him
+    # at 82% with room to spare, but the phone shows only 27% of the width and 70%
+    # would cut his head off the right edge; 90% holds his torso and face.
+    "yoga":             "90% 50%",
     # The taller crop of the same frame: 1.407 against a 1.81 desktop box, so it
     # scales to width and 215px of a 963px frame goes. 0% takes all of that off
     # the bottom, which drops the picture as far down the hero as it will go and
@@ -2666,7 +2699,7 @@ def class_page(slug, title, img, lead, others, others_sj=None, img_sj=None, stri
     # instead of five on the pages where reformer would have been one of them.
     other_cards = ("<!--wc-->" + cards(others) + "<!--/wc-->"
                    + "<!--sj-->" + cards(others_sj if others_sj is not None else others) + "<!--/sj-->")
-    def _hero(image):
+    def _hero(image, hero_focal, mod):
         return hero(
             "Group Fitness",
             CLASS_HERO_LINES.get(slug) or (
@@ -2678,12 +2711,17 @@ def class_page(slug, title, img, lead, others, others_sj=None, img_sj=None, stri
                      ("View Class Schedule", "group-fitness.html#schedule", True, "only-member"),
                      ("Login to My Account", MEMBER_PORTAL, False, "only-member")],
             meta=["Included with membership", "All levels welcome"], page=True,
-            focal=CLASS_FOCAL.get(slug), media_mod=hero_mod,
+            focal=hero_focal, media_mod=mod,
         )
     # A club-specific hero has to be two heroes: the media is a whole element, not
     # a value the marker filter can swap inside one.
-    head = (_hero(img) if not img_sj else
-            "<!--wc-->" + _hero(img) + "<!--/wc--><!--sj-->" + _hero(img_sj) + "<!--/sj-->")
+    # A club-specific frame is cropped and scrimmed on its own terms — the
+    # slug-keyed defaults would otherwise re-tune the other club's photograph.
+    focal_wc = CLASS_FOCAL.get(slug)
+    head = (_hero(img, focal_wc, hero_mod) if not img_sj else
+            "<!--wc-->" + _hero(img, focal_wc, hero_mod) + "<!--/wc-->"
+            + "<!--sj-->" + _hero(img_sj, CLASS_FOCAL_SJ.get(slug, focal_wc),
+                                  CLASS_HERO_MOD_SJ.get(slug, hero_mod)) + "<!--/sj-->")
     strip = photo_marquee(strip_photos) if strip_photos else ""
 
     def _band(image):
@@ -3398,9 +3436,7 @@ for slug, title, img, lead, short in CLASS_PAGES:
                   f"{title} at Forma Gym – included with membership, all levels welcome.",
                   "group-fitness.html",
                   class_page(slug, title, img, lead, others, others_sj,
-                             # Cycle is the one format shot at both clubs: Walnut
-                             # Creek's magenta studio and San Jose's blue one.
-                             img_sj="SJ_cycle_studio_2500px.jpg" if slug == "cycle" else None,
+                             img_sj=CLASS_IMG_SJ.get(slug),
                              strip_photos=GFIT_STRIP_PHOTOS if slug == "dance" else None,
                              hero_mod=CLASS_HERO_MOD.get(slug, ""),
                              **CLASS_BAND.get(slug, SHARED_CLASS_BAND))))
