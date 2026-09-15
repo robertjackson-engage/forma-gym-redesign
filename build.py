@@ -405,7 +405,7 @@ CLASS_PAGES = [
     ("trx", "TRX&reg; Suspension", "slider-TRX_v4.jpg",
      "Leverage your own body weight as resistance on the TRX suspension system. Adjustable straps let you scale every move – building strength, stability and control from your first rep to your hardest.",
      "Suspension training that scales to you"),
-    ("yoga", "Yoga + Mind Body", "yoga_mind_body_wc_hero.jpg",
+    ("yoga", "Yoga + Mind Body", "slider-mind_body_v1.jpg",
      "Move, breathe, and reconnect. From gentle restorative flows to dynamic vinyasa, our yoga and mind-body classes build flexibility, strength and calm – guided by instructors who meet you exactly where you are.",
      "Flexibility, strength and stillness"),
 ]
@@ -2575,12 +2575,12 @@ CLASS_FOCAL_SJ = {
 # since a phone hero's copy runs the full width.
 CLASS_HERO_MOD = {
     "dance": "hero__media--tinted hero__media--tint-fade",
+    # The brightest class hero on the site: a white wall and a wall of windows in
+    # daylight. The phone's standard flat 0.45 left six lines of body copy
+    # sitting on it, so --tint-m carries 0.62 there. Phone only — desktop keeps
+    # its own gradient, where the copy sits on the frame's dark left third.
+    "yoga": "hero__media--tint-m",
     "cycle": "hero__media--scrim-left hero__media--scrim-clear-r",
-    # The phone crop has no vertical overflow — the frame is wider than the box,
-    # so it scales to height and the full height already shows. object-position
-    # cannot move him up; --lift gives the image a taller box and hangs it above
-    # the container instead. Phone only, as that modifier always is.
-    "yoga": "hero__media--lift",
 }
 
 CLASS_HERO_MOD_SJ = {
@@ -2662,13 +2662,12 @@ CLASS_BAND_TITLE = {
 }
 
 CLASS_FOCAL = {
-    # The tall Walnut Creek recut is 1.741 — narrower than the 1.787 desktop box,
-    # so unlike San Jose's it scales to width there and only 21px overflows: the
-    # whole frame is effectively on screen and neither axis does much. x is a
-    # phone-only control here, and --lift widens the overflow it works against;
-    # he sits 82.5% across, which 84% carries out to 78% of the viewport, off
-    # the headline.
-    "yoga":             "84% 50%",
+    # Walnut Creek's daylight studio frame is 2.096 — wider than both boxes, so
+    # it scales to height either way and y is inert. The pair spans 41-95% with
+    # their two faces at 59% and 71%; the phone shows 27.8% of the width, and 72%
+    # centres that window on both of them. Desktop gains from the same number,
+    # where 50% was clipping the instructor's trailing leg at the right edge.
+    "yoga":             "72% 50%",
     # The taller crop of the same frame: 1.407 against a 1.81 desktop box, so it
     # scales to width and 215px of a 963px frame goes. 0% takes all of that off
     # the bottom, which drops the picture as far down the hero as it will go and
