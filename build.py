@@ -164,6 +164,9 @@ SHARED_PAGES = {
     "locations.html", "walnut-creek.html", "san-jose.html",
     "privacy.html", "accessibility.html", "freeze-cancel.html",
     "merchant.html", "app.html",
+    # A partner programme, not an amenity: the same offer, the same doctors and
+    # the same code at either club. Publishing it per tree gave two URLs one page.
+    "drbrainrx.html",
 }
 
 # Where a page sits inside a club tree, when the shared URL_MAP entry carries a
@@ -3213,7 +3216,9 @@ drbrain_body = hero(
     img_mobile=f"{IMG}/drbrain_sara_hero_m.jpg",
     media_mod="hero__media--baked",
     crumb="DrBrainRX",
-    actions=[("Join Now", "join.html", True), ("Member Special", "#offer", False)],
+    # The offer is the reason a guest would join, so the button goes to it. Only
+    # the code inside it is member-gated; the rate itself is the pitch.
+    actions=[("Join Now", "join.html", True), ("Exclusive Offer", "#offer", False)],
     meta=["Long-term metabolic support", "Cognitive clarity", "Weight stability"],
     page=True,
 ) + f"""
@@ -3235,7 +3240,7 @@ drbrain_body = hero(
 
 <section class="section section--panel" id="offer">
   <div class="wrap">
-    <figure class="quote-band quote-band--sm reveal">
+    <figure class="quote-band quote-band--sm quote-band--left-m reveal">
       <p class="eyebrow">Exclusive offer for Forma members</p>
       <blockquote>1 month FREE DrBrainRX membership, $70 OFF your 1st month of any compounded product *PLUS* fully online medical intake and provider review and ongoing support AND access to the DrBrainRX team.<span class="only-member"> Use code FORMAGYM.</span></blockquote>
       <figcaption><span class="quote-band__rule"></span><img class="quote-band__lockup" src="assets/img/drbrainRX_forma_logo_lockup.svg" alt="Forma Gym and DrBrainRx"></figcaption>
