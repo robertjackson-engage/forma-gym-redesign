@@ -1848,7 +1848,13 @@ training_body = hero(
     # window is only 28% wide and the copy is left-aligned over her face —
     # the modifier shifts her right on small screens only.
     media_mod="hero__media--focus-right hero__media--scrim-left",
-    actions=[("Join Now", "join.html", True), ("Meet the Team", "#team", False)],
+    # Meet the Team is useful to both, so it stays ungated. Join Now is not: a
+    # member has already done it. Theirs is the schedule and the portal, as on
+    # every other club-facing hero.
+    actions=[("Join Now", "join.html", True, "only-guest"),
+             ("Meet the Team", "#team", False),
+             ("View Class Schedule", "group-fitness.html#schedule", True, "only-member"),
+             ("Login to My Account", MEMBER_PORTAL, False, "only-member")],
     meta=["1-on-1 &amp; small group", "Nutrition guidance included", "Both clubs"],
     page=True,
 ) + f"""
@@ -3078,7 +3084,12 @@ def _trial_hero(image, meta, focal=None, media_mod=""):
         "Fill out the form below to schedule a visit, a tour, and/or a guest workout – and a complimentary fitness coaching session.",
         img=f"{IMG}/{image}",
         crumb="Trial Pass",
-        actions=[("Schedule My Visit", "#tour", True), ("Join Online", "join.html", False)],
+        # Both of these are a guest's business: a member has joined already and
+        # does not need a visit scheduled or a membership bought.
+        actions=[("Schedule My Visit", "#tour", True, "only-guest"),
+                 ("Join Online", "join.html", False, "only-guest"),
+                 ("View Class Schedule", "group-fitness.html#schedule", True, "only-member"),
+                 ("Login to My Account", MEMBER_PORTAL, False, "only-member")],
         meta=meta,
         page=True, focal=focal, media_mod=media_mod,
     )
