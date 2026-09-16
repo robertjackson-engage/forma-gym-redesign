@@ -270,7 +270,7 @@ def load_collection(folder):
     return items
 
 def cms_img(path):
-    return (path or "").lstrip("/") or f"assets/img/slider-locations_turf_alysse_torey.jpg"
+    return (path or "").lstrip("/") or "assets/img/forma_family_sign.jpg"
 
 def fmt_date(d):
     months = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
@@ -3387,7 +3387,7 @@ privacy_body = legal_page("Privacy Policy",
 # NOT stated here — confirm Forma's current terms before publishing.
 freeze_body = hero(
     "Member Services",
-    ["Freeze or cancel", 'your <span class="serif">membership</span>.'],
+    ['Freeze / <span class="serif">Cancel</span>'],
     "Life changes – travel, injury, a season away. Put your membership on hold, or close it out. Either way, start the request here and our membership team will confirm by email.",
     img=f"{IMG}/neck_hold_BLUR_2000x1333px_v2.jpg",
     crumb="Freeze or Cancel",
@@ -3396,7 +3396,7 @@ freeze_body = hero(
 ) + """
 <!-- guests: this page isn't for them -->
 <section class="section section--tight only-guest">
-  <div class="wrap" style="max-width:820px">
+  <div class="wrap wrap--narrow">
     <p class="eyebrow">Members only</p>
     <h2 class="h-display reveal">This page is for <span class="serif">members</span></h2>
     <p class="lede reveal" style="margin-top:24px">Freeze and cancellation requests are handled for active Forma members. If you're already a member, switch to the Member view using the toggle at the top of the page.</p>
@@ -3446,7 +3446,11 @@ freeze_body = hero(
 """ + cta_band(
     'Still want to <span class="serif">stay</span>?',
     "If it's a schedule or cost issue, a membership change might solve it. Talk to the team before you go – we'd rather keep you.",
-    f"{IMG}/slider-locations_turf_alysse_torey.jpg",
+    # The lobby sign, on a page asking someone not to leave the Forma Family.
+    # It is also the one photograph on the site that belongs to no club, which a
+    # shared page needs. Same treatment the group fitness band uses.
+    f"{IMG}/forma_family_sign.jpg",
+    focal="62% 50%", raise_=True,
 )
 
 # ============================================================ BUILD ALL
@@ -3544,7 +3548,12 @@ def build_404():
         "404",
         ["Page not", '<span class="serif">found</span>.'],
         "That page has moved or no longer exists. The links below will get you back on track.",
-        img=f"{IMG}/slider-locations_turf_alysse_torey.jpg",
+        img=f"{IMG}/hanna_stare_2000px.jpg",
+        # 1.840 against a 1.787 desktop box, so it scales to height and only
+        # 41px overflows — the whole frame is effectively on screen and she sits
+        # at 66%, clear of the copy. The phone shows 29.3% of the width, where
+        # 73% centres the window on her.
+        focal="73% 50%",
         actions=[("Back to Home", "index.html", True), ("Locations &amp; Hours", "locations.html", False)],
         page=True,
     ) + """
