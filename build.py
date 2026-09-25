@@ -613,8 +613,8 @@ def footer_html(club=None):
 
 
 def hero(kicker, lines, sub="", sub2="", img=None, img_mobile=None, video=None, poster=None, poster_mobile=None, crumb=None,
-         actions=None, meta=None, page=False, title_mod="", focal=None,
-         walkthrough=False, tinted=False, media_mod=""):
+         actions=None, meta=None, page=False, title_mod="", focal=None, focal_m=None,
+         walkthrough=False, tinted=False, media_mod="", section_mod=""):
     lns = ""
     for i, ln in enumerate(lines):
         lns += f'<span class="ln"><span style="transition-delay:{0.12 + i * 0.09:.2f}s">{ln}</span></span>'
@@ -626,6 +626,15 @@ def hero(kicker, lines, sub="", sub2="", img=None, img_mobile=None, video=None, 
     # phone hero. main.js picks the desktop or mobile video source by viewport.
     post = poster or img or ""
     fstyle = f' style="object-position:{focal}"' if focal else ""
+    fclass = ""
+    if focal_m:
+        # A phone and a desktop crop the same frame on different axes, so one
+        # object-position cannot serve both. Hand CSS both values as custom
+        # properties and let the media query choose: an inline object-position
+        # is unreachable from a stylesheet, but an inline custom property is
+        # only ever *read* by one.
+        fstyle = f' style="--focal:{focal or "50% 50%"};--focal-m:{focal_m}"'
+        fclass = ' class="has-focal-m"'
     if video:
         media = f'<video src="{video}" poster="{post}" autoplay muted loop playsinline preload="auto"{fstyle}></video>'
     elif walkthrough:
@@ -640,7 +649,7 @@ def hero(kicker, lines, sub="", sub2="", img=None, img_mobile=None, video=None, 
                  f'data-poster-desktop="{post}" data-poster-mobile="{pm}" '
                  f'data-src-desktop="{HERO_VIDEO_DESKTOP}" data-src-mobile="{HERO_VIDEO_MOBILE}"></video>')
     else:
-        tag = f'<img src="{post}" alt="" fetchpriority="high"{fstyle}>'
+        tag = f'<img src="{post}" alt="" fetchpriority="high"{fclass}{fstyle}>'
         if img_mobile:
             # A wide frame with the subject far right cannot serve a phone: the
             # portrait box shows ~28% of the width. This is a separately cropped
@@ -676,7 +685,7 @@ def hero(kicker, lines, sub="", sub2="", img=None, img_mobile=None, video=None, 
     if sub2:
         sub_html += f'<p class="hero__sub hero__sub--offer">{sub2}</p>'
     return f"""
-<section class="hero{' hero--page' if page else ''}">
+<section class="hero{' hero--page' if page else ''}{' ' + section_mod if section_mod else ''}">
   <div class="hero__media{' hero__media--tinted' if tinted else ''}{f' {media_mod}' if media_mod else ''}">{media}</div>
   <div class="hero__inner">
     <p class="hero__kicker">{kicker}</p>
@@ -1509,12 +1518,22 @@ home_body = view_chooser + "<!--wc-->" + hero(
     "A 40,000 sq. ft. luxury club in South San Jose built around one idea: making movement a "
     "part of your day – every day. Covered outdoor turf, a heated 6-lane pool and every class "
     "included, with world-class trainers and an authentic community atmosphere.",
-    img=f"{IMG}/sj_pool_sunset_hero.jpg",
-    media_mod="hero__media--scrim-wide hero__media--sky",
-    # 1.8:1 against a 1.56:1 box, so the overflow is horizontal only and the y
-    # value is inert here — the full height of the frame shows. 62% trims the
-    # foreground palm on the left rather than the lit deck on the right.
-    focal="62% 50%",
+    img=f"{IMG}/pool_sj_birdseye_hero.jpg",
+    # No --sky here: this frame is shot looking down and has no sky at all, so
+    # the lightened top that protected the sunset would only leave the nav over
+    # bright foliage. The base gradient's 0.42 top comes back instead.
+    media_mod="hero__media--scrim-left-mid",
+    # Sized to the frame rather than to the window: at 86svh the desktop box is
+    # 1.83:1 against the photo's 1.84:1, so barely anything is cropped and the
+    # whole pool shows. The desktop focal is all but inert at that height — it
+    # only matters on a window wide enough to swing the box back past 1.84.
+    section_mod="hero--frame-fit",
+    focal="40% 50%",
+    # The phone box stays full height and shows only ~25% of the width, so pool
+    # and palm trade against each other directly. 80% puts the window at 60-85%:
+    # lane lines and water across most of the screen, with the near trunk
+    # arriving in the last eighth to close the right edge.
+    focal_m="80% 50%",
     actions=_HOME_ACTIONS,
     meta=["40,000 sq ft of fitness", "Heated 6-lane pool", "All classes included"],
 ) + "<!--/sj-->" + club_strip() + f"""

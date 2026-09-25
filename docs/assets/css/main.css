@@ -318,9 +318,22 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
   overflow: hidden;
 }
 .hero--page { min-height: 86svh; }
+/* A hero whose job is the photograph. 100svh crops a 1.84:1 frame by ~15% of
+   its width on a laptop; at 86svh the box lands on the frame's own ratio and
+   almost all of it shows. Desktop only — a phone hero is portrait and no height
+   short of unusable would fit a landscape frame into it. */
+@media (min-width: 821px) { .hero--frame-fit { min-height: 86svh; } }
 .hero__media { position: absolute; inset: -1px; z-index: 0; overflow: hidden; }
 .hero__media img, .hero__media video {
   width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;
+}
+/* Two crops of one frame. build.py's `focal` writes object-position inline,
+   which no stylesheet can reach; where a hero needs a different crop on the
+   phone it passes `focal_m` instead and the inline style carries only the two
+   values, leaving the property itself to be set here. */
+.hero__media img.has-focal-m { object-position: var(--focal, 50% 50%); }
+@media (max-width: 820px) {
+  .hero__media img.has-focal-m { object-position: var(--focal-m, var(--focal, 50% 50%)); }
 }
 .hero__media::after {
   content: ""; position: absolute; inset: 0;
@@ -448,6 +461,20 @@ body.menu-open .menu-list a { opacity: 1; transform: translateY(0); transition: 
       rgba(11,11,12,0.80) 32%,
       rgba(11,11,12,0.48) 56%,
       rgba(11,11,12,0.14) 74%,
+      rgba(11,11,12,0) 100%);
+  }
+  /* The lightest of the three. San Jose's birds-eye pool is the page's whole
+     argument, and --deep's 0.88 edge and 0.48 midpoint buried the water and the
+     deck alongside it. Measured against the actual pixels, the copy holds 7.3:1
+     (headline) and 7.5:1 (body) across the brightest 5% of what sits behind it,
+     so this buys back most of the photograph and still clears AAA. */
+  .hero__media--scrim-left-mid::before {
+    content: ""; position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(to right,
+      rgba(11,11,12,0.52) 0%,
+      rgba(11,11,12,0.46) 32%,
+      rgba(11,11,12,0.22) 56%,
+      rgba(11,11,12,0.05) 74%,
       rgba(11,11,12,0) 100%);
   }
   /* Same idea, held darker further across. The home hero's body copy runs to
