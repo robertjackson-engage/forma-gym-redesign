@@ -13,7 +13,6 @@
   --brand: #08d6dd;          /* exact Forma brand cyan */
   --accent: #08d6dd;         /* Forma cyan — vivid on dark */
   --accent-soft: #6ef0f4;    /* lighter cyan for on-dark highlights */
-  --warm: #fb8e28;           /* Forma secondary orange, used sparingly */
   --line: rgba(244, 247, 248, 0.14);
   --line-dark: rgba(6, 7, 9, 0.12);
   --muted: rgba(244, 247, 248, 0.60);
@@ -2456,7 +2455,14 @@ body.chat-open .chat-panel { opacity: 1; transform: none; pointer-events: auto; 
   .ac-form ._form button[type="submit"],
   .ac-form ._form input[type="submit"] { font-size: 15px !important; }
 }
-.ac-form ._form ._error, ._form ._error-inner, ._form ._error-html { color: var(--warm) !important; }
+/* Form errors in cyan. The secondary orange these used to carry was the only
+   non-cyan accent on the site and nothing else used it, so it went with the
+   token. Every AC form sits on a dark section — measured on the --ink-3
+   panel they actually render against, cyan is 9.6:1 where the orange was
+   7.4:1, so the errors got more legible, not less. Cyan now doubles as the
+   error colour; a form that needs errors to read as *wrong* rather than
+   highlighted would need a hue of its own. */
+.ac-form ._form ._error, ._form ._error-inner, ._form ._error-html { color: var(--accent) !important; }
 .ac-form ._form ._form-branding { opacity: .35; }
 
 /* Footer newsletter (form 9) sits in a narrow column — keep it compact */
